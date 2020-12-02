@@ -131,17 +131,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named sdl_lesson_3
+# Target rules for targets named final_project
 
 # Build rule for target.
-sdl_lesson_3: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sdl_lesson_3
-.PHONY : sdl_lesson_3
+final_project: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 final_project
+.PHONY : final_project
 
 # fast build rule for target.
-sdl_lesson_3/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/build
-.PHONY : sdl_lesson_3/fast
+final_project/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
+.PHONY : final_project/fast
 
 main.o: main.cpp.o
 
@@ -149,7 +149,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -158,7 +158,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -167,7 +167,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -178,7 +178,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... sdl_lesson_3"
+	@echo "... final_project"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

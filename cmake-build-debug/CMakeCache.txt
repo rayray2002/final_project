@@ -157,7 +157,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=sdl_lesson_3
+CMAKE_PROJECT_NAME:STATIC=final_project
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/ranlib
@@ -221,6 +221,12 @@ CMAKE_STRIP:FILEPATH=/Library/Developer/CommandLineTools/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Value Computed by CMake
+Final_BINARY_DIR:STATIC=/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug
+
+//Value Computed by CMake
+Final_SOURCE_DIR:STATIC=/Users/ray/Desktop/NTU/計算機程式/final_project
+
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
@@ -247,6 +253,12 @@ SDL2_TTF_INCLUDE_DIR:PATH=/Library/Frameworks/SDL2_ttf.framework/Headers
 
 //Path to a library.
 SDL2_TTF_LIBRARY:FILEPATH=/Library/Frameworks/SDL2_ttf.framework
+
+//Value Computed by CMake
+final_project_BINARY_DIR:STATIC=/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug
+
+//Value Computed by CMake
+final_project_SOURCE_DIR:STATIC=/Users/ray/Desktop/NTU/計算機程式/final_project
 
 //Value Computed by CMake
 sdl_lesson_3_BINARY_DIR:STATIC=/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug
@@ -414,7 +426,7 @@ ProcessorCount_cmd_sysctl-ADVANCED:INTERNAL=1
 SDL2_IMAGE_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL2_IMAGE_LIBRARY
 SDL2_IMAGE_LIBRARY-ADVANCED:INTERNAL=1
-SDL2_LIBRARY_TEMP:INTERNAL=/Library/Frameworks/SDL2.framework;-framework Cocoa
+SDL2_LIBRARY_TEMP:INTERNAL=/Library/Frameworks/SDL2.framework;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa;-framework Cocoa
 //ADVANCED property for variable: SDL2_MIXER_INCLUDE_DIR
 SDL2_MIXER_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL2_MIXER_LIBRARY

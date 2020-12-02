@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(sdl_lesson_3)
+project(final_project)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
@@ -12,5 +12,5 @@ include_directories(${SDL2_IMAGE_INCLUDE_DIR})
 include_directories(${SDL2_TTF_INCLUDE_DIR})
 include_directories(${SDL2_MIXER_INCLUDE_DIR})
 
-add_executable(test main.cpp)
-target_link_libraries(sdl_lesson_3 ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
+add_executable(final_project main.cpp)
+target_link_libraries(final_project ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_TTF_LIBRARY} ${SDL2_MIXER_LIBRARY})
