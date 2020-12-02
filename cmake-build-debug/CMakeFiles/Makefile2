@@ -73,7 +73,7 @@ CMAKE_BINARY_DIR = /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-bu
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/final_project.dir/all
+all: CMakeFiles/sdl_lesson_3.dir/all
 
 .PHONY : all
 
@@ -83,36 +83,36 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/final_project.dir/clean
+clean: CMakeFiles/sdl_lesson_3.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/final_project.dir
+# Target rules for target CMakeFiles/sdl_lesson_3.dir
 
 # All Build rule for target.
-CMakeFiles/final_project.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target final_project"
-.PHONY : CMakeFiles/final_project.dir/all
+CMakeFiles/sdl_lesson_3.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles --progress-num=1,2 "Built target sdl_lesson_3"
+.PHONY : CMakeFiles/sdl_lesson_3.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/final_project.dir/rule: cmake_check_build_system
+CMakeFiles/sdl_lesson_3.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/final_project.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/sdl_lesson_3.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/final_project.dir/rule
+.PHONY : CMakeFiles/sdl_lesson_3.dir/rule
 
 # Convenience name for target.
-final_project: CMakeFiles/final_project.dir/rule
+sdl_lesson_3: CMakeFiles/sdl_lesson_3.dir/rule
 
-.PHONY : final_project
+.PHONY : sdl_lesson_3
 
 # clean rule for target.
-CMakeFiles/final_project.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/clean
-.PHONY : CMakeFiles/final_project.dir/clean
+CMakeFiles/sdl_lesson_3.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sdl_lesson_3.dir/build.make CMakeFiles/sdl_lesson_3.dir/clean
+.PHONY : CMakeFiles/sdl_lesson_3.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

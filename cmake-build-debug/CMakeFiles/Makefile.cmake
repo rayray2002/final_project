@@ -86,6 +86,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Compiler/zOS-C-DetermineCompiler.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/FindPackageHandleStandardArgs.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/FindPackageMessage.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Internal/FeatureTesting.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Platform/Apple-AppleClang-C.cmake"
@@ -102,6 +104,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.17.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.17.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.17.3/CMakeSystem.cmake"
+  "../cmake/FindSDL2.cmake"
+  "../cmake/FindSDL2_image.cmake"
+  "../cmake/FindSDL2_mixer.cmake"
+  "../cmake/FindSDL2_ttf.cmake"
   )
 
 # The corresponding makefile is:
@@ -122,5 +128,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/final_project.dir/DependInfo.cmake"
+  "CMakeFiles/sdl_lesson_3.dir/DependInfo.cmake"
   )
