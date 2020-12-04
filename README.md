@@ -1,7 +1,7 @@
 # 計算機程式期末專題
 
 ## Ideas
-    game
+    fighting game
 
 ## Library
     TODO
