@@ -35,14 +35,14 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Platform/Darwin.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Platform/UnixPaths.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/ProcessorCount.cmake"
+  "../CMAKE/FindSDL2.cmake"
+  "../CMAKE/FindSDL2Mixer.cmake"
+  "../CMAKE/FindSDL2TTF.cmake"
+  "../CMAKE/FindSDL2_IMAGE.cmake"
   "../CMakeLists.txt"
   "CMakeFiles/3.17.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.17.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.17.3/CMakeSystem.cmake"
-  "../cmake/FindSDL2.cmake"
-  "../cmake/FindSDL2_image.cmake"
-  "../cmake/FindSDL2_mixer.cmake"
-  "../cmake/FindSDL2_ttf.cmake"
   )
 
 # The corresponding makefile is:

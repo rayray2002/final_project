@@ -1,5 +1,6 @@
 #include <cstdio>
-#include <SDL2/SDL.h>
+#include <SDL.h>
+#include <SDL_image.h>
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
@@ -52,7 +53,7 @@ bool loadMedia() {
 	bool success = true;
 
 	//Load splash image
-	gXOut = SDL_LoadBMP("../x.bmp");
+	gXOut = SDL_LoadBMP("/Users/ray/Desktop/NTU/計算機程式/final_project/x.bmp");
 	if (gXOut == NULL) {
 		printf("Unable to load image %s! SDL Error: %s\n", "../x.bmp", SDL_GetError());
 		success = false;
