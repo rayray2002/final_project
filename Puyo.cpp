@@ -72,16 +72,14 @@ public:
 
 	void printer();
 
+	vector<int> update();
+
+private:
 	vector<Block> check_chained(int, int);
 
 	void remove(Block);
 
 	void fill();
-
-	vector<int> update();
-
-private:
-
 };
 
 Puyo::Puyo() {
