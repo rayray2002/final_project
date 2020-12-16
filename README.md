@@ -7,10 +7,14 @@
 ## Library
 
     SDL2
+    iostream
+    vector
+    queue
 
 ## 分工
 
 * ### 黃柏睿
+
   Board update
     * #### Data types
         * enum Color
@@ -35,4 +39,4 @@
 
 ## Docs
 
-    python2 example: https://github.com/hMatoba/puyopuyo
+[python2 example](https://github.com/hMatoba/puyopuyo "title")
