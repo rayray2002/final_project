@@ -143,32 +143,32 @@ final_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
 .PHONY : final_project/fast
 
-main.o: main.cpp.o
+puyo.o: puyo.cpp.o
 
-.PHONY : main.o
+.PHONY : puyo.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.o
-.PHONY : main.cpp.o
+puyo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/puyo.cpp.o
+.PHONY : puyo.cpp.o
 
-main.i: main.cpp.i
+puyo.i: puyo.cpp.i
 
-.PHONY : main.i
+.PHONY : puyo.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.i
-.PHONY : main.cpp.i
+puyo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/puyo.cpp.i
+.PHONY : puyo.cpp.i
 
-main.s: main.cpp.s
+puyo.s: puyo.cpp.s
 
-.PHONY : main.s
+.PHONY : puyo.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.s
-.PHONY : main.cpp.s
+puyo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/puyo.cpp.s
+.PHONY : puyo.cpp.s
 
 # Help Target
 help:
@@ -179,9 +179,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... final_project"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... puyo.o"
+	@echo "... puyo.i"
+	@echo "... puyo.s"
 .PHONY : help
 
 

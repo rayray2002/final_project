@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.13.1)
 project(final_project)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 14)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMAKE")
-set(SOURCE_FILES src/main.c)
 
-ADD_EXECUTABLE(final_project main.cpp)
+ADD_EXECUTABLE(final_project puyo.cpp)
 
 FIND_PACKAGE(SDL2 REQUIRED)
 FIND_PACKAGE(SDL2_IMAGE)
