@@ -35,7 +35,7 @@
         * void remove(Block): remove assigned block
 
 * ### 徐明皓
-  character and falling queue manage
+  character, falling queue manage, and main loop
 
 * ### 施文崴
   graphic update
