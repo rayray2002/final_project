@@ -41,9 +41,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     }
     //SDL_LoadBMP
     //IMG_Load
-    SDL_Surface* tmpSurface = SDL_LoadBMP("./sample.bmp");
+    //SDL_Surface* tmpSurface = SDL_LoadBMP("./sample.bmp");
+    SDL_Surface* tmpSurface = SDL_LoadBMP("./img/kirito1.bmp");
     cout << "picture Loaded!" << endl;
-    //SDL_Surface* tmpSurface = IMG_Load("./pictures/sample.png");
+    //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
     // load support for the MP3 sample/music formats
@@ -120,53 +121,41 @@ void Game::handleEveants() {
 }
 
 void Game::update() {
-    // cnt++;
     SDL_Delay(10);
     destR.h = cnt;
     destR.w = cnt;
-    // destR.x = cnt;
-    // destR.y = cnt;
     SDL_Event e;
     if ( SDL_PollEvent( &e ) != 0 ) {
         switch ( e.key.keysym.sym ) {
             case SDLK_w:
                 destR.y -= 50;
-                //printf("w\n");
                 break;
 
             case SDLK_s:
                 destR.y += 50;
-                //printf("s\n");
                 break;
 
             case SDLK_a:
                 destR.x -= 50;
-                //printf("a\n");
                 break;
 
             case SDLK_d:
                 destR.x += 50;
-                //printf("d\n");
                 break;
 
             case SDLK_j:
                 cnt *= 2;
-                //printf("h * 1.2\n");
                 break;
 
             case SDLK_k:
                 if (cnt / 2 > 0) cnt /= 2;
-                //printf("w *= 1.2\n");
                 break;
             
             case SDLK_i:
                 cnt *= 1.2;
-                //printf("w, h *= 1.2\n");
                 break;
         }
     }
-    
-    //cout << cnt << endl;
 }
 
 void Game::render() {
@@ -179,6 +168,41 @@ void Game::render() {
 void Game::clean() {
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
+    Mix_CloseAudio();
     SDL_Quit();
+    Mix_Quit();
+    IMG_Quit();
     cout << "Game Cleaned!" << endl;
+}
+
+
+void Game::showmenu(SDL_Surface* screen, TTF_Font* font) {
+    Uint32 time;
+    int x, y;
+    const int NUMMENU = 2;
+    const char* label[NUMMENU] = {"Kirito", "Hsieg"};
+    SDL_Surface* menus[NUMMENU];
+    bool selected[NUMMENU] = {0, 0};
+    SDL_Color color[2] = {{255, 255, 255}, {255, 0, 0}};
+
+    menus[0] = TTF_RenderText_Solid(font, label[0], color[0]);
+    menus[1] = TTF_RenderText_Solid(font, label[1], color[0]);
+    SDL_Rect pos[NUMMENU];
+    pos[0].x = screen->clip_rect.w / 2 - menus[0]->clip_rect.w / 2;
+    pos[0].y = screen->clip_rect.h / 2 - menus[0]->clip_rect.h;
+    pos[1].x = screen->clip_rect.w / 2 - menus[1]->clip_rect.w / 2;
+    pos[1].y = screen->clip_rect.h / 2 - menus[1]->clip_rect.h;
+
+    SDL_Event event;
+    while (1) {
+        time = SDL_GetTicks();
+        while (SDL_PollEvent( &event )) {
+            switch (event.type) {
+                case SDL_QUIT:
+                    SDL_FreeSurface(menus[0]);
+                    SDL_FreeSurface(menus[1]);
+                case 
+            }
+        }
+    }
 }

@@ -96,13 +96,13 @@ void show_board(const char board[][WIDTH]) {
             switch (board[i][j]) {
             case 'R':
                 if (rand() % 10 == 1) {
-                    surface = IMG_Load("./img/banana.jpg"); break;
+                    surface = SDL_LoadBMP("./img/banana.bmp"); break;
                 }
-                else surface = IMG_Load("./img/sample_red.png"); break;
+                else surface = SDL_LoadBMP("./img/sample_red.bmp"); break;
             case 'G':
-                surface = IMG_Load("./img/sample_green.png"); break;
+                surface = SDL_LoadBMP("./img/sample_green.bmp"); break;
             case 'Y':
-                surface = IMG_Load("./img/sample_yellow.png"); break;
+                surface = SDL_LoadBMP("./img/sample_yellow.bmp"); break;
             
             }
             int size = 80;
