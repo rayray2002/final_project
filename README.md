@@ -7,6 +7,9 @@
 ## Library
 
     SDL2
+    SDL2_ttf
+    SDL_bgi
+    SDL_image
     iostream
     vector
     queue
