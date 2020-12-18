@@ -21,7 +21,7 @@ int main(int argc, const char* argv[]) {
 
         frameStart = SDL_GetTicks();
 
-
+        
         game->handleEveants();
         game->update();
         game->render();

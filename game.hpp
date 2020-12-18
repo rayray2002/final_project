@@ -44,6 +44,38 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     SDL_Surface* tmpSurface = SDL_LoadBMP("./sample.bmp");
     cout << "picture Loaded!" << endl;
     //SDL_Surface* tmpSurface = IMG_Load("./pictures/sample.png");
+
+    //LinkStart
+    SDL_Texture *LinkStartTexture = NULL;
+    SDL_Surface *LinkStartSurface = NULL;
+    if(TTF_Init() == -1) {
+        cout << "TTF_Init: " << TTF_GetError() << endl;
+    }
+    TTF_Font *font;
+    font = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
+    if(!font) {
+        cout << "TTF_OpenFont: " << TTF_GetError() << endl;
+    }
+    TTF_SetFontStyle(font, TTF_STYLE_BOLD|TTF_STYLE_ITALIC);
+    SDL_Color color = {0, 255, 235};
+    stringstream LinkStartText;
+    LinkStartText.str( "" );
+    LinkStartText << "Link Start!";
+    LinkStartSurface = TTF_RenderText_Solid(font, LinkStartText.str().c_str(), color);
+    LinkStartTexture = SDL_CreateTextureFromSurface(renderer, LinkStartSurface);
+    if (!LinkStartTexture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
+    }
+    SDL_FreeSurface(LinkStartSurface);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, LinkStartTexture, NULL, NULL);
+    SDL_RenderPresent(renderer);
+    SDL_Delay(2000);
+    TTF_CloseFont(font);
+    font = NULL;
+    //LinkStart
+
     playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
     SDL_FreeSurface(tmpSurface);
 }
@@ -65,8 +97,8 @@ void Game::handleEveants() {
 void Game::update() {
     // cnt++;
     SDL_Delay(10);
-    destR.h = 64;
-    destR.w = 64;
+    destR.h = cnt;
+    destR.w = cnt;
     // destR.x = cnt;
     // destR.y = cnt;
     SDL_Event e;
@@ -90,7 +122,22 @@ void Game::update() {
             case SDLK_d:
                 destR.x += 50;
                 printf("d\n");
-                break;            
+                break;
+
+            case SDLK_j:
+                cnt *= 1.2;
+                printf("h * 1.2\n");
+                break;
+
+            case SDLK_k:
+                cnt /= 1.2;
+                printf("w *= 1.2\n");
+                break;
+            
+            case SDLK_i:
+                cnt *= 1.2;
+                printf("w, h *= 1.2\n");
+                break;
         }
     }
     

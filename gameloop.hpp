@@ -2,8 +2,11 @@
 #define Game_hpp
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 class Game {
 
@@ -16,11 +19,12 @@ public:
     void update();
     void render();
     void clean();
+    void linkstart();
 
     bool running() { return isRunning; };
 
 private:
-    int cnt = 0; //count
+    int cnt = 64; //count
     bool isRunning;
     SDL_Window* window;
     SDL_Renderer* renderer;
