@@ -69,35 +69,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     printf("Music Loaded!\n");
 
     //LinkStart
-    SDL_Texture *LinkStartTexture = NULL;
-    SDL_Surface *LinkStartSurface = NULL;
-    if(TTF_Init() == -1) {
-        cout << "TTF_Init: " << TTF_GetError() << endl;
-    }
-    TTF_Font *font;
-    font = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
-    if(!font) {
-        cout << "TTF_OpenFont: " << TTF_GetError() << endl;
-    }
-    TTF_SetFontStyle(font, TTF_STYLE_BOLD|TTF_STYLE_ITALIC);
-    SDL_Color color = {0, 255, 235};
-    stringstream LinkStartText;
-    LinkStartText.str( "" );
-    LinkStartText << "Link Start!";
-    LinkStartSurface = TTF_RenderText_Solid(font, LinkStartText.str().c_str(), color);
-    LinkStartTexture = SDL_CreateTextureFromSurface(renderer, LinkStartSurface);
-    if (!LinkStartTexture) {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
-    }
-    SDL_FreeSurface(LinkStartSurface);
-    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-    SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, LinkStartTexture, NULL, NULL);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(2000);
-    TTF_CloseFont(font);
-    font = NULL;
-    printf("Link Start!\n");
+    LinkStart("Game Initailizing...", 1000);
+    LinkStart("Game Initailized!", 1000);
+    LinkStart("Link Start!", 2000);
     //LinkStart
 
     
@@ -176,7 +150,7 @@ void Game::clean() {
 }
 
 
-void Game::showmenu(SDL_Surface* screen, TTF_Font* font) {
+int Game::showmenu(SDL_Surface* screen, TTF_Font* font) {
     Uint32 time;
     int x, y;
     const int NUMMENU = 2;
@@ -199,10 +173,79 @@ void Game::showmenu(SDL_Surface* screen, TTF_Font* font) {
         while (SDL_PollEvent( &event )) {
             switch (event.type) {
                 case SDL_QUIT:
-                    SDL_FreeSurface(menus[0]);
-                    SDL_FreeSurface(menus[1]);
-                case 
+                    for (int i = 0; i < NUMMENU; i++) {
+                        SDL_FreeSurface(menus[i]);
+                    }
+                    return 1;
+                case SDL_MOUSEMOTION:
+                    x = event.motion.x;
+                    y = event.motion.y;
+                    for (int i = 0; i < NUMMENU; i++) {
+                        if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && x <= pos[i].y + pos[i].h) {
+                            if (!selected[i]) {
+                                selected[i] = 1;
+                                SDL_FreeSurface(menus[i]);
+                                menus[i] = TTF_RenderText_Solid(font, label[i], color[1]);
+                            }
+                            else {
+                                if (selected[i]) {
+                                    selected[i] = 0;
+                                    SDL_FreeSurface(menus[i]);
+                                    menus[i] = TTF_RenderText_Solid(font, label[i], color[0]);
+                                }
+                            }
+                        }
+                    }
+                case SDL_MOUSEBUTTONDOWN:
+                    x = event.motion.x;
+                    y = event.motion.y;
+                    for (int i = 0; i < NUMMENU; i++) {
+                        if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && x <= pos[i].y + pos[i].h) {
+                            for (int j = 0; j < NUMMENU; j++) {
+                                SDL_FreeSurface(menus[j]); 
+                            }
+                            return i;
+                        }
+                    }
+                    break;
+                case SDL_KEYDOWN:
+                    if (event.key.keysym.sym == SDLK_ESCAPE) {
+                        return 0;
+                    }
             }
         }
+        
     }
+}
+
+void Game::LinkStart(string text, int second) {
+    SDL_Texture *LinkStartTexture = NULL;
+    SDL_Surface *LinkStartSurface = NULL;
+    if(TTF_Init() == -1) {
+        //cout << "TTF_Init: " << TTF_GetError() << endl;
+    }
+    TTF_Font *font;
+    font = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
+    if(!font) {
+        //cout << "TTF_OpenFont: " << TTF_GetError() << endl;
+    }
+    TTF_SetFontStyle(font, TTF_STYLE_BOLD|TTF_STYLE_ITALIC);
+    SDL_Color color = {0, 255, 235};
+    stringstream LinkStartText;
+    LinkStartText.str( "" );
+    LinkStartText << text;
+    LinkStartSurface = TTF_RenderText_Solid(font, LinkStartText.str().c_str(), color);
+    LinkStartTexture = SDL_CreateTextureFromSurface(renderer, LinkStartSurface);
+    if (!LinkStartTexture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
+    }
+    SDL_FreeSurface(LinkStartSurface);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, LinkStartTexture, NULL, NULL);
+    SDL_RenderPresent(renderer);
+    SDL_Delay(second);
+    TTF_CloseFont(font);
+    font = NULL;
+    printf("%s\n", text);
 }

@@ -9,6 +9,7 @@
 #include <sstream>
 #include <string>
 #include <map>
+using namespace std;
 
 class Game {
 
@@ -21,8 +22,8 @@ public:
     void update();
     void render();
     void clean();
-    void showmenu(SDL_Surface* screen, TTF_Font* font);
-    //void linkstart();
+    int showmenu(SDL_Surface* screen, TTF_Font* font);
+    void LinkStart(string text, int second);
 
     bool running() { return isRunning; };
 
