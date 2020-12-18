@@ -45,6 +45,28 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     cout << "picture Loaded!" << endl;
     //SDL_Surface* tmpSurface = IMG_Load("./pictures/sample.png");
 
+    //Music
+    // load support for the MP3 sample/music formats
+    int mflags = MIX_INIT_MP3;
+    if( (Mix_Init(mflags) & mflags) != mflags ) {
+        cout << "Mix_Init: Failed to init required ogg and mod support!\n";
+        cout << "Mix_Init: %s\n" << Mix_GetError() << endl;
+    }
+
+    if(Mix_OpenAudio(128000, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
+        cout << "Mix_OpenAudio: %s\n" << Mix_GetError() << endl;
+    }
+
+
+    // load the MP3 file "music.mp3" to play as music
+    Mix_Music *music;
+    music = Mix_LoadMUS("mp3/miku.mp3");
+    if(!music) {
+        cout << "Mix_LoadMUS(\"miku.mp3\"): %s\n" << Mix_GetError();
+    }
+    Mix_PlayMusic( music, -1 );
+    printf("Music Loaded!\n");
+
     //LinkStart
     SDL_Texture *LinkStartTexture = NULL;
     SDL_Surface *LinkStartSurface = NULL;
@@ -74,7 +96,10 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     SDL_Delay(2000);
     TTF_CloseFont(font);
     font = NULL;
+    printf("Link Start!\n");
     //LinkStart
+
+    
 
     playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
     SDL_FreeSurface(tmpSurface);
@@ -106,37 +131,37 @@ void Game::update() {
         switch ( e.key.keysym.sym ) {
             case SDLK_w:
                 destR.y -= 50;
-                printf("w\n");
+                //printf("w\n");
                 break;
 
             case SDLK_s:
                 destR.y += 50;
-                printf("s\n");
+                //printf("s\n");
                 break;
 
             case SDLK_a:
                 destR.x -= 50;
-                printf("a\n");
+                //printf("a\n");
                 break;
 
             case SDLK_d:
                 destR.x += 50;
-                printf("d\n");
+                //printf("d\n");
                 break;
 
             case SDLK_j:
-                cnt *= 1.2;
-                printf("h * 1.2\n");
+                cnt *= 2;
+                //printf("h * 1.2\n");
                 break;
 
             case SDLK_k:
-                cnt /= 1.2;
-                printf("w *= 1.2\n");
+                if (cnt / 2 > 0) cnt /= 2;
+                //printf("w *= 1.2\n");
                 break;
             
             case SDLK_i:
                 cnt *= 1.2;
-                printf("w, h *= 1.2\n");
+                //printf("w, h *= 1.2\n");
                 break;
         }
     }
