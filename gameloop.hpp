@@ -25,7 +25,7 @@ public:
     void clean();
     void showmenu();
     void LinkStart(string text, int second, int h, int w);
-    void MusicPlay(const char* Music);
+    void MusicPlay(const char* Music, int volume);
 
     bool running() { return isRunning; };
 

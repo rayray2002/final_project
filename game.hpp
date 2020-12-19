@@ -49,7 +49,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
-    MusicPlay("./mp3/miku.mp3");
+    MusicPlay("./mp3/miku.wav", 96);
 
     //LinkStart
     LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -355,16 +355,16 @@ void Game::LinkStart(string text, int second, int h, int w) {
     cout << text << endl;
 }
 
-void Game::MusicPlay(const char* Music) {
+void Game::MusicPlay(const char* Music, int volume) {
     // load support for the MP3 sample/music formats
     int mflags = MIX_INIT_MP3;
     if( (Mix_Init(mflags) & mflags) != mflags ) {
-        cout << "Mix_Init: Failed to init required ogg and mod support!\n";
-        cout << "Mix_Init: %s\n" << Mix_GetError() << endl;
+        // cout << "Mix_Init: Failed to init required ogg and mod support!\n";
+        // cout << "Mix_Init: %s\n" << Mix_GetError() << endl;
     }
 
     if(Mix_OpenAudio(128000, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
-        cout << "Mix_OpenAudio: %s\n" << Mix_GetError() << endl;
+        // cout << "Mix_OpenAudio: %s\n" << Mix_GetError() << endl;
     }
 
 
@@ -375,7 +375,7 @@ void Game::MusicPlay(const char* Music) {
     if(!music) {
         cout << "Mix_LoadMUS(\"miku.mp3\"): %s\n" << Mix_GetError();
     }
-    Mix_VolumeMusic(64);
+    Mix_VolumeMusic(volume);
     Mix_PlayMusic( music, -1 );
     cout << "Music Loaded!\n";
 }
