@@ -49,7 +49,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
-    MusicPlay("mp3/miku.mp3");
+    MusicPlay("./mp3/miku.mp3");
 
     //LinkStart
     LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -157,17 +157,22 @@ void Game::showmenu() {
         MenuPos[i].h = 50;
         MenuPos[i].w = 120;
     }
-    int UP = HEIGHT / 2 - MenuPos[0].h / 2;
-    int DOWN = HEIGHT / 2 + MenuPos[0].h / 2;
-    int LEFT = WIDTH  / 2 - MenuPos[0].w / 2;
-    int RIGHT = WIDTH  / 2 + MenuPos[0].w / 2;
+    // int UP = HEIGHT / 2 - MenuPos[0].h / 2;
+    // int DOWN = HEIGHT / 2 + MenuPos[0].h / 2;
+    // int LEFT = WIDTH  / 2 - MenuPos[0].w / 2;
+    // int RIGHT = WIDTH  / 2 + MenuPos[0].w / 2;
+
+    int UP    = HEIGHT - 130;
+    int DOWN  = HEIGHT -  30;
+    int LEFT  =           30;
+    int RIGHT =          130;
     MenuLabel[0] << "Miku";
     
     MenuChoice[0] = TTF_RenderText_Solid(MenuFont, MenuLabel[0].str().c_str(), MenuColor[0]);
     //MenuChoice[1] = qwTTF_RenderText_Solid(MenuFont, MenuLabel[1], MenuColor[0]);
 
-    MenuPos[0].x = WIDTH  / 2 - MenuPos[0].w / 2; // 375 - 425
-    MenuPos[0].y = HEIGHT / 2 - MenuPos[0].h / 2; // 340 - 460
+    MenuPos[0].x = 30; // 375 - 425
+    MenuPos[0].y = HEIGHT - 60;; // 340 - 460
     //MenuPos[1].x = WIDTH  / 2 - MenuPos[1].w / 2;
     //MenuPos[1].y = HEIGHT / 2 - MenuPos[1].h;
 
@@ -288,9 +293,9 @@ void Game::showmenu() {
         }
         if (!MenuisRunning) {
             for (int i = 0; i < NUMMENU; i++) {
-                MenuTex[i] = SDL_CreateTextureFromSurface(renderer, MenuChoice[i]);
-                SDL_FreeSurface(MenuChoice[i]);
-                SDL_RenderCopy(renderer, MenuTex[i], NULL, &MenuPos[i]);
+                // MenuTex[i] = SDL_CreateTextureFromSurface(renderer, MenuChoice[i]);
+                // SDL_FreeSurface(MenuChoice[i]);
+                // SDL_RenderCopy(renderer, MenuTex[i], NULL, &MenuPos[i]);
                 SDL_DestroyTexture(MenuTex[i]);
             }
             break;
@@ -366,6 +371,7 @@ void Game::MusicPlay(const char* Music) {
     // load the MP3 file to play as music
     Mix_Music *music;
     music = Mix_LoadMUS(Music);
+    //Mix_LoadMUS
     if(!music) {
         cout << "Mix_LoadMUS(\"miku.mp3\"): %s\n" << Mix_GetError();
     }
