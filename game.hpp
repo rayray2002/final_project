@@ -1,11 +1,15 @@
 
 #include "gameloop.hpp"
 #include "firstmenu.hpp"
+//#include "texturemanager.hpp"
+#include "gameobject.hpp"
 using namespace std;
 
-
-SDL_Texture* playerTex;
-SDL_Rect scrR, destR;
+GameObject* player;
+GameObject* player2;
+SDL_Renderer* Game::renderer = nullptr;
+// SDL_Texture* playerTex;
+// SDL_Rect scrR, destR;
 
 Game::Game() {
     Character[0] = "Miku";
@@ -48,12 +52,17 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     //SDL_LoadBMP
     //IMG_Load
     //SDL_Surface* tmpSurface = SDL_LoadBMP("./sample.bmp");
-    SDL_Surface* tmpSurface = SDL_LoadBMP("./img/kirito1.bmp");
-    cout << "picture Loaded!" << endl;
+    // SDL_Surface* tmpSurface = SDL_LoadBMP("./img/kirito1.bmp");
+    // cout << "picture Loaded!" << endl;
+    // playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
+    // SDL_FreeSurface(tmpSurface);
+    // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
+    player = new GameObject("./img/kirito1.bmp", 0, 0);
+    player2 = new GameObject("./img/kirito1.bmp", 500, 500);
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
-    MusicPlay("./mp3/miku.wav", 96);
+    MusicPlay("./mp3/miku.wav", 32);
 
     //LinkStart
     LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -61,10 +70,6 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     LinkStart("Link Start!", 2000, 200, 600);
     //LinkStart
 
-    
-
-    playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-    SDL_FreeSurface(tmpSurface);
 }
 
 void Game::handleEveants() {
@@ -83,42 +88,46 @@ void Game::handleEveants() {
 
 void Game::update() {
     SDL_Delay(10);
-    destR.h = cnt;
-    destR.w = cnt;
-    SDL_Event e;
-    if ( SDL_PollEvent( &e ) != 0 ) {
-        switch ( e.key.keysym.sym ) {
-            case SDLK_w:
-                destR.y -= 50;
-                break;
+    player->Update();
+    player2->Update();
+    // destR.h = cnt;
+    // destR.w = cnt;
+    // SDL_Event e;
+    // if ( SDL_PollEvent( &e ) != 0 ) {
+    //     switch ( e.key.keysym.sym ) {
+    //         case SDLK_w:
+    //             destR.y -= 50;
+    //             break;
 
-            case SDLK_s:
-                destR.y += 50;
-                break;
+    //         case SDLK_s:
+    //             destR.y += 50;
+    //             break;
 
-            case SDLK_a:
-                destR.x -= 50;
-                break;
+    //         case SDLK_a:
+    //             destR.x -= 50;
+    //             break;
 
-            case SDLK_d:
-                destR.x += 50;
-                break;
+    //         case SDLK_d:
+    //             destR.x += 50;
+    //             break;
 
-            case SDLK_j:
-                cnt *= 2;
-                break;
+    //         case SDLK_j:
+    //             cnt *= 2;
+    //             break;
 
-            case SDLK_k:
-                if (cnt / 2 > 0) cnt /= 2;
-                break;
+    //         case SDLK_k:
+    //             if (cnt / 2 > 0) cnt /= 2;
+    //             break;
             
-        }
-    }
+    //     }
+    // }
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, playerTex, NULL, &destR);
+    player->Render();
+    player2->Render();
+    //SDL_RenderCopy(renderer, playerTex, NULL, &destR);
     //this is where we add stuff to render
     SDL_RenderPresent(renderer);
 }
@@ -238,7 +247,8 @@ void Game::showmenu() {
             cout << "TTF_OpenFont: " << TTF_GetError() << endl;
         }
         TTF_SetFontStyle(font, TTF_STYLE_ITALIC);
-        SDL_Color color = {0, 255, 235};
+        //SDL_Color color = { 0, 255, 235 };
+        SDL_Color color = { 255, 223,   0 };
         stringstream LinkStartText;
         LinkStartText.str( "" );
         LinkStartText << "Choose Character";
@@ -396,7 +406,8 @@ void Game::LinkStart(string text, int second, int h, int w) {
         cout << "TTF_OpenFont: " << TTF_GetError() << endl;
     }
     TTF_SetFontStyle(font, 0/*TTF_STYLE_BOLD|TTF_STYLE_ITALIC*/);
-    SDL_Color color = {0, 255, 235};
+    //SDL_Color color = { 0, 255, 235 };
+    SDL_Color color = { 255, 223,   0 };
     stringstream LinkStartText;
     LinkStartText.str( "" );
     LinkStartText << text;

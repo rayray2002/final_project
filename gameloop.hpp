@@ -33,12 +33,13 @@ public:
     //int showmenu();
 
     bool running() { return isRunning; };
+    static SDL_Renderer* renderer;
 
 private:
     int cnt = 64; //count
     bool isRunning;
     SDL_Window* window;
-    SDL_Renderer* renderer;
+    
     
     //Character
     map<int, const char*> Character;
@@ -54,8 +55,9 @@ private:
     SDL_Surface* MenuCharacterSurface[NUMMENU];
     SDL_Texture* MenuTex[NUMMENU];
     SDL_Texture* MenuCharacterTex[NUMMENU];
-    SDL_Color MenuColor[2] = {{255, 255, 255},  // unselected
-                              {  0, 255, 235}}; // selected
+    SDL_Color MenuColor[2] = {{255, 255, 255},
+                              {255, 223, 0}  // unselected
+                              /*,{  0, 255, 235}*/}; // selected
     SDL_Rect MenuPos[NUMMENU];
     SDL_Rect MenuCharacterPos[NUMMENU];
     TTF_Font* MenuFont;
@@ -65,7 +67,8 @@ private:
     SDL_Surface *CharacterTextSurface[NUMMENU];
     SDL_Rect CharacterTextRect[NUMMENU];
     TTF_Font *CharacterTextFont;
-    SDL_Color CharacterTextColor = {0, 255, 235};
+    //SDL_Color CharacterTextColor = {0, 255, 235};
+    SDL_Color CharacterTextColor = {255, 223, 0};
     stringstream CharacterTextText[NUMMENU];
 
 
