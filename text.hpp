@@ -3,8 +3,8 @@ using namespace std;
 
 
 map<string, int [3]> ColorManager;
-ColorManager["Miku"] = {0, 255, 235};
-ColorManager["Black"] = {0, 0, 0};
+ColorManager["Miku"]  = {0, 255, 235};
+ColorManager["Black"] = {0,   0,   0};
 
 
 class TextManager {
@@ -34,7 +34,7 @@ TextManager::TextManager(int w, int h, int xpos, int ypos, string text) {
         cout << "TTF_Init: " << TTF_GetError() << endl;
     }
     
-    TextFont = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
+    TextFont = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 1000);
     if(!TextFont) {
         cout << "TTF_OpenFont: " << TTF_GetError() << endl;
     }

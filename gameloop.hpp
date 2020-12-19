@@ -28,6 +28,7 @@ public:
     void showmenu();
     void LinkStart(string text, int second, int h, int w);
     void MusicPlay(const char* Music, int volume);
+    int FirstMenu();
     //void SetCharacter(string s1, string s2);
     //int showmenu();
 
@@ -59,6 +60,15 @@ private:
     SDL_Rect MenuCharacterPos[NUMMENU];
     TTF_Font* MenuFont;
     
+
+    SDL_Texture *CharacterTextTexture[NUMMENU];
+    SDL_Surface *CharacterTextSurface[NUMMENU];
+    SDL_Rect CharacterTextRect[NUMMENU];
+    TTF_Font *CharacterTextFont;
+    SDL_Color CharacterTextColor = {0, 255, 235};
+    stringstream CharacterTextText[NUMMENU];
+
+
     //Menu
 
 };
