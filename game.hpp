@@ -239,23 +239,23 @@ void Game::showmenu() {
 
 
     MenuCharacterSurface[0] = SDL_LoadBMP("./img/miku.bmp");
-    MenuCharacterSurface[1] = SDL_LoadBMP("./img/miku.bmp");
-    MenuCharacterSurface[2] = SDL_LoadBMP("./img/miku.bmp");
+    MenuCharacterSurface[1] = SDL_LoadBMP("./img/kirito1.bmp");
+    MenuCharacterSurface[2] = SDL_LoadBMP("./img/sample_green.bmp");
     
-    int CharacterHeight = 260;
+    int CharacterHeight = 160;
     for (int i = 0; i < NUMMENU; i++) {
-        MenuCharacterPos[i].x = HEIGHT - 160 - CharacterHeight;
+        MenuCharacterPos[i].y = HEIGHT - 80 - CharacterHeight;
         MenuCharacterPos[i].h = CharacterHeight;
         MenuCharacterPos[i].w = 100;
     }
-    MenuCharacterPos[0].y =  30;
-    MenuCharacterPos[1].y = 160;
-    MenuCharacterPos[2].y = 290;
+    MenuCharacterPos[0].x =  30;
+    MenuCharacterPos[1].x = 160;
+    MenuCharacterPos[2].x = 290;
 
-    for (int i = 0; i < NUMMENU; i++) {
-        MenuCharacterTex[i] = SDL_CreateTextureFromSurface(renderer, MenuCharacterSurface[i]);
-        SDL_FreeSurface(MenuCharacterSurface[i]);
-    }
+    // for (int i = 0; i < NUMMENU; i++) {
+    //     MenuCharacterTex[i] = SDL_CreateTextureFromSurface(renderer, MenuCharacterSurface[i]);
+    //     SDL_FreeSurface(MenuCharacterSurface[i]);
+    // }
     
 
     MenuFont = TTF_OpenFont("./fonts/SAOUITT-Regular.ttf", 500);
@@ -280,7 +280,7 @@ void Game::showmenu() {
     MenuLabel[2] << "Asuna";
     
     for (int i = 0; i < NUMMENU; i++) {
-        MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[i]);
+        MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[0]);
         MenuPos[i].y = HEIGHT - 60;
     }
 
@@ -290,7 +290,48 @@ void Game::showmenu() {
 
     SDL_Event event;
     while (1) {
+
+        //Title
+        SDL_Texture *LinkStartTexture = NULL;
+        SDL_Surface *LinkStartSurface = NULL;
+        SDL_Rect dst;
+        dst.h = 150;
+        dst.w = 600;
+        dst.x = 30;
+        dst.y = 30;
+        if(TTF_Init() == -1) {
+            cout << "TTF_Init: " << TTF_GetError() << endl;
+        }
+        TTF_Font *font;
+        font = TTF_OpenFont("./fonts/SAOUITT-Regular.ttf", 500);
+        if(!font) {
+            cout << "TTF_OpenFont: " << TTF_GetError() << endl;
+        }
+        TTF_SetFontStyle(font, /*TTF_STYLE_BOLD|*/TTF_STYLE_ITALIC);
+        SDL_Color color = {0, 255, 235};
+        stringstream LinkStartText;
+        LinkStartText.str( "" );
+        LinkStartText << "Choose Character";
+        LinkStartSurface = TTF_RenderText_Solid(font, LinkStartText.str().c_str(), color);
+        LinkStartTexture = SDL_CreateTextureFromSurface(renderer, LinkStartSurface);
+        if (!LinkStartTexture) {
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
+        }
+        SDL_FreeSurface(LinkStartSurface);
+        TTF_CloseFont(font);
+        font = NULL;
+        //cout << text << endl;
+
+
         frameStart = SDL_GetTicks();
+
+        for (int i = 0; i < NUMMENU; i++) {
+            SDL_FreeSurface(MenuCharacterSurface[i]);
+        }
+        MenuCharacterSurface[0] = SDL_LoadBMP("./img/miku.bmp");
+        MenuCharacterSurface[1] = SDL_LoadBMP("./img/gou.bmp");
+        MenuCharacterSurface[2] = SDL_LoadBMP("./img/gou2.bmp");    
+
         for (int i = 0; i < NUMMENU; i++) {
             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
         }
@@ -353,19 +394,25 @@ void Game::showmenu() {
         if (!MenuisRunning) {
             for (int i = 0; i < NUMMENU; i++) {
                 SDL_DestroyTexture(MenuTex[i]);
+                SDL_DestroyTexture(MenuCharacterTex[i]);
             }
             break;
         }
         SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
         SDL_RenderClear(renderer);
         for (int i = 0; i < NUMMENU; i++) {
+
+            MenuCharacterTex[i] = SDL_CreateTextureFromSurface(renderer, MenuCharacterSurface[i]);
             MenuTex[i] = SDL_CreateTextureFromSurface(renderer, MenuChoice[i]);
+            //SDL_FreeSurface(MenuCharacterSurface[i]);
             SDL_FreeSurface(MenuChoice[i]);
             SDL_RenderCopy(renderer, MenuTex[i], NULL, &MenuPos[i]);
             SDL_RenderCopy(renderer, MenuCharacterTex[i], NULL, &MenuCharacterPos[i]);
             SDL_DestroyTexture(MenuTex[i]);
             SDL_DestroyTexture(MenuCharacterTex[i]);
         }
+        SDL_RenderCopy(renderer, LinkStartTexture, NULL, &dst);
+        SDL_DestroyTexture(LinkStartTexture);
         SDL_RenderPresent(renderer);
         // for (int i = 0; i < NUMMENU; i++) {
 		// 	SDL_BlitSurface(MenuChoice[i], NULL, screen, &MenuPos[i]);
