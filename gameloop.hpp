@@ -9,6 +9,7 @@
 #include <sstream>
 #include <string>
 #include <map>
+#define NUMMENU 1
 using namespace std;
 
 class Game {
@@ -22,8 +23,8 @@ public:
     void update();
     void render();
     void clean();
-    int showmenu(SDL_Surface* screen, TTF_Font* font);
-    void LinkStart(string text, int second);
+    void showmenu();
+    void LinkStart(string text, int second, int h, int w);
 
     bool running() { return isRunning; };
 
@@ -33,6 +34,17 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     
+
+    int X_MENU_MOUSE, Y_MENU_MOUSE;
+    bool MenuisRunning;
+    // const char* MenuLabel[NUMMENU] = {"Kirito"};
+    stringstream MenuLabel[NUMMENU];
+    SDL_Surface* MenuChoice[NUMMENU];
+    SDL_Texture* MenuTex[NUMMENU];
+    SDL_Color MenuColor[2] = {{255, 255, 255}, // unselected
+                              {  0, 255, 235}}; //selected
+    SDL_Rect MenuPos[NUMMENU];
+    TTF_Font* MenuFont;
 };
 
 #endif /* Game_hpp */
