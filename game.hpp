@@ -34,7 +34,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
         renderer = SDL_CreateRenderer(window, -1, 0);
         if (renderer) {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            cout << "renderer Created!" << endl;
+            cout << "Renderer Created!" << endl;
         }
 
         isRunning = true;
@@ -49,26 +49,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
-    // load support for the MP3 sample/music formats
-    int mflags = MIX_INIT_MP3;
-    if( (Mix_Init(mflags) & mflags) != mflags ) {
-        cout << "Mix_Init: Failed to init required ogg and mod support!\n";
-        cout << "Mix_Init: %s\n" << Mix_GetError() << endl;
-    }
-
-    if(Mix_OpenAudio(128000, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
-        cout << "Mix_OpenAudio: %s\n" << Mix_GetError() << endl;
-    }
-
-
-    // load the MP3 file "music.mp3" to play as music
-    Mix_Music *music;
-    music = Mix_LoadMUS("mp3/miku.mp3");
-    if(!music) {
-        cout << "Mix_LoadMUS(\"miku.mp3\"): %s\n" << Mix_GetError();
-    }
-    Mix_PlayMusic( music, -1 );
-    cout << "Music Loaded!\n";
+    MusicPlay("mp3/miku.mp3");
 
     //LinkStart
     LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -127,9 +108,9 @@ void Game::update() {
                 if (cnt / 2 > 0) cnt /= 2;
                 break;
             
-            case SDLK_i:
-                cnt *= 1.2;
-                break;
+            // case SDLK_i:
+            //     cnt *= 1.2;
+            //     break;
         }
     }
 }
@@ -154,12 +135,21 @@ void Game::clean() {
 
 void Game::showmenu() {
     
+
+    const int FPS = 60;
+    const int frameDelay = 1000 / FPS;
+
+    Uint32 frameStart;
+    int frameTime; //int
+
+
     MenuisRunning = true;
     Uint32 time;
     if (TTF_Init() == -1) {
 
     }
     MenuFont = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
+    TTF_SetFontStyle(MenuFont, TTF_STYLE_BOLD|TTF_STYLE_ITALIC);
 
     bool selected[NUMMENU] = {0};
 
@@ -167,24 +157,29 @@ void Game::showmenu() {
         MenuPos[i].h = 50;
         MenuPos[i].w = 120;
     }
-
-    MenuLabel[0] << "Kirito";
-
+    int UP = HEIGHT / 2 - MenuPos[0].h / 2;
+    int DOWN = HEIGHT / 2 + MenuPos[0].h / 2;
+    int LEFT = WIDTH  / 2 - MenuPos[0].w / 2;
+    int RIGHT = WIDTH  / 2 + MenuPos[0].w / 2;
+    MenuLabel[0] << "Miku";
+    
     MenuChoice[0] = TTF_RenderText_Solid(MenuFont, MenuLabel[0].str().c_str(), MenuColor[0]);
-    //MenuChoice[1] = TTF_RenderText_Solid(MenuFont, MenuLabel[1], MenuColor[0]);
+    //MenuChoice[1] = qwTTF_RenderText_Solid(MenuFont, MenuLabel[1], MenuColor[0]);
 
-    MenuPos[0].x = WIDTH  / 2 - MenuPos[0].w / 2;
-    MenuPos[0].y = HEIGHT / 2 - MenuPos[0].h;
+    MenuPos[0].x = WIDTH  / 2 - MenuPos[0].w / 2; // 375 - 425
+    MenuPos[0].y = HEIGHT / 2 - MenuPos[0].h / 2; // 340 - 460
     //MenuPos[1].x = WIDTH  / 2 - MenuPos[1].w / 2;
     //MenuPos[1].y = HEIGHT / 2 - MenuPos[1].h;
 
     SDL_Event event;
     while (1) {
-        SDL_Delay(2);
+        // SDL_Delay(10);
+        frameStart = SDL_GetTicks();
         // time = SDL_GetTicks();
         for (int i = 0; i < NUMMENU; i++) {
             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
         }
+        // SDL_SetRelativeMouseMode(SDL_TRUE);
         if (SDL_PollEvent( &event ) != 0) {
             switch (event.type) {
                 case SDL_QUIT:
@@ -194,25 +189,41 @@ void Game::showmenu() {
                     }
                     break;
                 case SDL_MOUSEMOTION:
+                    // if (event.motion.x != X_MENU_MOUSE && event.motion.y != Y_MENU_MOUSE) {
+                    //     cout << "(X_MENU_MOUSE, Y_MENU_MOUSE) = " << event.motion.x << ", " << event.motion.y << endl;
+                    // }
+                    if (event.motion.x == X_MENU_MOUSE && event.motion.y == Y_MENU_MOUSE) {
+                        // cout << "(X_MENU_MOUSE, Y_MENU_MOUSE) = " << event.motion.x << ", " << event.motion.y << endl;
+                        // break;
+                    }
                     X_MENU_MOUSE = event.motion.x;
                     Y_MENU_MOUSE = event.motion.y;
+                    
+                    
                     for (int i = 0; i < NUMMENU; i++) {
-                        if (X_MENU_MOUSE >= MenuPos[i].x && X_MENU_MOUSE <= MenuPos[i].x + MenuPos[i].w && Y_MENU_MOUSE >= MenuPos[i].y && Y_MENU_MOUSE <= MenuPos[i].y + MenuPos[i].h) {
-                            selected[i] = 1;
-                            SDL_FreeSurface(MenuChoice[i]);
-                            MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
-                            // if (!selected[i]) {
-                            //     selected[i] = 1;
-                            //     SDL_FreeSurface(MenuChoice[i]);
-                            //     MenuChoice[i] = TTF_RenderText_Solid(font, MenuLabel[i], color[1]);
-                            // }
-                            // else {
-                            //     if (selected[i]) {
-                            //         selected[i] = 0;
-                            //         SDL_FreeSurface(MenuChoice[i]);
-                            //         MenuChoice[i] = TTF_RenderText_Solid(font, MenuLabel[i], color[0]);
-                            //     }
-                            // }
+                        if (X_MENU_MOUSE >= LEFT && X_MENU_MOUSE <= RIGHT && Y_MENU_MOUSE >= UP && Y_MENU_MOUSE <= DOWN) {
+                            //cout << "Yes!" << endl;
+                        }
+                        else {
+                            //cout << "No!" << endl;
+                        }
+                        //cout << LEFT << ' ' << RIGHT << ' ' << UP << ' ' << DOWN << '\n';
+                        if (X_MENU_MOUSE >= LEFT && X_MENU_MOUSE <= RIGHT && Y_MENU_MOUSE >= UP && Y_MENU_MOUSE <= DOWN) {
+                            // selected[i] = 1;
+                            // SDL_FreeSurface(MenuChoice[i]);
+                            // MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
+                            if (!selected[i]) {
+                                selected[i] = 1;
+                                SDL_FreeSurface(MenuChoice[i]);
+                                MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
+                            }
+                            else {
+                                if (selected[i]) {
+                                    selected[i] = 0;
+                                    SDL_FreeSurface(MenuChoice[i]);
+                                    MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[0]);
+                                }
+                            }
                         }
                         else {
                             selected[i] = 0;
@@ -232,6 +243,39 @@ void Game::showmenu() {
                         }
                     }
                     break;
+                // case SDL_MOUSEBUTTONUP:
+                //     if (event.motion.x != X_MENU_MOUSE && event.motion.y != Y_MENU_MOUSE) {
+                //         cout << "(X_MENU_MOUSE, Y_MENU_MOUSE) = " << event.motion.x << ", " << event.motion.y << endl;
+                //     }
+                //     X_MENU_MOUSE = event.motion.x;
+                //     Y_MENU_MOUSE = event.motion.y;
+                    
+                    
+                //     for (int i = 0; i < NUMMENU; i++) {
+                //         if (X_MENU_MOUSE >= LEFT && X_MENU_MOUSE <= RIGHT && Y_MENU_MOUSE >= UP && Y_MENU_MOUSE <= DOWN) {
+                //             selected[i] = 1;
+                //             SDL_FreeSurface(MenuChoice[i]);
+                //             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
+                //             // if (!selected[i]) {
+                //             //     selected[i] = 1;
+                //             //     SDL_FreeSurface(MenuChoice[i]);
+                //             //     MenuChoice[i] = TTF_RenderText_Solid(font, MenuLabel[i], color[1]);
+                //             // }
+                //             // else {
+                //             //     if (selected[i]) {
+                //             //         selected[i] = 0;
+                //             //         SDL_FreeSurface(MenuChoice[i]);
+                //             //         MenuChoice[i] = TTF_RenderText_Solid(font, MenuLabel[i], color[0]);
+                //             //     }
+                //             // }
+                //         }
+                //         else {
+                //             selected[i] = 0;
+                //             SDL_FreeSurface(MenuChoice[i]);
+                //             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[0]);
+                //         }
+                //     }
+                //     break;
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
                         for (int i = 0; i < NUMMENU; i++) {
@@ -260,11 +304,11 @@ void Game::showmenu() {
             SDL_DestroyTexture(MenuTex[i]);
         }
         SDL_RenderPresent(renderer);
-        // if (!isRunning) {
-        //     clean();
-        // }
-        // cout << "OK" << endl;
-        
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if (frameDelay > frameTime) { //make the screen more smooth
+            SDL_Delay(frameDelay - frameTime);
+        }
     }
 }
 
@@ -304,4 +348,28 @@ void Game::LinkStart(string text, int second, int h, int w) {
     TTF_CloseFont(font);
     font = NULL;
     cout << text << endl;
+}
+
+void Game::MusicPlay(const char* Music) {
+    // load support for the MP3 sample/music formats
+    int mflags = MIX_INIT_MP3;
+    if( (Mix_Init(mflags) & mflags) != mflags ) {
+        cout << "Mix_Init: Failed to init required ogg and mod support!\n";
+        cout << "Mix_Init: %s\n" << Mix_GetError() << endl;
+    }
+
+    if(Mix_OpenAudio(128000, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
+        cout << "Mix_OpenAudio: %s\n" << Mix_GetError() << endl;
+    }
+
+
+    // load the MP3 file to play as music
+    Mix_Music *music;
+    music = Mix_LoadMUS(Music);
+    if(!music) {
+        cout << "Mix_LoadMUS(\"miku.mp3\"): %s\n" << Mix_GetError();
+    }
+    Mix_VolumeMusic(64);
+    Mix_PlayMusic( music, -1 );
+    cout << "Music Loaded!\n";
 }

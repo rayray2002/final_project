@@ -25,6 +25,7 @@ public:
     void clean();
     void showmenu();
     void LinkStart(string text, int second, int h, int w);
+    void MusicPlay(const char* Music);
 
     bool running() { return isRunning; };
 
@@ -34,7 +35,7 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     
-
+    //Menu
     int X_MENU_MOUSE, Y_MENU_MOUSE;
     bool MenuisRunning;
     // const char* MenuLabel[NUMMENU] = {"Kirito"};
@@ -45,6 +46,9 @@ private:
                               {  0, 255, 235}}; //selected
     SDL_Rect MenuPos[NUMMENU];
     TTF_Font* MenuFont;
+    
+    //Menu
+
 };
 
 #endif /* Game_hpp */
