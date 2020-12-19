@@ -23,9 +23,10 @@ public:
     void update();
     void render();
     void clean();
-    void showmenu();
+    //void showmenu();
     void LinkStart(string text, int second, int h, int w);
     void MusicPlay(const char* Music, int volume);
+    int showmenu();
 
     bool running() { return isRunning; };
 
@@ -39,9 +40,10 @@ private:
     int X_MENU_MOUSE, Y_MENU_MOUSE;
     bool MenuisRunning;
     // const char* MenuLabel[NUMMENU] = {"Kirito"};
-    stringstream MenuLabel[NUMMENU];
+    // stringstream MenuLabel[NUMMENU];
+    const char* MenuLabel[NUMMENU];
     SDL_Surface* MenuChoice[NUMMENU];
-    SDL_Texture* MenuTex[NUMMENU];
+    // SDL_Texture* MenuTex[NUMMENU];
     SDL_Color MenuColor[2] = {{255, 255, 255}, // unselected
                               {  0, 255, 235}}; //selected
     SDL_Rect MenuPos[NUMMENU];
