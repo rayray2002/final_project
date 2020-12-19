@@ -1,9 +1,18 @@
 #ifndef Game_hpp
 #define Game_hpp
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
+
+//#include <SDL2/SDL.h>
+//#include <SDL2/SDL_image.h>
+//#include <SDL2/SDL_ttf.h>
+//#include <SDL2/SDL_mixer.h>
+
+//Ray's directory
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <SDL_mixer.h>
+//
+
 #include <stdio.h>
 #include <iostream>
 #include <sstream>

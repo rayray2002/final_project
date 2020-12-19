@@ -203,7 +203,7 @@ vector<int> Puyo::update() {
 }
 
 int main() {
-	char test_board[13][6] = {{' ', ' ', 'G', 'Y', 'R', 'R'},
+	char test_board[13][6] = {{'G', ' ', 'G', 'Y', 'R', 'R'},
 	                          {'R', 'Y', 'Y', 'G', 'Y', 'G'},
 	                          {'G', 'Y', 'G', 'Y', 'R', 'R'},
 	                          {'R', 'Y', 'G', 'Y', 'R', 'G'},
