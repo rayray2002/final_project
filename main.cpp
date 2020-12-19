@@ -1,6 +1,5 @@
 #include "game.hpp"
-#define WIDTH 800
-#define HEIGHT 600
+
 Game* game = nullptr;
 
 

@@ -1,15 +1,17 @@
 
 #include "gameloop.hpp"
 using namespace std;
-#define WIDTH 800
-#define HEIGHT 600
+
 
 SDL_Texture* playerTex;
 SDL_Rect scrR, destR;
 
 Game::Game() {
-    Character["Miku"] = "./img/miku.bmp";
-    Character["Kirito"] = "./img/kirito1.bmp";
+    Character[0] = "Miku";
+    Character[1] = "Kirito";
+    Character[2] = "Asuna";
+    Character[3] = "HungGou";
+    Character[4] = "Heish";
 }
 
 Game::~Game() {
@@ -241,6 +243,8 @@ void Game::showmenu() {
     MenuCharacterSurface[0] = SDL_LoadBMP("./img/miku.bmp");
     MenuCharacterSurface[1] = SDL_LoadBMP("./img/kirito1.bmp");
     MenuCharacterSurface[2] = SDL_LoadBMP("./img/sample_green.bmp");
+    MenuCharacterSurface[3] = SDL_LoadBMP("./img/kirito1.bmp");
+    MenuCharacterSurface[4] = SDL_LoadBMP("./img/sample_green.bmp");
     
     int CharacterHeight = 160;
     for (int i = 0; i < NUMMENU; i++) {
@@ -249,8 +253,10 @@ void Game::showmenu() {
         MenuCharacterPos[i].w = 100;
     }
     MenuCharacterPos[0].x =  30;
-    MenuCharacterPos[1].x = 160;
-    MenuCharacterPos[2].x = 290;
+    for (int i = 1; i < NUMMENU; i++) {
+        MenuCharacterPos[i].x = MenuCharacterPos[i - 1].x + 130;
+    }
+
 
     // for (int i = 0; i < NUMMENU; i++) {
     //     MenuCharacterTex[i] = SDL_CreateTextureFromSurface(renderer, MenuCharacterSurface[i]);
@@ -273,11 +279,14 @@ void Game::showmenu() {
 
     int UP    = HEIGHT - 130;
     int DOWN  = HEIGHT -  30;
-    int LEFT[NUMMENU]  = {  30, 160, 290};
-    int RIGHT[NUMMENU] = { 130, 260, 390};
-    MenuLabel[0] << "Miku";
-    MenuLabel[1] << "Kirito";
-    MenuLabel[2] << "Asuna";
+    int LEFT[NUMMENU]  = {  30, 160, 290, 420, 550 };
+    int RIGHT[NUMMENU] = { 130, 260, 390, 520, 650 };
+    for (int i = 0; i < NUMMENU; i++) {
+        MenuLabel[i] << Character[i];
+    }
+    // MenuLabel[0] << "Miku";
+    // MenuLabel[1] << "Kirito";
+    // MenuLabel[2] << "Asuna";
     
     for (int i = 0; i < NUMMENU; i++) {
         MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[0]);
@@ -285,8 +294,11 @@ void Game::showmenu() {
     }
 
     MenuPos[0].x =  30;
-    MenuPos[1].x = 160;
-    MenuPos[2].x = 290;
+    for (int i = 1; i < NUMMENU; i++) {
+        MenuPos[i].x = MenuPos[i - 1].x + 130;
+    }
+    // MenuPos[1].x = 160;
+    // MenuPos[2].x = 290;
 
     SDL_Event event;
     while (1) {
@@ -330,7 +342,9 @@ void Game::showmenu() {
         }
         MenuCharacterSurface[0] = SDL_LoadBMP("./img/miku.bmp");
         MenuCharacterSurface[1] = SDL_LoadBMP("./img/gou.bmp");
-        MenuCharacterSurface[2] = SDL_LoadBMP("./img/gou2.bmp");    
+        MenuCharacterSurface[2] = SDL_LoadBMP("./img/gou2.bmp");
+        MenuCharacterSurface[3] = SDL_LoadBMP("./img/gou.bmp");
+        MenuCharacterSurface[4] = SDL_LoadBMP("./img/gou2.bmp");       
 
         for (int i = 0; i < NUMMENU; i++) {
             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);

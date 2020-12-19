@@ -9,7 +9,9 @@
 #include <sstream>
 #include <string>
 #include <map>
-#define NUMMENU 3
+#define NUMMENU 5
+#define WIDTH 1600
+#define HEIGHT 1000
 using namespace std;
 
 class Game {
@@ -38,7 +40,7 @@ private:
     SDL_Renderer* renderer;
     
     //Character
-    map<string, const char*> Character;
+    map<int, const char*> Character;
     
     
 
