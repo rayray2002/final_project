@@ -143,32 +143,59 @@ final_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
 .PHONY : final_project/fast
 
-puyo.o: puyo.cpp.o
+SDL_bgi.o: SDL_bgi.cpp.o
 
-.PHONY : puyo.o
+.PHONY : SDL_bgi.o
 
 # target to build an object file
-puyo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/puyo.cpp.o
-.PHONY : puyo.cpp.o
+SDL_bgi.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/SDL_bgi.cpp.o
+.PHONY : SDL_bgi.cpp.o
 
-puyo.i: puyo.cpp.i
+SDL_bgi.i: SDL_bgi.cpp.i
 
-.PHONY : puyo.i
+.PHONY : SDL_bgi.i
 
 # target to preprocess a source file
-puyo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/puyo.cpp.i
-.PHONY : puyo.cpp.i
+SDL_bgi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/SDL_bgi.cpp.i
+.PHONY : SDL_bgi.cpp.i
 
-puyo.s: puyo.cpp.s
+SDL_bgi.s: SDL_bgi.cpp.s
 
-.PHONY : puyo.s
+.PHONY : SDL_bgi.s
 
 # target to generate assembly for a file
-puyo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/puyo.cpp.s
-.PHONY : puyo.cpp.s
+SDL_bgi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/SDL_bgi.cpp.s
+.PHONY : SDL_bgi.cpp.s
+
+main.o: main.cpp.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -179,9 +206,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... final_project"
-	@echo "... puyo.o"
-	@echo "... puyo.i"
-	@echo "... puyo.s"
+	@echo "... SDL_bgi.o"
+	@echo "... SDL_bgi.i"
+	@echo "... SDL_bgi.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 
