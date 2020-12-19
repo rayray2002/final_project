@@ -1,5 +1,5 @@
 #include "Mapclass.hpp"
-#include "texturemanager.hpp"
+//#include "texturemanager.hpp"
 
 int Lv1[6][13] = {
     {0, 0, 0, 0, 0, 0},
@@ -25,6 +25,10 @@ Map::Map() {
     LoadMap(Lv1);
 
     src.x = src.y = 0;
+    src.h = dest.h = 32;
+    src.w = dest.w = 32;
+
+    dest.x = dest.y = 0;
 }
 
 
@@ -42,15 +46,21 @@ void Map::DrawMap() {
         for (int colume = 0; colume < 13; colume++) {
             type = map[row][colume];
 
+            dest.x = colume * 32;
+            dest.y = row * 32;
+
             switch (type) {
             case 0:
                 TextureManager::Draw(water, src, dest);
+                break;
             case 1:
-
+                TextureManager::Draw(dirt, src, dest);
+                break;
             case 2:
-
+                TextureManager::Draw(grass, src, dest);
+                break;
             default:
-
+                break;
             }
         }
     }
