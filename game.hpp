@@ -149,7 +149,7 @@ void Game::showmenu() {
 
     }
     MenuFont = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
-    TTF_SetFontStyle(MenuFont, TTF_STYLE_BOLD|TTF_STYLE_ITALIC);
+    TTF_SetFontStyle(MenuFont, /*TTF_STYLE_BOLD|*/TTF_STYLE_ITALIC);
 
     bool selected[NUMMENU] = {0};
 
@@ -157,10 +157,6 @@ void Game::showmenu() {
         MenuPos[i].h = 50;
         MenuPos[i].w = 120;
     }
-    // int UP = HEIGHT / 2 - MenuPos[0].h / 2;
-    // int DOWN = HEIGHT / 2 + MenuPos[0].h / 2;
-    // int LEFT = WIDTH  / 2 - MenuPos[0].w / 2;
-    // int RIGHT = WIDTH  / 2 + MenuPos[0].w / 2;
 
     int UP    = HEIGHT - 130;
     int DOWN  = HEIGHT -  30;
@@ -169,22 +165,16 @@ void Game::showmenu() {
     MenuLabel[0] << "Miku";
     
     MenuChoice[0] = TTF_RenderText_Solid(MenuFont, MenuLabel[0].str().c_str(), MenuColor[0]);
-    //MenuChoice[1] = qwTTF_RenderText_Solid(MenuFont, MenuLabel[1], MenuColor[0]);
 
-    MenuPos[0].x = 30; // 375 - 425
-    MenuPos[0].y = HEIGHT - 60;; // 340 - 460
-    //MenuPos[1].x = WIDTH  / 2 - MenuPos[1].w / 2;
-    //MenuPos[1].y = HEIGHT / 2 - MenuPos[1].h;
+    MenuPos[0].x = 30;
+    MenuPos[0].y = HEIGHT - 60;
 
     SDL_Event event;
     while (1) {
-        // SDL_Delay(10);
         frameStart = SDL_GetTicks();
-        // time = SDL_GetTicks();
         for (int i = 0; i < NUMMENU; i++) {
             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
         }
-        // SDL_SetRelativeMouseMode(SDL_TRUE);
         if (SDL_PollEvent( &event ) != 0) {
             switch (event.type) {
                 case SDL_QUIT:
@@ -194,29 +184,12 @@ void Game::showmenu() {
                     }
                     break;
                 case SDL_MOUSEMOTION:
-                    // if (event.motion.x != X_MENU_MOUSE && event.motion.y != Y_MENU_MOUSE) {
-                    //     cout << "(X_MENU_MOUSE, Y_MENU_MOUSE) = " << event.motion.x << ", " << event.motion.y << endl;
-                    // }
-                    if (event.motion.x == X_MENU_MOUSE && event.motion.y == Y_MENU_MOUSE) {
-                        // cout << "(X_MENU_MOUSE, Y_MENU_MOUSE) = " << event.motion.x << ", " << event.motion.y << endl;
-                        // break;
-                    }
                     X_MENU_MOUSE = event.motion.x;
                     Y_MENU_MOUSE = event.motion.y;
                     
                     
                     for (int i = 0; i < NUMMENU; i++) {
                         if (X_MENU_MOUSE >= LEFT && X_MENU_MOUSE <= RIGHT && Y_MENU_MOUSE >= UP && Y_MENU_MOUSE <= DOWN) {
-                            //cout << "Yes!" << endl;
-                        }
-                        else {
-                            //cout << "No!" << endl;
-                        }
-                        //cout << LEFT << ' ' << RIGHT << ' ' << UP << ' ' << DOWN << '\n';
-                        if (X_MENU_MOUSE >= LEFT && X_MENU_MOUSE <= RIGHT && Y_MENU_MOUSE >= UP && Y_MENU_MOUSE <= DOWN) {
-                            // selected[i] = 1;
-                            // SDL_FreeSurface(MenuChoice[i]);
-                            // MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
                             if (!selected[i]) {
                                 selected[i] = 1;
                                 SDL_FreeSurface(MenuChoice[i]);
@@ -248,39 +221,6 @@ void Game::showmenu() {
                         }
                     }
                     break;
-                // case SDL_MOUSEBUTTONUP:
-                //     if (event.motion.x != X_MENU_MOUSE && event.motion.y != Y_MENU_MOUSE) {
-                //         cout << "(X_MENU_MOUSE, Y_MENU_MOUSE) = " << event.motion.x << ", " << event.motion.y << endl;
-                //     }
-                //     X_MENU_MOUSE = event.motion.x;
-                //     Y_MENU_MOUSE = event.motion.y;
-                    
-                    
-                //     for (int i = 0; i < NUMMENU; i++) {
-                //         if (X_MENU_MOUSE >= LEFT && X_MENU_MOUSE <= RIGHT && Y_MENU_MOUSE >= UP && Y_MENU_MOUSE <= DOWN) {
-                //             selected[i] = 1;
-                //             SDL_FreeSurface(MenuChoice[i]);
-                //             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[1]);
-                //             // if (!selected[i]) {
-                //             //     selected[i] = 1;
-                //             //     SDL_FreeSurface(MenuChoice[i]);
-                //             //     MenuChoice[i] = TTF_RenderText_Solid(font, MenuLabel[i], color[1]);
-                //             // }
-                //             // else {
-                //             //     if (selected[i]) {
-                //             //         selected[i] = 0;
-                //             //         SDL_FreeSurface(MenuChoice[i]);
-                //             //         MenuChoice[i] = TTF_RenderText_Solid(font, MenuLabel[i], color[0]);
-                //             //     }
-                //             // }
-                //         }
-                //         else {
-                //             selected[i] = 0;
-                //             SDL_FreeSurface(MenuChoice[i]);
-                //             MenuChoice[i] = TTF_RenderText_Solid(MenuFont, MenuLabel[i].str().c_str(), MenuColor[0]);
-                //         }
-                //     }
-                //     break;
                 case SDL_KEYDOWN:
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
                         for (int i = 0; i < NUMMENU; i++) {
@@ -293,9 +233,6 @@ void Game::showmenu() {
         }
         if (!MenuisRunning) {
             for (int i = 0; i < NUMMENU; i++) {
-                // MenuTex[i] = SDL_CreateTextureFromSurface(renderer, MenuChoice[i]);
-                // SDL_FreeSurface(MenuChoice[i]);
-                // SDL_RenderCopy(renderer, MenuTex[i], NULL, &MenuPos[i]);
                 SDL_DestroyTexture(MenuTex[i]);
             }
             break;
@@ -329,11 +266,11 @@ void Game::LinkStart(string text, int second, int h, int w) {
         cout << "TTF_Init: " << TTF_GetError() << endl;
     }
     TTF_Font *font;
-    font = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 500);
+    font = TTF_OpenFont("./fonts/SAOUITT-Regular.ttf", 500);
     if(!font) {
         cout << "TTF_OpenFont: " << TTF_GetError() << endl;
     }
-    TTF_SetFontStyle(font, TTF_STYLE_BOLD|TTF_STYLE_ITALIC);
+    TTF_SetFontStyle(font, 0/*TTF_STYLE_BOLD|TTF_STYLE_ITALIC*/);
     SDL_Color color = {0, 255, 235};
     stringstream LinkStartText;
     LinkStartText.str( "" );
