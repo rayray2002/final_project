@@ -3,7 +3,7 @@
 
 class Map {
 public:
-    Map();
+    Map(int arr[6][13]);
     ~Map();
 
     void LoadMap();
