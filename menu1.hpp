@@ -1,11 +1,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SDL_ttf.h>
+#include<SDL_ttf.h>
 #include <stdio.h>
 #include <iostream>
 
-int showmenu(SDL_Surface* screen,SDL_Window* window) {
-	screen = SDL_GetWindowSurface(window);
+int showmenu1(SDL_Window* window) {
+	SDL_Surface* screen = SDL_GetWindowSurface(window);
 	Uint32 time;
 	int x = 0, y = 0;
 	const int num = 2;
@@ -17,8 +17,8 @@ int showmenu(SDL_Surface* screen,SDL_Window* window) {
 	TTF_Font* font;
 	font = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 100);
 	TTF_SetFontStyle(font, TTF_STYLE_ITALIC);
-	Uint16 text1[] = { 0x55ae, 0x3eba, 0x904a, 0x6232 };
-	Uint16 text2[] = { 0x96d9, 0x4eba, 0x904a, 0x6232 };
+	Uint16 text1[] = { 0x55ae, 0x4eba, 0x904a, 0x6232 ,0x0000};
+	Uint16 text2[] = { 0x96d9, 0x4eba, 0x904a, 0x6232 ,0x0000};
 
 	menus[0] = TTF_RenderUNICODE_Solid(font, text1, color[0]);
 	menus[1] = TTF_RenderUNICODE_Solid(font, text2, color[0]);
@@ -34,7 +34,6 @@ int showmenu(SDL_Surface* screen,SDL_Window* window) {
 	while (1) {
 		time = SDL_GetTicks();
 			while (SDL_PollEvent(&event)) {
-				
 				switch (event.type) {
 				case SDL_QUIT:
 					for (int i = 0; i < num; i++)
