@@ -9,7 +9,7 @@ using namespace std;
 GameObject* player;
 GameObject* player2;
 SDL_Renderer* Game::renderer = nullptr;
-Map* map;
+Map* mmap;
 // SDL_Texture* playerTex;
 // SDL_Rect scrR, destR;
 
@@ -61,7 +61,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
     player = new GameObject("./img/kirito1.bmp", 0, 0);
     player2 = new GameObject("./img/kirito1.bmp", 500, 500);
-    map = new Map();
+    mmap = new Map();
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -129,7 +129,7 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    map->DrawMap();
+    mmap->DrawMap();
     player->Render();
     player2->Render();
     //SDL_RenderCopy(renderer, playerTex, NULL, &destR);

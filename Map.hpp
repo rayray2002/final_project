@@ -1,7 +1,7 @@
 #include "Mapclass.hpp"
 //#include "texturemanager.hpp"
 
-int Lv1[6][13] = {
+int Lv1[13][6] = {
     {0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
@@ -15,7 +15,7 @@ int Lv1[6][13] = {
     {0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
     {0, 0, 0, 0, 0, 0},
-}
+};
 
 Map::Map() {
     dirt = TextureManager::LoadTexture("./img/miku.bmp");
@@ -25,14 +25,14 @@ Map::Map() {
     LoadMap(Lv1);
 
     src.x = src.y = 0;
-    src.h = dest.h = 32;
-    src.w = dest.w = 32;
+    src.h = dest.h = 80;
+    src.w = dest.w = 80;
 
     dest.x = dest.y = 0;
 }
 
 
-void Map::LoadMap(int arr[6][13]) {
+void Map::LoadMap(int arr[13][6]) {
     for (int row = 0; row < 6; row++) {
         for (int colume = 0; colume < 13; colume++) {
             map[row][colume] = arr[row][colume];

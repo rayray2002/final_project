@@ -3,10 +3,10 @@
 
 class Map {
 public:
-    Map(int arr[6][13]);
+    Map();
     ~Map();
 
-    void LoadMap();
+    void LoadMap(int arr[13][6]);
     void DrawMap();
 
 private:
