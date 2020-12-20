@@ -1,8 +1,5 @@
 #pragma once
 
-
-#include "ECS.hpp"
-
 class PositionComponent : public Component {
 
 private:
@@ -30,6 +27,14 @@ public:
 
     void setPos(int x, int y) {
         xpos = x;
+        ypos = y;
+    }
+
+    void x(int x) {
+        xpos = x;
+    }
+
+    void y(int y) {
         ypos = y;
     }
 };

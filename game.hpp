@@ -1,14 +1,15 @@
 
 #include "gameloop.hpp"
 #include "firstmenu.hpp"
-#include "gameobject.hpp"
+// #include "gameobject.hpp"
 #include "Map.hpp"
-#include "ECS.hpp"
-#include "Components.hpp"
+// #include "ECS/ECS.hpp"
+// #include "ECS/Components.hpp"
+#include "ECS/Components.hpp"
 using namespace std;
 
-GameObject* player;
-GameObject* player2;
+// GameObject* player;
+// GameObject* player2;
 SDL_Renderer* Game::renderer = nullptr;
 Map* mmap;
 // SDL_Texture* playerTex;
@@ -66,6 +67,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     player2 = new GameObject("./img/kirito1.bmp", 500, 500);
     mmap = new Map();
     newPlayer.addComponent<PositionComponent>();
+    newPlayer.getComponent<PositionComponent>().setPos(500, 500);
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -231,7 +233,7 @@ void Game::showmenu() {
     CharacterTextText[1] << "Kirito: Star Burst Stream!!!";
     CharacterTextText[2] << "Shark: AAAAA!!!";
     CharacterTextText[3] << "Hung: Miku 39 Is Answer!!!";
-    CharacterTextText[4] << "Heish: I'm Your Maji!!!";
+    CharacterTextText[4] << "Heish: I'm Your Muji!!!";
     // for (int i = 0; i < NUMMENU; i++) {
     //     CharacterTextSurface[i] = TTF_RenderText_Solid(CharacterTextFont, CharacterTextText[i].str().c_str(), CharacterTextColor);
     // }

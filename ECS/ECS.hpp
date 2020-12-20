@@ -54,7 +54,7 @@ private:
     ComponentArray componentArray;
     ComponentBitset componentBitset;
 public:
-    void Update() {
+    void update() {
         for (auto &c : components) {
             c->update();
         }
@@ -110,7 +110,7 @@ private:
 public:
     void update() {
         for (auto &e : entities) {
-            e->Update();
+            e->update();
         }
     }
 
