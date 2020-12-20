@@ -21,12 +21,12 @@ inline ComponentID getComponentTypeID() {
 
 template <typename T> inline ComponentID getComponentTypeID() noexcept {
     static ComponentID typeID = getComponentTypeID();
-    return typeID();
+    return typeID;
 }
 
 constexpr std::size_t maxComponents = 32;
 
-using ComponentBitset = std::bitset<maxcomponents>;
+using ComponentBitset = std::bitset<maxComponents>;
 using ComponentArray = std::array<Component*, maxComponents>;
 
 
@@ -74,10 +74,16 @@ public:
     void destroy() {
         active = false;
     }
+    
+    template<typename T> T& getComponent() const {
+        auto ptr(componentArray[getComponentTypeID<T>()]);
+        return *static_cast<T*>(ptr);
+    }
 
     template <typename T> bool hasComponent() const {
-        return ComponentBitset[getComponentID<T>];
+        return ComponentBitset[getComponent<T>];
     }
+
 
     template <typename T, typename... TArgs>
     T& addComponent(TArgs&&... mArgs) {
@@ -93,10 +99,7 @@ public:
         return *c;
     } 
 
-    template<typename T> T& getComponent() const {
-        auto ptr(componentArray[getComponentTypeID<T>()]);
-        return *static_cast<T*>(ptr);
-    }
+
 
 };
 
@@ -107,7 +110,7 @@ private:
 public:
     void update() {
         for (auto &e : entities) {
-            e->update();
+            e->Update();
         }
     }
 

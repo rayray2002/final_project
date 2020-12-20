@@ -1,9 +1,10 @@
 
 #include "gameloop.hpp"
 #include "firstmenu.hpp"
-//#include "texturemanager.hpp"
 #include "gameobject.hpp"
 #include "Map.hpp"
+#include "ECS.hpp"
+#include "Components.hpp"
 using namespace std;
 
 GameObject* player;
@@ -12,6 +13,8 @@ SDL_Renderer* Game::renderer = nullptr;
 Map* mmap;
 // SDL_Texture* playerTex;
 // SDL_Rect scrR, destR;
+Manager manager;
+auto& newPlayer(manager.addEntity());
 
 Game::Game() {
     Character[0] = "Miku";
@@ -62,6 +65,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     player = new GameObject("./img/kirito1.bmp", 0, 0);
     player2 = new GameObject("./img/kirito1.bmp", 500, 500);
     mmap = new Map();
+    newPlayer.addComponent<PositionComponent>();
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -93,6 +97,8 @@ void Game::update() {
     SDL_Delay(10);
     player->Update();
     player2->Update();
+    manager.update();
+    // cout << newPlayer.getComponent<PositionComponent>().x << ", " << newPlayer.getComponent<PositionComponent>().y << endl;
     // map->LoadMap();
     // destR.h = cnt;
     // destR.w = cnt;

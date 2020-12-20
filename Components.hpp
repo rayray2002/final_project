@@ -3,7 +3,7 @@
 
 #include "ECS.hpp"
 
-class PositionComponet : public Component {
+class PositionComponent : public Component {
 
 private:
     int xpos;
@@ -32,4 +32,4 @@ public:
         xpos = x;
         ypos = y;
     }
-}
+};

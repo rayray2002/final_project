@@ -35,10 +35,10 @@
         * void remove(Block): remove assigned block
 
 * ### 徐明皓
-  character, falling queue manage, and main loop
+  character, falling queue management, menu interface design, main loop, user interface, object controlling, and ECS structure.
 
 * ### 施文崴
-  graphic update
+  graphic update and menu interface design.
 
 ## Docs
 
