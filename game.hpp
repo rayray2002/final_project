@@ -25,6 +25,10 @@ vector<ColliderComponent*> Game::colliders;
 auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
 
+// auto& tile0(manager.addEntity());
+// auto& tile1(manager.addEntity());
+// auto& tile2(manager.addEntity());
+
 Game::Game() {
     Character[0] = "Miku";
     Character[1] = "Kirito";
@@ -76,6 +80,13 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     mmap = new Map();
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
+    Map::LoadMap("img/p16x16.map", 16, 16);
+    // tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
+    // tile1.addComponent<TileComponent>(250, 250, 32, 32, 1);
+    // tile1.addComponent<ColliderComponent>("dirt");
+    // tile2.addComponent<TileComponent>(150, 150, 32, 32, 2);
+    // tile2.addComponent<ColliderComponent>("water");
+
     player.addComponent<TransformComponent>(2);
     player.addComponent<SpriteComponent>("./img/miku.bmp");
     player.addComponent<KeyBoardController>();
@@ -119,12 +130,14 @@ void Game::update() {
     manager.refresh();
     manager.update();
 
-    if (Collision::AABB(player.getComponent<ColliderComponent>().collider,
-                          wall.getComponent<ColliderComponent>().collider)) {
-        player.getComponent<TransformComponent>().scale = 1;
-        player.getComponent<TransformComponent>().velocity * -1;
-        cout << "Wall Hit!" << endl;
+    for (auto cc : colliders) {
+        Collision::AABB(player.getComponent<ColliderComponent>(), *cc)
+        // if (Collision::AABB(player.getComponent<ColliderComponent>(), *cc)) {
+        //     player.getComponent<TransformComponent>().velocity * -1;
+        //     cout << "Wall Hit!" << endl;
+        // }
     }
+    
     // player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
     // if (player.getComponent<TransformComponent>().position.x > 100) {
     //     player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");
@@ -166,7 +179,7 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    mmap->DrawMap();
+    //mmap->DrawMap();
     manager.draw();
     // player->Render();
     // player2->Render();
@@ -183,6 +196,11 @@ void Game::clean() {
     Mix_Quit();
     IMG_Quit();
     cout << "Game Cleaned!" << endl;
+}
+
+void Game::AddTile(int id, int x, int y) {
+    auto& tile(manager.addEntity());
+    tile.addComponent<TileComponent>(x, y, 32, 32, id);
 }
 
 void Game::showmenu() {
