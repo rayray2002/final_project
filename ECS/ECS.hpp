@@ -22,8 +22,8 @@ inline ComponentID getNewComponentTypeID() {
     return lastID++;
 }
 
-template <typename T> inline ComponentID getComponentTypeID() noexcept {
-    static ComponentID typeID = getComponentTypeID();
+template <typename T> inline ComponentID getNewComponentTypeID() noexcept {
+    static ComponentID typeID = getNewComponentTypeID();
     return typeID;
 }
 
@@ -95,7 +95,7 @@ public:
 
 
     template <typename T> bool hasComponent() const {
-        return componentBitSet[getComponentTypeID<T>()];
+        return componentBitSet[getNewComponentTypeID<T>()];
     }
 
 
@@ -106,15 +106,15 @@ public:
         unique_ptr<Component> uPtr{ c };
         components.emplace_back(move(uPtr));
 
-        componentArray[getComponentTypeID<T>()] = c;
-        componentBitSet[getComponentTypeID<T>()] = true;
+        componentArray[getNewComponentTypeID<T>()] = c;
+        componentBitSet[getNewComponentTypeID<T>()] = true;
 
         c->init();
         return *c;
     } 
 
     template<typename T> T& getComponent() const {
-        auto ptr(componentArray[getComponentTypeID<T>()]);
+        auto ptr(componentArray[getNewComponentTypeID<T>()]);
         return *static_cast<T*>(ptr);
     }
 
@@ -124,6 +124,7 @@ public:
 class Manager {
 private:
     vector<unique_ptr<Entity>> entities;
+    array<vector<Entity*>, maxGroups> groupedEntities;
 
 public:
     void update() {
@@ -139,6 +140,13 @@ public:
     }
 
     void refresh() {
+        for (auto i(0u); i < maxGroups; i++) {
+            auto& v(groupedEntities[i]);
+            v.erase(remove_if(begin(v), end(v), [i](Entity* mEntity) {
+                    return !mEntity->isActive() || !mEntity->hasGroup(i);
+            }), end(v));
+        }
+
         entities.erase( remove_if( begin(entities), end(entities), 
             [](const unique_ptr<Entity> &mEntity) 
             {
@@ -147,8 +155,16 @@ public:
             end(entities) );
     }
 
+    void AddToGroup(Entity* mEntity, Group mGroup) {
+        groupedEntities[mGroup].emplace_back(mEntity);
+    }
+
+    vector<Entity*>& getGroup(Group mGroup) {
+        return groupedEntities[mGroup];
+    }
+
     Entity& addEntity() {
-        Entity* e = new Entity();
+        Entity* e = new Entity(*this);
         unique_ptr<Entity> uPtr{ e };
         entities.emplace_back(move(uPtr));
         return *e;

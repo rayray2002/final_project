@@ -9,6 +9,7 @@
 #include "texturemanager.h"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
+#include "ECS/ECSaddGroup.hpp"
 using namespace std;
 
 // GameObject* player;
@@ -24,6 +25,13 @@ vector<ColliderComponent*> Game::colliders;
 
 auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
+
+enum groupLabels : std::size_t {
+    groupMap,
+    groupPlayers,
+    groupEnemies,
+    groupColliders
+};
 
 // auto& tile0(manager.addEntity());
 // auto& tile1(manager.addEntity());
@@ -80,21 +88,24 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     mmap = new Map();
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
-    Map::LoadMap("img/p16x16.map", 16, 16);
     // tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
     // tile1.addComponent<TileComponent>(250, 250, 32, 32, 1);
     // tile1.addComponent<ColliderComponent>("dirt");
     // tile2.addComponent<TileComponent>(150, 150, 32, 32, 2);
     // tile2.addComponent<ColliderComponent>("water");
 
+    Map::LoadMap("img/p16x16.map", 16, 16);
+
     player.addComponent<TransformComponent>(2);
     player.addComponent<SpriteComponent>("./img/miku.bmp");
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
+    player.addGroup(groupPlayers);
 
     wall.addComponent<TransformComponent>(300, 300, 300, 20, 1);
     wall.addComponent<SpriteComponent>("./img/kirito1.bmp");
     wall.addComponent<ColliderComponent>("wall");
+    wall.addGroup(groupMap);
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -177,10 +188,25 @@ void Game::update() {
     // }
 }
 
+auto& tiles(manager.getGroup(groupMap));
+auto& players(manager.getGroup(groupPlayers));
+auto& enemies(manager.getGroup(groupEnemies));
+
 void Game::render() {
     SDL_RenderClear(renderer);
+    for (auto& t : tiles) {
+        t->draw();
+    }
+
+    for (auto& p : players) {
+        p->draw();
+    }
+
+    for (auto& e : enemies) {
+        e->draw();
+    }
     //mmap->DrawMap();
-    manager.draw();
+    // manager.draw();
     // player->Render();
     // player2->Render();
     //SDL_RenderCopy(renderer, playerTex, NULL, &destR);
@@ -201,6 +227,7 @@ void Game::clean() {
 void Game::AddTile(int id, int x, int y) {
     auto& tile(manager.addEntity());
     tile.addComponent<TileComponent>(x, y, 32, 32, id);
+    tile.addGroup(groupMap);
 }
 
 void Game::showmenu() {
