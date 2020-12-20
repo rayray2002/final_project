@@ -7,6 +7,7 @@
 // #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
 #include "texturemanager.h"
+#include "Vector2D.hpp"
 using namespace std;
 
 // GameObject* player;
@@ -69,7 +70,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     mmap = new Map();
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
-    player.addComponent<PositionComponent>();
+    player.addComponent<TransformComponent>();
     player.addComponent<SpriteComponent>("./img/miku.bmp");
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
@@ -104,8 +105,8 @@ void Game::update() {
     // player2->Update();
     manager.refresh();
     manager.update();
-
-    if (player.getComponent<PositionComponent>().x() > 100) {
+    player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
+    if (player.getComponent<TransformComponent>().position.x > 100) {
         player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");
     }
     // cout << newPlayer.getComponent<PositionComponent>().x << ", " << newPlayer.getComponent<PositionComponent>().y << endl;
