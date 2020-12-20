@@ -97,7 +97,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     Map::LoadMap("img/p16x16.map", 16, 16);
 
     player.addComponent<TransformComponent>(2);
-    player.addComponent<SpriteComponent>("./img/miku.bmp");
+    player.addComponent<SpriteComponent>("./img/miku.bmp", true);
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
