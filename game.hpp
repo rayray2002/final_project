@@ -104,6 +104,10 @@ void Game::update() {
     // player2->Update();
     manager.refresh();
     manager.update();
+
+    if (player.getComponent<PositionComponent>().x() > 100) {
+        player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");
+    }
     // cout << newPlayer.getComponent<PositionComponent>().x << ", " << newPlayer.getComponent<PositionComponent>().y << endl;
     // map->LoadMap();
     // destR.h = cnt;
