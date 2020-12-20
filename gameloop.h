@@ -18,11 +18,14 @@
 #include <sstream>
 #include <string>
 #include <map>
+#include <vector>
 //#include "texturemanager.hpp"
 #define NUMMENU 5
 #define WIDTH 1600
 #define HEIGHT 1000
 using namespace std;
+
+class ColliderComponent;
 
 class Game {
 
@@ -45,6 +48,7 @@ public:
     bool running() { return isRunning; };
     static SDL_Renderer* renderer;
     static SDL_Event event;
+    static vector<ColliderComponent*> colliders;
 
 private:
     int cnt = 64; //count

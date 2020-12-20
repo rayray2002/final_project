@@ -20,6 +20,8 @@ Map* mmap;
 Manager manager;
 SDL_Event Game::event;
 
+vector<ColliderComponent*> Game::colliders;
+
 auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
 
@@ -120,6 +122,7 @@ void Game::update() {
     if (Collision::AABB(player.getComponent<ColliderComponent>().collider,
                           wall.getComponent<ColliderComponent>().collider)) {
         player.getComponent<TransformComponent>().scale = 1;
+        player.getComponent<TransformComponent>().velocity * -1;
         cout << "Wall Hit!" << endl;
     }
     // player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
