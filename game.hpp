@@ -131,7 +131,7 @@ void Game::update() {
     manager.update();
 
     for (auto cc : colliders) {
-        Collision::AABB(player.getComponent<ColliderComponent>(), *cc)
+        Collision::AABB(player.getComponent<ColliderComponent>(), *cc);
         // if (Collision::AABB(player.getComponent<ColliderComponent>(), *cc)) {
         //     player.getComponent<TransformComponent>().velocity * -1;
         //     cout << "Wall Hit!" << endl;

@@ -40,7 +40,7 @@ Map::~Map() {
     // SDL_DestroyTexture(water);
 }
 
-void Map::LoadMap(std::string, int sizeX, int sizeY) {
+void Map::LoadMap(std::string path, int sizeX, int sizeY) {
     char tile;
     fstream mapFile;
     mapFile.open(path);
