@@ -17,6 +17,8 @@ Map* mmap;
 // SDL_Texture* playerTex;
 // SDL_Rect scrR, destR;
 Manager manager;
+SDL_Event Game::event;
+
 auto& player(manager.addEntity());
 
 Game::Game() {
@@ -86,7 +88,8 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
 }
 
 void Game::handleEveants() {
-    SDL_Event event;
+    // SDL_Event event;
+
     SDL_PollEvent(&event);
 
     switch (event.type) {
