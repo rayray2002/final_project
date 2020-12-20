@@ -74,7 +74,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     mmap = new Map();
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
-    player.addComponent<TransformComponent>();
+    player.addComponent<TransformComponent>(2);
     player.addComponent<SpriteComponent>("./img/miku.bmp");
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
@@ -116,6 +116,12 @@ void Game::update() {
     // player2->Update();
     manager.refresh();
     manager.update();
+
+    if (Collision::AABB(player.getComponent<ColliderComponent>().collider,
+                          wall.getComponent<ColliderComponent>().collider)) {
+        player.getComponent<TransformComponent>().scale = 1;
+        cout << "Wall Hit!" << endl;
+    }
     // player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
     // if (player.getComponent<TransformComponent>().position.x > 100) {
     //     player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");

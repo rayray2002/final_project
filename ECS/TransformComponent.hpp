@@ -18,6 +18,12 @@ public:
         position.y = 0.0;
     }
 
+    TransformComponent(int sc) {
+        position.x = 0.0;
+        position.y = 0.0;
+        scale = sc;
+    }
+
     TransformComponent(double x, double y, int h, int w, int sc) {
         position.x = x;
         position.y = y;

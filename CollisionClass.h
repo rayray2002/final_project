@@ -1,5 +1,5 @@
 #pragma once
-#include "Components.hpp"
+#include "ECS/Components.hpp"
 
 class Collision {
 

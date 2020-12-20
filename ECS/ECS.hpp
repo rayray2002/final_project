@@ -27,7 +27,7 @@ template <typename T> inline ComponentID getComponentTypeID() noexcept {
 
 constexpr std::size_t maxComponents = 32;
 
-using ComponentBitset = std::bitset<maxComponents>;
+using ComponentBitSet = std::bitset<maxComponents>;
 using ComponentArray = std::array<Component*, maxComponents>;
 
 
@@ -53,7 +53,7 @@ private:
     vector<unique_ptr<Component>> components;
 
     ComponentArray componentArray;
-    ComponentBitset componentBitset;
+    ComponentBitSet componentBitset;
 public:
     void update() {
         for (auto &c : components) {
@@ -78,7 +78,7 @@ public:
 
 
     template <typename T> bool hasComponent() const {
-        return componentBitset[getComponent<T>];
+        return componentBitset[getComponent<T>()];
     }
 
 
