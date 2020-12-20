@@ -53,7 +53,7 @@ private:
     vector<unique_ptr<Component>> components;
 
     ComponentArray componentArray;
-    ComponentBitSet componentBitset;
+    ComponentBitSet componentBitSet;
 public:
     void update() {
         for (auto &c : components) {
@@ -78,7 +78,7 @@ public:
 
 
     template <typename T> bool hasComponent() const {
-        return componentBitset[getComponent<T>()];
+        return componentBitSet[getComponentTypeID<T>()];
     }
 
 
@@ -90,7 +90,7 @@ public:
         components.emplace_back(move(uPtr));
 
         componentArray[getComponentTypeID<T>()] = c;
-        componentBitset[getComponentTypeID<T>()] = true;
+        componentBitSet[getComponentTypeID<T>()] = true;
 
         c->init();
         return *c;
