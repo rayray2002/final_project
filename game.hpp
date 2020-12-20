@@ -1,11 +1,12 @@
 
-#include "gameloop.hpp"
+#include "gameloop.h"
 #include "firstmenu.hpp"
 // #include "gameobject.hpp"
 #include "Map.hpp"
 // #include "ECS/ECS.hpp"
 // #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
+#include "texturemanager.h"
 using namespace std;
 
 // GameObject* player;
@@ -15,7 +16,7 @@ Map* mmap;
 // SDL_Texture* playerTex;
 // SDL_Rect scrR, destR;
 Manager manager;
-auto& newPlayer(manager.addEntity());
+auto& player(manager.addEntity());
 
 Game::Game() {
     Character[0] = "Miku";
@@ -63,11 +64,13 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
     // SDL_FreeSurface(tmpSurface);
     // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
-    player = new GameObject("./img/kirito1.bmp", 0, 0);
-    player2 = new GameObject("./img/kirito1.bmp", 500, 500);
+    // player = new GameObject("./img/kirito1.bmp", 0, 0);
+    // player2 = new GameObject("./img/kirito1.bmp", 500, 500);
     mmap = new Map();
-    newPlayer.addComponent<PositionComponent>();
-    newPlayer.getComponent<PositionComponent>().setPos(500, 500);
+    // newPlayer.addComponent<PositionComponent>();
+    // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
+    player.addComponent<PositionComponent>();
+    player.addComponent<SpriteComponent>("./img/miku.bmp");
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -97,8 +100,9 @@ void Game::handleEveants() {
 
 void Game::update() {
     SDL_Delay(10);
-    player->Update();
-    player2->Update();
+    // player->Update();
+    // player2->Update();
+    manager.refresh();
     manager.update();
     // cout << newPlayer.getComponent<PositionComponent>().x << ", " << newPlayer.getComponent<PositionComponent>().y << endl;
     // map->LoadMap();
@@ -138,8 +142,9 @@ void Game::update() {
 void Game::render() {
     SDL_RenderClear(renderer);
     mmap->DrawMap();
-    player->Render();
-    player2->Render();
+    manager.draw();
+    // player->Render();
+    // player2->Render();
     //SDL_RenderCopy(renderer, playerTex, NULL, &destR);
     //this is where we add stuff to render
     SDL_RenderPresent(renderer);

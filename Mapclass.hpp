@@ -1,5 +1,6 @@
 #pragma once
-#include "gameloop.hpp"
+#include "gameloop.h"
+#include "texturemanager.h"
 
 class Map {
 public:
