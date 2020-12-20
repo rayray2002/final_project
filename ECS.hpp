@@ -74,14 +74,10 @@ public:
     void destroy() {
         active = false;
     }
-    
-    template<typename T> T& getComponent() const {
-        auto ptr(componentArray[getComponentTypeID<T>()]);
-        return *static_cast<T*>(ptr);
-    }
+
 
     template <typename T> bool hasComponent() const {
-        return ComponentBitset[getComponent<T>];
+        return componentBitset[getComponent<T>];
     }
 
 
@@ -99,6 +95,10 @@ public:
         return *c;
     } 
 
+    template<typename T> T& getComponent() const {
+        auto ptr(componentArray[getComponentTypeID<T>()]);
+        return *static_cast<T*>(ptr);
+    }
 
 
 };
