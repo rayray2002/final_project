@@ -8,6 +8,7 @@
 #include "ECS/Components.hpp"
 #include "texturemanager.h"
 #include "Vector2D.hpp"
+#include "Collision.hpp"
 using namespace std;
 
 // GameObject* player;
@@ -20,6 +21,7 @@ Manager manager;
 SDL_Event Game::event;
 
 auto& player(manager.addEntity());
+auto& wall(manager.addEntity());
 
 Game::Game() {
     Character[0] = "Miku";
@@ -75,6 +77,11 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     player.addComponent<TransformComponent>();
     player.addComponent<SpriteComponent>("./img/miku.bmp");
     player.addComponent<KeyBoardController>();
+    player.addComponent<ColliderComponent>("player");
+
+    wall.addComponent<TransformComponent>(300, 300, 300, 20, 1);
+    wall.addComponent<SpriteComponent>("./img/kirito1.bmp");
+    wall.addComponent<ColliderComponent>("wall");
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music

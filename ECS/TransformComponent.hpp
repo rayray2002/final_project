@@ -18,9 +18,12 @@ public:
         position.y = 0.0;
     }
 
-    TransformComponent(double x, double y) {
+    TransformComponent(double x, double y, int h, int w, int sc) {
         position.x = x;
         position.y = y;
+        height = h;
+        width = h;
+        scale = sc;
     }
 
     int x() {
