@@ -74,6 +74,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
     player.addComponent<TransformComponent>();
     player.addComponent<SpriteComponent>("./img/miku.bmp");
+    player.addComponent<KeyBoardController>();
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -108,10 +109,10 @@ void Game::update() {
     // player2->Update();
     manager.refresh();
     manager.update();
-    player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
-    if (player.getComponent<TransformComponent>().position.x > 100) {
-        player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");
-    }
+    // player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
+    // if (player.getComponent<TransformComponent>().position.x > 100) {
+    //     player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");
+    // }
     // cout << newPlayer.getComponent<PositionComponent>().x << ", " << newPlayer.getComponent<PositionComponent>().y << endl;
     // map->LoadMap();
     // destR.h = cnt;
