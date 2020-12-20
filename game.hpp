@@ -25,6 +25,7 @@ vector<ColliderComponent*> Game::colliders;
 
 auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
+const char* mapfile = "./img/miku.bmp";
 
 enum groupLabels : std::size_t {
     groupMap,
@@ -102,10 +103,10 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
 
-    wall.addComponent<TransformComponent>(300, 300, 300, 20, 1);
-    wall.addComponent<SpriteComponent>("./img/kirito1.bmp");
-    wall.addComponent<ColliderComponent>("wall");
-    wall.addGroup(groupMap);
+    // wall.addComponent<TransformComponent>(300, 300, 300, 20, 1);
+    // wall.addComponent<SpriteComponent>("./img/kirito1.bmp");
+    // wall.addComponent<ColliderComponent>("wall");
+    // wall.addGroup(groupMap);
     //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
@@ -224,9 +225,9 @@ void Game::clean() {
     cout << "Game Cleaned!" << endl;
 }
 
-void Game::AddTile(int id, int x, int y) {
+void Game::AddTile(int srcX, int srcY, int xpos, int ypos) {
     auto& tile(manager.addEntity());
-    tile.addComponent<TileComponent>(x, y, 32, 32, id);
+    tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, mapfile);
     tile.addGroup(groupMap);
 }
 
