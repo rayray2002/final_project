@@ -1,6 +1,7 @@
 #pragma once
 // #include "gameloop.h"
 #include "texturemanager.h"
+#include <string>
 
 class Map {
 public:
