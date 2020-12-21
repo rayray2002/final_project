@@ -12,8 +12,8 @@
 #include <map>
 #include <vector>
 #define NUMMENU 5
-#define WIDTH 1600
-#define HEIGHT 1000
+#define WIDTH 1280
+#define HEIGHT 720
 using namespace std;
 
 class ColliderComponent;
