@@ -5,7 +5,8 @@
 #include "Components.hpp"
 using namespace std;
 
-class ColliderComponent : public Component {
+class ColliderComponent : public Component 
+{
 public:
     SDL_Rect collider;
     string tag;
@@ -15,12 +16,15 @@ public:
 
     TransformComponent* transform;
 
-    ColliderComponent(string t) {
+    ColliderComponent(string t) 
+    {
         tag = t;
     }
 
-    void init() override {
-        if (entity->hasComponent<TransformComponent>()) {
+    void init() override 
+    {
+        if (entity->hasComponent<TransformComponent>()) 
+        {
             entity->addComponent<TransformComponent>();
         }
         transform = &entity->getComponent<TransformComponent>();
@@ -32,9 +36,11 @@ public:
         // Game::colliders.push_back(this);
     }
 
-    void update() override {
+    void update() override 
+    {
 
-        if (tag != "miku") {
+        if (tag != "miku") 
+        {
             collider.x = static_cast<int>(transform->position.x);
             collider.y = static_cast<int>(transform->position.y);
             collider.w = transform->width * transform->scale;
@@ -49,7 +55,8 @@ public:
         destR.y = collider.y - Game::camera.y;
     }
 
-    void draw() override {
+    void draw() override 
+    {
         TextureManager::Draw(tex, srcR, destR, SDL_FLIP_NONE);
     }
 };

@@ -5,9 +5,8 @@
 #include "Animation.h"
 #include <map>
 
-class SpriteComponent : public Component {
-
-
+class SpriteComponent : public Component 
+{
 private:
     TransformComponent *transform;
     SDL_Texture *texture;
@@ -27,11 +26,13 @@ public:
 
     SpriteComponent() = default;
 
-    SpriteComponent(const char* path) {
+    SpriteComponent(const char* path) 
+    {
         setTex(path);
     }
 
-    SpriteComponent(const char* path, bool isAnimated) {
+    SpriteComponent(const char* path, bool isAnimated) 
+    {
         animated = isAnimated;
 
         Animation idle = Animation(0, 3, 100); //0 index 3 picture number 100 frame size
@@ -47,16 +48,18 @@ public:
         setTex(path);
     }
 
-    ~SpriteComponent() {
+    ~SpriteComponent()
+    {
         SDL_DestroyTexture(texture);
     }
 
-    void setTex(const char* path) {
+    void setTex(const char* path)
+    {
         texture = TextureManager::LoadTexture(path);
     }
 
-    void init() override {
-
+    void init() override
+    {
         transform = &entity->getComponent<TransformComponent>();
 
         srcRect.x = srcRect.y = 0;
@@ -64,9 +67,10 @@ public:
         srcRect.w = transform->height;
     }
 
-    void update() override {
-
-        if (animated) {
+    void update() override
+    {
+        if (animated)
+        {
             srcRect.x = srcRect.w * static_cast<int>((SDL_GetTicks() / speed) % frames); // put actions in a picture
             //Then if we need animation, we only need to move the camera.
         }
@@ -79,14 +83,15 @@ public:
         destRect.w = transform->height * transform->scale;
     }
 
-    void draw() override {
+    void draw() override
+    {
         TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
     }
 
-    void Play(const char* animName) {
+    void Play(const char* animName)
+    {
         frames    = animations[animName].frames;
         animIndex =  animations[animName].index;
         speed     =  animations[animName].speed;
     }
-
 };

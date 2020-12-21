@@ -9,14 +9,18 @@ public:
     TransformComponent *transform;
     SpriteComponent *sprite;
 
-    void init() override {
+    void init() override 
+    {
         transform = &entity->getComponent<TransformComponent>();
         sprite = &entity->getComponent<SpriteComponent>();
     }
 
-    void update() override {
-        if (Game::event.type == SDL_KEYDOWN) {
-            switch (Game::event.key.keysym.sym) {
+    void update() override 
+    {
+        if (Game::event.type == SDL_KEYDOWN) 
+        {
+            switch (Game::event.key.keysym.sym) 
+            {
             case SDLK_w:
                 transform->velocity.y = -1;
                 sprite->Play("Walk");
@@ -39,8 +43,10 @@ public:
             }
         }
 
-        if (Game::event.type == SDL_KEYUP) {
-            switch (Game::event.key.keysym.sym) {
+        if (Game::event.type == SDL_KEYUP) 
+        {
+            switch (Game::event.key.keysym.sym) 
+            {
             case SDLK_w:
                 transform->velocity.y = 0;
                 sprite->Play("Idle");
@@ -63,7 +69,6 @@ public:
             default:
                 break;
             }
-
         }
     }
 };

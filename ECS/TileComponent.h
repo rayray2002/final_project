@@ -1,15 +1,11 @@
 #pragma once
 
 #include "ECS.hpp"
-// #include "TransformComponent.hpp"
-// #include "SpriteComponent.hpp"
 #include <SDL.h>
 
-
-class TileComponent : public Component {
+class TileComponent : public Component
+{
 public:
-
-
     SDL_Texture* texture;
     SDL_Rect srcRect, destRect;
     Vector2D position;
@@ -22,7 +18,8 @@ public:
 
     TileComponent() = default;
 
-    ~TileComponent() {
+    ~TileComponent()
+    {
         SDL_DestroyTexture(texture);
     }
 
@@ -60,12 +57,14 @@ public:
         //     break;
     }
 
-    void update() override {
+    void update() override
+    {
         destRect.x = position.x - Game::camera.x;
         destRect.y = position.y - Game::camera.y;
     }
 
-    void draw() override {
+    void draw() override
+    {
         TextureManager::Draw(texture, srcRect, destRect, SDL_FLIP_NONE);
     }
 
