@@ -18,8 +18,8 @@ using namespace std;
 
 class ColliderComponent;
 
-class Game {
-
+class Game
+{
 public:
     Game();
     ~Game();
@@ -41,9 +41,18 @@ public:
 
     static SDL_Renderer* renderer;
     static SDL_Event event;
-    static vector<ColliderComponent*> colliders;
+    // static vector<ColliderComponent*> colliders;
     static bool isRunning;
     static SDL_Rect camera;
+
+    enum groupLabels : std::size_t
+    {
+        groupMap,
+        groupPlayers,
+        // groupEnemies,
+        groupColliders
+    };
+
 
 private:
     int cnt = 64; //count

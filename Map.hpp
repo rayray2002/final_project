@@ -22,7 +22,9 @@ extern Manager manager;
 //     {0, 0, 0, 0, 0, 0},
 // };
 
-Map::Map(const char* mfp, int ms, int ts) : mapFilePath(mfp), mapScale(ms), tileSize(ts) {
+Map::Map(const char* mfp, int ms, int ts) : mapFilePath(mfp), mapScale(ms), tileSize(ts) 
+{
+    scaledSize = ms * ts;
     // dirt = TextureManager::LoadTexture("./img/miku.bmp");
     // grass = TextureManager::LoadTexture("./img/miku.bmp");
     // water = TextureManager::LoadTexture("./img/miku.bmp");
@@ -55,7 +57,22 @@ void Map::LoadMap(std::string path, int sizeX, int sizeY) {
             srcY = atoi(&c) * tileSize;
             mapFile.get(c);
             srcX = atoi(&c) * tileSize;
-            AddTile(srcX, srcY, x * tileSize * mapScale, y * tileSize * mapScale);
+            AddTile(srcX, srcY, x * scaledSize, y * scaledSize);
+            mapFile.ignore();
+        }
+    }
+
+    for (int y = 0; y < sizeY; y++)
+    {
+        for (int x = 0; x < sizeX; x++)
+        {
+            mapFile.get(c);
+            if (c == '1')
+            {
+                auto& tcol(manager.addEntity());
+                tcol.addComponent<ColliderComponent>("miku", x * scaledSize, y * scaledSize, scaledSize);
+                mapFile.ignore();
+            }
             mapFile.ignore();
         }
     }
@@ -72,7 +89,7 @@ void Map::AddTile(int srcX, int srcY, int xpos, int ypos) {
 
     auto& tile(manager.addEntity());
     tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, tileSize, mapScale, mapFilePath);
-    tile.addGroup(groupMap);
+    tile.addGroup(Game::groupMap);
 
 }
 

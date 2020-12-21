@@ -73,6 +73,7 @@ public:
         {
             c->update();
         }
+        
         for (auto &c : components) 
         {
             c->draw();

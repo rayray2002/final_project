@@ -23,29 +23,30 @@ SDL_Event Game::event;
 
 SDL_Rect Game::camera = { 0, 0, 800, 600 };
 
-vector<ColliderComponent*> Game::colliders;
+// vector<ColliderComponent*> Game::colliders;
 
 bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
-auto& wall(manager.addEntity());
-const char* mapfile = "./img/miku.bmp";
+// auto& wall(manager.addEntity());
+// const char* mapfile = "./img/miku.bmp";
 
-enum groupLabels : std::size_t {
-    groupMap,
-    groupPlayers,
-    groupEnemies,
-    groupColliders
-};
+// enum groupLabels : std::size_t {
+//     groupMap,
+//     groupPlayers,
+//     groupEnemies,
+//     groupColliders
+// };
 
 // auto& tile0(manager.addEntity());
 // auto& tile1(manager.addEntity());
 // auto& tile2(manager.addEntity());
-auto& tiles(manager.getGroup(groupMap));
-auto& players(manager.getGroup(groupPlayers));
-auto& enemies(manager.getGroup(groupEnemies));
+// auto& tiles(manager.getGroup(groupMap));
+// auto& players(manager.getGroup(groupPlayers));
+// auto& enemies(manager.getGroup(groupEnemies));
 
-Game::Game() {
+Game::Game() 
+{
     Character[0] = "Miku";
     Character[1] = "Kirito";
     Character[2] = "Asuna";
@@ -53,7 +54,8 @@ Game::Game() {
     Character[4] = "Heish";
 }
 
-Game::~Game() {
+Game::~Game() 
+{
 
 }
 
@@ -61,26 +63,32 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
 
     int flags = 0;
 
-    if (fullscreen) {
+    if (fullscreen) 
+    {
         flags = SDL_WINDOW_FULLSCREEN;
     }
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
+    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
+    {
         cout << "Subsystem Initialised!..." << endl;
 
         window = SDL_CreateWindow(title, xMenuPos, yMenuPos, width, height, flags);
-        if (window) {
+        if (window) 
+        {
             cout << "Window Created!" << endl;
         }
 
         renderer = SDL_CreateRenderer(window, -1, 0);
-        if (renderer) {
+        if (renderer)
+        {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             cout << "Renderer Created!" << endl;
         }
 
         isRunning = true;
-    } else {
+    } 
+    else 
+    {
         isRunning = false;
     }
     //SDL_LoadBMP
@@ -93,7 +101,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
     // player = new GameObject("./img/kirito1.bmp", 0, 0);
     // player2 = new GameObject("./img/kirito1.bmp", 500, 500);
-    mmap = new Map();
+    mmap = new Map("./img/miku.bmp", 3, 32);
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
     // tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
@@ -102,7 +110,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // tile2.addComponent<TileComponent>(150, 150, 32, 32, 2);
     // tile2.addComponent<ColliderComponent>("water");
 
-    Map::LoadMap("img/p16x16.map", 16, 16);
+    mmap->LoadMap("img/p16x16.map", 16, 16);
 
     player.addComponent<TransformComponent>(2);
     player.addComponent<SpriteComponent>("./img/miku.bmp", true);
@@ -127,7 +135,13 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
 
 }
 
-void Game::handleEveants() {
+auto& tiles(manager.getGroup(Game::groupMap));
+auto& players(manager.getGroup(Game::groupPlayers));
+auto& colliders(manager.getGroup(Game::groupColliders));
+
+
+void Game::handleEveants() 
+{
     // SDL_Event event;
 
     SDL_PollEvent(&event);
@@ -142,12 +156,24 @@ void Game::handleEveants() {
     }
 }
 
-void Game::update() {
-    SDL_Delay(10);
+void Game::update() 
+{
+    SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
+    Vector2D playerPos = player.getComponent<TransformComponent>().position;
     // player->Update();
     // player2->Update();
     manager.refresh();
     manager.update();
+
+    for (auto& c : colliders)
+    {
+        SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
+        // c->getComponent<TransformComponent>().position.x - 400;
+        if (Collision::AABB(cCol, playerCol))
+        {
+            player.getComponent<TransformComponent>().position = playerPos;
+        }
+    }
 
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;
@@ -230,13 +256,18 @@ void Game::render() {
         t->draw();
     }
 
+    for (auto& c : colliders)
+    {
+        c->draw();
+    }
+
     for (auto& p : players) {
         p->draw();
     }
 
-    for (auto& e : enemies) {
-        e->draw();
-    }
+    // for (auto& e : enemies) {
+    //     e->draw();
+    // }
     //mmap->DrawMap();
     // manager.draw();
     // player->Render();
