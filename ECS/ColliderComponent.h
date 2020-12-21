@@ -10,6 +10,9 @@ public:
     SDL_Rect collider;
     string tag;
 
+    SDL_Texture* tex;
+    SDL_Rect srcR, destR;
+
     TransformComponent* transform;
 
     ColliderComponent(string t) {
@@ -22,13 +25,31 @@ public:
         }
         transform = &entity->getComponent<TransformComponent>();
 
-        Game::colliders.push_back(this);
+        tex = TextureManager::LoadTexture("./img/miku.bmp");
+        srcR = { 0, 0, 32, 32 };
+        destR = { collider.x , collider.y, collider.w, collider.h };
+
+        // Game::colliders.push_back(this);
     }
 
     void update() override {
+
+        if (tag != "miku") {
+            collider.x = static_cast<int>(transform->position.x);
+            collider.y = static_cast<int>(transform->position.y);
+            collider.w = transform->width * transform->scale;
+            collider.h = transform->height * transform->scale;
+        }
         collider.x = static_cast<int>(transform->position.x);
         collider.y = static_cast<int>(transform->position.y);
         collider.w = transform->width * transform->scale;
         collider.h = transform->height * transform->scale;
+
+        destR.x = collider.x - Game::camera.x;
+        destR.y = collider.y - Game::camera.y;
+    }
+
+    void draw() override {
+        TextureManager::Draw(tex, srcR, destR, SDL_FLIP_NONE);
     }
 };

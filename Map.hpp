@@ -2,6 +2,8 @@
 #include "gameloop.h"
 #include <fstream>
 using namespace std;
+
+extern Manager manager;
 //#include "texturemanager.hpp"
 
 // int Lv1[13][6] = {
@@ -20,7 +22,7 @@ using namespace std;
 //     {0, 0, 0, 0, 0, 0},
 // };
 
-Map::Map() {
+Map::Map(const char* mfp, int ms, int ts) : mapFilePath(mfp), mapScale(ms), tileSize(ts) {
     // dirt = TextureManager::LoadTexture("./img/miku.bmp");
     // grass = TextureManager::LoadTexture("./img/miku.bmp");
     // water = TextureManager::LoadTexture("./img/miku.bmp");
@@ -50,10 +52,10 @@ void Map::LoadMap(std::string path, int sizeX, int sizeY) {
     for (int y = 0; y < sizeY; y++) {
         for (int x = 0; x < sizeX; x++) {
             mapFile.get(c);
-            srcY = atoi(&c) * 32;
+            srcY = atoi(&c) * tileSize;
             mapFile.get(c);
-            srcX = atoi(&c) * 32;
-            Game::AddTile(srcX, srcY, x * 32, y * 32);
+            srcX = atoi(&c) * tileSize;
+            AddTile(srcX, srcY, x * tileSize * mapScale, y * tileSize * mapScale);
             mapFile.ignore();
         }
     }
@@ -65,6 +67,15 @@ void Map::LoadMap(std::string path, int sizeX, int sizeY) {
     //     }
     // }
 }
+
+void Map::AddTile(int srcX, int srcY, int xpos, int ypos) {
+
+    auto& tile(manager.addEntity());
+    tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, tileSize, mapScale, mapFilePath);
+    tile.addGroup(groupMap);
+
+}
+
 
 // void Map::DrawMap() {
 //     int type = 0;

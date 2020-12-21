@@ -21,7 +21,11 @@ Map* mmap;
 Manager manager;
 SDL_Event Game::event;
 
+SDL_Rect Game::camera = { 0, 0, 800, 600 };
+
 vector<ColliderComponent*> Game::colliders;
+
+bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
 auto& wall(manager.addEntity());
@@ -37,6 +41,9 @@ enum groupLabels : std::size_t {
 // auto& tile0(manager.addEntity());
 // auto& tile1(manager.addEntity());
 // auto& tile2(manager.addEntity());
+auto& tiles(manager.getGroup(groupMap));
+auto& players(manager.getGroup(groupPlayers));
+auto& enemies(manager.getGroup(groupEnemies));
 
 Game::Game() {
     Character[0] = "Miku";
@@ -142,13 +149,40 @@ void Game::update() {
     manager.refresh();
     manager.update();
 
-    for (auto cc : colliders) {
-        Collision::AABB(player.getComponent<ColliderComponent>(), *cc);
-        // if (Collision::AABB(player.getComponent<ColliderComponent>(), *cc)) {
-        //     player.getComponent<TransformComponent>().velocity * -1;
-        //     cout << "Wall Hit!" << endl;
-        // }
+    camera.x = player.getComponent<TransformComponent>().position.x - 400;
+    camera.y = player.getComponent<TransformComponent>().position.y - 320;
+
+    if (camera.x < 0) {
+        camera.x = 0;
     }
+
+    if (camera.y < 0) {
+        camera.y = 0;
+    }
+
+    if (camera.x > camera.w) {
+        camera.x = camera.w;
+    }
+
+    if (camera.y > camera.h) {
+        camera.y = camera.h;
+    }
+
+    // Vector2D pVel = player.getComponent<TransformComponent>().velocity;
+    // int pSpeed = player.getComponent<TransformComponent>().speed;
+
+    // for (auto t : tiles) {
+    //     t ->getComponent<TileComponent>().destRect.x += -(pVel.x * pSpeed);
+    //     t ->getComponent<TileComponent>().destRect.y += -(pVel.x * pSpeed);
+    // }
+
+    // for (auto cc : colliders) {
+    //     Collision::AABB(player.getComponent<ColliderComponent>(), *cc);
+    //     // if (Collision::AABB(player.getComponent<ColliderComponent>(), *cc)) {
+    //     //     player.getComponent<TransformComponent>().velocity * -1;
+    //     //     cout << "Wall Hit!" << endl;
+    //     // }
+    // }
     
     // player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
     // if (player.getComponent<TransformComponent>().position.x > 100) {
@@ -189,9 +223,6 @@ void Game::update() {
     // }
 }
 
-auto& tiles(manager.getGroup(groupMap));
-auto& players(manager.getGroup(groupPlayers));
-auto& enemies(manager.getGroup(groupEnemies));
 
 void Game::render() {
     SDL_RenderClear(renderer);
@@ -225,11 +256,11 @@ void Game::clean() {
     cout << "Game Cleaned!" << endl;
 }
 
-void Game::AddTile(int srcX, int srcY, int xpos, int ypos) {
-    auto& tile(manager.addEntity());
-    tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, mapfile);
-    tile.addGroup(groupMap);
-}
+// void Game::AddTile(int srcX, int srcY, int xpos, int ypos) {
+//     // auto& tile(manager.addEntity());
+//     // tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, mapfile);
+//     // tile.addGroup(groupMap);
+// }
 
 void Game::showmenu() {
     

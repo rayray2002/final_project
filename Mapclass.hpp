@@ -8,10 +8,15 @@ public:
     Map();
     ~Map();
 
-    static void LoadMap(std::string path, int sizeX, int sizeY);
+    void LoadMap(std::string path, int sizeX, int sizeY);
+    void AddTile(int srcX, int srcY, int xpos, int ypos);
+
     // void DrawMap();
 
 private:
+    const char* mapFilePath;
+    int mapScale;
+    int tileSize;
     // SDL_Rect src, dest;
     // SDL_Texture* dirt;
     // SDL_Texture* grass;

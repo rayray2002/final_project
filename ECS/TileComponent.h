@@ -12,6 +12,7 @@ public:
 
     SDL_Texture* texture;
     SDL_Rect srcRect, destRect;
+    Vector2D position;
     // TransformComponent* transform;
     // SpriteComponent* sprite;
 
@@ -25,17 +26,20 @@ public:
         SDL_DestroyTexture(texture);
     }
 
-    TileComponent(int srcX, int srcY, int xpos, int ypos, const char* path) {
+    TileComponent(int srcX, int srcY, int xpos, int ypos, int tsize, int tscale, const char* path) {
 
         texture = TextureManager::LoadTexture(path);
 
+        position.x = xpos;
+        position.y = ypos;
+
         srcRect.x = srcX;
         srcRect.y = srcY;
-        srcRect.h = srcRect.w = 32;
+        srcRect.h = srcRect.w = tsize;
 
         destRect.x = xpos;
         destRect.y = ypos;
-        destRect.w = destRect.h = 32;
+        destRect.w = destRect.h = tsize * tscale;
         // tileRect.x = x;
         // tileRect.y = y;
         // tileRect.h = h;
@@ -54,6 +58,11 @@ public:
         //     break;
         // default:
         //     break;
+    }
+
+    void update() override {
+        destRect.x = position.x - Game::camera.x;
+        destRect.y = position.y - Game::camera.y;
     }
 
     void draw() override {
