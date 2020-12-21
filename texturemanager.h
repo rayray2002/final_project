@@ -1,6 +1,7 @@
 #pragma once
 
 #include "texturemanagerclass.hpp"
+// #include "gameloop.h"
 
 SDL_Texture* TextureManager::LoadTexture(const char* texture)
 {
