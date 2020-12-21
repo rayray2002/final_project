@@ -3,7 +3,8 @@
 using namespace std;
 
 
-class Vector2D {
+class Vector2D 
+{
 public:
     double x;
     double y;

@@ -1,7 +1,7 @@
 #ifndef Game_hpp
 #define Game_hpp
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
@@ -12,6 +12,7 @@
 #include <map>
 #include <vector>
 #include "AssetManager.h"
+// #include "texturemanager.hpp"
 #define NUMMENU 5
 #define WIDTH 1280
 #define HEIGHT 720

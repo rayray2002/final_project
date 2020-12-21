@@ -1,4 +1,4 @@
-
+#pragma once
 #include "gameloop.h"
 #include "firstmenu.hpp"
 // #include "gameobject.hpp"
