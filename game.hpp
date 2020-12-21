@@ -6,7 +6,7 @@
 // #include "ECS/ECS.hpp"
 // #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.h"
+#include "texturemanager.hpp"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"

@@ -2,7 +2,7 @@
 // #include "gameloop.h"
 #include "ECS/ECS.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.h"
+#include "texturemanager.hpp"
 #include <string>
 
 class Map {
