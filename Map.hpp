@@ -22,11 +22,7 @@ extern Manager manager;
 //     {0, 0, 0, 0, 0, 0},
 // };
 
-<<<<<<< HEAD
 Map::Map(const char* mfp, int ms, int ts) : mapFilePath(mfp), mapScale(ms), tileSize(ts) 
-=======
-Map::Map(string tID, int ms, int ts) : texID(tID), mapScale(ms), tileSize(ts) 
->>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
 {
     scaledSize = ms * ts;
     // dirt = TextureManager::LoadTexture("./img/miku.bmp");
@@ -48,27 +44,15 @@ Map::~Map() {
     // SDL_DestroyTexture(water);
 }
 
-<<<<<<< HEAD
 void Map::LoadMap(std::string path, int sizeX, int sizeY) {
-=======
-void Map::LoadMap(std::string path, int sizeX, int sizeY) 
-{
->>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     char c;
     fstream mapFile;
     mapFile.open(path);
 
     int srcX, srcY;
 
-<<<<<<< HEAD
     for (int y = 0; y < sizeY; y++) {
         for (int x = 0; x < sizeX; x++) {
-=======
-    for (int y = 0; y < sizeY; y++) 
-    {
-        for (int x = 0; x < sizeX; x++) 
-        {
->>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
             mapFile.get(c);
             srcY = atoi(&c) * tileSize;
             mapFile.get(c);
@@ -87,11 +71,7 @@ void Map::LoadMap(std::string path, int sizeX, int sizeY)
             {
                 auto& tcol(manager.addEntity());
                 tcol.addComponent<ColliderComponent>("miku", x * scaledSize, y * scaledSize, scaledSize);
-<<<<<<< HEAD
                 mapFile.ignore();
-=======
-                tcol.addGroup(Game::groupColliders);
->>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
             }
             mapFile.ignore();
         }
@@ -108,11 +88,7 @@ void Map::LoadMap(std::string path, int sizeX, int sizeY)
 void Map::AddTile(int srcX, int srcY, int xpos, int ypos) {
 
     auto& tile(manager.addEntity());
-<<<<<<< HEAD
     tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, tileSize, mapScale, mapFilePath);
-=======
-    tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, tileSize, mapScale, texID);
->>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     tile.addGroup(Game::groupMap);
 
 }
