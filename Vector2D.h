@@ -3,7 +3,12 @@
 using namespace std;
 
 
+<<<<<<< HEAD
 class Vector2D {
+=======
+class Vector2D 
+{
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
 public:
     double x;
     double y;

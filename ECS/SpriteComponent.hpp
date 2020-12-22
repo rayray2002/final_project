@@ -1,8 +1,14 @@
 #pragma once
 
 #include "Components.hpp"
+<<<<<<< HEAD
 #include <SDL2/SDL.h>
 #include "Animation.h"
+=======
+#include <SDL.h>
+#include "Animation.h"
+#include "../AssetManager.h"
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
 #include <map>
 
 class SpriteComponent : public Component 
@@ -31,7 +37,11 @@ public:
         setTex(path);
     }
 
+<<<<<<< HEAD
     SpriteComponent(const char* path, bool isAnimated) 
+=======
+    SpriteComponent(string id, bool isAnimated) 
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     {
         animated = isAnimated;
 
@@ -40,22 +50,40 @@ public:
 
         animations.emplace("Idle", idle);
         animations.emplace("Walk", walk);
+<<<<<<< HEAD
 
         Play("Idle");
 
         // speed = mSpeed;
         // frames = nFrames;
         setTex(path);
+=======
+
+        Play("Idle");
+
+        // speed = mSpeed;
+        // frames = nFrames;
+        setTex(id);
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     }
 
     ~SpriteComponent()
     {
+<<<<<<< HEAD
         SDL_DestroyTexture(texture);
     }
 
     void setTex(const char* path)
     {
         texture = TextureManager::LoadTexture(path);
+=======
+        // SDL_DestroyTexture(texture);
+    }
+
+    void setTex(string id)
+    {
+        texture = Game::assets->GetTexture(id);
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     }
 
     void init() override

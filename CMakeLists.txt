@@ -6,6 +6,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 message(${CMAKE_SOURCE_DIR})
 
 add_executable(final_project main.cpp SDL_bgi.cpp)
+add_executable(Puyo_test Puyo.cpp)
 
 #set(SDL2_LIBRARY "/Library/frameworks/SDL2.framework")
 #set(SDL2_IMAGE_LIBRARY "/Library/frameworks/SDL2_image.framework")

@@ -1,4 +1,4 @@
-
+#pragma once
 #include "gameloop.h"
 #include "firstmenu.hpp"
 // #include "gameobject.hpp"
@@ -6,10 +6,18 @@
 // #include "ECS/ECS.hpp"
 // #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
+<<<<<<< HEAD
 #include "texturemanager.h"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"
+=======
+#include "texturemanager.hpp"
+#include "Vector2D.hpp"
+#include "Collision.hpp"
+#include "ECS/ECSaddGroup.hpp"
+#include "AssetManager.h"
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
 using namespace std;
 
 // GameObject* player;
@@ -23,6 +31,11 @@ SDL_Event Game::event;
 
 SDL_Rect Game::camera = { 0, 0, 800, 600 };
 
+<<<<<<< HEAD
+=======
+AssetManager* Game::assets = new AssetManager(&manager);
+
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
 // vector<ColliderComponent*> Game::colliders;
 
 bool Game::isRunning = false;
@@ -101,7 +114,14 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
     // player = new GameObject("./img/kirito1.bmp", 0, 0);
     // player2 = new GameObject("./img/kirito1.bmp", 500, 500);
+<<<<<<< HEAD
     mmap = new Map("./img/miku.bmp", 3, 32);
+=======
+    assets->AddTexture("miku", "./img/miku.bmp");
+    assets->AddTexture("player", "./img/sample_green.bmp");
+
+    mmap = new Map("miku", 3, 32);
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
     // tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
@@ -113,7 +133,11 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     mmap->LoadMap("img/p16x16.map", 16, 16);
 
     player.addComponent<TransformComponent>(2);
+<<<<<<< HEAD
     player.addComponent<SpriteComponent>("./img/miku.bmp", true);
+=======
+    player.addComponent<SpriteComponent>("player", true);
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
@@ -256,10 +280,17 @@ void Game::render() {
         t->draw();
     }
 
+<<<<<<< HEAD
     for (auto& c : colliders)
     {
         c->draw();
     }
+=======
+    // for (auto& c : colliders)
+    // {
+    //     c->draw();
+    // }
+>>>>>>> b8c33cbae185a8097c244cebea181943c6ecc4cb
 
     for (auto& p : players) {
         p->draw();

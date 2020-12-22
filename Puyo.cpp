@@ -5,6 +5,7 @@
 using namespace std;
 
 const bool DEBUG = true;
+
 const int HEIGHT = 13;
 const int WIDTH = 6;
 
@@ -72,7 +73,13 @@ public:
 
 	void printer();
 
-	vector<int> update();
+	bool update();
+
+	int get_combo() const;
+
+	int get_count() const;
+
+	void reset();
 
 private:
 	vector<Block> check_chained(int, int);
@@ -80,6 +87,10 @@ private:
 	void remove(Block);
 
 	void fill();
+
+	int combo = 0;
+	int count = 0;
+
 };
 
 Puyo::Puyo() {
@@ -158,7 +169,7 @@ void Puyo::fill() {
 	bool quit;
 	do {
 		quit = true;
-		for (int i = 0; i < HEIGHT; i++) {
+		for (int i = 0; i < HEIGHT - 1; i++) {
 			for (int j = 0; j < WIDTH; j++) {
 				if (board[i][j] != Empty && board[i + 1][j] == Empty) {
 					quit = false;
@@ -170,36 +181,49 @@ void Puyo::fill() {
 	} while (!quit);
 }
 
-vector<int> Puyo::update() {
-	bool quit;
-	int combo = 0, count = 0;
-	do {
-		quit = true;
-		vector<Block> chain;
-		for (int i = 0; i < HEIGHT; i++) {
-			for (int j = 0; j < WIDTH; j++) {
-				if (board[i][j] != Empty) {
-					chain = check_chained(j, i);
-					if (chain.size() >= 4) {
-						quit = false;
-						combo++;
-						count += chain.size();
-						for (int k = 0; k < chain.size(); k++) {
-							remove(chain[k]);
-						}
-						if (DEBUG) printer();
-						fill();
-						if (DEBUG) printer();
-						break;
-					}
+bool Puyo::update() {
+	vector<Block> chain;
+	bool is_updated = false;
+	if (DEBUG) fill();
+	vector<vector<Block> > to_remove;
+	for (int i = 0; i < HEIGHT; i++) {
+		for (int j = 0; j < WIDTH; j++) {
+			if (board[i][j] != Empty) {
+				chain = check_chained(j, i);
+				if (chain.size() >= 4) {
+					to_remove.push_back(chain);
 				}
 			}
 		}
-	} while (!quit);
-	vector<int> out;
-	out.push_back(combo);
-	out.push_back(count);
-	return out;
+	}
+
+	if (!to_remove.empty()) {
+		combo++;
+		is_updated = true;
+		if (DEBUG) cout << "combo" << combo << endl;
+		for (int i = 0; i < to_remove.size(); i++) {
+			for (int j = 0; j < to_remove[i].size(); j++) {
+				remove(to_remove[i][j]);
+			}
+		}
+	}
+
+	if (DEBUG) printer();
+
+	return is_updated;
+}
+
+int Puyo::get_combo() const {
+	return combo;
+}
+
+int Puyo::get_count() const {
+	return count;
+}
+
+void Puyo::reset() {
+	combo = 0;
+	count = 0;
 }
 
 int main() {
@@ -217,6 +241,12 @@ int main() {
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'}};
 	Puyo puyo(test_board);
-	puyo.update();
+	puyo.reset();
+
+	while (puyo.update()) {
+		puyo.printer();
+	}
+
 	puyo.printer();
+	cout << "combo:" << puyo.get_combo() << ", count:" << puyo.get_count();
 }

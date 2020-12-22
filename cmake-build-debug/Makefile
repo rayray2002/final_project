@@ -131,6 +131,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named Puyo_test
+
+# Build rule for target.
+Puyo_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Puyo_test
+.PHONY : Puyo_test
+
+# fast build rule for target.
+Puyo_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/build
+.PHONY : Puyo_test/fast
+
+#=============================================================================
 # Target rules for targets named final_project
 
 # Build rule for target.
@@ -142,6 +155,33 @@ final_project: cmake_check_build_system
 final_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
 .PHONY : final_project/fast
+
+Puyo.o: Puyo.cpp.o
+
+.PHONY : Puyo.o
+
+# target to build an object file
+Puyo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.o
+.PHONY : Puyo.cpp.o
+
+Puyo.i: Puyo.cpp.i
+
+.PHONY : Puyo.i
+
+# target to preprocess a source file
+Puyo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.i
+.PHONY : Puyo.cpp.i
+
+Puyo.s: Puyo.cpp.s
+
+.PHONY : Puyo.s
+
+# target to generate assembly for a file
+Puyo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.s
+.PHONY : Puyo.cpp.s
 
 SDL_bgi.o: SDL_bgi.cpp.o
 
@@ -205,7 +245,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Puyo_test"
 	@echo "... final_project"
+	@echo "... Puyo.o"
+	@echo "... Puyo.i"
+	@echo "... Puyo.s"
 	@echo "... SDL_bgi.o"
 	@echo "... SDL_bgi.i"
 	@echo "... SDL_bgi.s"
