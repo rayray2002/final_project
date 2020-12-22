@@ -2,12 +2,12 @@
 // #include "gameloop.h"
 #include "ECS/ECS.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.hpp"
+#include "texturemanager.h"
 #include <string>
 
 class Map {
 public:
-    Map(string tID, int ms, int ts);
+    Map(const char* mfp, int ms, int ts);
     ~Map();
 
     void LoadMap(std::string path, int sizeX, int sizeY);
@@ -16,8 +16,7 @@ public:
     // void DrawMap();
 
 private:
-    // const char* mapFilePath;
-    string texID;
+    const char* mapFilePath;
     int mapScale;
     int tileSize;
     int scaledSize;

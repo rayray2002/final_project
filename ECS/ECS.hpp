@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <bitset>
 #include <array>
-#include "../texturemanager.hpp"
+#include "../texturemanager.h"
 using namespace std;
 
 
