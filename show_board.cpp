@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <string>
 #include <cmath>
+#include "menu1.hpp"
 const int HEIGHT = 13;
 const int WIDTH = 6;
 
@@ -33,6 +34,10 @@ bool init()
     }
     else
     {
+        if (TTF_Init() == -1) {
+            std::cout << "TTF_Init: " << TTF_GetError() << std::endl;
+            return 3;
+        }
         //Set texture filtering to linear
         if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
         {
@@ -40,7 +45,7 @@ bool init()
         }
 
         //Create window
-        Window = SDL_CreateWindow("board test", 100, 100, 1300, 1000, SDL_WINDOW_SHOWN|SDL_WINDOW_MAXIMIZED);
+        Window = SDL_CreateWindow("board test", 100, 100, 1300, 1000, SDL_WINDOW_SHOWN | SDL_WINDOW_MAXIMIZED);
         if (Window == NULL)
         {
             printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -103,7 +108,7 @@ void show_board(const char board[][WIDTH]) {
                 surface = SDL_LoadBMP("./img/sample_green.bmp"); break;
             case 'Y':
                 surface = SDL_LoadBMP("./img/sample_yellow.bmp"); break;
-            
+
             }
             int size = 80;
             SDL_Rect a;
@@ -111,9 +116,9 @@ void show_board(const char board[][WIDTH]) {
             a.y = size * i;
             a.w = size;
             a.h = size;
-            
+
             texture = SDL_CreateTextureFromSurface(Renderer, surface);
-            
+
             SDL_FreeSurface(surface);
             surface = NULL;
             SDL_RenderCopy(Renderer, texture, NULL, &a);
@@ -132,14 +137,14 @@ void show_board(const char board[][WIDTH]) {
                 quit = true;
             }
         }
-        
+
         SDL_RenderPresent(Renderer);
     }
 }
 
 int main(int argc, char* argv[]) {
     init();
-    char test_board[13][6] = {{'R', 'R', 'G', 'Y', 'R', 'R'},
+    char test_board[13][6] = { {'R', 'R', 'G', 'Y', 'R', 'R'},
                               {'R', 'Y', 'Y', 'G', 'Y', 'G'},
                               {'G', 'Y', 'G', 'Y', 'R', 'R'},
                               {'R', 'Y', 'G', 'Y', 'R', 'G'},
@@ -151,11 +156,11 @@ int main(int argc, char* argv[]) {
                               {'R', 'Y', 'G', 'Y', 'G', 'G'},
                               {'G', 'R', 'Y', 'G', 'Y', 'R'},
                               {'G', 'R', 'Y', 'G', 'Y', 'R'},
-                              {'G', 'R', 'R', 'R', 'Y', 'R'}};
+                              {'G', 'R', 'R', 'R', 'Y', 'R'} };
     show_board(test_board);
-    
+
     close();
-    
-    
+
+
     return 0;
 }
