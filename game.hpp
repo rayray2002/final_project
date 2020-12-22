@@ -6,11 +6,10 @@
 // #include "ECS/ECS.hpp"
 // #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.hpp"
+#include "texturemanager.h"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"
-#include "AssetManager.h"
 using namespace std;
 
 // GameObject* player;
@@ -23,8 +22,6 @@ Manager manager;
 SDL_Event Game::event;
 
 SDL_Rect Game::camera = { 0, 0, 800, 600 };
-
-AssetManager* Game::assets = new AssetManager(&manager);
 
 // vector<ColliderComponent*> Game::colliders;
 
@@ -104,10 +101,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
     // player = new GameObject("./img/kirito1.bmp", 0, 0);
     // player2 = new GameObject("./img/kirito1.bmp", 500, 500);
-    assets->AddTexture("miku", "./img/miku.bmp");
-    assets->AddTexture("player", "./img/sample_green.bmp");
-
-    mmap = new Map("miku", 3, 32);
+    mmap = new Map("./img/miku.bmp", 3, 32);
     // newPlayer.addComponent<PositionComponent>();
     // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
     // tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
@@ -119,7 +113,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     mmap->LoadMap("img/p16x16.map", 16, 16);
 
     player.addComponent<TransformComponent>(2);
-    player.addComponent<SpriteComponent>("player", true);
+    player.addComponent<SpriteComponent>("./img/miku.bmp", true);
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
@@ -262,10 +256,10 @@ void Game::render() {
         t->draw();
     }
 
-    // for (auto& c : colliders)
-    // {
-    //     c->draw();
-    // }
+    for (auto& c : colliders)
+    {
+        c->draw();
+    }
 
     for (auto& p : players) {
         p->draw();

@@ -3,7 +3,6 @@
 #include "Components.hpp"
 #include <SDL2/SDL.h>
 #include "Animation.h"
-#include "../AssetManager.h"
 #include <map>
 
 class SpriteComponent : public Component 
@@ -32,7 +31,7 @@ public:
         setTex(path);
     }
 
-    SpriteComponent(string id, bool isAnimated) 
+    SpriteComponent(const char* path, bool isAnimated) 
     {
         animated = isAnimated;
 
@@ -46,17 +45,17 @@ public:
 
         // speed = mSpeed;
         // frames = nFrames;
-        setTex(id);
+        setTex(path);
     }
 
     ~SpriteComponent()
     {
-        // SDL_DestroyTexture(texture);
+        SDL_DestroyTexture(texture);
     }
 
-    void setTex(string id)
+    void setTex(const char* path)
     {
-        texture = Game::assets->GetTexture(id);
+        texture = TextureManager::LoadTexture(path);
     }
 
     void init() override

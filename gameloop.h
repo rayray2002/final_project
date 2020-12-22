@@ -11,7 +11,6 @@
 #include <string>
 #include <map>
 #include <vector>
-#include "AssetManager.h"
 #define NUMMENU 5
 #define WIDTH 1280
 #define HEIGHT 720
@@ -45,7 +44,6 @@ public:
     // static vector<ColliderComponent*> colliders;
     static bool isRunning;
     static SDL_Rect camera;
-    static AssetManager* assets;
 
     enum groupLabels : std::size_t
     {
