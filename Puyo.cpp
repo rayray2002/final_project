@@ -185,7 +185,7 @@ bool Puyo::update() {
 	vector<Block> chain;
 	bool is_updated = false;
 	if (DEBUG) fill();
-	vector<vector<Block>> to_remove;
+	vector<vector<Block> > to_remove;
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
 			if (board[i][j] != Empty) {
