@@ -10,7 +10,7 @@ const int HEIGHT = 13;
 const int WIDTH = 6;
 
 enum Color {
-	Empty, Red, Green, Blue, Yellow
+	Empty, Trash, Rainbow, Red, Green, Blue, Yellow, Purple
 };
 struct Block {
 	int x, y;
@@ -31,6 +31,15 @@ Color char_to_color(char in) {
 			break;
 		case 'Y':
 			c = Yellow;
+			break;
+		case 'T':
+			c = Trash;
+			break;
+		case '*':
+			c = Rainbow;
+			break;
+		case 'P':
+			c = Purple;
 			break;
 		default:
 			c = Empty;
@@ -53,6 +62,15 @@ char color_to_char(char in) {
 			break;
 		case Yellow:
 			c = 'Y';
+			break;
+		case Trash:
+			c = 'T';
+			break;
+		case Rainbow:
+			c = '*';
+			break;
+		case Purple:
+			c = 'P';
 			break;
 		default:
 			c = ' ';
@@ -141,19 +159,23 @@ vector<Block> Puyo::check_chained(int x, int y) {
 		visited[top.x][top.y] = true;
 		q.pop();
 //		cout << top.x << " " << top.y << endl;
-		if (top.x - 1 >= 0 && board[top.y][top.x - 1] == board[y][x] && !visited[top.x - 1][top.y]) {
+		if (top.x - 1 >= 0 && (board[top.y][top.x - 1] == board[y][x] || board[top.y][top.x - 1] == Rainbow) &&
+		    !visited[top.x - 1][top.y]) {
 			q.push((Block) {top.x - 1, top.y});
 			visited[top.x - 1][top.y] = true;
 		}
-		if (top.y - 1 >= 0 && board[top.y - 1][top.x] == board[y][x] && !visited[top.x][top.y - 1]) {
+		if (top.y - 1 >= 0 && (board[top.y - 1][top.x] == board[y][x] || board[top.y - 1][top.x] == Rainbow) &&
+		    !visited[top.x][top.y - 1]) {
 			q.push((Block) {top.x, top.y - 1});
 			visited[top.x - 1][top.y] = true;
 		}
-		if (top.x + 1 < WIDTH && board[top.y][top.x + 1] == board[y][x] && !visited[top.x + 1][top.y]) {
+		if (top.x + 1 < WIDTH && (board[top.y][top.x + 1] == board[y][x] || board[top.y][top.x + 1] == Rainbow) &&
+		    !visited[top.x + 1][top.y]) {
 			q.push((Block) {top.x + 1, top.y});
 			visited[top.x + 1][top.y] = true;
 		}
-		if (top.y + 1 < HEIGHT && board[top.y + 1][top.x] == board[y][x] && !visited[top.x][top.y + 1]) {
+		if (top.y + 1 < HEIGHT && (board[top.y + 1][top.x] == board[y][x] || board[top.y + 1][top.x] == Rainbow) &&
+		    !visited[top.x][top.y + 1]) {
 			q.push((Block) {top.x, top.y + 1});
 			visited[top.x][top.y + 1] = true;
 		}
@@ -163,6 +185,10 @@ vector<Block> Puyo::check_chained(int x, int y) {
 
 void Puyo::remove(Block block) {
 	board[block.y][block.x] = Empty;
+	if (block.x - 1 >= 0 && board[block.y][block.x - 1] == Trash) board[block.y][block.x - 1] = Empty;
+	if (block.y - 1 >= 0 && board[block.y - 1][block.x] == Trash) board[block.y - 1][block.x] = Empty;
+	if (block.x + 1 < WIDTH && board[block.y][block.x + 1] == Trash) board[block.y][block.x + 1] = Empty;
+	if (block.y + 1 < HEIGHT && board[block.y + 1][block.x] == Trash) board[block.y + 1][block.x] = Empty;
 }
 
 void Puyo::fill() {
@@ -227,7 +253,7 @@ void Puyo::reset() {
 }
 
 int main() {
-	char test_board[13][6] = {{'G', ' ', 'G', 'Y', 'R', 'R'},
+	char test_board[13][6] = {{'T', ' ', 'G', 'Y', 'R', 'R'},
 	                          {'R', 'Y', 'Y', 'G', 'Y', 'G'},
 	                          {'G', 'Y', 'G', 'Y', 'R', 'R'},
 	                          {'R', 'Y', 'G', 'Y', 'R', 'G'},

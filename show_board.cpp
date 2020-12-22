@@ -1,9 +1,12 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
+#include <iostream>
 #include <cstdio>
 #include <string>
 #include <cmath>
-#include "menu1.hpp"
+
+//#include "menu1.hpp"
 const int HEIGHT = 13;
 const int WIDTH = 6;
 

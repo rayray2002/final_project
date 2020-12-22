@@ -73,6 +73,7 @@ CMAKE_BINARY_DIR = /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-bu
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/show_board.dir/all
 all: CMakeFiles/Puyo_test.dir/all
 all: CMakeFiles/final_project.dir/all
 
@@ -84,10 +85,38 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/show_board.dir/clean
 clean: CMakeFiles/Puyo_test.dir/clean
 clean: CMakeFiles/final_project.dir/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/show_board.dir
+
+# All Build rule for target.
+CMakeFiles/show_board.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles --progress-num=6,7 "Built target show_board"
+.PHONY : CMakeFiles/show_board.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/show_board.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/show_board.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/show_board.dir/rule
+
+# Convenience name for target.
+show_board: CMakeFiles/show_board.dir/rule
+
+.PHONY : show_board
+
+# clean rule for target.
+CMakeFiles/show_board.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/clean
+.PHONY : CMakeFiles/show_board.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/Puyo_test.dir

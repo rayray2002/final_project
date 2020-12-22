@@ -131,6 +131,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named show_board
+
+# Build rule for target.
+show_board: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 show_board
+.PHONY : show_board
+
+# fast build rule for target.
+show_board/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/build
+.PHONY : show_board/fast
+
+#=============================================================================
 # Target rules for targets named Puyo_test
 
 # Build rule for target.
@@ -237,6 +250,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+show_board.o: show_board.cpp.o
+
+.PHONY : show_board.o
+
+# target to build an object file
+show_board.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.o
+.PHONY : show_board.cpp.o
+
+show_board.i: show_board.cpp.i
+
+.PHONY : show_board.i
+
+# target to preprocess a source file
+show_board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.i
+.PHONY : show_board.cpp.i
+
+show_board.s: show_board.cpp.s
+
+.PHONY : show_board.s
+
+# target to generate assembly for a file
+show_board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.s
+.PHONY : show_board.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -247,6 +287,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Puyo_test"
 	@echo "... final_project"
+	@echo "... show_board"
 	@echo "... Puyo.o"
 	@echo "... Puyo.i"
 	@echo "... Puyo.s"
@@ -256,6 +297,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... show_board.o"
+	@echo "... show_board.i"
+	@echo "... show_board.s"
 .PHONY : help
 
 
