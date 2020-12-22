@@ -1,55 +1,41 @@
 
 #include "gameloop.h"
 #include "firstmenu.hpp"
-// #include "gameobject.hpp"
 #include "Map.hpp"
-// #include "ECS/ECS.hpp"
-// #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.hpp"
+#include "texturemanager.h"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"
-#include "AssetManager.h"
 using namespace std;
 
-// GameObject* player;
-// GameObject* player2;
 SDL_Renderer* Game::renderer = nullptr;
 Map* mmap;
-// SDL_Texture* playerTex;
-// SDL_Rect scrR, destR;
 Manager manager;
 SDL_Event Game::event;
 
 SDL_Rect Game::camera = { 0, 0, 800, 600 };
 
-AssetManager* Game::assets = new AssetManager(&manager);
-
-// vector<ColliderComponent*> Game::colliders;
+vector<ColliderComponent*> Game::colliders;
 
 bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
-// auto& wall(manager.addEntity());
-// const char* mapfile = "./img/miku.bmp";
+auto& wall(manager.addEntity());
+const char* mapfile = "./img/miku.bmp";
 
-// enum groupLabels : std::size_t {
-//     groupMap,
-//     groupPlayers,
-//     groupEnemies,
-//     groupColliders
-// };
+enum groupLabels : std::size_t {
+    groupMap,
+    groupPlayers,
+    groupEnemies,
+    groupColliders
+};
 
-// auto& tile0(manager.addEntity());
-// auto& tile1(manager.addEntity());
-// auto& tile2(manager.addEntity());
-// auto& tiles(manager.getGroup(groupMap));
-// auto& players(manager.getGroup(groupPlayers));
-// auto& enemies(manager.getGroup(groupEnemies));
+auto& tiles(manager.getGroup(groupMap));
+auto& players(manager.getGroup(groupPlayers));
+auto& enemies(manager.getGroup(groupEnemies));
 
-Game::Game() 
-{
+Game::Game() {
     Character[0] = "Miku";
     Character[1] = "Kirito";
     Character[2] = "Asuna";
@@ -57,8 +43,7 @@ Game::Game()
     Character[4] = "Heish";
 }
 
-Game::~Game() 
-{
+Game::~Game() {
 
 }
 
@@ -66,69 +51,38 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
 
     int flags = 0;
 
-    if (fullscreen) 
-    {
+    if (fullscreen) {
         flags = SDL_WINDOW_FULLSCREEN;
     }
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) 
-    {
+    if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         cout << "Subsystem Initialised!..." << endl;
 
         window = SDL_CreateWindow(title, xMenuPos, yMenuPos, width, height, flags);
-        if (window) 
-        {
+        if (window) {
             cout << "Window Created!" << endl;
         }
 
         renderer = SDL_CreateRenderer(window, -1, 0);
-        if (renderer)
-        {
+        if (renderer) {
             SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             cout << "Renderer Created!" << endl;
         }
 
         isRunning = true;
-    } 
-    else 
-    {
+    } else {
         isRunning = false;
     }
-    //SDL_LoadBMP
-    //IMG_Load
-    //SDL_Surface* tmpSurface = SDL_LoadBMP("./sample.bmp");
-    // SDL_Surface* tmpSurface = SDL_LoadBMP("./img/kirito1.bmp");
-    // cout << "picture Loaded!" << endl;
-    // playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
-    // SDL_FreeSurface(tmpSurface);
-    // playerTex = TextureManager::LoadTexture("./img/kirito1.bmp", renderer);
-    // player = new GameObject("./img/kirito1.bmp", 0, 0);
-    // player2 = new GameObject("./img/kirito1.bmp", 500, 500);
-    assets->AddTexture("miku", "./img/miku.bmp");
-    assets->AddTexture("player", "./img/sample_green.bmp");
 
-    mmap = new Map("miku", 3, 32);
-    // newPlayer.addComponent<PositionComponent>();
-    // newPlayer.getComponent<PositionComponent>().setPos(500, 500);
-    // tile0.addComponent<TileComponent>(200, 200, 32, 32, 0);
-    // tile1.addComponent<TileComponent>(250, 250, 32, 32, 1);
-    // tile1.addComponent<ColliderComponent>("dirt");
-    // tile2.addComponent<TileComponent>(150, 150, 32, 32, 2);
-    // tile2.addComponent<ColliderComponent>("water");
+    mmap = new Map();
 
-    mmap->LoadMap("img/p16x16.map", 16, 16);
+    Map::LoadMap("img/p16x16.map", 16, 16);
 
     player.addComponent<TransformComponent>(2);
-    player.addComponent<SpriteComponent>("player", true);
+    player.addComponent<SpriteComponent>("./img/miku.bmp", true);
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
-
-    // wall.addComponent<TransformComponent>(300, 300, 300, 20, 1);
-    // wall.addComponent<SpriteComponent>("./img/kirito1.bmp");
-    // wall.addComponent<ColliderComponent>("wall");
-    // wall.addGroup(groupMap);
-    //SDL_Surface* tmpSurface = IMG_Load("pictures/sample.png");
 
     //Music
     MusicPlay("./mp3/miku.wav", 32);
@@ -141,13 +95,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
 
 }
 
-auto& tiles(manager.getGroup(Game::groupMap));
-auto& players(manager.getGroup(Game::groupPlayers));
-auto& colliders(manager.getGroup(Game::groupColliders));
-
-
-void Game::handleEveants() 
-{
+void Game::handleEveants() {
     // SDL_Event event;
 
     SDL_PollEvent(&event);
@@ -162,24 +110,10 @@ void Game::handleEveants()
     }
 }
 
-void Game::update() 
-{
-    SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
-    Vector2D playerPos = player.getComponent<TransformComponent>().position;
-    // player->Update();
-    // player2->Update();
+void Game::update() {
+    SDL_Delay(10);
     manager.refresh();
     manager.update();
-
-    for (auto& c : colliders)
-    {
-        SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
-        // c->getComponent<TransformComponent>().position.x - 400;
-        if (Collision::AABB(cCol, playerCol))
-        {
-            player.getComponent<TransformComponent>().position = playerPos;
-        }
-    }
 
     camera.x = player.getComponent<TransformComponent>().position.x - 400;
     camera.y = player.getComponent<TransformComponent>().position.y - 320;
@@ -200,59 +134,6 @@ void Game::update()
         camera.y = camera.h;
     }
 
-    // Vector2D pVel = player.getComponent<TransformComponent>().velocity;
-    // int pSpeed = player.getComponent<TransformComponent>().speed;
-
-    // for (auto t : tiles) {
-    //     t ->getComponent<TileComponent>().destRect.x += -(pVel.x * pSpeed);
-    //     t ->getComponent<TileComponent>().destRect.y += -(pVel.x * pSpeed);
-    // }
-
-    // for (auto cc : colliders) {
-    //     Collision::AABB(player.getComponent<ColliderComponent>(), *cc);
-    //     // if (Collision::AABB(player.getComponent<ColliderComponent>(), *cc)) {
-    //     //     player.getComponent<TransformComponent>().velocity * -1;
-    //     //     cout << "Wall Hit!" << endl;
-    //     // }
-    // }
-    
-    // player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
-    // if (player.getComponent<TransformComponent>().position.x > 100) {
-    //     player.getComponent<SpriteComponent>().setTex("./img/miku.bmp");
-    // }
-    // cout << newPlayer.getComponent<PositionComponent>().x << ", " << newPlayer.getComponent<PositionComponent>().y << endl;
-    // map->LoadMap();
-    // destR.h = cnt;
-    // destR.w = cnt;
-    // SDL_Event e;
-    // if ( SDL_PollEvent( &e ) != 0 ) {
-    //     switch ( e.key.keysym.sym ) {
-    //         case SDLK_w:
-    //             destR.y -= 50;
-    //             break;
-
-    //         case SDLK_s:
-    //             destR.y += 50;
-    //             break;
-
-    //         case SDLK_a:
-    //             destR.x -= 50;
-    //             break;
-
-    //         case SDLK_d:
-    //             destR.x += 50;
-    //             break;
-
-    //         case SDLK_j:
-    //             cnt *= 2;
-    //             break;
-
-    //         case SDLK_k:
-    //             if (cnt / 2 > 0) cnt /= 2;
-    //             break;
-            
-    //     }
-    // }
 }
 
 
@@ -262,24 +143,13 @@ void Game::render() {
         t->draw();
     }
 
-    // for (auto& c : colliders)
-    // {
-    //     c->draw();
-    // }
-
     for (auto& p : players) {
         p->draw();
     }
 
-    // for (auto& e : enemies) {
-    //     e->draw();
-    // }
-    //mmap->DrawMap();
-    // manager.draw();
-    // player->Render();
-    // player2->Render();
-    //SDL_RenderCopy(renderer, playerTex, NULL, &destR);
-    //this is where we add stuff to render
+    for (auto& e : enemies) {
+        e->draw();
+    }
     SDL_RenderPresent(renderer);
 }
 
@@ -293,11 +163,6 @@ void Game::clean() {
     cout << "Game Cleaned!" << endl;
 }
 
-// void Game::AddTile(int srcX, int srcY, int xpos, int ypos) {
-//     // auto& tile(manager.addEntity());
-//     // tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, mapfile);
-//     // tile.addGroup(groupMap);
-// }
 
 void Game::showmenu() {
     
@@ -378,9 +243,6 @@ void Game::showmenu() {
     CharacterTextText[2] << "Shark: AAAAA!!!";
     CharacterTextText[3] << "Hung: Miku 39 Is Answer!!!";
     CharacterTextText[4] << "Heish: I'm Your Muji!!!";
-    // for (int i = 0; i < NUMMENU; i++) {
-    //     CharacterTextSurface[i] = TTF_RenderText_Solid(CharacterTextFont, CharacterTextText[i].str().c_str(), CharacterTextColor);
-    // }
     //Title (Character) Basic Setting (End)
 
     //Main Loop (Start)
@@ -404,7 +266,6 @@ void Game::showmenu() {
             cout << "TTF_OpenFont: " << TTF_GetError() << endl;
         }
         TTF_SetFontStyle(font, TTF_STYLE_ITALIC);
-        //SDL_Color color = { 0, 255, 235 };
         SDL_Color color = { 255, 223,   0 };
         stringstream LinkStartText;
         LinkStartText.str( "" );
@@ -522,9 +383,7 @@ void Game::showmenu() {
             MenuCharacterTex[i] = SDL_CreateTextureFromSurface(renderer, MenuCharacterSurface[i]);
             CharacterTextTexture[i] = SDL_CreateTextureFromSurface(renderer, CharacterTextSurface[i]);
             MenuTex[i] = SDL_CreateTextureFromSurface(renderer, MenuChoice[i]);
-            // SDL_FreeSurface(MenuCharacterSurface[i]);
             SDL_FreeSurface(MenuChoice[i]);
-            // SDL_FreeSurface(CharacterTextSurface[i]);
             SDL_RenderCopy(renderer, MenuTex[i], NULL, &MenuPos[i]);
             SDL_RenderCopy(renderer, CharacterTextTexture[i], NULL, &CharacterTextRect[i]);
             SDL_RenderCopy(renderer, MenuCharacterTex[i], NULL, &MenuCharacterPos[i]);
@@ -562,8 +421,7 @@ void Game::LinkStart(string text, int second, int h, int w) {
     if(!font) {
         cout << "TTF_OpenFont: " << TTF_GetError() << endl;
     }
-    TTF_SetFontStyle(font, 0/*TTF_STYLE_BOLD|TTF_STYLE_ITALIC*/);
-    //SDL_Color color = { 0, 255, 235 };
+    TTF_SetFontStyle(font, 0);
     SDL_Color color = { 255, 223,   0 };
     stringstream LinkStartText;
     LinkStartText.str( "" );
@@ -589,12 +447,11 @@ void Game::MusicPlay(const char* Music, int volume) {
     // load support for the MP3 sample/music formats
     int mflags = MIX_INIT_MP3;
     if( (Mix_Init(mflags) & mflags) != mflags ) {
-        // cout << "Mix_Init: Failed to init required ogg and mod support!\n";
-        // cout << "Mix_Init: %s\n" << Mix_GetError() << endl;
+
     }
 
     if(Mix_OpenAudio(128000, MIX_DEFAULT_FORMAT, 2, 2048) == -1) {
-        // cout << "Mix_OpenAudio: %s\n" << Mix_GetError() << endl;
+
     }
 
 

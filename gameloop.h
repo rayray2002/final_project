@@ -1,31 +1,26 @@
 #ifndef Game_hpp
 #define Game_hpp
 
-//#include <SDL2/SDL.h>
-//#include <SDL2/SDL_image.h>
-//#include <SDL2/SDL_ttf.h>
-//#include <SDL2/SDL_mixer.h>
-
-//
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
-//
-
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <map>
-//#include "texturemanager.hpp"
+#include <vector>
+#include "AssetManager.h"
 #define NUMMENU 5
-#define WIDTH 1600
-#define HEIGHT 1000
+#define WIDTH 1280
+#define HEIGHT 720
 using namespace std;
 
-class Game {
+class ColliderComponent;
 
+class Game
+{
 public:
     Game();
     ~Game();
@@ -39,15 +34,31 @@ public:
     void LinkStart(string text, int second, int h, int w);
     void MusicPlay(const char* Music, int volume);
     int FirstMenu();
-    //void SetCharacter(string s1, string s2);
-    //int showmenu();
 
     bool running() { return isRunning; };
+
+    // static void AddTile(int id, int x, int y);
+    // static void AddTile(int srcX, int srcY, int xpos, int ypos);
+
     static SDL_Renderer* renderer;
+    static SDL_Event event;
+    // static vector<ColliderComponent*> colliders;
+    static bool isRunning;
+    static SDL_Rect camera;
+    static AssetManager* assets;
+
+    enum groupLabels : std::size_t
+    {
+        groupMap,
+        groupPlayers,
+        // groupEnemies,
+        groupColliders
+    };
+
 
 private:
     int cnt = 64; //count
-    bool isRunning;
+    // bool isRunning;
     SDL_Window* window;
     
     
