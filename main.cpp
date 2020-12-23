@@ -21,7 +21,7 @@ int main(int argc, const char* argv[]) {
     
     while (game->running()) {
         cout << "OK" << endl;
-        SDL_Delay(1000);
+        // SDL_Delay(1000);
         frameStart = SDL_GetTicks();
 
 

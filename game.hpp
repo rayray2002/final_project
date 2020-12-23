@@ -6,7 +6,7 @@
 // #include "ECS/ECS.hpp"
 // #include "ECS/Components.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.h"
+#include "texturemanager.hpp"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"
@@ -17,11 +17,12 @@ SDL_Renderer* Game::renderer = nullptr;
 Manager manager;
 SDL_Event Game::event;
 
-// SDL_Rect Game::camera = { 10, 10, 1800, 1600 };
+SDL_Rect Game::camera = { 10, 10, 1800, 1600 };
 
 bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
+// auto& colliders(manager.addEntity());//
 
 Game::Game() 
 {
@@ -73,34 +74,43 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     // mmap->LoadMap("./img/1.bmp", 16, 16);
 
     player.addComponent<TransformComponent>(100);
-    player.addComponent<SpriteComponent>("./img/1.bmp", true);
+    player.addComponent<SpriteComponent>("./img/miku.bmp", true);
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
+
+    // colliders.addComponent<SpriteComponent>()
 
 
     //Music
     MusicPlay("./mp3/miku.wav", 32);
 
+    cout << "good1111111111111" << endl;
     SDL_Texture* ttexture = NULL;
 
     SDL_Surface* ssurface = NULL;
-    ssurface = SDL_LoadBMP("./img/banana.bmp");
+    ssurface = SDL_LoadBMP("./img/miku.bmp");
+    // SDL_UpdateWindowSurface(window);
+    // cout << "good1111111111111" << endl;
+
     int size = 80;
     SDL_Rect a;
-            a.x = 50;
-            a.y = size;
-            a.w = size;
-            a.h = size;
+    a.x = 50;
+    a.y = size;
+    a.w = size;
+    a.h = size;
             
-            ttexture = SDL_CreateTextureFromSurface(Game::renderer, ssurface);
-                    if (!ttexture) {
+    ttexture = SDL_CreateTextureFromSurface(Game::renderer, ssurface);
+    if (!ttexture) 
+    {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
     }
-            SDL_FreeSurface(ssurface);
-            ssurface = NULL;
-            SDL_RenderClear(Game::renderer);
-            SDL_RenderCopy(Game::renderer, ttexture, NULL, &a);
+    SDL_FreeSurface(ssurface);
+    ssurface = NULL;
+    SDL_RenderClear(Game::renderer);
+    SDL_RenderCopy(Game::renderer, ttexture, NULL, &a);
+    SDL_RenderPresent(renderer);
+    SDL_Delay(2000);
 
     //LinkStart
     // LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -125,6 +135,8 @@ void Game::handleEveants()
         case SDL_QUIT:
             isRunning = false;
             break;
+        case SDLK_ESCAPE:
+            SDL_Delay(-1);
         default:
             break;
     }
@@ -135,6 +147,8 @@ void Game::update()
     // LinkStart("good",1000,100,600);
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
+    cout << playerCol.w << ' ' << playerCol.h << endl;
+    cout << playerPos.x << ' ' << playerPos.y << endl;
     manager.refresh();
     manager.update();
     // manager.draw();
@@ -147,54 +161,74 @@ void Game::update()
             player.getComponent<TransformComponent>().position = playerPos;
         }
     }
-    // camera.x = player.getComponent<TransformComponent>().position.x - 400;
-    // camera.y = player.getComponent<TransformComponent>().position.y - 320;
+    camera.x = player.getComponent<TransformComponent>().position.x;// - 400;
+    camera.y = player.getComponent<TransformComponent>().position.y;// - 320;
 
-    // if (camera.x < 0) 
-    // {
-    //     camera.x = 0;
-    // }
+    if (camera.x < 0) 
+    {
+        camera.x = 0;
+    }
 
-    // if (camera.y < 0) 
-    // {
-    //     camera.y = 0;
-    // }
+    if (camera.y < 0) 
+    {
+        camera.y = 0;
+    }
 
-    // if (camera.x > camera.w) 
-    // {
-    //     camera.x = camera.w;
-    // }
+    if (camera.x > camera.w) 
+    {
+        camera.x = camera.w;
+    }
 
-    // if (camera.y > camera.h) 
-    // {
-    //     camera.y = camera.h;
-    // }
+    if (camera.y > camera.h) 
+    {
+        camera.y = camera.h;
+    }
 
 }
 
 
 void Game::render() 
 {
-    
-
+    // SDL_DestroyRenderer(renderer);
+    // Game::renderer = SDL_CreateRenderer(window, -1, 0);
+    // SDL_Texture* TT = TextureManager::LoadTexture("./img/miku.bmp");
+    // SDL_Rect a, b;
+    // a.x = 0;
+    // a.y = 0;
+    // a.h = 100;
+    // a.w = 100;
+    // b.x = 0;
+    // b.y = 0;
+    // b.h = 100;
+    // b.w = 100;
+    // TextureManager::Draw(TT, b, a, SDL_FLIP_NONE);
+    // SDL_RenderPresent(renderer);
 
     // cout << "render" << endl;
-    // SDL_RenderClear(renderer);
-    // for (auto& t : tiles) 
-    // {
-    //     t->draw();
-    // }
+    SDL_RenderClear(Game::renderer);
+    for (auto& t : tiles) 
+    {
+        t->draw();
+    }
 
-    // for (auto& c : colliders)
-    // {
-    //     c->draw();
-    // }
+    //for (auto& c : colliders)
+    //{
+    //    c->draw();
+    //}
 
-    // for (auto& p : players) 
-    // {
-    //     p->draw();
-    // }
-    // SDL_RenderPresent(renderer);
+int kkk = 0;
+    for (auto& p : players) 
+    {
+        p->draw();
+        // cout << p->getComponent<Animation
+        ++kkk;
+
+    }
+    cout << "KKK: " << kkk <<endl;
+    
+    SDL_RenderPresent(Game::renderer);
+    cout << "draw - done" << endl;
+    SDL_Delay(3000);
 }
 
 void Game::clean() 

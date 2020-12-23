@@ -14,7 +14,11 @@ public:
 
     TransformComponent()
     {
-        position.Zero();
+        // position.Zero();
+                position.x = 0;
+        position.y = 0;
+        height = 100;
+        width = 100;
     }
 
     TransformComponent(int sc)

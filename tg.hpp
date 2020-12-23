@@ -3,7 +3,7 @@
 #include "firstmenu.hpp"
 #include "Map.hpp"
 #include "ECS/Components.hpp"
-#include "texturemanager.h"
+#include "texturemanager.hpp"
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"

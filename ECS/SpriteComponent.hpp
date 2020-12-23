@@ -33,15 +33,15 @@ public:
 
     SpriteComponent(const char* path, bool isAnimated) 
     {
-        animated = isAnimated;
+        // animated = isAnimated;
 
-        Animation idle = Animation(0, 3, 20); //0 index 3 picture number 100 frame size
-        Animation walk = Animation(1, 8, 20);
+        // Animation idle = Animation(0, 3, 20); //0 index 3 picture number 100 frame size
+        // Animation walk = Animation(1, 8, 20);
 
-        animations.emplace("Idle", idle);
-        animations.emplace("Walk", walk);
+        // animations.emplace("Idle", idle);
+        // animations.emplace("Walk", walk);
 
-        Play("Idle");
+        // Play("Idle");
 
         // speed = mSpeed;
         // frames = nFrames;
@@ -91,6 +91,9 @@ public:
     {
         cout << "draw" << endl;
         TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
+        //SDL_RenderPresent(Game::renderer);
+        
+
     }
 
     void Play(const char* animName)

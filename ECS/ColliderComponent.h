@@ -37,7 +37,7 @@ public:
         }
         transform = &entity->getComponent<TransformComponent>();
 
-        tex = TextureManager::LoadTexture("./img/1.bmp");
+        tex = TextureManager::LoadTexture("./img/miku.bmp");
         srcR.x = 0;
         srcR.y = 0;
         srcR.h = 32;
@@ -76,7 +76,7 @@ public:
 
     void draw() override 
     {
-        cout << "draw" << endl;
+        cout << "draw - collider" << endl;
         TextureManager::Draw(tex, srcR, destR, SDL_FLIP_NONE);
     }
 };
