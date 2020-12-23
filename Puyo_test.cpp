@@ -1,4 +1,4 @@
-#include "Puyo.h"
+#include "GameBoard.h"
 
 int main() {
 	char test_board[13][6] = {{'T', ' ', 'G', 'Y', 'R', 'R'},
@@ -14,7 +14,7 @@ int main() {
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'}};
-	Puyo puyo(test_board);
+	GameBoard puyo(test_board);
 
 	int x;
 	char c;
