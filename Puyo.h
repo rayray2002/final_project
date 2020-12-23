@@ -1,20 +1,26 @@
 //
 // Created by Ray on 2020/12/23.
 //
+#ifndef DEBUG
+#define DEBUG 1
+#endif
 
-#ifndef FINAL_PROJECT_PUYO_H
-#define FINAL_PROJECT_PUYO_H
+#ifndef HEIGHT
+#define HEIGHT 13
+#endif
+
+#ifndef WIDTH
+#define WIDTH 6
+#endif
+
+#ifndef PUYO_H
+#define PUYO_H
 
 #include <iostream>
 #include <vector>
 #include <queue>
 
 using namespace std;
-
-const bool DEBUG = true;
-
-const int HEIGHT = 13;
-const int WIDTH = 6;
 
 enum Color {
 	Empty, Trash, Rainbow, Red, Green, Blue, Yellow, Purple
@@ -68,4 +74,4 @@ private:
 	vector<Color> color_bonus;
 };
 
-#endif //FINAL_PROJECT_PUYO_H
+#endif //PUYO_H
