@@ -73,7 +73,6 @@ public:
         {
             c->update();
         }
-        
         for (auto &c : components) 
         {
             c->draw();
@@ -142,7 +141,7 @@ private:
 
 public:
     void update() 
-    {
+    {   
         for (auto &e : entities) 
         {
             e->update();
@@ -158,8 +157,8 @@ public:
     }
 
     void refresh() 
-    {
-        for (auto i(0u); i < maxGroups; i++) 
+    {   
+        for (auto i(0U); i < maxGroups; i++) 
         {
             auto& v(groupedEntities[i]);
             v.erase(remove_if(begin(v), end(v), [i](Entity* mEntity) 
@@ -167,7 +166,6 @@ public:
                 return !mEntity->isActive() || !mEntity->hasGroup(i);
             }), end(v));
         }
-
         entities.erase( remove_if( begin(entities), end(entities), 
             [](const unique_ptr<Entity> &mEntity) 
             {

@@ -22,9 +22,9 @@ extern Manager manager;
 //     {0, 0, 0, 0, 0, 0},
 // };
 
-Map::Map(const char* mfp, int ms, int ts) : mapFilePath(mfp), mapScale(ms), tileSize(ts) 
+Map::Map(const char* mfp, int ms, int ts) : mapFilePath(mfp)//, mapScale(ms), tileSize(ts) 
 {
-    scaledSize = ms * ts;
+    // scaledSize = ms * ts;
     // dirt = TextureManager::LoadTexture("./img/miku.bmp");
     // grass = TextureManager::LoadTexture("./img/miku.bmp");
     // water = TextureManager::LoadTexture("./img/miku.bmp");
@@ -45,50 +45,55 @@ Map::~Map() {
 }
 
 void Map::LoadMap(std::string path, int sizeX, int sizeY) {
-    char c;
-    fstream mapFile;
-    mapFile.open(path);
+    texture = TextureManager::LoadTexture("./img/sample_green.bmp");
+    srcRect.x = 0;
+    srcRect.y = 0;
+    srcRect.h = 100;
+    srcRect.w = 100;
+    destRect.w = 100;
+    destRect.h = 100;
+    destRect.x = 0;
+    destRect.y = 0;
+    // char c;
+    // fstream mapFile;
+    // mapFile.open(path);
 
-    int srcX, srcY;
+    // int srcX, srcY;
 
-    for (int y = 0; y < sizeY; y++) {
-        for (int x = 0; x < sizeX; x++) {
-            mapFile.get(c);
-            srcY = atoi(&c) * tileSize;
-            mapFile.get(c);
-            srcX = atoi(&c) * tileSize;
-            AddTile(srcX, srcY, x * scaledSize, y * scaledSize);
-            mapFile.ignore();
-        }
-    }
-
-    for (int y = 0; y < sizeY; y++)
-    {
-        for (int x = 0; x < sizeX; x++)
-        {
-            mapFile.get(c);
-            if (c == '1')
-            {
-                auto& tcol(manager.addEntity());
-                tcol.addComponent<ColliderComponent>("miku", x * scaledSize, y * scaledSize, scaledSize);
-                mapFile.ignore();
-            }
-            mapFile.ignore();
-        }
-    }
-
-    mapFile.close();
-    // for (int row = 0; row < 6; row++) {
-    //     for (int colume = 0; colume < 13; colume++) {
-    //         map[row][colume] = arr[row][colume];
+    // for (int y = 0; y < sizeY; y++) {
+    //     for (int x = 0; x < sizeX; x++) {
+    //         mapFile.get(c);
+    //         srcY = atoi(&c) * tileSize;
+    //         mapFile.get(c);
+    //         srcX = atoi(&c) * tileSize;
+    //         AddTile(srcX, srcY, x * scaledSize, y * scaledSize);
+    //         mapFile.ignore();
     //     }
     // }
+
+    // for (int y = 0; y < sizeY; y++)
+    // {
+    //     for (int x = 0; x < sizeX; x++)
+    //     {
+    //         mapFile.get(c);
+    //         if (c == '1')
+    //         {
+    //             auto& tcol(manager.addEntity());
+    //             tcol.addComponent<ColliderComponent>("miku", x * scaledSize, y * scaledSize, scaledSize);
+    //             mapFile.ignore();
+    //         }
+    //         mapFile.ignore();
+    //     }
+    // }
+
+    // mapFile.close();
+
 }
 
 void Map::AddTile(int srcX, int srcY, int xpos, int ypos) {
 
     auto& tile(manager.addEntity());
-    tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos, tileSize, mapScale, mapFilePath);
+    tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos/*, tileSize, mapScale*/, mapFilePath);
     tile.addGroup(Game::groupMap);
 
 }

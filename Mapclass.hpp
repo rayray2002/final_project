@@ -16,15 +16,19 @@ public:
     // void DrawMap();
 
 private:
+    SDL_Texture* texture;
+    SDL_Rect srcRect, destRect;
+
     const char* mapFilePath;
-    int mapScale;
-    int tileSize;
-    int scaledSize;
-    // SDL_Rect src, dest;
-    // SDL_Texture* dirt;
-    // SDL_Texture* grass;
-    // SDL_Texture* water;
+    // int mapScale;
+    // int tileSize;
+    // int scaledSize;
+
+    // // SDL_Rect src, dest;
+    // // SDL_Texture* dirt;
+    // // SDL_Texture* grass;
+    // // SDL_Texture* water;
 
 
-    // int map[6][13];
+    // // int map[6][13];
 };

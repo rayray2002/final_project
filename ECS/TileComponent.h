@@ -23,7 +23,7 @@ public:
         SDL_DestroyTexture(texture);
     }
 
-    TileComponent(int srcX, int srcY, int xpos, int ypos, int tsize, int tscale, const char* path) {
+    TileComponent(int srcX, int srcY, int xpos, int ypos, /*int tsize, int tscale, */const char* path) {
 
         texture = TextureManager::LoadTexture(path);
 
@@ -32,11 +32,13 @@ public:
 
         srcRect.x = srcX;
         srcRect.y = srcY;
-        srcRect.h = srcRect.w = tsize;
+        // srcRect.h = srcRect.w = tsize;
+        srcRect.h = srcRect.w = 100;
 
         destRect.x = xpos;
         destRect.y = ypos;
-        destRect.w = destRect.h = tsize * tscale;
+        // destRect.w = destRect.h = tsize * tscale;
+        destRect.w = destRect.h = 100;
         // tileRect.x = x;
         // tileRect.y = y;
         // tileRect.h = h;
@@ -59,22 +61,15 @@ public:
 
     void update() override
     {
-        destRect.x = position.x - Game::camera.x;
-        destRect.y = position.y - Game::camera.y;
+        destRect.x = position.x;// - Game::camera.x;
+        destRect.y = position.y;// - Game::camera.y;
     }
 
     void draw() override
     {
+        cout << "draw" << endl;
         TextureManager::Draw(texture, srcRect, destRect, SDL_FLIP_NONE);
     }
-
-    // void init() override {
-    //     entity->addComponent<TransformComponent>(tileRect.x, tileRect.y, tileRect.w, tileRect.h, 1);
-    //     transform = &entity->getComponent<TransformComponent>();
-
-    //     entity->addComponent<SpriteComponent>(path);
-    //     sprite = &entity->getComponent<SpriteComponent>();
-    // }
 };
 
     
