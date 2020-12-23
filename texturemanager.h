@@ -4,7 +4,7 @@
 
 SDL_Texture* TextureManager::LoadTexture(const char* texture)
 {
-    SDL_Surface* tmpSurface = SDL_LoadBMP(texture);
+    SDL_Surface* tmpSurface = IMG_Load("./img/banana.jpg");
     SDL_Texture* tex = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
     SDL_FreeSurface(tmpSurface);
     return tex;
@@ -15,6 +15,9 @@ void TextureManager::Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest, SDL_Ren
 {
     // SDL_RenderCopyEx(Game::renderer, tex, /*&src,*/NULL, &dest, NULL, NULL, flip);
     cout << "copy" << endl;
-    SDL_RenderCopy(Game::renderer, tex, /*&src,*/NULL, /*&dest*/NULL);
+    SDL_Surface* tmpSurface = IMG_Load("./img/banana.jpg");
+    SDL_Texture* texx = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+    SDL_FreeSurface(tmpSurface);
+    SDL_RenderCopy(Game::renderer, texx, /*&src,*/NULL, /*&dest*/NULL);
     // cout << "(" << dest.w << "," << dest.h << ")" << endl;
 }

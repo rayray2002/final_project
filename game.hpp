@@ -82,10 +82,30 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     //Music
     MusicPlay("./mp3/miku.wav", 32);
 
+    SDL_Texture* ttexture = NULL;
+
+    SDL_Surface* ssurface = NULL;
+    ssurface = SDL_LoadBMP("./img/banana.bmp");
+    int size = 80;
+    SDL_Rect a;
+            a.x = 50;
+            a.y = size;
+            a.w = size;
+            a.h = size;
+            
+            ttexture = SDL_CreateTextureFromSurface(Game::renderer, ssurface);
+                    if (!ttexture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
+    }
+            SDL_FreeSurface(ssurface);
+            ssurface = NULL;
+            SDL_RenderClear(Game::renderer);
+            SDL_RenderCopy(Game::renderer, ttexture, NULL, &a);
+
     //LinkStart
-    LinkStart("Game Initailizing...", 1000, 100, 600);
-    LinkStart("Game Initailized!", 1000, 100, 600);
-    LinkStart("Link Start!", 2000, 200, 600);
+    // LinkStart("Game Initailizing...", 1000, 100, 600);
+    // LinkStart("Game Initailized!", 1000, 100, 600);
+    // LinkStart("Link Start!", 2000, 200, 600);
     //LinkStart
 
 }
@@ -155,23 +175,26 @@ void Game::update()
 
 void Game::render() 
 {
-    cout << "render" << endl;
-    SDL_RenderClear(renderer);
-    for (auto& t : tiles) 
-    {
-        t->draw();
-    }
+    
 
-    for (auto& c : colliders)
-    {
-        c->draw();
-    }
 
-    for (auto& p : players) 
-    {
-        p->draw();
-    }
-    SDL_RenderPresent(renderer);
+    // cout << "render" << endl;
+    // SDL_RenderClear(renderer);
+    // for (auto& t : tiles) 
+    // {
+    //     t->draw();
+    // }
+
+    // for (auto& c : colliders)
+    // {
+    //     c->draw();
+    // }
+
+    // for (auto& p : players) 
+    // {
+    //     p->draw();
+    // }
+    // SDL_RenderPresent(renderer);
 }
 
 void Game::clean() 
