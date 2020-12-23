@@ -37,34 +37,46 @@ public:
         }
         transform = &entity->getComponent<TransformComponent>();
 
-        tex = TextureManager::LoadTexture("./img/miku.bmp");
-        srcR = { 0, 0, 32, 32 };
-        destR = { collider.x , collider.y, collider.w, collider.h };
-
+        tex = TextureManager::LoadTexture("./img/1.bmp");
+        srcR.x = 0;
+        srcR.y = 0;
+        srcR.h = 32;
+        srcR.w = 32;
+        // destR = { collider.x , collider.y, collider.w, collider.h };
+        destR.x = 0;
+        destR.y = 0;
+        destR.w = 100;
+        destR.h = 100;
         // Game::colliders.push_back(this);
     }
 
     void update() override 
     {
 
-        if (tag != "miku") 
-        {
-            collider.x = static_cast<int>(transform->position.x);
-            collider.y = static_cast<int>(transform->position.y);
-            collider.w = transform->width * transform->scale;
-            collider.h = transform->height * transform->scale;
-        }
-        collider.x = static_cast<int>(transform->position.x);
-        collider.y = static_cast<int>(transform->position.y);
-        collider.w = transform->width * transform->scale;
-        collider.h = transform->height * transform->scale;
+        // if (tag != "miku") 
+        // {
+        //     collider.x = static_cast<int>(transform->position.x);
+        //     collider.y = static_cast<int>(transform->position.y);
+        //     collider.w = transform->width * transform->scale;
+        //     collider.h = transform->height * transform->scale;
+        // }
+        // collider.x = static_cast<int>(transform->position.x);
+        // collider.y = static_cast<int>(transform->position.y);
+        // collider.w = transform->width * transform->scale;
+        // collider.h = transform->height * transform->scale;
+        collider.x = 0;
+        collider.y = 0;
+        collider.w = 100;
+        collider.h = 100;
 
-        destR.x = collider.x - Game::camera.x;
-        destR.y = collider.y - Game::camera.y;
+
+        destR.x = collider.x;// - Game::camera.x;
+        destR.y = collider.y;// - Game::camera.y;
     }
 
     void draw() override 
     {
+        cout << "draw" << endl;
         TextureManager::Draw(tex, srcR, destR, SDL_FLIP_NONE);
     }
 };

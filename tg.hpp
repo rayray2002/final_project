@@ -151,6 +151,7 @@ void Game::render() {
         e->draw();
     }
     SDL_RenderPresent(renderer);
+
 }
 
 void Game::clean() {

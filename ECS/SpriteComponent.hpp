@@ -35,8 +35,8 @@ public:
     {
         animated = isAnimated;
 
-        Animation idle = Animation(0, 3, 100); //0 index 3 picture number 100 frame size
-        Animation walk = Animation(1, 8, 100);
+        Animation idle = Animation(0, 3, 20); //0 index 3 picture number 100 frame size
+        Animation walk = Animation(1, 8, 20);
 
         animations.emplace("Idle", idle);
         animations.emplace("Walk", walk);
@@ -77,14 +77,19 @@ public:
 
         srcRect.y = animIndex * transform->height;
 
-        destRect.x = static_cast<int>(transform->position.x) - Game::camera.x;
-        destRect.y = static_cast<int>(transform->position.y) - Game::camera.y;
-        destRect.h = transform->width * transform->scale;
-        destRect.w = transform->height * transform->scale;
+        // destRect.x = static_cast<int>(transform->position.x) - Game::camera.x;
+        // destRect.y = static_cast<int>(transform->position.y) - Game::camera.y;
+        // destRect.h = transform->width * transform->scale;
+        // destRect.w = transform->height * transform->scale;
+        destRect.x = 0;
+        destRect.y = 0;
+        destRect.h = 100;
+        destRect.w = 100;
     }
 
     void draw() override
     {
+        cout << "draw" << endl;
         TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
     }
 

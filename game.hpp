@@ -13,11 +13,11 @@
 using namespace std;
 
 SDL_Renderer* Game::renderer = nullptr;
-Map* mmap;
+// Map* mmap;
 Manager manager;
 SDL_Event Game::event;
 
-SDL_Rect Game::camera = { 0, 0, 800, 600 };
+// SDL_Rect Game::camera = { 10, 10, 1800, 1600 };
 
 bool Game::isRunning = false;
 
@@ -56,10 +56,10 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
             cout << "Window Created!" << endl;
         }
 
-        renderer = SDL_CreateRenderer(window, -1, 0);
-        if (renderer)
+        Game::renderer = SDL_CreateRenderer(window, -1, 0);
+        if (Game::renderer)
         {
-            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 255);
             cout << "Renderer Created!" << endl;
         }
 
@@ -69,11 +69,11 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     {
         isRunning = false;
     }
-    mmap = new Map("./img/sample_green.bmp", 3, 32);
-    mmap->LoadMap("img/sample_green.bmp", 16, 16);
+    // mmap = new Map("./img/1.bmp", 3, 32);
+    // mmap->LoadMap("./img/1.bmp", 16, 16);
 
-    player.addComponent<TransformComponent>(2);
-    player.addComponent<SpriteComponent>("./img/sample_green.bmp", true);
+    player.addComponent<TransformComponent>(100);
+    player.addComponent<SpriteComponent>("./img/1.bmp", true);
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
@@ -112,10 +112,12 @@ void Game::handleEveants()
 
 void Game::update() 
 {
+    // LinkStart("good",1000,100,600);
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
     manager.refresh();
     manager.update();
+    // manager.draw();
     for (auto& c : colliders)
     {
         SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
@@ -125,34 +127,35 @@ void Game::update()
             player.getComponent<TransformComponent>().position = playerPos;
         }
     }
-    camera.x = player.getComponent<TransformComponent>().position.x - 400;
-    camera.y = player.getComponent<TransformComponent>().position.y - 320;
+    // camera.x = player.getComponent<TransformComponent>().position.x - 400;
+    // camera.y = player.getComponent<TransformComponent>().position.y - 320;
 
-    if (camera.x < 0) 
-    {
-        camera.x = 0;
-    }
+    // if (camera.x < 0) 
+    // {
+    //     camera.x = 0;
+    // }
 
-    if (camera.y < 0) 
-    {
-        camera.y = 0;
-    }
+    // if (camera.y < 0) 
+    // {
+    //     camera.y = 0;
+    // }
 
-    if (camera.x > camera.w) 
-    {
-        camera.x = camera.w;
-    }
+    // if (camera.x > camera.w) 
+    // {
+    //     camera.x = camera.w;
+    // }
 
-    if (camera.y > camera.h) 
-    {
-        camera.y = camera.h;
-    }
+    // if (camera.y > camera.h) 
+    // {
+    //     camera.y = camera.h;
+    // }
 
 }
 
 
 void Game::render() 
 {
+    cout << "render" << endl;
     SDL_RenderClear(renderer);
     for (auto& t : tiles) 
     {
