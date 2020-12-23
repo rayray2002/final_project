@@ -1,3 +1,10 @@
+//
+// Created by Ray on 2020/12/23.
+//
+
+#ifndef FINAL_PROJECT_PUYO_H
+#define FINAL_PROJECT_PUYO_H
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -60,3 +67,5 @@ private:
 	int group_bonus = 0;
 	vector<Color> color_bonus;
 };
+
+#endif //FINAL_PROJECT_PUYO_H
