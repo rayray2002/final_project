@@ -1,7 +1,9 @@
 #include "Mapclass.hpp"
 #include "gameloop.h"
 #include <fstream>
+#include "ECS/Components.hpp"
 using namespace std;
+#include "ECS/ECS.hpp"
 
 extern Manager manager;
 //#include "texturemanager.hpp"

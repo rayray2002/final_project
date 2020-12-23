@@ -3,18 +3,28 @@
 
 class Map {
 public:
-    Map();
+    Map(const char* mfp, int ms, int ts);
     ~Map();
 
-    void LoadMap();
-    void DrawMap();
+    void LoadMap(std::string path, int sizeX, int sizeY);
+    void AddTile(int srcX, int srcY, int xpos, int ypos);
+
+    // void DrawMap();
 
 private:
-    SDL_Rect src, dest;
-    SDL_Texture* dirt;
-    SDL_Texture* grass;
-    SDL_Texture* water;
+    SDL_Texture* texture;
+    SDL_Rect srcRect, destRect;
+
+    const char* mapFilePath;
+    // int mapScale;
+    // int tileSize;
+    // int scaledSize;
+
+    // // SDL_Rect src, dest;
+    // // SDL_Texture* dirt;
+    // // SDL_Texture* grass;
+    // // SDL_Texture* water;
 
 
-    int map[6][13];
+    // // int map[6][13];
 };
