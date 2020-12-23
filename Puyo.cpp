@@ -12,6 +12,7 @@ const int WIDTH = 6;
 enum Color {
 	Empty, Trash, Rainbow, Red, Green, Blue, Yellow, Purple
 };
+
 struct Block {
 	int x, y;
 };
@@ -96,6 +97,8 @@ public:
 
 	int get_count() const;
 
+	int get_score() const;
+
 	void reset();
 
 private:
@@ -107,7 +110,10 @@ private:
 
 	int combo = 0;
 	int count = 0;
+	int score = 0;
 
+	int group_bonus = 0;
+	vector<Color> color_bonus;
 };
 
 Puyo::Puyo() {
@@ -221,6 +227,33 @@ bool Puyo::update() {
 			if (board[i][j] != Empty) {
 				chain = check_chained(j, i);
 				if (chain.size() >= 4) {
+					if (find(color_bonus.begin(), color_bonus.end(), board[i][j]) == color_bonus.end())
+						color_bonus.push_back(board[i][j]);
+					switch (chain.size()) {
+						case 4:
+							break;
+						case 5:
+							group_bonus += 2;
+							break;
+						case 6:
+							group_bonus += 3;
+							break;
+						case 7:
+							group_bonus += 4;
+							break;
+						case 8:
+							group_bonus += 5;
+							break;
+						case 9:
+							group_bonus += 6;
+							break;
+						case 10:
+							group_bonus += 7;
+							break;
+						default:
+							group_bonus += 10;
+							break;
+					}
 					to_remove.push_back(chain);
 				}
 			}
@@ -240,11 +273,23 @@ bool Puyo::update() {
 
 	if (DEBUG) printer();
 
+	if (!is_updated) {
+		if (color_bonus.size() != 1) {
+			score += 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
+		} else {
+			score += 10 * count * (group_bonus + combo);
+		}
+	}
+
 	return is_updated;
 }
 
 int Puyo::get_combo() const {
 	return combo;
+}
+
+int Puyo::get_score() const {
+	return score;
 }
 
 int Puyo::get_count() const {
@@ -254,6 +299,8 @@ int Puyo::get_count() const {
 void Puyo::reset() {
 	combo = 0;
 	count = 0;
+	group_bonus = 0;
+	color_bonus.clear();
 }
 
 int main() {
@@ -271,12 +318,19 @@ int main() {
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'}};
 	Puyo puyo(test_board);
-	puyo.reset();
 
-	while (puyo.update()) {
+	int x;
+	char c;
+	while (true) {
+		puyo.reset();
+		while (puyo.update()) {
+			puyo.printer();
+		}
 		puyo.printer();
-	}
+		cout << "combo:" << puyo.get_combo() << ", count:" << puyo.get_count() << ", score:" << puyo.get_score()
+		     << endl;
 
-	puyo.printer();
-	cout << "combo:" << puyo.get_combo() << ", count:" << puyo.get_count();
+		cin >> c >> x;
+		puyo.board[0][x] = char_to_color(c);
+	}
 }
