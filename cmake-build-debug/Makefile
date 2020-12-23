@@ -196,6 +196,33 @@ Puyo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.s
 .PHONY : Puyo.cpp.s
 
+Puyo_test.o: Puyo_test.cpp.o
+
+.PHONY : Puyo_test.o
+
+# target to build an object file
+Puyo_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.o
+.PHONY : Puyo_test.cpp.o
+
+Puyo_test.i: Puyo_test.cpp.i
+
+.PHONY : Puyo_test.i
+
+# target to preprocess a source file
+Puyo_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.i
+.PHONY : Puyo_test.cpp.i
+
+Puyo_test.s: Puyo_test.cpp.s
+
+.PHONY : Puyo_test.s
+
+# target to generate assembly for a file
+Puyo_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.s
+.PHONY : Puyo_test.cpp.s
+
 SDL_bgi.o: SDL_bgi.cpp.o
 
 .PHONY : SDL_bgi.o
@@ -291,6 +318,9 @@ help:
 	@echo "... Puyo.o"
 	@echo "... Puyo.i"
 	@echo "... Puyo.s"
+	@echo "... Puyo_test.o"
+	@echo "... Puyo_test.i"
+	@echo "... Puyo_test.s"
 	@echo "... SDL_bgi.o"
 	@echo "... SDL_bgi.i"
 	@echo "... SDL_bgi.s"

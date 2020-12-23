@@ -1,21 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
-
-const bool DEBUG = true;
-
-const int HEIGHT = 13;
-const int WIDTH = 6;
-
-enum Color {
-	Empty, Trash, Rainbow, Red, Green, Blue, Yellow, Purple
-};
-
-struct Block {
-	int x, y;
-};
+#include "Puyo.h"
 
 Color char_to_color(char in) {
 	Color c;
@@ -48,7 +31,7 @@ Color char_to_color(char in) {
 	return c;
 }
 
-char color_to_char(char in) {
+char color_to_char(Color in) {
 	char c;
 	switch (in) {
 		case Red:
@@ -78,43 +61,6 @@ char color_to_char(char in) {
 	}
 	return c;
 }
-
-class Puyo {
-public:
-	Color board[HEIGHT][WIDTH] = {};
-
-	Puyo();
-
-	Puyo(char [][WIDTH]);
-
-	Puyo(Color [][WIDTH]);
-
-	void printer();
-
-	bool update();
-
-	int get_combo() const;
-
-	int get_count() const;
-
-	int get_score() const;
-
-	void reset();
-
-private:
-	vector<Block> check_chained(int, int);
-
-	bool remove(Block);
-
-	void fill();
-
-	int combo = 0;
-	int count = 0;
-	int score = 0;
-
-	int group_bonus = 0;
-	vector<Color> color_bonus;
-};
 
 Puyo::Puyo() {
 	for (int i = 0; i < HEIGHT; i++) {
@@ -274,11 +220,14 @@ bool Puyo::update() {
 	if (DEBUG) printer();
 
 	if (!is_updated) {
+		int score_add;
 		if (color_bonus.size() != 1) {
-			score += 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
+			score_add = 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
 		} else {
-			score += 10 * count * (group_bonus + combo);
+			score_add = 10 * count * (group_bonus + combo);
 		}
+		trash_num = score_add / 70;
+		score += score_add;
 	}
 
 	return is_updated;
@@ -296,41 +245,14 @@ int Puyo::get_count() const {
 	return count;
 }
 
+int Puyo::get_trash_num() const {
+	return trash_num;
+}
+
+
 void Puyo::reset() {
 	combo = 0;
 	count = 0;
 	group_bonus = 0;
 	color_bonus.clear();
-}
-
-int main() {
-	char test_board[13][6] = {{'T', ' ', 'G', 'Y', 'R', 'R'},
-	                          {'R', 'Y', 'Y', 'G', 'Y', 'G'},
-	                          {'G', 'Y', 'G', 'Y', 'R', 'R'},
-	                          {'R', 'Y', 'G', 'Y', 'R', 'G'},
-	                          {'Y', 'G', 'Y', 'R', 'Y', 'G'},
-	                          {'G', 'Y', 'R', 'Y', 'R', 'G'},
-	                          {'Y', 'G', 'Y', 'R', 'Y', 'R'},
-	                          {'Y', 'G', 'Y', 'R', 'Y', 'R'},
-	                          {'Y', 'R', 'R', 'G', 'R', 'G'},
-	                          {'R', 'Y', 'G', 'Y', 'G', 'G'},
-	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
-	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
-	                          {'G', 'R', 'Y', 'G', 'Y', 'R'}};
-	Puyo puyo(test_board);
-
-	int x;
-	char c;
-	while (true) {
-		puyo.reset();
-		while (puyo.update()) {
-			puyo.printer();
-		}
-		puyo.printer();
-		cout << "combo:" << puyo.get_combo() << ", count:" << puyo.get_count() << ", score:" << puyo.get_score()
-		     << endl;
-
-		cin >> c >> x;
-		puyo.board[0][x] = char_to_color(c);
-	}
 }
