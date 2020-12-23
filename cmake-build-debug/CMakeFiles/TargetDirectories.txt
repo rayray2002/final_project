@@ -1,3 +1,5 @@
 /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles/show_board.dir
+/Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles/Puyo_test.dir
 /Users/ray/Desktop/NTU/計算機程式/final_project/cmake-build-debug/CMakeFiles/final_project.dir

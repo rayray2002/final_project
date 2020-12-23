@@ -131,6 +131,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named show_board
+
+# Build rule for target.
+show_board: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 show_board
+.PHONY : show_board
+
+# fast build rule for target.
+show_board/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/build
+.PHONY : show_board/fast
+
+#=============================================================================
+# Target rules for targets named Puyo_test
+
+# Build rule for target.
+Puyo_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Puyo_test
+.PHONY : Puyo_test
+
+# fast build rule for target.
+Puyo_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/build
+.PHONY : Puyo_test/fast
+
+#=============================================================================
 # Target rules for targets named final_project
 
 # Build rule for target.
@@ -142,6 +168,60 @@ final_project: cmake_check_build_system
 final_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
 .PHONY : final_project/fast
+
+Puyo.o: Puyo.cpp.o
+
+.PHONY : Puyo.o
+
+# target to build an object file
+Puyo.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.o
+.PHONY : Puyo.cpp.o
+
+Puyo.i: Puyo.cpp.i
+
+.PHONY : Puyo.i
+
+# target to preprocess a source file
+Puyo.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.i
+.PHONY : Puyo.cpp.i
+
+Puyo.s: Puyo.cpp.s
+
+.PHONY : Puyo.s
+
+# target to generate assembly for a file
+Puyo.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.s
+.PHONY : Puyo.cpp.s
+
+Puyo_test.o: Puyo_test.cpp.o
+
+.PHONY : Puyo_test.o
+
+# target to build an object file
+Puyo_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.o
+.PHONY : Puyo_test.cpp.o
+
+Puyo_test.i: Puyo_test.cpp.i
+
+.PHONY : Puyo_test.i
+
+# target to preprocess a source file
+Puyo_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.i
+.PHONY : Puyo_test.cpp.i
+
+Puyo_test.s: Puyo_test.cpp.s
+
+.PHONY : Puyo_test.s
+
+# target to generate assembly for a file
+Puyo_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.s
+.PHONY : Puyo_test.cpp.s
 
 SDL_bgi.o: SDL_bgi.cpp.o
 
@@ -197,6 +277,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+show_board.o: show_board.cpp.o
+
+.PHONY : show_board.o
+
+# target to build an object file
+show_board.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.o
+.PHONY : show_board.cpp.o
+
+show_board.i: show_board.cpp.i
+
+.PHONY : show_board.i
+
+# target to preprocess a source file
+show_board.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.i
+.PHONY : show_board.cpp.i
+
+show_board.s: show_board.cpp.s
+
+.PHONY : show_board.s
+
+# target to generate assembly for a file
+show_board.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.s
+.PHONY : show_board.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -205,13 +312,24 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... Puyo_test"
 	@echo "... final_project"
+	@echo "... show_board"
+	@echo "... Puyo.o"
+	@echo "... Puyo.i"
+	@echo "... Puyo.s"
+	@echo "... Puyo_test.o"
+	@echo "... Puyo_test.i"
+	@echo "... Puyo_test.s"
 	@echo "... SDL_bgi.o"
 	@echo "... SDL_bgi.i"
 	@echo "... SDL_bgi.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... show_board.o"
+	@echo "... show_board.i"
+	@echo "... show_board.s"
 .PHONY : help
 
 
