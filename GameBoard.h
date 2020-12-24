@@ -1,6 +1,3 @@
-//
-// Created by Ray on 2020/12/23.
-//
 #ifndef DEBUG
 #define DEBUG 1
 #endif
@@ -34,15 +31,15 @@ Color char_to_color(char);
 
 char color_to_char(char in);
 
-class Puyo {
+class GameBoard {
 public:
 	Color board[HEIGHT][WIDTH] = {};
 
-	Puyo();
+	GameBoard();
 
-	Puyo(char [][WIDTH]);
+	GameBoard(char [][WIDTH]);
 
-	Puyo(Color [][WIDTH]);
+	GameBoard(Color [][WIDTH]);
 
 	void printer();
 

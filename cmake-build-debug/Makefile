@@ -169,32 +169,32 @@ final_project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/final_project.dir/build.make CMakeFiles/final_project.dir/build
 .PHONY : final_project/fast
 
-Puyo.o: Puyo.cpp.o
+GameBoard.o: GameBoard.cpp.o
 
-.PHONY : Puyo.o
+.PHONY : GameBoard.o
 
 # target to build an object file
-Puyo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.o
-.PHONY : Puyo.cpp.o
+GameBoard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/GameBoard.cpp.o
+.PHONY : GameBoard.cpp.o
 
-Puyo.i: Puyo.cpp.i
+GameBoard.i: GameBoard.cpp.i
 
-.PHONY : Puyo.i
+.PHONY : GameBoard.i
 
 # target to preprocess a source file
-Puyo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.i
-.PHONY : Puyo.cpp.i
+GameBoard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/GameBoard.cpp.i
+.PHONY : GameBoard.cpp.i
 
-Puyo.s: Puyo.cpp.s
+GameBoard.s: GameBoard.cpp.s
 
-.PHONY : Puyo.s
+.PHONY : GameBoard.s
 
 # target to generate assembly for a file
-Puyo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo.cpp.s
-.PHONY : Puyo.cpp.s
+GameBoard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/GameBoard.cpp.s
+.PHONY : GameBoard.cpp.s
 
 Puyo_test.o: Puyo_test.cpp.o
 
@@ -315,9 +315,9 @@ help:
 	@echo "... Puyo_test"
 	@echo "... final_project"
 	@echo "... show_board"
-	@echo "... Puyo.o"
-	@echo "... Puyo.i"
-	@echo "... Puyo.s"
+	@echo "... GameBoard.o"
+	@echo "... GameBoard.i"
+	@echo "... GameBoard.s"
 	@echo "... Puyo_test.o"
 	@echo "... Puyo_test.i"
 	@echo "... Puyo_test.s"

@@ -1,4 +1,4 @@
-#include "Puyo.h"
+#include "GameBoard.h"
 
 Color char_to_color(char in) {
 	Color c;
@@ -62,7 +62,7 @@ char color_to_char(Color in) {
 	return c;
 }
 
-Puyo::Puyo() {
+GameBoard::GameBoard() {
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
 			Color c = Empty;
@@ -71,7 +71,7 @@ Puyo::Puyo() {
 	}
 }
 
-Puyo::Puyo(char board_i[][WIDTH]) {
+GameBoard::GameBoard(char board_i[][WIDTH]) {
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
 			board[i][j] = char_to_color(board_i[i][j]);
@@ -79,7 +79,7 @@ Puyo::Puyo(char board_i[][WIDTH]) {
 	}
 }
 
-Puyo::Puyo(Color board_i[][WIDTH]) {
+GameBoard::GameBoard(Color board_i[][WIDTH]) {
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
 			board[i][j] = board_i[i][j];
@@ -87,7 +87,7 @@ Puyo::Puyo(Color board_i[][WIDTH]) {
 	}
 }
 
-void Puyo::printer() {
+void GameBoard::printer() {
 	cout << "######\n";
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
@@ -98,7 +98,7 @@ void Puyo::printer() {
 	cout << "######\n\n";
 }
 
-vector<Block> Puyo::check_chained(int x, int y) {
+vector<Block> GameBoard::check_chained(int x, int y) {
 	queue<Block> q;
 	vector<Block> chain;
 	q.push((Block) {x, y});
@@ -134,7 +134,7 @@ vector<Block> Puyo::check_chained(int x, int y) {
 	return chain;
 }
 
-bool Puyo::remove(Block block) {
+bool GameBoard::remove(Block block) {
 	bool success_removal = false;
 	if (board[block.y][block.x] != Empty) {
 		board[block.y][block.x] = Empty;
@@ -147,7 +147,7 @@ bool Puyo::remove(Block block) {
 	return success_removal;
 }
 
-void Puyo::fill() {
+void GameBoard::fill() {
 	bool quit;
 	do {
 		quit = true;
@@ -163,7 +163,7 @@ void Puyo::fill() {
 	} while (!quit);
 }
 
-bool Puyo::update() {
+bool GameBoard::update() {
 	vector<Block> chain;
 	bool is_updated = false;
 	if (DEBUG) fill();
@@ -233,24 +233,23 @@ bool Puyo::update() {
 	return is_updated;
 }
 
-int Puyo::get_combo() const {
+int GameBoard::get_combo() const {
 	return combo;
 }
 
-int Puyo::get_score() const {
+int GameBoard::get_score() const {
 	return score;
 }
 
-int Puyo::get_count() const {
+int GameBoard::get_count() const {
 	return count;
 }
 
-int Puyo::get_trash_num() const {
+int GameBoard::get_trash_num() const {
 	return trash_num;
 }
 
-
-void Puyo::reset() {
+void GameBoard::reset() {
 	combo = 0;
 	count = 0;
 	group_bonus = 0;

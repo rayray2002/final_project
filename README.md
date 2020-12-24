@@ -2,7 +2,7 @@
 
 ## Ideas
 
-    Puyo Puyo
+    GameBoard GameBoard
 
 ## Library
 
@@ -22,10 +22,10 @@
     * #### Data types
         * enum Color
         * struct Block: x, y
-    * #### Class Puyo
+    * #### Class GameBoard
       ##### Public members:
         * Color board \[13]\[6]
-        * Constructor: Puyo(Color array), Puyo(char array), Puyo()
+        * Constructor: GameBoard(Color array), GameBoard(char array), GameBoard()
         * void printer(): cout current board
         * vector\<int> update(): handle board refresh, return \[combo, remove_count]
 
