@@ -10,8 +10,8 @@
 #define WIDTH 6
 #endif
 
-#ifndef PUYO_H
-#define PUYO_H
+#ifndef GAMEBOARD_H
+#define GAMEBOARD_H
 
 #include <iostream>
 #include <vector>
@@ -71,4 +71,4 @@ private:
 	vector<Color> color_bonus;
 };
 
-#endif //PUYO_H
+#endif //GAMEBOARD_H
