@@ -996,6 +996,9 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
         if (window) 
         {
             cout << "Window Created!" << endl;
+            SDL_Surface* ICON = IMG_Load("./img/kirito1.ico");
+            SDL_SetWindowIcon(window, ICON);
+            SDL_FreeSurface(ICON);
         }
 
         Game::renderer = SDL_CreateRenderer(window, -1, 0);
