@@ -1234,7 +1234,7 @@ public:
          tmpSurface = SDL_LoadBMP("./img/miku/0044.bmp");
     if (i == 45)
          tmpSurface = SDL_LoadBMP("./img/miku/0045.bmp");
-    if (i == 46)
+    if (i == 46)//
          tmpSurface = SDL_LoadBMP("./img/miku/0046.bmp");
     if (i == 47)
          tmpSurface = SDL_LoadBMP("./img/miku/0047.bmp");
