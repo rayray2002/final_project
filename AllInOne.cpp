@@ -936,6 +936,7 @@ public:
                 transform->velocity.y = 0;
                 sprite->Play("Idle");
                 break;
+
             case SDLK_d:
                 transform->velocity.x = 0;
                 sprite->Play("Idle");
@@ -961,6 +962,7 @@ bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
 // auto& colliders(manager.addEntity());//
+//
 
 Game::Game() 
 {
