@@ -963,6 +963,7 @@ bool Game::isRunning = false;
 auto& player(manager.addEntity());
 // auto& colliders(manager.addEntity());//
 //
+//
 
 Game::Game() 
 {
