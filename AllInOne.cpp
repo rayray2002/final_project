@@ -28,16 +28,13 @@ class Component;
 class Entity;
 class Manager;
 class Game;
-class ColliderComponent : public Component;
 class Collision;
 class GameObject;
 class Map;
 class TextureManager;
 class Vector2D;
-class SpriteComponent : public Component;
-class KeyBoardController : public Component;
-class TileComponent : public Component;
-class TransformComponent : public Component;
+
+
 
 class Game
 {
@@ -79,13 +76,8 @@ private:
     int cnt = 64; //count
     // bool isRunning;
     SDL_Window* window;
-    
-    
     //Character
     map<int, const char*> Character;
-    
-    
-
     //Menu
     int X_MENU_MOUSE, Y_MENU_MOUSE;
     bool MenuisRunning;
@@ -101,8 +93,6 @@ private:
     SDL_Rect MenuPos[NUMMENU];
     SDL_Rect MenuCharacterPos[NUMMENU];
     TTF_Font* MenuFont;
-    
-
     SDL_Texture *CharacterTextTexture[NUMMENU];
     SDL_Surface *CharacterTextSurface[NUMMENU];
     SDL_Rect CharacterTextRect[NUMMENU];
@@ -110,38 +100,28 @@ private:
     //SDL_Color CharacterTextColor = {0, 255, 235};
     SDL_Color CharacterTextColor = {255, 223, 0};
     stringstream CharacterTextText[NUMMENU];
-
-
-    //Menu
-
 };
 
 class Vector2D {
 public:
     double x;
     double y;
-
     Vector2D();
     Vector2D(double x, double y);
-
     Vector2D& Substract(const Vector2D& vec);
     Vector2D&  Multiply(const Vector2D& vec);
     Vector2D&    Divide(const Vector2D& vec);
     Vector2D&       Add(const Vector2D& vec);
-
     friend Vector2D& operator+(Vector2D& v1, const Vector2D& v2);
     friend Vector2D& operator-(Vector2D& v1, const Vector2D& v2);
     friend Vector2D& operator*(Vector2D& v1, const Vector2D& v2);
     friend Vector2D& operator/(Vector2D& v1, const Vector2D& v2);
-
     Vector2D& operator+=(const Vector2D& vec);
     Vector2D& operator-=(const Vector2D& vec);
     Vector2D& operator*=(const Vector2D& vec);
     Vector2D& operator/=(const Vector2D& vec);
-
     Vector2D& operator*(const int& i);
     Vector2D& Zero();
-
     friend ostream& operator<<(ostream& stream, const Vector2D& vec);
 };
 
@@ -234,11 +214,6 @@ Vector2D& Vector2D::Zero() {
 
     return *this;
 }
- 
-
-using ComponentID = std::size_t;
-using Group = std::size_t;
-
 
 class TextureManager
 {
@@ -257,17 +232,14 @@ SDL_Texture* TextureManager::LoadTexture(const char* texture)
     return tex;
 }
 
-
 void TextureManager::Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest, SDL_RendererFlip flip)
 {
     SDL_RenderCopyEx(Game::renderer, tex, /*&src,*/NULL, &dest, NULL, NULL, flip);
     cout << "copy" << endl;
-    // SDL_Surface* tmpSurface = SDL_LoadBMP("./img/miku.bmp");
-    // SDL_Texture* texx = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-    // SDL_FreeSurface(tmpSurface);
-    // SDL_RenderCopy(Game::renderer, tex, &src, &dest);
-    // cout << "(" << dest.w << "," << dest.h << ")" << endl;
 }
+
+using ComponentID = std::size_t;
+using Group = std::size_t;
 
 inline ComponentID getNewComponentTypeID() 
 {
@@ -286,26 +258,23 @@ constexpr std::size_t maxGroups = 32;
 
 using ComponentBitSet = std::bitset<maxComponents>;
 using GroupBitSet = std::bitset<maxGroups>;
-
 using ComponentArray = std::array<Component*, maxComponents>;
-
 
 class Component 
 {
 public:
     Entity* entity;
-
     virtual void init() {};
     virtual void update() {};
     virtual void draw() {};
-
     virtual ~Component() {};
-
-private:
-
-
 };
 
+// class SpriteComponent : public Component;
+// class KeyBoardController : public Component;
+// class TileComponent : public Component;
+// class TransformComponent : public Component;
+// class ColliderComponent : public Component;
 
 class Entity 
 {
@@ -313,7 +282,6 @@ private:
     Manager& manager;
     bool active = true;
     vector<unique_ptr<Component>> components;
-
     ComponentArray componentArray;
     ComponentBitSet componentBitSet;
     GroupBitSet groupBitSet;
@@ -381,8 +349,6 @@ public:
         auto ptr(componentArray[getNewComponentTypeID<T>()]);
         return *static_cast<T*>(ptr);
     }
-
-
 };
 
 class Manager 
@@ -390,7 +356,6 @@ class Manager
 private:
     vector<unique_ptr<Entity>> entities;
     array<vector<Entity*>, maxGroups> groupedEntities;
-
 public:
     void update() 
     {   
@@ -450,13 +415,71 @@ struct Animation
     int index;
     int frames;
     int speed;
-
     Animation() {}
     Animation(int i, int f, int s) 
     {
         index = i;
         frames = f;
         speed = s;
+    }
+};
+
+class TransformComponent : public Component
+{
+public:
+    Vector2D position;
+    Vector2D velocity;
+
+    int height = 32;
+    int  width = 32;
+    int  scale =  1;
+    int  speed =  3;
+
+    TransformComponent()
+    {
+        // position.Zero();
+                position.x = 0;
+        position.y = 0;
+        height = 100;
+        width = 100;
+    }
+
+    TransformComponent(int sc)
+    {
+        // position.x = 400;
+        // position.y = 320;
+        position.x = 0;
+        position.y = 0;
+
+        scale = sc;
+    }
+
+    TransformComponent(double x, double y, int h, int w, int sc)
+    {
+        // position.x = x;
+        // position.y = y;
+        // height = h;
+        // width = h;
+        position.x = 0;
+        position.y = 0;
+        height = 100;
+        width = 100;
+
+        scale = sc;
+    }
+
+    int x() { return position.x; }
+    int y() { return position.y; }
+
+    void init() override
+    {
+        velocity.Zero();    
+    }
+
+    void update() override 
+    {
+        // position.x += velocity.x * speed;
+        // position.y += velocity.y * speed;
     }
 };
 
@@ -468,7 +491,6 @@ public:
     SDL_Texture* tex;
     SDL_Rect srcR, destR;
     TransformComponent* transform;
-
     ColliderComponent(string t) 
     {
         tag = t;
@@ -540,74 +562,7 @@ void Entity::addGroup(Group mGroup)
     manager.AddToGroup(this, mGroup);
 }
 
-class KeyBoardController : public Component {
-public:
-    TransformComponent *transform;
-    SpriteComponent *sprite;
 
-    void init() override 
-    {
-        transform = &entity->getComponent<TransformComponent>();
-        sprite = &entity->getComponent<SpriteComponent>();
-    }
-
-    void update() override 
-    {
-        if (Game::event.type == SDL_KEYDOWN) 
-        {
-            switch (Game::event.key.keysym.sym) 
-            {
-            case SDLK_w:
-                transform->velocity.y = -1;
-                sprite->Play("Walk");
-                break;
-            case SDLK_a:
-                transform->velocity.x = -1;
-                sprite->Play("Walk");
-                sprite->spriteFlip = SDL_FLIP_HORIZONTAL;
-                break;
-            case SDLK_s:
-                transform->velocity.y = 1;
-                sprite->Play("Walk");
-                break;
-            case SDLK_d:
-                transform->velocity.x = 1;
-                sprite->Play("Walk");
-                break;
-            default:
-                break;
-            }
-        }
-
-        if (Game::event.type == SDL_KEYUP) 
-        {
-            switch (Game::event.key.keysym.sym) 
-            {
-            case SDLK_w:
-                transform->velocity.y = 0;
-                sprite->Play("Idle");
-                break;
-            case SDLK_a:
-                transform->velocity.x = 0;
-                sprite->Play("Idle");
-                sprite->spriteFlip = SDL_FLIP_NONE;
-                break;
-            case SDLK_s:
-                transform->velocity.y = 0;
-                sprite->Play("Idle");
-                break;
-            case SDLK_d:
-                transform->velocity.x = 0;
-                sprite->Play("Idle");
-                break;
-            case SDLK_ESCAPE:
-                Game::isRunning = false;
-            default:
-                break;
-            }
-        }
-    }
-};
 
 class SpriteComponent : public Component 
 {
@@ -705,15 +660,8 @@ public:
     SDL_Texture* texture;
     SDL_Rect srcRect, destRect;
     Vector2D position;
-    // TransformComponent* transform;
-    // SpriteComponent* sprite;
-
-    // SDL_Rect tileRect;
-    // int tileID;
-    // char* path;
 
     TileComponent() = default;
-
     ~TileComponent()
     {
         SDL_DestroyTexture(texture);
@@ -768,64 +716,7 @@ public:
     }
 };
 
-class TransformComponent : public Component
-{
-public:
-    Vector2D position;
-    Vector2D velocity;
 
-    int height = 32;
-    int  width = 32;
-    int  scale =  1;
-    int  speed =  3;
-
-    TransformComponent()
-    {
-        // position.Zero();
-                position.x = 0;
-        position.y = 0;
-        height = 100;
-        width = 100;
-    }
-
-    TransformComponent(int sc)
-    {
-        // position.x = 400;
-        // position.y = 320;
-        position.x = 0;
-        position.y = 0;
-
-        scale = sc;
-    }
-
-    TransformComponent(double x, double y, int h, int w, int sc)
-    {
-        // position.x = x;
-        // position.y = y;
-        // height = h;
-        // width = h;
-        position.x = 0;
-        position.y = 0;
-        height = 100;
-        width = 100;
-
-        scale = sc;
-    }
-
-    int x() { return position.x; }
-    int y() { return position.y; }
-
-    void init() override
-    {
-        velocity.Zero();    
-    }
-
-    void update() override 
-    {
-        // position.x += velocity.x * speed;
-        // position.y += velocity.y * speed;
-    }
-};
 
 class ColliderComponent;
 
@@ -868,20 +759,13 @@ class GameObject {
 public:
     GameObject(const char* texturesheet, int x, int y);
     ~GameObject();
-
     void Update();
     void Render();
-
-
 private:
-    
     int xpos;
     int ypos;
-
     SDL_Texture* objTexture;
     SDL_Rect srcRect, destRect;
-
-
 };
 
 GameObject::GameObject(const char* texturesheet, int x, int y)
@@ -987,19 +871,88 @@ void Map::LoadMap(std::string path, int sizeX, int sizeY) {
 
 }
 
-void Map::AddTile(int srcX, int srcY, int xpos, int ypos) {
+Manager manager;
 
+void Map::AddTile(int srcX, int srcY, int xpos, int ypos) 
+{
     auto& tile(manager.addEntity());
     tile.addComponent<TileComponent>(srcX, srcY, xpos, ypos/*, tileSize, mapScale*/, mapFilePath);
     tile.addGroup(Game::groupMap);
-
 }
+
+class KeyBoardController : public Component {
+public:
+    TransformComponent *transform;
+    SpriteComponent *sprite;
+
+    void init() override 
+    {
+        transform = &entity->getComponent<TransformComponent>();
+        sprite = &entity->getComponent<SpriteComponent>();
+    }
+
+    void update() override 
+    {
+        if (Game::event.type == SDL_KEYDOWN) 
+        {
+            switch (Game::event.key.keysym.sym) 
+            {
+            case SDLK_w:
+                transform->velocity.y = -1;
+                sprite->Play("Walk");
+                break;
+            case SDLK_a:
+                transform->velocity.x = -1;
+                sprite->Play("Walk");
+                sprite->spriteFlip = SDL_FLIP_HORIZONTAL;
+                break;
+            case SDLK_s:
+                transform->velocity.y = 1;
+                sprite->Play("Walk");
+                break;
+            case SDLK_d:
+                transform->velocity.x = 1;
+                sprite->Play("Walk");
+                break;
+            default:
+                break;
+            }
+        }
+
+        if (Game::event.type == SDL_KEYUP) 
+        {
+            switch (Game::event.key.keysym.sym) 
+            {
+            case SDLK_w:
+                transform->velocity.y = 0;
+                sprite->Play("Idle");
+                break;
+            case SDLK_a:
+                transform->velocity.x = 0;
+                sprite->Play("Idle");
+                sprite->spriteFlip = SDL_FLIP_NONE;
+                break;
+            case SDLK_s:
+                transform->velocity.y = 0;
+                sprite->Play("Idle");
+                break;
+            case SDLK_d:
+                transform->velocity.x = 0;
+                sprite->Play("Idle");
+                break;
+            case SDLK_ESCAPE:
+                Game::isRunning = false;
+            default:
+                break;
+            }
+        }
+    }
+};
 
 Game* game = nullptr;
 
 SDL_Renderer* Game::renderer = nullptr;
 // Map* mmap;
-Manager manager;
 SDL_Event Game::event;
 
 SDL_Rect Game::camera = { 10, 10, 1800, 1600 };
@@ -1063,38 +1016,29 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     player.addComponent<KeyBoardController>();
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
-
-    // colliders.addComponent<SpriteComponent>()
-
-
     //Music
     MusicPlay("./mp3/miku.wav", 32);
-
-    cout << "good1111111111111" << endl;
-    SDL_Texture* ttexture = NULL;
-
-    SDL_Surface* ssurface = NULL;
-    ssurface = SDL_LoadBMP("./img/miku.bmp");
-    // SDL_UpdateWindowSurface(window);
     // cout << "good1111111111111" << endl;
-
-    int size = 80;
-    SDL_Rect a;
-    a.x = 50;
-    a.y = size;
-    a.w = size;
-    a.h = size;
+    // SDL_Texture* ttexture = NULL;
+    // SDL_Surface* ssurface = NULL;
+    // ssurface = SDL_LoadBMP("./img/miku.bmp");
+    // int size = 80;
+    // SDL_Rect a;
+    // a.x = 50;
+    // a.y = size;
+    // a.w = size;
+    // a.h = size;
             
-    ttexture = SDL_CreateTextureFromSurface(Game::renderer, ssurface);
-    if (!ttexture) 
-    {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
-    }
-    SDL_FreeSurface(ssurface);
-    ssurface = NULL;
-    SDL_RenderClear(Game::renderer);
-    SDL_RenderCopy(Game::renderer, ttexture, NULL, &a);
-    SDL_RenderPresent(renderer);
+    // ttexture = SDL_CreateTextureFromSurface(Game::renderer, ssurface);
+    // if (!ttexture) 
+    // {
+    //     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
+    // }
+    // SDL_FreeSurface(ssurface);
+    // ssurface = NULL;
+    // SDL_RenderClear(Game::renderer);
+    // SDL_RenderCopy(Game::renderer, ttexture, NULL, &a);
+    // SDL_RenderPresent(renderer);
     SDL_Delay(2000);
 
     //LinkStart
@@ -1174,34 +1118,18 @@ void Game::update()
 
 void Game::render() 
 {
-    // SDL_DestroyRenderer(renderer);
-    // Game::renderer = SDL_CreateRenderer(window, -1, 0);
-    // SDL_Texture* TT = TextureManager::LoadTexture("./img/miku.bmp");
-    // SDL_Rect a, b;
-    // a.x = 0;
-    // a.y = 0;
-    // a.h = 100;
-    // a.w = 100;
-    // b.x = 0;
-    // b.y = 0;
-    // b.h = 100;
-    // b.w = 100;
-    // TextureManager::Draw(TT, b, a, SDL_FLIP_NONE);
-    // SDL_RenderPresent(renderer);
-
-    // cout << "render" << endl;
     SDL_RenderClear(Game::renderer);
     for (auto& t : tiles) 
     {
         t->draw();
     }
 
-    //for (auto& c : colliders)
-    //{
-    //    c->draw();
-    //}
+    for (auto& c : colliders)
+    {
+       c->draw();
+    }
 
-int kkk = 0;
+    int kkk = 0;
     for (auto& p : players) 
     {
         p->draw();
@@ -1233,10 +1161,8 @@ void Game::showmenu()
     
     const int FPS = 60;
     const int frameDelay = 1000 / FPS;
-
     Uint32 frameStart;
     int frameTime; //int
-
     MenuisRunning = true;
     if (TTF_Init() == -1) 
     {
