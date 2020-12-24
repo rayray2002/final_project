@@ -1,4 +1,4 @@
-#include "GameBoard.h"
+#include "GameBoard.hpp"
 
 int main() {
 	char test_board[13][6] = {{'T', ' ', 'G', 'Y', 'R', 'R'},

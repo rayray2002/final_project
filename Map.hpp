@@ -1,5 +1,5 @@
 #include "Mapclass.hpp"
-#include "gameloop.h"
+#include "gameloop.hpp"
 #include <fstream>
 #include "ECS/Components.hpp"
 using namespace std;

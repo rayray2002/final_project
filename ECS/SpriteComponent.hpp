@@ -89,10 +89,11 @@ public:
 
     void draw() override
     {
-        cout << "draw" << endl;
+        //cout << "draw" << endl;
         TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
         //SDL_RenderPresent(Game::renderer);
-        
+        // SDL_RenderPresent(Game::renderer);
+    
 
     }
 

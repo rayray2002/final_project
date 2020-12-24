@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../gameloop.h"
+#include "../gameloop.hpp"
 #include "ECS.hpp"
 #include "Components.hpp"
 

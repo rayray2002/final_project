@@ -1,5 +1,5 @@
 
-#include "gameloop.h"
+#include "gameloop.hpp"
 #include "firstmenu.hpp"
 // #include "gameobject.hpp"
 #include "Map.hpp"
@@ -10,6 +10,7 @@
 #include "Vector2D.hpp"
 #include "Collision.hpp"
 #include "ECS/ECSaddGroup.hpp"
+#include "ECS/BackGroundComponent.hpp"
 using namespace std;
 
 SDL_Renderer* Game::renderer = nullptr;
@@ -22,6 +23,7 @@ SDL_Rect Game::camera = { 10, 10, 1800, 1600 };
 bool Game::isRunning = false;
 
 auto& player(manager.addEntity());
+auto& back(manager.addEntity());
 // auto& colliders(manager.addEntity());//
 
 Game::Game() 
@@ -79,38 +81,16 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
     player.addComponent<ColliderComponent>("player");
     player.addGroup(groupPlayers);
 
+    back.addComponent<BackGroundComponent>();
+    back.addGroup(groupBackGrounds);
+
+
+
     // colliders.addComponent<SpriteComponent>()
 
 
     //Music
     MusicPlay("./mp3/miku.wav", 32);
-
-    cout << "good1111111111111" << endl;
-    SDL_Texture* ttexture = NULL;
-
-    SDL_Surface* ssurface = NULL;
-    ssurface = SDL_LoadBMP("./img/miku.bmp");
-    // SDL_UpdateWindowSurface(window);
-    // cout << "good1111111111111" << endl;
-
-    int size = 80;
-    SDL_Rect a;
-    a.x = 50;
-    a.y = size;
-    a.w = size;
-    a.h = size;
-            
-    ttexture = SDL_CreateTextureFromSurface(Game::renderer, ssurface);
-    if (!ttexture) 
-    {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
-    }
-    SDL_FreeSurface(ssurface);
-    ssurface = NULL;
-    SDL_RenderClear(Game::renderer);
-    SDL_RenderCopy(Game::renderer, ttexture, NULL, &a);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(2000);
 
     //LinkStart
     // LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -123,6 +103,7 @@ void Game::init(const char* title, int xMenuPos, int yMenuPos, int width, int he
 auto& tiles(manager.getGroup(Game::groupMap));
 auto& players(manager.getGroup(Game::groupPlayers));
 auto& colliders(manager.getGroup(Game::groupColliders));
+auto& backs(manager.getGroup(Game::groupBackGrounds));
 
 
 void Game::handleEveants() 
@@ -205,16 +186,16 @@ void Game::render()
     // SDL_RenderPresent(renderer);
 
     // cout << "render" << endl;
-    SDL_RenderClear(Game::renderer);
+    ////////////SDL_RenderClear(Game::renderer);
     for (auto& t : tiles) 
     {
         t->draw();
     }
 
-    //for (auto& c : colliders)
-    //{
-    //    c->draw();
-    //}
+    for (auto& c : colliders)
+    {
+       c->draw();
+    }
 
 int kkk = 0;
     for (auto& p : players) 
@@ -225,10 +206,15 @@ int kkk = 0;
 
     }
     cout << "KKK: " << kkk <<endl;
+
+    for (auto& b : backs)
+    {
+        b->draw();
+    }
     
-    SDL_RenderPresent(Game::renderer);
+    // SDL_RenderPresent(Game::renderer);
     cout << "draw - done" << endl;
-    SDL_Delay(3000);
+    //SDL_Delay(3000);
 }
 
 void Game::clean() 
