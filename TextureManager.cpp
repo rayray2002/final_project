@@ -130,7 +130,7 @@ if (i == 54)
 void TextureManager::Draw(/*SDL_Renderer* renderer,*/ SDL_Texture* tex, SDL_Rect src, SDL_Rect dest, SDL_RendererFlip flip)
 {
     SDL_RenderCopy(Game::renderer, tex, /*&src,*/NULL, &dest);
-    SDL_RenderPresent(Game::renderer);
+    //SDL_RenderPresent(Game::renderer);
     cout << "copy" << endl;
     // SDL_Surface*  tmpSurface = SDL_LoadBMP("./img/miku.bmp");
     // SDL_Texture* texx = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);

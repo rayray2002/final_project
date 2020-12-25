@@ -51,5 +51,7 @@
     "C_Cpp.errorSquiggles": "Disabled",
     "workbench.editorAssociations": [
     
-    ]
+    ],
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
 }

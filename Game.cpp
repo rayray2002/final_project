@@ -207,7 +207,7 @@ int kkk = 0;
         b->draw();
     }
     
-    //SDL_RenderPresent(Game::renderer);
+    SDL_RenderPresent(Game::renderer);
     cout << "draw - done" << endl;
     //SDL_Delay(3000);
 }
