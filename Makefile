@@ -136,33 +136,6 @@ show_board/fast:
 	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/build
 .PHONY : show_board/fast
 
-Collision.o: Collision.cpp.o
-
-.PHONY : Collision.o
-
-# target to build an object file
-Collision.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.o
-.PHONY : Collision.cpp.o
-
-Collision.i: Collision.cpp.i
-
-.PHONY : Collision.i
-
-# target to preprocess a source file
-Collision.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.i
-.PHONY : Collision.cpp.i
-
-Collision.s: Collision.cpp.s
-
-.PHONY : Collision.s
-
-# target to generate assembly for a file
-Collision.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.s
-.PHONY : Collision.cpp.s
-
 ECS/ECS.o: ECS/ECS.cpp.o
 
 .PHONY : ECS/ECS.o
@@ -243,33 +216,6 @@ GameObject.s: GameObject.cpp.s
 GameObject.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameObject.cpp.s
 .PHONY : GameObject.cpp.s
-
-Map.o: Map.cpp.o
-
-.PHONY : Map.o
-
-# target to build an object file
-Map.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.o
-.PHONY : Map.cpp.o
-
-Map.i: Map.cpp.i
-
-.PHONY : Map.i
-
-# target to preprocess a source file
-Map.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.i
-.PHONY : Map.cpp.i
-
-Map.s: Map.cpp.s
-
-.PHONY : Map.s
-
-# target to generate assembly for a file
-Map.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.s
-.PHONY : Map.cpp.s
 
 TextureManager.o: TextureManager.cpp.o
 
@@ -389,9 +335,6 @@ help:
 	@echo "... main"
 	@echo "... rebuild_cache"
 	@echo "... show_board"
-	@echo "... Collision.o"
-	@echo "... Collision.i"
-	@echo "... Collision.s"
 	@echo "... ECS/ECS.o"
 	@echo "... ECS/ECS.i"
 	@echo "... ECS/ECS.s"
@@ -401,9 +344,6 @@ help:
 	@echo "... GameObject.o"
 	@echo "... GameObject.i"
 	@echo "... GameObject.s"
-	@echo "... Map.o"
-	@echo "... Map.i"
-	@echo "... Map.s"
 	@echo "... TextureManager.o"
 	@echo "... TextureManager.i"
 	@echo "... TextureManager.s"

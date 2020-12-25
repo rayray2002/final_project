@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/shyu/Desktop/final_project_all/Collision.cpp
-Collision.h
-/home/shyu/Desktop/final_project_all/Collision.h
-ECS/ColliderComponent.h
-/home/shyu/Desktop/final_project_all/ECS/ColliderComponent.h
-
 /home/shyu/Desktop/final_project_all/Collision.h
 ECS/Components.h
 /home/shyu/Desktop/final_project_all/ECS/Components.h
@@ -105,8 +99,6 @@ Game.h
 /home/shyu/Desktop/final_project_all/Game.h
 firstmenu.hpp
 /home/shyu/Desktop/final_project_all/firstmenu.hpp
-Map.h
-/home/shyu/Desktop/final_project_all/Map.h
 ECS/Components.h
 /home/shyu/Desktop/final_project_all/ECS/Components.h
 TextureManager.h
@@ -137,20 +129,6 @@ map
 -
 vector
 -
-
-/home/shyu/Desktop/final_project_all/Map.cpp
-Map.h
-/home/shyu/Desktop/final_project_all/Map.h
-Game.h
-/home/shyu/Desktop/final_project_all/Game.h
-fstream
--
-ECS/Components.h
-/home/shyu/Desktop/final_project_all/ECS/Components.h
-
-/home/shyu/Desktop/final_project_all/Map.h
-Game.h
-/home/shyu/Desktop/final_project_all/Game.h
 
 /home/shyu/Desktop/final_project_all/TextureManager.h
 Game.h

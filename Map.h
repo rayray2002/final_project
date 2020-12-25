@@ -2,7 +2,10 @@
 
 #ifndef _MAP_H
 #define _MAP_H
-#include "Game.h"
+#include <SDL.h>
+#include <string>
+using namespace std;
+// #include "Game.h"
 
 class Map {
 public:

@@ -8,6 +8,7 @@
 #include <bitset>
 #include <array>
 #include "../TextureManager.h"
+// #include "Components.h"
 using namespace std;
 
 
@@ -99,7 +100,6 @@ public:
 
     void addGroup(Group mGroup);
 
-
     void delGroup(Group mGroup) 
     {
         groupBitSet[mGroup] = false;
@@ -132,8 +132,6 @@ public:
         auto ptr(componentArray[getNewComponentTypeID<T>()]);
         return *static_cast<T*>(ptr);
     }
-
-
 };
 
 class Manager 
@@ -195,5 +193,7 @@ public:
         return *e;
     }
 };
+
+
 
 #endif
