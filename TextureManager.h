@@ -5,14 +5,13 @@
 #include <map>
 using namespace std;
 
-
-
 class TextureManager
 {
 public:
-    static SDL_Texture* LoadTexture(const char* filename);
-    static void Draw(SDL_Texture* tex, SDL_Rect src, SDL_Rect dest, SDL_RendererFlip flip);
-    map<int, const char*> MIKUGIF;
+    static SDL_Texture *LoadTexture(const char *filename);
+    // static SDL_Texture *LoadTextTexture(const char *text, SDL_Color color);
+    static void Draw(SDL_Texture *tex, SDL_Rect src, SDL_Rect dest);
+    map<int, const char *> MIKUGIF;
 };
 
 #endif

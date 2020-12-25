@@ -7,18 +7,18 @@
 #include "Components.h"
 using namespace std;
 
-class ColliderComponent : public Component 
+class ColliderComponent : public Component
 {
 public:
     SDL_Rect collider;
     string tag;
 
-    SDL_Texture* tex;
+    SDL_Texture *tex;
     SDL_Rect srcR, destR;
 
-    TransformComponent* transform;
+    TransformComponent *transform;
 
-    ColliderComponent(string t) 
+    ColliderComponent(string t)
     {
         tag = t;
     }
@@ -31,9 +31,9 @@ public:
         collider.h = collider.w = size;
     }
 
-    void init() override 
+    void init() override
     {
-        if (entity->hasComponent<TransformComponent>()) 
+        if (entity->hasComponent<TransformComponent>())
         {
             entity->addComponent<TransformComponent>();
         }
@@ -52,10 +52,10 @@ public:
         // Game::colliders.push_back(this);
     }
 
-    void update() override 
+    void update() override
     {
 
-        // if (tag != "miku") 
+        // if (tag != "miku")
         // {
         //     collider.x = static_cast<int>(transform->position.x);
         //     collider.y = static_cast<int>(transform->position.y);
@@ -71,17 +71,15 @@ public:
         collider.w = 100;
         collider.h = 100;
 
-
-        destR.x = collider.x;// - Game::camera.x;
-        destR.y = collider.y;// - Game::camera.y;
+        destR.x = collider.x; // - Game::camera.x;
+        destR.y = collider.y; // - Game::camera.y;
     }
 
-    void draw() override 
+    void draw() override
     {
         cout << "draw - collider" << endl;
-        TextureManager::Draw(tex, srcR, destR, SDL_FLIP_NONE);
+        TextureManager::Draw(tex, srcR, destR);
         // SDL_RenderPresent(Game::renderer);
-
     }
 };
 

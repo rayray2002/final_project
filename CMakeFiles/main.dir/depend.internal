@@ -11,6 +11,7 @@ CMakeFiles/main.dir/Collision.cpp.o
  /home/shyu/Desktop/final_project_all/ECS/ECS.h
  /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
  /home/shyu/Desktop/final_project_all/ECS/SpriteComponent.h
+ /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TileComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TransformComponent.h
  /home/shyu/Desktop/final_project_all/Game.h
@@ -36,13 +37,13 @@ CMakeFiles/main.dir/Game.cpp.o
  /home/shyu/Desktop/final_project_all/ECS/ECS.h
  /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
  /home/shyu/Desktop/final_project_all/ECS/SpriteComponent.h
+ /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TileComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TransformComponent.h
  /home/shyu/Desktop/final_project_all/Game.cpp
  /home/shyu/Desktop/final_project_all/Game.h
  /home/shyu/Desktop/final_project_all/TextureManager.h
  /home/shyu/Desktop/final_project_all/Vector2D.h
- /home/shyu/Desktop/final_project_all/firstmenu.hpp
  /usr/local/include/SDL2/SDL_image.h
  /usr/local/include/SDL2/SDL_mixer.h
  /usr/local/include/SDL2/SDL_ttf.h
@@ -62,6 +63,7 @@ CMakeFiles/main.dir/Map.cpp.o
  /home/shyu/Desktop/final_project_all/ECS/ECS.h
  /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
  /home/shyu/Desktop/final_project_all/ECS/SpriteComponent.h
+ /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TileComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TransformComponent.h
  /home/shyu/Desktop/final_project_all/Game.h

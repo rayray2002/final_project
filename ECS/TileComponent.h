@@ -8,7 +8,7 @@
 class TileComponent : public Component
 {
 public:
-    SDL_Texture* texture;
+    SDL_Texture *texture;
     SDL_Rect srcRect, destRect;
     Vector2D position;
     // TransformComponent* transform;
@@ -25,7 +25,8 @@ public:
         SDL_DestroyTexture(texture);
     }
 
-    TileComponent(int srcX, int srcY, int xpos, int ypos, /*int tsize, int tscale, */const char* path) {
+    TileComponent(int srcX, int srcY, int xpos, int ypos, /*int tsize, int tscale, */ const char *path)
+    {
 
         texture = TextureManager::LoadTexture(path);
 
@@ -63,21 +64,15 @@ public:
 
     void update() override
     {
-        destRect.x = position.x;// - Game::camera.x;
-        destRect.y = position.y;// - Game::camera.y;
+        destRect.x = position.x; // - Game::camera.x;
+        destRect.y = position.y; // - Game::camera.y;
     }
 
     void draw() override
     {
         cout << "draw" << endl;
-        TextureManager::Draw(texture, srcRect, destRect, SDL_FLIP_NONE);
-        // SDL_RenderPresent(Game::renderer);
-
+        TextureManager::Draw(texture, srcRect, destRect);
     }
 };
-
-    
-
-
 
 #endif

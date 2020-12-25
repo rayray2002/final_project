@@ -7,7 +7,7 @@
 #include "Animation.h"
 #include <map>
 
-class SpriteComponent : public Component 
+class SpriteComponent : public Component
 {
 private:
     TransformComponent *transform;
@@ -19,21 +19,20 @@ private:
     int speed = 100;
 
 public:
-
     int animIndex = 0;
 
-    map<const char*, Animation> animations;
+    map<const char *, Animation> animations;
 
     SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
 
     SpriteComponent() = default;
 
-    SpriteComponent(const char* path) 
+    SpriteComponent(const char *path)
     {
         setTex(path);
     }
 
-    SpriteComponent(const char* path, bool isAnimated) 
+    SpriteComponent(const char *path, bool isAnimated)
     {
         // animated = isAnimated;
 
@@ -55,7 +54,7 @@ public:
         SDL_DestroyTexture(texture);
     }
 
-    void setTex(const char* path)
+    void setTex(const char *path)
     {
         texture = TextureManager::LoadTexture(path);
     }
@@ -91,19 +90,14 @@ public:
 
     void draw() override
     {
-        //cout << "draw" << endl;
-        TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
-        //SDL_RenderPresent(Game::renderer);
-        // SDL_RenderPresent(Game::renderer);
-    
-
+        TextureManager::Draw(texture, srcRect, destRect);
     }
 
-    void Play(const char* animName)
+    void Play(const char *animName)
     {
-        frames    = animations[animName].frames;
-        animIndex =  animations[animName].index;
-        speed     =  animations[animName].speed;
+        frames = animations[animName].frames;
+        animIndex = animations[animName].index;
+        speed = animations[animName].speed;
     }
 };
 #endif

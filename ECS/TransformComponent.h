@@ -10,14 +10,14 @@ public:
     Vector2D velocity;
 
     int height = 32;
-    int  width = 32;
-    int  scale =  1;
-    int  speed =  3;
+    int width = 32;
+    int scale = 1;
+    int speed = 3;
 
     TransformComponent()
     {
         // position.Zero();
-                position.x = 0;
+        position.x = 0;
         position.y = 0;
         height = 100;
         width = 100;
@@ -51,14 +51,13 @@ public:
 
     void init() override
     {
-        velocity.Zero();    
+        velocity.Zero();
     }
 
-    void update() override 
+    void update() override
     {
         // position.x += velocity.x * speed;
         // position.y += velocity.y * speed;
-
     }
 };
 

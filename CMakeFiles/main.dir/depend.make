@@ -10,6 +10,7 @@ CMakeFiles/main.dir/Collision.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/ECS.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/KeyBoardController.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/SpriteComponent.h
+CMakeFiles/main.dir/Collision.cpp.o: ECS/TextButtomComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/TileComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/TransformComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: Game.h
@@ -35,13 +36,13 @@ CMakeFiles/main.dir/Game.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/ECS.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/KeyBoardController.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/SpriteComponent.h
+CMakeFiles/main.dir/Game.cpp.o: ECS/TextButtomComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/TileComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/TransformComponent.h
 CMakeFiles/main.dir/Game.cpp.o: Game.cpp
 CMakeFiles/main.dir/Game.cpp.o: Game.h
 CMakeFiles/main.dir/Game.cpp.o: TextureManager.h
 CMakeFiles/main.dir/Game.cpp.o: Vector2D.h
-CMakeFiles/main.dir/Game.cpp.o: firstmenu.hpp
 CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_image.h
 CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
 CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
@@ -61,6 +62,7 @@ CMakeFiles/main.dir/Map.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/ECS.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/KeyBoardController.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/SpriteComponent.h
+CMakeFiles/main.dir/Map.cpp.o: ECS/TextButtomComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/TileComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/TransformComponent.h
 CMakeFiles/main.dir/Map.cpp.o: Game.h
