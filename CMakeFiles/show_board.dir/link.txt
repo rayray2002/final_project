@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/show_board.dir/show_board.cpp.o  -o show_board 

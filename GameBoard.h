@@ -30,7 +30,7 @@ struct Block {
 
 Color char_to_color(char);
 
-char color_to_char(char in);
+char color_to_char(Color);
 
 class GameBoard {
 public:
