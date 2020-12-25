@@ -1,4 +1,6 @@
-#pragma once
+// #pragma once
+#ifndef _VECTOR2D_H
+#define _VECTOR2D_H
 #include <iostream>
 using namespace std;
 
@@ -31,3 +33,4 @@ public:
 
     friend ostream& operator<<(ostream& stream, const Vector2D& vec);
 };
+#endif

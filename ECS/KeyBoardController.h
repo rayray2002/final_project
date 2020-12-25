@@ -1,8 +1,9 @@
-#pragma once
-
-#include "../gameloop.hpp"
-#include "ECS.hpp"
-#include "Components.hpp"
+// #pragma once
+#ifndef _KEYBOARDCONTROLLOR_H
+#define _KEYBOARDCONTROLLOR_H
+#include "../Game.h"
+#include "ECS.cpp"
+#include "Components.h"
 
 class KeyBoardController : public Component {
 public:
@@ -72,3 +73,5 @@ public:
         }
     }
 };
+
+#endif

@@ -1,0 +1,4 @@
+/home/shyu/Desktop/final_project_all/CMakeFiles/edit_cache.dir
+/home/shyu/Desktop/final_project_all/CMakeFiles/main.dir
+/home/shyu/Desktop/final_project_all/CMakeFiles/rebuild_cache.dir
+/home/shyu/Desktop/final_project_all/CMakeFiles/show_board.dir

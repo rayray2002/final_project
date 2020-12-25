@@ -1,8 +1,10 @@
-#pragma once
+// #pragma once
+#ifndef _COLLIDERCOMPONENT_H
+#define _COLLIDERCOMPONENT_H
 
 #include <string>
 #include <SDL.h>
-#include "Components.hpp"
+#include "Components.h"
 using namespace std;
 
 class ColliderComponent : public Component 
@@ -82,3 +84,5 @@ public:
 
     }
 };
+
+#endif

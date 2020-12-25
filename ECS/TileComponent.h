@@ -1,6 +1,8 @@
-#pragma once
+// #pragma once
+#ifndef _TILECOMPONENT_H
+#define _TILECOMPONENT_H
 
-#include "ECS.hpp"
+#include "ECS.h"
 #include <SDL.h>
 
 class TileComponent : public Component
@@ -78,3 +80,4 @@ public:
 
 
 
+#endif

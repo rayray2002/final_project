@@ -1,4 +1,6 @@
-#pragma once
+// #pragma once
+#ifndef _ANIMATION_H
+#define _ANIMATION_H
 
 struct Animation 
 {
@@ -15,3 +17,5 @@ struct Animation
         speed = s;
     }
 };
+
+#endif
