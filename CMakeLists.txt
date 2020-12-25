@@ -7,7 +7,7 @@ message(${CMAKE_SOURCE_DIR})
 
 # add_executable(final_project main.cpp SDL_bgi.cpp)
 # add_executable(Puyo_test Puyo_test.cpp GameBoard.cpp)
-add_executable(show_board show_board.cpp)
+# add_executable(show_board show_board.cpp)
 add_executable(main main.cpp ECS/ECS.cpp Collision.cpp Game.cpp GameObject.cpp Map.cpp TextureManager.cpp Vector2D.cpp)
 
 #set(SDL2_LIBRARY "/Library/frameworks/SDL2.framework")

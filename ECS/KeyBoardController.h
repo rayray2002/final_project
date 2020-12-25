@@ -2,7 +2,7 @@
 #ifndef _KEYBOARDCONTROLLOR_H
 #define _KEYBOARDCONTROLLOR_H
 #include "../Game.h"
-#include "ECS.cpp"
+#include "ECS.h"
 #include "Components.h"
 
 class KeyBoardController : public Component {

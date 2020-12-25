@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/shyu/Desktop/final_project_all
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -123,18 +123,32 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-#=============================================================================
-# Target rules for targets named show_board
+Collision.o: Collision.cpp.o
 
-# Build rule for target.
-show_board: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 show_board
-.PHONY : show_board
+.PHONY : Collision.o
 
-# fast build rule for target.
-show_board/fast:
-	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/build
-.PHONY : show_board/fast
+# target to build an object file
+Collision.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.o
+.PHONY : Collision.cpp.o
+
+Collision.i: Collision.cpp.i
+
+.PHONY : Collision.i
+
+# target to preprocess a source file
+Collision.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.i
+.PHONY : Collision.cpp.i
+
+Collision.s: Collision.cpp.s
+
+.PHONY : Collision.s
+
+# target to generate assembly for a file
+Collision.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.s
+.PHONY : Collision.cpp.s
 
 ECS/ECS.o: ECS/ECS.cpp.o
 
@@ -217,6 +231,33 @@ GameObject.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameObject.cpp.s
 .PHONY : GameObject.cpp.s
 
+Map.o: Map.cpp.o
+
+.PHONY : Map.o
+
+# target to build an object file
+Map.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.o
+.PHONY : Map.cpp.o
+
+Map.i: Map.cpp.i
+
+.PHONY : Map.i
+
+# target to preprocess a source file
+Map.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.i
+.PHONY : Map.cpp.i
+
+Map.s: Map.cpp.s
+
+.PHONY : Map.s
+
+# target to generate assembly for a file
+Map.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.s
+.PHONY : Map.cpp.s
+
 TextureManager.o: TextureManager.cpp.o
 
 .PHONY : TextureManager.o
@@ -298,43 +339,18 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-show_board.o: show_board.cpp.o
-
-.PHONY : show_board.o
-
-# target to build an object file
-show_board.cpp.o:
-	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.o
-.PHONY : show_board.cpp.o
-
-show_board.i: show_board.cpp.i
-
-.PHONY : show_board.i
-
-# target to preprocess a source file
-show_board.cpp.i:
-	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.i
-.PHONY : show_board.cpp.i
-
-show_board.s: show_board.cpp.s
-
-.PHONY : show_board.s
-
-# target to generate assembly for a file
-show_board.cpp.s:
-	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/show_board.cpp.s
-.PHONY : show_board.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
-	@echo "... rebuild_cache"
-	@echo "... show_board"
+	@echo "... Collision.o"
+	@echo "... Collision.i"
+	@echo "... Collision.s"
 	@echo "... ECS/ECS.o"
 	@echo "... ECS/ECS.i"
 	@echo "... ECS/ECS.s"
@@ -344,6 +360,9 @@ help:
 	@echo "... GameObject.o"
 	@echo "... GameObject.i"
 	@echo "... GameObject.s"
+	@echo "... Map.o"
+	@echo "... Map.i"
+	@echo "... Map.s"
 	@echo "... TextureManager.o"
 	@echo "... TextureManager.i"
 	@echo "... TextureManager.s"
@@ -353,9 +372,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... show_board.o"
-	@echo "... show_board.i"
-	@echo "... show_board.s"
 .PHONY : help
 
 
