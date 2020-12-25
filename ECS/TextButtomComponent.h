@@ -59,7 +59,7 @@ public:
     void draw() override
     {
 
-        cout << "here" << endl;
+        // cout << "here" << endl;
         // texture = TextureManager::LoadTexture("../img/kirito1.bmp");
 
         SDL_Surface *tmpSurface = SDL_LoadBMP("./img/kirito1.bmp");
@@ -70,7 +70,7 @@ public:
         // SDL_RenderCopy(Game::renderer, texture, NULL, &destR);
         // SDL_DestroyTexture(texture);
         // Game::LinkStart("Game Initailizing...", 1000, 100, 600);
-        cout << "ha ha" << endl;
+        // cout << "ha ha" << endl;
     }
 };
 

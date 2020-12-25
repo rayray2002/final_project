@@ -46,13 +46,29 @@ public:
     {
         static int num = 0;
         static int i = 1;
+        static bool OK = true;
         num++;
         SDL_Surface *tmpSurface;
-        // SDL_RenderClear(Game::renderer);
-        cout << "i = " << i << endl;
+        // cout << "i = " << i << endl;
         if (num % 5 == 0)
             i++;
-        if (true)
+        switch (Game::event.type)
+        {
+        case SDL_MOUSEBUTTONDOWN:
+            if (Game::event.motion.x > WIDTH - 320 && Game::event.motion.x < WIDTH - 20 && Game::event.motion.y > HEIGHT - 220 && Game::event.motion.y < HEIGHT - 20)
+            {
+                OK = !OK;
+                cout << "OK" << endl;
+                SDL_Delay(100);
+            }
+            else
+            {
+                OK = !OK;
+                cout << "!OK" << endl;
+                SDL_Delay(100);
+            }
+        }
+        if (OK)
         {
             if (i > 54)
                 i = 1;
@@ -165,46 +181,47 @@ public:
             if (i == 54)
                 tmpSurface = SDL_LoadBMP("./img/miku/0054.bmp");
         }
-        else if (false)
+        if (!OK)
         {
             if (i > 15)
                 i = 1;
             if (i == 1)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0001.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0001.bmp");
             if (i == 2)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0002.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0002.bmp");
             if (i == 3)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0003.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0003.bmp");
             if (i == 4)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0004.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0004.bmp");
             if (i == 5)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0005.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0005.bmp");
             if (i == 6)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0006.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0006.bmp");
             if (i == 7)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0007.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0007.bmp");
             if (i == 8)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0008.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0008.bmp");
             if (i == 9)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0009.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0009.bmp");
             if (i == 10)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0010.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0010.bmp");
             if (i == 11)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0011.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0011.bmp");
             if (i == 12)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0012.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0012.bmp");
             if (i == 13)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0013.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0013.bmp");
             if (i == 14)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0014.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0014.bmp");
             if (i == 15)
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/miku2/0015.bmp");
+                tmpSurface = SDL_LoadBMP("./img/miku2/0015.bmp");
         }
         texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
         SDL_FreeSurface(tmpSurface);
         if (num == 5)
             num = 0;
         TextureManager::Draw(texture, srcR, destR);
+        SDL_PumpEvents();
     }
 };
 

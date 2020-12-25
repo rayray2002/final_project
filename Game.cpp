@@ -119,8 +119,6 @@ void Game::update()
 {
     SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     Vector2D playerPos = player.getComponent<TransformComponent>().position;
-    cout << playerCol.w << ' ' << playerCol.h << endl;
-    cout << playerPos.x << ' ' << playerPos.y << endl;
     manager.refresh();
     manager.update();
     // manager.draw();

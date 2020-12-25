@@ -77,7 +77,7 @@ public:
 
     void draw() override
     {
-        cout << "draw - collider" << endl;
+        // cout << "draw - collider" << endl;
         TextureManager::Draw(tex, srcR, destR);
         // SDL_RenderPresent(Game::renderer);
     }
