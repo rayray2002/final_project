@@ -1,3 +1,8 @@
 *.pdf
 .DS_Store
 main
+/.vs/
+/.vscode/
+/cmake-build-debug/
+/cmake/
+/out/
