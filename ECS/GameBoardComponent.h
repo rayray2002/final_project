@@ -30,8 +30,8 @@ public:
         srcR.h = 1000;
         srcR.w = 1000;
 
-        speed.x = 0;
-        speed.y = 50;
+        speed.x = 30;
+        speed.y = 30;
     }
     ~GameBoardComponent()
     {
@@ -45,8 +45,26 @@ public:
     {
         static int num = 0;
         if (num == 60)
+            switch (Game::event.key.keysym.sym)
+            {
+            case SDLK_LEFT:
+                if (destR.x >= 100)
+                    destR.x -= speed.x;
+                break;
+            case SDLK_RIGHT:
+                if (destR.x <= 400)
+                    destR.x += speed.x;
+                break;
+            case SDLK_DOWN:
+                destR.y += speed.y;
+                break;
+            default:
+                destR.y += speed.y;
+            }
+
+        if (num == 60)
         {
-            destR.y += 30;
+            // destR.y += speed.y;
         }
         if (num == 60)
             num = 0;

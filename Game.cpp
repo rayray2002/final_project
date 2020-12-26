@@ -80,7 +80,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    gameboard.addComponent<GameBoardComponent>(50, 50);
+    gameboard.addComponent<GameBoardComponent>(100, 100);
     gameboard.addGroup(groupGameBoards);
 
     // colliders.addComponent<SpriteComponent>()
@@ -129,10 +129,11 @@ void Game::update()
     for (auto &c : gameboards)
     {
         // SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
-        if (Collision::AABB(cCol, playerCol))
+        if (c->getComponent<GameBoardComponent>().destR.y < 100 || c->getComponent<GameBoardComponent>().destR.y > 650)
         {
             cout << "hit\n";
-            player.getComponent<TransformComponent>().position = playerPos;
+            c->getComponent<GameBoardComponent>().speed.y = 0;
+            // player.getComponent<TransformComponent>().position = playerPos;
         }
     }
 
