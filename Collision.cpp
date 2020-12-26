@@ -13,16 +13,25 @@ bool Collision::AABB(const SDL_Rect &recA, const SDL_Rect &recB)
 
 bool Collision::AABBDOWN(const SDL_Rect &recA, const SDL_Rect &recB)
 {
-    if (recA.y + recA.h >= recB.y && recB.y + recB.h >= recA.y)
+    if (recA.y + recA.h >= recB.y && recB.y + recB.h >= recA.y && recA.x == recB.x)
     {
         return true;
     }
     return false;
 }
 
-bool Collision::AABBHORIZONTAL(const SDL_Rect &recA, const SDL_Rect &recB)
+bool Collision::AABBHORIZONTALLEFT(const SDL_Rect &recA, const SDL_Rect &recB)
 {
-    if (recA.x + recA.w >= recB.x && recB.x + recB.w >= recA.x)
+    if (recB.x - recB.w <= recA.x && recA.y >= recB.y)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Collision::AABBHORIZONTALRIGHT(const SDL_Rect &recA, const SDL_Rect &recB)
+{
+    if (recB.x + recB.w >= recA.x && recA.y >= recB.y)
     {
         return true;
     }

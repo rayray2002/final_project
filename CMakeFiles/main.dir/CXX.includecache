@@ -56,10 +56,6 @@ TextButtomComponent.h
 GameBoardComponent.h
 /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
 
-/home/shyu/Desktop/final_project_all/ECS/ECS.cpp
-ECS.h
-/home/shyu/Desktop/final_project_all/ECS/ECS.h
-
 /home/shyu/Desktop/final_project_all/ECS/ECS.h
 iostream
 -
@@ -170,16 +166,6 @@ map
 vector
 -
 
-/home/shyu/Desktop/final_project_all/GameObject.cpp
-GameObject.h
-/home/shyu/Desktop/final_project_all/GameObject.h
-TextureManager.h
-/home/shyu/Desktop/final_project_all/TextureManager.h
-
-/home/shyu/Desktop/final_project_all/GameObject.h
-Game.h
-/home/shyu/Desktop/final_project_all/Game.h
-
 /home/shyu/Desktop/final_project_all/Map.cpp
 Map.h
 /home/shyu/Desktop/final_project_all/Map.h
@@ -194,29 +180,15 @@ SDL.h
 string
 -
 
-/home/shyu/Desktop/final_project_all/TextureManager.cpp
-TextureManager.h
-/home/shyu/Desktop/final_project_all/TextureManager.h
-map
--
-
 /home/shyu/Desktop/final_project_all/TextureManager.h
 Game.h
 /home/shyu/Desktop/final_project_all/Game.h
 map
 -
-
-/home/shyu/Desktop/final_project_all/Vector2D.cpp
-Vector2D.h
-/home/shyu/Desktop/final_project_all/Vector2D.h
 
 /home/shyu/Desktop/final_project_all/Vector2D.h
 iostream
 -
-
-/home/shyu/Desktop/final_project_all/main.cpp
-Game.h
-/home/shyu/Desktop/final_project_all/Game.h
 
 /usr/local/include/SDL2/SDL_image.h
 SDL.h

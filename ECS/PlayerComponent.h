@@ -42,17 +42,6 @@ public:
         static int y;
         x = Game::event.motion.x;
         y = Game::event.motion.y;
-        if (Game::event.type == SDL_MOUSEMOTION)
-        {
-            if (x > destR.x && y > destR.y && x < destR.x + destR.w && y < destR.y + destR.h)
-            {
-                color = {255, 223, 0};
-            }
-            else
-            {
-                color = {0, 255, 255};
-            }
-        }
     }
 
     void draw() override

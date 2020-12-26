@@ -16,48 +16,21 @@ using namespace std;
 class GameBoardComponent : public Component
 {
 private:
-    bool isMoving = true;
-    bool isActive = true;
-
 public:
     struct unit
     {
         SDL_Texture *texture;
         SDL_Rect srcR, destR;
         Vector2D speed;
+        Vector2D bspeed;
         int color;
         bool isMoving = true;
         bool isActive = true;
     };
     deque<unit> blocks;
-    int color;
-
-    SDL_Texture *texture;
-    SDL_Rect destR, srcR;
-    Vector2D speed;
-    bool move() { return isMoving; };
-    bool active() { return isActive; };
 
     GameBoardComponent(int xpos, int ypos, int color)
     {
-
-        destR.x = xpos;
-        destR.y = ypos;
-        destR.h = 30;
-        destR.w = 30;
-
-        srcR.x = 0;
-        srcR.y = 0;
-        srcR.h = 1000;
-        srcR.w = 1000;
-
-        speed.x = 30;
-        speed.y = 30;
-
-        this->color = color;
-
-        // init();
-        cout << "init" << endl;
     }
     ~GameBoardComponent()
     {
@@ -86,6 +59,9 @@ public:
         a.speed.x = 30;
         a.speed.y = 30;
 
+        a.bspeed.x = 30;
+        a.bspeed.y = 30;
+
         blocks.push_back(a);
         cout << "Push Back" << endl;
     }
@@ -107,11 +83,11 @@ public:
                     {
                     case SDLK_LEFT:
                         if (a.destR.x >= 100)
-                            a.destR.x -= a.speed.x;
+                            a.destR.x -= a.bspeed.y;
                         break;
                     case SDLK_RIGHT:
                         if (a.destR.x <= 400)
-                            a.destR.x += a.speed.x;
+                            a.destR.x += a.bspeed.x;
                         break;
                     case SDLK_DOWN:
                         a.destR.y += a.speed.y;
@@ -132,23 +108,6 @@ public:
 
     void draw() override
     {
-        // SDL_Surface *tmpSurface;
-        // if (isActive)
-        // {
-        //     if (color == 1)
-        //         tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
-        //     else if (color == 2)
-        //         tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
-        //     else if (color == 3)
-        //         tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
-        //     else
-        //         tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-
-        //     texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-        //     SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
-        //     SDL_FreeSurface(tmpSurface);
-        //     TextureManager::Draw(texture, srcR, destR);
-        // }
         for (auto &a : blocks)
         {
             if (a.isActive)
