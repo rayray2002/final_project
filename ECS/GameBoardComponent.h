@@ -44,27 +44,25 @@ public:
     void update() override
     {
         static int num = 0;
-        if (num == 60)
-            switch (Game::event.key.keysym.sym)
-            {
-            case SDLK_LEFT:
-                if (destR.x >= 100)
-                    destR.x -= speed.x;
-                break;
-            case SDLK_RIGHT:
-                if (destR.x <= 400)
-                    destR.x += speed.x;
-                break; //
-            case SDLK_DOWN:
-                destR.y += speed.y;
-                break;
-            default:
-                destR.y += speed.y;
-            }
-
-        if (num == 60)
+        if (num % 10 == 0)
         {
-            // destR.y += speed.y;
+            if (Game::event.type == SDL_KEYDOWN)
+                switch (Game::event.key.keysym.sym)
+                {
+                case SDLK_LEFT:
+                    if (destR.x >= 100)
+                        destR.x -= speed.x;
+                    break;
+                case SDLK_RIGHT:
+                    if (destR.x <= 400)
+                        destR.x += speed.x;
+                    break;
+                case SDLK_DOWN:
+                    destR.y += speed.y;
+                    break;
+                }
+            else if (num == 60)
+                destR.y += speed.y;
         }
         if (num == 60)
             num = 0;
