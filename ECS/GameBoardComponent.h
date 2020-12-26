@@ -54,7 +54,7 @@ public:
             case SDLK_RIGHT:
                 if (destR.x <= 400)
                     destR.x += speed.x;
-                break;
+                break; //
             case SDLK_DOWN:
                 destR.y += speed.y;
                 break;
