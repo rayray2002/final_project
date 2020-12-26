@@ -1,8 +1,11 @@
 *.pdf
 .DS_Store
-main
 /.vs/
 /.vscode/
 /cmake-build-debug/
 /cmake/
 /out/
+*.cmake
+/CMakeFiles/
+CMakeCache.txt
+CMakeLists.txt
