@@ -142,26 +142,24 @@ void Game::update()
                 anyBlocksOnBoardIsMoving = false;
         }
 
-        if (!anyBlocksOnBoardIsMoving)
-        {
-            cout << "Nothing Moving" << endl;
-            gameboard.getComponent<GameBoardComponent>().init();
+        if (!anyBlocksOnBoardIsMoving) {
+	        cout << "Nothing Moving" << endl;
+	        gameboard.getComponent<GameBoardComponent>().init();
         }
-        if (c->getComponent<GameBoardComponent>().destR.y < 100 || c->getComponent<GameBoardComponent>().destR.y >= 650)
-        {
-            c->getComponent<GameBoardComponent>().speed.y = 0;
-            c->getComponent<GameBoardComponent>().speed.x = 0;
-            c->getComponent<GameBoardComponent>().destR.y = 650;
-        }
+	    if (c->getComponent<GameBoardComponent>().destR.y < 35 ||
+	        c->getComponent<GameBoardComponent>().destR.y >= 635) {
+		    c->getComponent<GameBoardComponent>().speed.y = 0;
+		    c->getComponent<GameBoardComponent>().speed.x = 0;
+		    c->getComponent<GameBoardComponent>().destR.y = 635;
+	    }
 
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
-            if (a.destR.y < 100 || a.destR.y >= 650)
-            {
-                a.speed.y = 0;
-                a.speed.x = 0;
-                cout << "Very Good" << endl;
-            }
+	        if (a.destR.y < 35 || a.destR.y >= 635) {
+		        a.speed.y = 0;
+		        a.speed.x = 0;
+		        cout << "Very Good" << endl;
+	        }
         }
     }
 

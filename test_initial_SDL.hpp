@@ -1,14 +1,17 @@
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <cstdio>
 #include <string>
 #include <cmath>
-bool init();
-void close();
-SDL_Window* Window = NULL;
 
-SDL_Renderer* Renderer = NULL;
+bool init();
+
+void close();
+
+SDL_Window *Window = NULL;
+
+SDL_Renderer *Renderer = NULL;
 
 //SDL_Texture* texture = NULL;
 

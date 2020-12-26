@@ -65,29 +65,29 @@ public:
 
     void init() override
     {
-        unit a;
+	    unit a;
 
-        a.destR.x = 100;
-        a.destR.y = 100;
-        a.destR.h = 30;
-        a.destR.w = 30;
+	    a.destR.x = 100;
+	    a.destR.y = 35;
+	    a.destR.h = 50;
+	    a.destR.w = 50;
 
-        a.srcR.x = 0;
-        a.srcR.y = 0;
-        a.srcR.h = 1000;
-        a.srcR.w = 1000;
+	    a.srcR.x = 0;
+	    a.srcR.y = 0;
+	    a.srcR.h = 1000;
+	    a.srcR.w = 1000;
 
-        srand(time(0));
-        a.color = rand() % 4;
+	    srand(time(0));
+	    a.color = rand() % 4;
 
-        a.isActive = true;
-        a.isMoving = true;
+	    a.isActive = true;
+	    a.isMoving = true;
 
-        a.speed.x = 30;
-        a.speed.y = 30;
+	    a.speed.x = 50;
+	    a.speed.y = 50;
 
-        blocks.push_back(a);
-        cout << "Push Back" << endl;
+	    blocks.push_back(a);
+	    cout << "Push Back" << endl;
     }
 
     void update() override
@@ -110,8 +110,8 @@ public:
                             a.destR.x -= a.speed.x;
                         break;
                     case SDLK_RIGHT:
-                        if (a.destR.x <= 400)
-                            a.destR.x += a.speed.x;
+	                    if (a.destR.x <= 300)
+		                    a.destR.x += a.speed.x;
                         break;
                     case SDLK_DOWN:
                         a.destR.y += a.speed.y;

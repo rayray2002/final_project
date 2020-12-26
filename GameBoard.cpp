@@ -63,25 +63,25 @@ char color_to_char(Color in) {
 }
 
 GameBoard::GameBoard() {
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
+	for (int i = 0; i < BOARDHEIGHT; i++) {
+		for (int j = 0; j < BOARDWIDTH; j++) {
 			Color c = Empty;
 			board[i][j] = c;
 		}
 	}
 }
 
-GameBoard::GameBoard(char board_i[][WIDTH]) {
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
+GameBoard::GameBoard(char board_i[][BOARDWIDTH]) {
+	for (int i = 0; i < BOARDHEIGHT; i++) {
+		for (int j = 0; j < BOARDWIDTH; j++) {
 			board[i][j] = char_to_color(board_i[i][j]);
 		}
 	}
 }
 
-GameBoard::GameBoard(Color board_i[][WIDTH]) {
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
+GameBoard::GameBoard(Color board_i[][BOARDWIDTH]) {
+	for (int i = 0; i < BOARDHEIGHT; i++) {
+		for (int j = 0; j < BOARDWIDTH; j++) {
 			board[i][j] = board_i[i][j];
 		}
 	}
@@ -89,8 +89,8 @@ GameBoard::GameBoard(Color board_i[][WIDTH]) {
 
 void GameBoard::printer() {
 	cout << "######\n";
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
+	for (int i = 0; i < BOARDHEIGHT; i++) {
+		for (int j = 0; j < BOARDWIDTH; j++) {
 			cout << color_to_char(board[i][j]);
 		}
 		cout << endl;
@@ -102,7 +102,7 @@ vector<Block> GameBoard::check_chained(int x, int y) {
 	queue<Block> q;
 	vector<Block> chain;
 	q.push((Block) {x, y});
-	bool visited[WIDTH][HEIGHT] = {};
+	bool visited[BOARDWIDTH][BOARDHEIGHT] = {};
 
 	while (!q.empty()) {
 		Block top = q.front();
@@ -120,12 +120,12 @@ vector<Block> GameBoard::check_chained(int x, int y) {
 			q.push((Block) {top.x, top.y - 1});
 			visited[top.x - 1][top.y] = true;
 		}
-		if (top.x + 1 < WIDTH && (board[top.y][top.x + 1] == board[y][x] || board[top.y][top.x + 1] == Rainbow) &&
+		if (top.x + 1 < BOARDWIDTH && (board[top.y][top.x + 1] == board[y][x] || board[top.y][top.x + 1] == Rainbow) &&
 		    !visited[top.x + 1][top.y]) {
 			q.push((Block) {top.x + 1, top.y});
 			visited[top.x + 1][top.y] = true;
 		}
-		if (top.y + 1 < HEIGHT && (board[top.y + 1][top.x] == board[y][x] || board[top.y + 1][top.x] == Rainbow) &&
+		if (top.y + 1 < BOARDHEIGHT && (board[top.y + 1][top.x] == board[y][x] || board[top.y + 1][top.x] == Rainbow) &&
 		    !visited[top.x][top.y + 1]) {
 			q.push((Block) {top.x, top.y + 1});
 			visited[top.x][top.y + 1] = true;
@@ -142,8 +142,8 @@ bool GameBoard::remove(Block block) {
 	}
 	if (block.x - 1 >= 0 && board[block.y][block.x - 1] == Trash) board[block.y][block.x - 1] = Empty;
 	if (block.y - 1 >= 0 && board[block.y - 1][block.x] == Trash) board[block.y - 1][block.x] = Empty;
-	if (block.x + 1 < WIDTH && board[block.y][block.x + 1] == Trash) board[block.y][block.x + 1] = Empty;
-	if (block.y + 1 < HEIGHT && board[block.y + 1][block.x] == Trash) board[block.y + 1][block.x] = Empty;
+	if (block.x + 1 < BOARDWIDTH && board[block.y][block.x + 1] == Trash) board[block.y][block.x + 1] = Empty;
+	if (block.y + 1 < BOARDHEIGHT && board[block.y + 1][block.x] == Trash) board[block.y + 1][block.x] = Empty;
 	return success_removal;
 }
 
@@ -151,8 +151,8 @@ void GameBoard::fill() {
 	bool quit;
 	do {
 		quit = true;
-		for (int i = 0; i < HEIGHT - 1; i++) {
-			for (int j = 0; j < WIDTH; j++) {
+		for (int i = 0; i < BOARDHEIGHT - 1; i++) {
+			for (int j = 0; j < BOARDWIDTH; j++) {
 				if (board[i][j] != Empty && board[i + 1][j] == Empty) {
 					quit = false;
 					board[i + 1][j] = board[i][j];
@@ -168,8 +168,8 @@ bool GameBoard::update() {
 	bool is_updated = false;
 	if (DEBUG) fill();
 	vector<vector<Block>> to_remove;
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
+	for (int i = 0; i < BOARDHEIGHT; i++) {
+		for (int j = 0; j < BOARDWIDTH; j++) {
 			if (board[i][j] != Empty) {
 				chain = check_chained(j, i);
 				if (chain.size() >= 4) {
