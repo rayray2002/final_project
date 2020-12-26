@@ -19,7 +19,8 @@ auto &player(manager.addEntity());
 auto &back(manager.addEntity());
 auto &buttom(manager.addEntity());
 auto &gameboard(manager.addEntity());
-// auto& colliders(manager.addEntity());//
+
+vector<Entity *> gameblock;
 
 Game::Game()
 {
@@ -80,7 +81,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    gameboard.addComponent<GameBoardComponent>(100, 100);
+    gameboard.addComponent<GameBoardComponent>(100, 100, 2);
     gameboard.addGroup(groupGameBoards);
 
     // colliders.addComponent<SpriteComponent>()
@@ -124,16 +125,53 @@ void Game::update()
 {
     // SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
     // Vector2D playerPos = player.getComponent<TransformComponent>().position;
+    static bool anyBlocksOnBoardIsMoving;
+    anyBlocksOnBoardIsMoving = true;
     manager.refresh();
     manager.update();
     for (auto &c : gameboards)
     {
         // SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
-        if (c->getComponent<GameBoardComponent>().destR.y < 100 || c->getComponent<GameBoardComponent>().destR.y > 650)
+
+        if (c->getComponent<GameBoardComponent>().move())
         {
-            cout << "hit\n";
+            anyBlocksOnBoardIsMoving = true;
+            break;
+        }
+        else
+            anyBlocksOnBoardIsMoving = false;
+        for (auto a : c->getComponent<GameBoardComponent>().blocks)
+        {
+            if (a.isMoving)
+            {
+                anyBlocksOnBoardIsMoving = true;
+                break;
+            }
+            else
+                anyBlocksOnBoardIsMoving = false;
+        }
+
+        if (!anyBlocksOnBoardIsMoving)
+        {
+            cout << "Nothing Moving" << endl;
+            gameboard.getComponent<GameBoardComponent>().init();
+        }
+        if (c->getComponent<GameBoardComponent>().destR.y < 100 || c->getComponent<GameBoardComponent>().destR.y >= 650)
+        {
             c->getComponent<GameBoardComponent>().speed.y = 0;
-            // player.getComponent<TransformComponent>().position = playerPos;
+            c->getComponent<GameBoardComponent>().speed.x = 0;
+            c->getComponent<GameBoardComponent>().destR.y = 650;
+        }
+        if (!c->getComponent<GameBoardComponent>().blocks.empty())
+        {
+            for (auto a : c->getComponent<GameBoardComponent>().blocks)
+            {
+                if (a.destR.y < 100 || a.destR.y >= 650)
+                {
+                    a.speed.y = 0;
+                    a.speed.x = 0;
+                }
+            }
         }
     }
 

@@ -61,12 +61,6 @@ public:
                 cout << "OK" << endl;
                 SDL_Delay(100);
             }
-            else
-            {
-                OK = !OK;
-                cout << "!OK" << endl;
-                SDL_Delay(100);
-            }
         }
         if (OK)
         {
