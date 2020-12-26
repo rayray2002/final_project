@@ -27,6 +27,8 @@ Components.h
 /home/shyu/Desktop/final_project_all/ECS/Components.h
 map
 -
+string
+-
 
 /home/shyu/Desktop/final_project_all/ECS/ColliderComponent.h
 string

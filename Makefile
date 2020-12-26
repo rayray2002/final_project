@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/shyu/Desktop/final_project_all
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -122,6 +122,32 @@ main: cmake_check_build_system
 main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
+
+#=============================================================================
+# Target rules for targets named show_board
+
+# Build rule for target.
+show_board: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 show_board
+.PHONY : show_board
+
+# fast build rule for target.
+show_board/fast:
+	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/build
+.PHONY : show_board/fast
+
+#=============================================================================
+# Target rules for targets named Puyo_test
+
+# Build rule for target.
+Puyo_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Puyo_test
+.PHONY : Puyo_test
+
+# fast build rule for target.
+Puyo_test/fast:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/build
+.PHONY : Puyo_test/fast
 
 Collision.o: Collision.cpp.o
 
@@ -204,6 +230,33 @@ Game.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Game.cpp.s
 .PHONY : Game.cpp.s
 
+GameBoard.o: GameBoard.cpp.o
+
+.PHONY : GameBoard.o
+
+# target to build an object file
+GameBoard.cpp.o:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/GameBoard.cpp.o
+.PHONY : GameBoard.cpp.o
+
+GameBoard.i: GameBoard.cpp.i
+
+.PHONY : GameBoard.i
+
+# target to preprocess a source file
+GameBoard.cpp.i:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/GameBoard.cpp.i
+.PHONY : GameBoard.cpp.i
+
+GameBoard.s: GameBoard.cpp.s
+
+.PHONY : GameBoard.s
+
+# target to generate assembly for a file
+GameBoard.cpp.s:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/GameBoard.cpp.s
+.PHONY : GameBoard.cpp.s
+
 GameObject.o: GameObject.cpp.o
 
 .PHONY : GameObject.o
@@ -257,6 +310,33 @@ Map.s: Map.cpp.s
 Map.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Map.cpp.s
 .PHONY : Map.cpp.s
+
+Puyo_test.o: Puyo_test.cpp.o
+
+.PHONY : Puyo_test.o
+
+# target to build an object file
+Puyo_test.cpp.o:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.o
+.PHONY : Puyo_test.cpp.o
+
+Puyo_test.i: Puyo_test.cpp.i
+
+.PHONY : Puyo_test.i
+
+# target to preprocess a source file
+Puyo_test.cpp.i:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.i
+.PHONY : Puyo_test.cpp.i
+
+Puyo_test.s: Puyo_test.cpp.s
+
+.PHONY : Puyo_test.s
+
+# target to generate assembly for a file
+Puyo_test.cpp.s:
+	$(MAKE) -f CMakeFiles/Puyo_test.dir/build.make CMakeFiles/Puyo_test.dir/Puyo_test.cpp.s
+.PHONY : Puyo_test.cpp.s
 
 TextureManager.o: TextureManager.cpp.o
 
@@ -339,15 +419,44 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+test_fall_board.o: test_fall_board.cpp.o
+
+.PHONY : test_fall_board.o
+
+# target to build an object file
+test_fall_board.cpp.o:
+	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/test_fall_board.cpp.o
+.PHONY : test_fall_board.cpp.o
+
+test_fall_board.i: test_fall_board.cpp.i
+
+.PHONY : test_fall_board.i
+
+# target to preprocess a source file
+test_fall_board.cpp.i:
+	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/test_fall_board.cpp.i
+.PHONY : test_fall_board.cpp.i
+
+test_fall_board.s: test_fall_board.cpp.s
+
+.PHONY : test_fall_board.s
+
+# target to generate assembly for a file
+test_fall_board.cpp.s:
+	$(MAKE) -f CMakeFiles/show_board.dir/build.make CMakeFiles/show_board.dir/test_fall_board.cpp.s
+.PHONY : test_fall_board.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... main"
+	@echo "... rebuild_cache"
+	@echo "... show_board"
+	@echo "... Puyo_test"
 	@echo "... Collision.o"
 	@echo "... Collision.i"
 	@echo "... Collision.s"
@@ -357,12 +466,18 @@ help:
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"
+	@echo "... GameBoard.o"
+	@echo "... GameBoard.i"
+	@echo "... GameBoard.s"
 	@echo "... GameObject.o"
 	@echo "... GameObject.i"
 	@echo "... GameObject.s"
 	@echo "... Map.o"
 	@echo "... Map.i"
 	@echo "... Map.s"
+	@echo "... Puyo_test.o"
+	@echo "... Puyo_test.i"
+	@echo "... Puyo_test.s"
 	@echo "... TextureManager.o"
 	@echo "... TextureManager.i"
 	@echo "... TextureManager.s"
@@ -372,6 +487,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... test_fall_board.o"
+	@echo "... test_fall_board.i"
+	@echo "... test_fall_board.s"
 .PHONY : help
 
 

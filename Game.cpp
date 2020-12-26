@@ -178,13 +178,13 @@ void Game::update()
             cout << "Nothing Moving" << endl;
             gameboard.getComponent<GameBoardComponent>().init();
         }
-        if (c->getComponent<GameBoardComponent>().destR.y < 35 ||
-            c->getComponent<GameBoardComponent>().destR.y >= 635)
-        {
-            c->getComponent<GameBoardComponent>().speed.y = 0;
-            c->getComponent<GameBoardComponent>().speed.x = 0;
-            c->getComponent<GameBoardComponent>().destR.y = 635;
-        }
+        // if (c->getComponent<GameBoardComponent>().destR.y < 35 ||
+        //     c->getComponent<GameBoardComponent>().destR.y >= 635)
+        // {
+        //     c->getComponent<GameBoardComponent>().speed.y = 0;
+        //     c->getComponent<GameBoardComponent>().speed.x = 0;
+        //     c->getComponent<GameBoardComponent>().destR.y = 635;
+        // }
 
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {

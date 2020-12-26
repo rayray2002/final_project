@@ -50,54 +50,29 @@ public:
 
     void init() override
     {
-<<<<<<< HEAD
         unit a;
-        static int w = 50;
 
         a.destR.x = 100;
-        a.destR.y = 50;
-        a.destR.h = w;
-        a.destR.w = w;
-=======
-	    unit a;
+        a.destR.y = 35;
+        a.destR.h = 50;
+        a.destR.w = 50;
 
-	    a.destR.x = 100;
-	    a.destR.y = 35;
-	    a.destR.h = 50;
-	    a.destR.w = 50;
->>>>>>> feee7ef436b84524588d8af184809812f1af8b8f
+        a.srcR.x = 0;
+        a.srcR.y = 0;
+        a.srcR.h = 1000;
+        a.srcR.w = 1000;
 
-	    a.srcR.x = 0;
-	    a.srcR.y = 0;
-	    a.srcR.h = 1000;
-	    a.srcR.w = 1000;
-
-<<<<<<< HEAD
         srand(time(0));
-        a.color = rand() % 4 + 1;
-=======
-	    srand(time(0));
-	    a.color = rand() % 4;
->>>>>>> feee7ef436b84524588d8af184809812f1af8b8f
+        a.color = rand() % 4;
 
-	    a.isActive = true;
-	    a.isMoving = true;
+        a.isActive = true;
+        a.isMoving = true;
 
-<<<<<<< HEAD
-        a.speed.x = w;
-        a.speed.y = w;
-
-        a.bspeed.x = w;
-        a.bspeed.y = w;
+        a.speed.x = 50;
+        a.speed.y = 50;
 
         blocks.push_back(a);
-=======
-	    a.speed.x = 50;
-	    a.speed.y = 50;
-
-	    blocks.push_back(a);
-	    cout << "Push Back" << endl;
->>>>>>> feee7ef436b84524588d8af184809812f1af8b8f
+        cout << "Push Back" << endl;
     }
 
     void update() override
@@ -120,13 +95,8 @@ public:
                             a.destR.x -= a.bspeed.y;
                         break;
                     case SDLK_RIGHT:
-<<<<<<< HEAD
-                        if (a.destR.x <= 250 && map[(a.destR.y - 50) / 50][(a.destR.x - 50) / 50 + 1] == '0')
-                            a.destR.x += a.bspeed.x;
-=======
-	                    if (a.destR.x <= 300)
-		                    a.destR.x += a.speed.x;
->>>>>>> feee7ef436b84524588d8af184809812f1af8b8f
+                        if (a.destR.x <= 300)
+                            a.destR.x += a.speed.x;
                         break;
                     case SDLK_DOWN:
                         a.destR.y += a.speed.y;
