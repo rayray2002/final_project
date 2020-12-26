@@ -144,17 +144,17 @@ void Game::update()
 
         if (!anyBlocksOnBoardIsMoving)
         {
-            cout << "Nothing Moving" << endl;
+            // cout << "Nothing Moving" << endl;
             gameboard.getComponent<GameBoardComponent>().init();
         }
 
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
-            if (a.destR.y < 100 || a.destR.y >= 650)
+            if (a.destR.y < 50 || a.destR.y >= 650)
             {
                 a.speed.y = 0;
                 a.speed.x = 0;
-                cout << "Very Good" << endl;
+                // cout << "Very Good" << endl;
             }
             for (auto &b : c->getComponent<GameBoardComponent>().blocks)
             {
@@ -163,14 +163,14 @@ void Game::update()
                     if (Collision::AABBDOWN(a.destR, b.destR))
                         a.speed.y = 0;
 
-                    if (Collision::AABBHORIZONTALRIGHT(a.destR, b.destR))
-                        a.bspeed.y = 0;
+                    // if (Collision::AABBHORIZONTALRIGHT(a.destR, b.destR))
+                    //     a.bspeed.y = 0;
                     // if (!Collision::AABBHORIZONTALRIGHT(a.destR, b.destR))
-                    //     a.bspeed.y = 30;
-                    if (Collision::AABBHORIZONTALLEFT(a.destR, b.destR))
-                        a.bspeed.x = 0;
+                    //     a.bspeed.y = 50;
+                    // if (Collision::AABBHORIZONTALLEFT(a.destR, b.destR))
+                    //     a.bspeed.x = 0;
                     // if (!Collision::AABBHORIZONTALLEFT(a.destR, b.destR))
-                    //     a.bspeed.x = 30;
+                    //     a.bspeed.x = 50;
                 }
             }
         }
