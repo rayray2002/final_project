@@ -18,6 +18,7 @@ bool Game::isRunning = false;
 auto &player(manager.addEntity());
 auto &back(manager.addEntity());
 auto &buttom(manager.addEntity());
+auto &gameboard(manager.addEntity());
 // auto& colliders(manager.addEntity());//
 
 Game::Game()
@@ -79,15 +80,18 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
+    gameboard.addComponent<GameBoardComponent>(50, 50);
+    gameboard.addGroup(groupGameBoards);
+
     // colliders.addComponent<SpriteComponent>()
 
     //Music
     MusicPlay("./mp3/miku.wav", 32);
 
     //LinkStart
-    // LinkStart("Game Initailizing...", 1000, 100, 600);
-    // LinkStart("Game Initailized!", 1000, 100, 600);
-    // LinkStart("Link Start!", 2000, 200, 600);
+    LinkStart("Game Initailizing...", 1000, 100, 600);
+    LinkStart("Game Initailized!", 1000, 100, 600);
+    LinkStart("Link Start!", 2000, 200, 600);
     //LinkStart
 }
 
@@ -96,6 +100,7 @@ auto &players(manager.getGroup(Game::groupPlayers));
 auto &colliders(manager.getGroup(Game::groupColliders));
 auto &backs(manager.getGroup(Game::groupBackGrounds));
 auto &buttoms(manager.getGroup(Game::groupTextButtoms));
+auto &gameboards(manager.getGroup(Game::groupGameBoards));
 
 void Game::handleEveants()
 {
@@ -117,57 +122,28 @@ void Game::handleEveants()
 
 void Game::update()
 {
-    SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
-    Vector2D playerPos = player.getComponent<TransformComponent>().position;
+    // SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
+    // Vector2D playerPos = player.getComponent<TransformComponent>().position;
     manager.refresh();
     manager.update();
-    // manager.draw();
-    for (auto &c : colliders)
+    for (auto &c : gameboards)
     {
-        SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
+        // SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
         if (Collision::AABB(cCol, playerCol))
         {
             cout << "hit\n";
             player.getComponent<TransformComponent>().position = playerPos;
         }
     }
-    camera.x = player.getComponent<TransformComponent>().position.x; // - 400;
-    camera.y = player.getComponent<TransformComponent>().position.y; // - 320;
 
-    if (camera.x < 0)
+    for (auto &b : gameboards)
     {
-        camera.x = 0;
-    }
-
-    if (camera.y < 0)
-    {
-        camera.y = 0;
-    }
-
-    if (camera.x > camera.w)
-    {
-        camera.x = camera.w;
-    }
-
-    if (camera.y > camera.h)
-    {
-        camera.y = camera.h;
+        b->getComponent<GameBoardComponent>().update();
     }
 }
 
 void Game::render()
 {
-
-    // SDL_RenderClear(renderer);
-    for (auto &t : tiles)
-    {
-        //t->draw();
-    }
-
-    for (auto &c : colliders)
-    {
-        //c->draw();
-    }
 
     for (auto &p : players)
     {
@@ -182,6 +158,11 @@ void Game::render()
     for (auto &b : buttoms)
     {
         b->getComponent<TextButtomComponent>().draw();
+    }
+
+    for (auto &b : gameboards)
+    {
+        b->getComponent<GameBoardComponent>().draw();
     }
 
     SDL_RenderPresent(Game::renderer);

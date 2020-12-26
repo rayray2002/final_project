@@ -47,7 +47,8 @@ public:
         groupPlayers,
         groupColliders,
         groupBackGrounds,
-        groupTextButtoms
+        groupTextButtoms,
+        groupGameBoards
     };
 
 private:

@@ -8,6 +8,7 @@ CMakeFiles/main.dir/Collision.cpp.o: ECS/BackGroundComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/ECS.h
+CMakeFiles/main.dir/Collision.cpp.o: ECS/GameBoardComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/KeyBoardController.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/SpriteComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/TextButtomComponent.h
@@ -34,6 +35,7 @@ CMakeFiles/main.dir/Game.cpp.o: ECS/BackGroundComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/ECS.h
+CMakeFiles/main.dir/Game.cpp.o: ECS/GameBoardComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/KeyBoardController.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/SpriteComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/TextButtomComponent.h
@@ -60,6 +62,7 @@ CMakeFiles/main.dir/Map.cpp.o: ECS/BackGroundComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/ECS.h
+CMakeFiles/main.dir/Map.cpp.o: ECS/GameBoardComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/KeyBoardController.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/SpriteComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/TextButtomComponent.h

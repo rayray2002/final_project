@@ -53,6 +53,8 @@ BackGroundComponent.h
 /home/shyu/Desktop/final_project_all/ECS/BackGroundComponent.h
 TextButtomComponent.h
 /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
+GameBoardComponent.h
+/home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
 
 /home/shyu/Desktop/final_project_all/ECS/ECS.h
 iostream
@@ -69,6 +71,20 @@ array
 -
 ../TextureManager.h
 /home/shyu/Desktop/final_project_all/TextureManager.h
+
+/home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
+SDL.h
+-
+../Game.h
+/home/shyu/Desktop/final_project_all/Game.h
+Components.h
+/home/shyu/Desktop/final_project_all/ECS/Components.h
+../TextureManager.h
+/home/shyu/Desktop/final_project_all/TextureManager.h
+ECS.h
+/home/shyu/Desktop/final_project_all/ECS/ECS.h
+map
+-
 
 /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
 ../Game.h

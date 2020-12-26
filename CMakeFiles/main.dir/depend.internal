@@ -9,6 +9,7 @@ CMakeFiles/main.dir/Collision.cpp.o
  /home/shyu/Desktop/final_project_all/ECS/ColliderComponent.h
  /home/shyu/Desktop/final_project_all/ECS/Components.h
  /home/shyu/Desktop/final_project_all/ECS/ECS.h
+ /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
  /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
  /home/shyu/Desktop/final_project_all/ECS/SpriteComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
@@ -35,6 +36,7 @@ CMakeFiles/main.dir/Game.cpp.o
  /home/shyu/Desktop/final_project_all/ECS/ColliderComponent.h
  /home/shyu/Desktop/final_project_all/ECS/Components.h
  /home/shyu/Desktop/final_project_all/ECS/ECS.h
+ /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
  /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
  /home/shyu/Desktop/final_project_all/ECS/SpriteComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
@@ -61,6 +63,7 @@ CMakeFiles/main.dir/Map.cpp.o
  /home/shyu/Desktop/final_project_all/ECS/ColliderComponent.h
  /home/shyu/Desktop/final_project_all/ECS/Components.h
  /home/shyu/Desktop/final_project_all/ECS/ECS.h
+ /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
  /home/shyu/Desktop/final_project_all/ECS/KeyBoardController.h
  /home/shyu/Desktop/final_project_all/ECS/SpriteComponent.h
  /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h

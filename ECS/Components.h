@@ -10,4 +10,5 @@
 #include "TileComponent.h"
 #include "BackGroundComponent.h"
 #include "TextButtomComponent.h"
+#include "GameBoardComponent.h"
 #endif
