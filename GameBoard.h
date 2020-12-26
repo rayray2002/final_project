@@ -2,12 +2,12 @@
 #define DEBUG 1
 #endif
 
-#ifndef HEIGHT
-#define HEIGHT 13
+#ifndef BOARDHEIGHT
+#define BOARDHEIGHT 13
 #endif
 
-#ifndef WIDTH
-#define WIDTH 6
+#ifndef BOARDWIDTH
+#define BOARDWIDTH 6
 #endif
 
 #ifndef GAMEBOARD_H
@@ -34,13 +34,13 @@ char color_to_char(Color);
 
 class GameBoard {
 public:
-	Color board[HEIGHT][WIDTH] = {};
+	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
 
 	GameBoard();
 
-	GameBoard(char [][WIDTH]);
+	GameBoard(char [][BOARDWIDTH]);
 
-	GameBoard(Color [][WIDTH]);
+	GameBoard(Color [][BOARDWIDTH]);
 
 	void printer();
 
