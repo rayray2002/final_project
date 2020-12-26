@@ -87,7 +87,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     // colliders.addComponent<SpriteComponent>()
 
     //Music
-    MusicPlay("./mp3/miku.wav", 32);
+    MusicPlay("./mp3/miku.wav", 0);
 
     //LinkStart
     LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -131,16 +131,7 @@ void Game::update()
     manager.update();
     for (auto &c : gameboards)
     {
-        // SDL_Rect cCol = c->getComponent<ColliderComponent>().collider;
-
-        if (c->getComponent<GameBoardComponent>().move())
-        {
-            anyBlocksOnBoardIsMoving = true;
-            break;
-        }
-        else
-            anyBlocksOnBoardIsMoving = false;
-        for (auto a : c->getComponent<GameBoardComponent>().blocks)
+        for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
             if (a.isMoving)
             {
@@ -162,15 +153,14 @@ void Game::update()
             c->getComponent<GameBoardComponent>().speed.x = 0;
             c->getComponent<GameBoardComponent>().destR.y = 650;
         }
-        if (!c->getComponent<GameBoardComponent>().blocks.empty())
+
+        for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
-            for (auto a : c->getComponent<GameBoardComponent>().blocks)
+            if (a.destR.y < 100 || a.destR.y >= 650)
             {
-                if (a.destR.y < 100 || a.destR.y >= 650)
-                {
-                    a.speed.y = 0;
-                    a.speed.x = 0;
-                }
+                a.speed.y = 0;
+                a.speed.x = 0;
+                cout << "Very Good" << endl;
             }
         }
     }
