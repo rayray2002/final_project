@@ -62,7 +62,7 @@ public:
         a.srcR.h = 1000;
         a.srcR.w = 1000;
 
-        switch (randNumber % 4) {
+        switch (randNumber % 5) {
             case 0:
                 a.color = Red;
                 break;
