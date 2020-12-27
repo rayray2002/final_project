@@ -13,6 +13,7 @@
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -20,11 +21,20 @@
 
 using namespace std;
 
-enum Color {
-	Empty, Trash, Rainbow, Red, Green, Blue, Yellow, Purple
+enum Color
+{
+	Empty,
+	Trash,
+	Rainbow,
+	Red,
+	Green,
+	Blue,
+	Yellow,
+	Purple
 };
 
-struct Block {
+struct Block
+{
 	int x, y;
 };
 
@@ -32,15 +42,16 @@ Color char_to_color(char);
 
 char color_to_char(Color);
 
-class GameBoard {
+class GameBoard
+{
 public:
 	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
 
 	GameBoard();
 
-	GameBoard(char [][BOARDWIDTH]);
+	GameBoard(char[][BOARDWIDTH]);
 
-	GameBoard(Color [][BOARDWIDTH]);
+	GameBoard(Color[][BOARDWIDTH]);
 
 	void printer();
 

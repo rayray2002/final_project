@@ -16,7 +16,7 @@ using namespace std;
 class GameBoardComponent : public Component
 {
 private:
-    char map[15][6];
+    char map[14][8];
 
 public:
     struct unit
@@ -40,7 +40,7 @@ public:
     }
     void setInitialMap()
     {
-        for (int i = 0; i < 13; i++)
+        for (int i = 0; i < 14; i++)
         {
             for (int j = 0; j < 8; j++)
             {
@@ -72,6 +72,9 @@ public:
         a.speed.x = 50;
         a.speed.y = 50;
 
+        a.bspeed.x = 50;
+        a.bspeed.y = 50;
+
         blocks.push_back(a);
         cout << "Push Back" << endl;
     }
@@ -81,13 +84,12 @@ public:
         setInitialMap();
         for (auto &a : blocks)
         {
+            // cout << (a.destR.y - 35) / 50 << " " << (a.destR.x - 100) / 50 + 1 << endl;
             map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = a.color + '0';
         }
         static int num = 0;
         for (auto &a : blocks)
         {
-            // cout << a.destR.x << " " << a.destR.y << endl;
-            // map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = a.color + '0';
             if (a.speed.y == 0)
             {
                 a.isMoving = false;
@@ -99,25 +101,18 @@ public:
                     {
                     case SDLK_LEFT:
                         if (a.destR.x >= 150 && map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50] == '0')
-                        {
                             a.destR.x -= a.bspeed.y;
-                            map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50] = a.color + '0';
-                            // map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = '0';
-                        }
+                        // cout << "LEFT " << (a.destR.y - 35) / 50 << " " << (a.destR.x - 100) / 50 << endl;
                         break;
                     case SDLK_RIGHT:
                         if (a.destR.x <= 300 && map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 2] == '0')
-                        {
                             a.destR.x += a.bspeed.x;
-                            map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 2] = a.color + '0';
-                            // map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = '0';
-                        }
+                        // cout << "RIGHT " << (a.destR.y - 35) / 50 << " " << (a.destR.x - 100) / 50 + 2 << endl;
+
                         break;
                     case SDLK_DOWN:
-                        a.destR.y += a.speed.y;
-                        map[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] = a.color + '0';
-                        // map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = '0';
-
+                        if (map[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] == '0')
+                            a.destR.y += a.speed.y;
                         break;
                     case SDLK_SPACE:
                         break;
@@ -163,7 +158,7 @@ public:
             cout << endl;
         }
 
-        cout << "\n/************************/\n\n";
+        cout << "\n************************\n\n";
     }
 };
 
