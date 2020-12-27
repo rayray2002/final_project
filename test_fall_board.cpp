@@ -252,118 +252,180 @@ bool no(Color board[13][6]){
 	}
 	return quit;
 }
-void show_fall(Color board1[13][6]) {
-    Color board[13][6];
-    for(int i=0;i<13;i++){
-    	for(int j=0;j<6;j++){
-    		board[i][j]=board1[i][j];
+void show_fall(Color board[13][6]) {
+//    Color board[13][6];
+//    for(int i=0;i<13;i++){
+//    	for(int j=0;j<6;j++){
+//    		board[i][j]=board1[i][j];
+//		}
+//	}
+	int fall[13][6]={};
+	bool stop[13][6]={};
+	int empty[6]={};
+	for(int i=0;i<6;i++){
+		for(int j=12;j>=0;j--){
+			if(board[j][i]==Empty){
+				empty[i]++;
+				stop[j][i]=true;
+				continue;
+			} 
+			else fall[j][i]=empty[i];
+			
 		}
 	}
-	while(!no(board)){
-		bool stop[6] = {0,0,0,0,0,0};
-    	int h[6] = {-1,-1,-1,-1,-1,-1};
-   		for (int i = 0; i < 6; i++) {
-    	    for (int j = 12; j >= 0; j--) {
-    	        if (board[j][i] == Empty) {
-    	            h[i] = j;
-    	            break;
-    	        }
-				if(j==0) stop[i]=true;
-    	    }
-    	}
-    	SDL_SetRenderDrawColor(Renderer, 0,0,0,0);
-    	int times = 0;
-    	int lowest[6] = {-1,-1,-1,-1,-1,-1};
-    	for (int i = 0; i < 6; i++) {
-     	   for (int j = h[i] ; j >= 0; j--) {
-    	        if (board[j][i] != Empty) {
-    	            lowest[i] = j;
-    	            break;
-    	        }
-    	        else if (j == 0) {
-    	            stop[i] = true;
-    	        }
-    	    }
-    	}
-    	int speed=10;
-    	int t[6] = {};
-    	bool quit;
-    	do{
-    	    for (int i = 0; i < 6; i++) {
-    	        for (int j = 0; j < 13; j++) {
-    	            if (j > h[i]) {
-    	                SDL_Texture* texture = NULL;
-    	                switch (board[j][i]) {
-    	                case 1:
-    	                    texture = SDL_CreateTextureFromSurface(Renderer, surface_r); break;
-    	                case 2:
-    	                    texture = SDL_CreateTextureFromSurface(Renderer, surface_g); break;
-    	                case 4:
-    	                    texture = SDL_CreateTextureFromSurface(Renderer, surface_y); break;
-    	                }
-        	            //SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
-            	        int size = 80;
-            	        SDL_Rect a;
-            	        a.x = 500 + size * i;
-            	        a.y = size * j;
-            	        a.w = size;
-            	        a.h = size;
-	
-                	    SDL_RenderCopy(Renderer, texture, NULL, &a);
-                	    SDL_DestroyTexture(texture);
-                	}
-                	else if (j < h[i]) {
-                		if(board[j][i]==Empty) continue;
-                	    SDL_Texture* texture = NULL;
-                	    switch (board[j][i]) {
-                	    case 1:
-                	        texture = SDL_CreateTextureFromSurface(Renderer, surface_r); break;
-                	    case 2:
-                	        texture = SDL_CreateTextureFromSurface(Renderer, surface_g); break;
-                	    case 4:
-                	        texture = SDL_CreateTextureFromSurface(Renderer, surface_y); break;
-                	    }
-                	    int size = 80;
-                	    SDL_Rect a;
-                	    a.x = 500 + size * i;
-                	    if (!stop[i]) {
-                	        if (size * j + size* times / speed  >= size * h[i]) {
-                	            stop[i] = true;
-                	            a.y = size * h[i];
-                	            t[i] = times;
-                	        }
-                	        else a.y = size * j + size / speed * times;
-                	    }
-                	    else {
-                	        a.y = size * j + size / speed * t[i];
-                	    }
-                	    a.w = size;
-                	    a.h = size;
-                	    SDL_RenderCopy(Renderer, texture, NULL, &a);
-                	    SDL_DestroyTexture(texture);
-                	}
-            	}
-        	}
-        	SDL_RenderPresent(Renderer);
-        	SDL_Delay(1);
-        	SDL_RenderClear(Renderer);
-        
-        	quit = true;
-        	for (int i = 0; i < 6; i++) {
-        	    if (!stop[i]) quit = false;
-        	}
-        
-        	times++;
-    	} while (!quit);
-    	for(int i=0;i<6;i++){
-    		if(lowest[i]==-1) continue;
-    		for(int j=h[i];j>=0;j--){
-    			if(j>=h[i]-lowest[i]) board[j][i]=board[j-h[i]+lowest[i]][i];
-    			else board[j][i]=Empty;
+	int times=0;
+	bool quit;
+	do{
+		for(int i=0;i<6;i++){
+			for(int j=12;j>=0;j--){
+				if(board[j][i]==Empty) continue;
+				else{
+					SDL_SetRenderDrawColor(Renderer, 0,0,0,0);
+					SDL_Texture* texture = NULL;
+        	        	    switch (board[j][i]) {
+        	        	    case 1:
+        	        	        texture = SDL_CreateTextureFromSurface(Renderer, surface_r); break;
+        	        	    case 2:
+                	    	    texture = SDL_CreateTextureFromSurface(Renderer, surface_g); break;
+                	    	case 4:
+                	    	    texture = SDL_CreateTextureFromSurface(Renderer, surface_y); break;
+                	    	}
+					int size = 80;
+					int speed=10;
+            		SDL_Rect a;
+            		a.x = 500 + size * i;
+            		if(!stop[j][i]){
+            			if(size * j + size * times / speed>=size*(j+fall[j][i])){
+            				stop[j][i]=true;
+            				a.y=size*(j+fall[j][i]);
+						}
+            			else a.y = size * j + size * times / speed ;
+					}else a.y=size*(j+fall[j][i]);
+            		a.w = size;
+            		a.h = size;
+            		SDL_RenderCopy(Renderer, texture, NULL, &a);
+                	SDL_DestroyTexture(texture);
+				}
 			}
 		}
-	}
+		SDL_RenderPresent(Renderer);
+        SDL_Delay(1);
+        SDL_RenderClear(Renderer);
+        times++;
+        
+        quit=true;
+        for(int i=0;i<6;i++){
+        	for(int j=0;j<13;j++){
+        		if(!stop[j][i]) quit=false;
+			}
+		}
+	}while(!quit);
 }
+//	while(!no(board)){
+//		bool stop[6] = {0,0,0,0,0,0};
+//    	int h[6] = {-1,-1,-1,-1,-1,-1};
+//   		for (int i = 0; i < 6; i++) {
+//    	    for (int j = 12; j >= 0; j--) {
+//    	        if (board[j][i] == Empty) {
+//    	            h[i] = j;
+//    	            break;
+//    	        }
+//				if(j==0) stop[i]=true;
+//    	    }
+//    	}
+//    	SDL_SetRenderDrawColor(Renderer, 0,0,0,0);
+//    	int times = 0;
+//    	int lowest[6] = {-1,-1,-1,-1,-1,-1};
+//    	for (int i = 0; i < 6; i++) {
+//     	   for (int j = h[i] ; j >= 0; j--) {
+//    	        if (board[j][i] != Empty) {
+//    	            lowest[i] = j;
+//    	            break;
+//    	        }
+//    	        else if (j == 0) {
+//    	            stop[i] = true;
+//    	        }
+//    	    }
+//    	}
+//    	int speed=10;
+//    	int t[6] = {};
+//    	bool quit;
+//    	do{
+//    	    for (int i = 0; i < 6; i++) {
+//    	        for (int j = 0; j < 13; j++) {
+//    	            if (j > h[i]) {
+//    	                SDL_Texture* texture = NULL;
+//    	                switch (board[j][i]) {
+//    	                case 1:
+//    	                    texture = SDL_CreateTextureFromSurface(Renderer, surface_r); break;
+//    	                case 2:
+//    	                    texture = SDL_CreateTextureFromSurface(Renderer, surface_g); break;
+//    	                case 4:
+//    	                    texture = SDL_CreateTextureFromSurface(Renderer, surface_y); break;
+//    	                }
+//        	            //SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
+//            	        int size = 80;
+//            	        SDL_Rect a;
+//            	        a.x = 500 + size * i;
+//            	        a.y = size * j;
+//            	        a.w = size;
+//            	        a.h = size;
+//	
+//                	    SDL_RenderCopy(Renderer, texture, NULL, &a);
+//                	    SDL_DestroyTexture(texture);
+//                	}
+//                	else if (j < h[i]) {
+//                		if(board[j][i]==Empty) continue;
+//                	    SDL_Texture* texture = NULL;
+//                	    switch (board[j][i]) {
+//                	    case 1:
+//                	        texture = SDL_CreateTextureFromSurface(Renderer, surface_r); break;
+//                	    case 2:
+//                	        texture = SDL_CreateTextureFromSurface(Renderer, surface_g); break;
+//                	    case 4:
+//                	        texture = SDL_CreateTextureFromSurface(Renderer, surface_y); break;
+//                	    }
+//                	    int size = 80;
+//                	    SDL_Rect a;
+//                	    a.x = 500 + size * i;
+//                	    if (!stop[i]) {
+//                	        if (size * j + size* times / speed  >= size * h[i]) {
+//                	            stop[i] = true;
+//                	            a.y = size * h[i];
+//                	            t[i] = times;
+//                	        }
+//                	        else a.y = size * j + size / speed * times;
+//                	    }
+//                	    else {
+//                	        a.y = size * j + size / speed * t[i];
+//                	    }
+//                	    a.w = size;
+//                	    a.h = size;
+//                	    SDL_RenderCopy(Renderer, texture, NULL, &a);
+//                	    SDL_DestroyTexture(texture);
+//                	}
+//            	}
+//        	}
+//        	SDL_RenderPresent(Renderer);
+//        	SDL_Delay(1);
+//        	SDL_RenderClear(Renderer);
+//        
+//        	quit = true;
+//        	for (int i = 0; i < 6; i++) {
+//        	    if (!stop[i]) quit = false;
+//        	}
+//        
+//        	times++;
+//    	} while (!quit);
+//    	for(int i=0;i<6;i++){
+//    		if(lowest[i]==-1) continue;
+//    		for(int j=h[i];j>=0;j--){
+//    			if(j>=h[i]-lowest[i]) board[j][i]=board[j-h[i]+lowest[i]][i];
+//    			else board[j][i]=Empty;
+//			}
+//		}
+//	}
+//}
 void Puyo::fill() {
 	
 	if(needfall(board)) show_fall(board);
