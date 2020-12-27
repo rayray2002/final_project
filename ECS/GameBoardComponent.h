@@ -202,16 +202,16 @@ public:
             }
         }
 
-        for (int i = 0; i < 13; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                cout << color_to_char(gameboard.board[i][j]) << " ";
-            }
-            cout << '\n';
-        }
+        gameboard.printer();
 
-        cout << "\n************************\n\n";
+        //        for (int i = 0; i < 13; i++) {
+        //            for (int j = 0; j < 8; j++) {
+        //                cout << color_to_char(gameboard.board[i][j]) << " ";
+        //            }
+        //            cout << '\n';
+        //        }
+        //
+        //        cout << "\n************************\n\n";
     }
 
     void chaining()
