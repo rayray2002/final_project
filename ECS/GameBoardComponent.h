@@ -11,6 +11,9 @@
 #include <deque>
 #include <ctime>
 #include <map>
+#include "../GameBoard.h"
+#include <vector>
+
 using namespace std;
 
 class GameBoardComponent : public Component

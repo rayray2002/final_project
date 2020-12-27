@@ -45,7 +45,7 @@ char color_to_char(Color);
 class GameBoard
 {
 public:
-	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
+	Color board[BOARDHEIGHT+1][BOARDWIDTH+2] = {};
 
 	GameBoard();
 

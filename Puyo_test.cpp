@@ -15,6 +15,7 @@ int main() {
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'},
 	                          {'G', 'R', 'Y', 'G', 'Y', 'R'}};
 	GameBoard puyo(test_board);
+	puyo.printer();
 
 	int x;
 	char c;
