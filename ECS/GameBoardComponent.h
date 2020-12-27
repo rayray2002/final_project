@@ -25,6 +25,7 @@ public:
         SDL_Rect srcR, destR;
         Vector2D speed;
         Vector2D bspeed;
+        Vector2D mapPosition;
         int color;
         bool isMoving = true;
         bool isActive = true;
@@ -49,11 +50,11 @@ public:
         }
     }
 
-    void init() override
+    void initBlock(int randNumber, int xpos)
     {
         unit a;
 
-        a.destR.x = 100;
+        a.destR.x = xpos;
         a.destR.y = 35;
         a.destR.h = 50;
         a.destR.w = 50;
@@ -63,8 +64,7 @@ public:
         a.srcR.h = 1000;
         a.srcR.w = 1000;
 
-        srand(time(0));
-        a.color = rand() % 4 + 1;
+        a.color = randNumber % 4 + 1;
 
         a.isActive = true;
         a.isMoving = true;
@@ -75,40 +75,57 @@ public:
         a.bspeed.x = 50;
         a.bspeed.y = 50;
 
+        a.mapPosition.x = (a.destR.x - 100) / 50 + 1;
+        a.mapPosition.y = 0;
+
         blocks.push_back(a);
-        cout << "Push Back" << endl;
+    }
+
+    unit *getDataByMapPosition(int ypos, int xpos)
+    {
+        for (auto &b : blocks)
+        {
+            if (b.mapPosition.x == xpos && b.mapPosition.y == ypos)
+            {
+                return &b;
+            }
+        }
+    }
+
+    void init() override
+    {
+        initBlock(rand(), 150);
+        srand(time(0));
+        initBlock(rand(), 200);
     }
 
     void update() override
     {
         setInitialMap();
         for (auto &a : blocks)
-        {
-            // cout << (a.destR.y - 35) / 50 << " " << (a.destR.x - 100) / 50 + 1 << endl;
             map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = a.color + '0';
+        for (auto &a : blocks)
+        {
+            a.mapPosition.x = (a.destR.x - 100) / 50 + 1;
+            a.mapPosition.y = (a.destR.y - 35) / 50;
         }
         static int num = 0;
         for (auto &a : blocks)
         {
             if (a.speed.y == 0)
-            {
                 a.isMoving = false;
-            }
             if (num % 10 == 0 && a.isMoving)
             {
                 if (Game::event.type == SDL_KEYDOWN)
                     switch (Game::event.key.keysym.sym)
                     {
                     case SDLK_LEFT:
-                        if (a.destR.x >= 150 && map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50] == '0')
+                        if (a.destR.x >= 150 && (map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50] == '0' || (getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50)->isMoving && getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50)->mapPosition.x >= 2)))
                             a.destR.x -= a.bspeed.y;
-                        // cout << "LEFT " << (a.destR.y - 35) / 50 << " " << (a.destR.x - 100) / 50 << endl;
                         break;
                     case SDLK_RIGHT:
-                        if (a.destR.x <= 300 && map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 2] == '0')
+                        if (a.destR.x <= 300 && (map[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 2] == '0' || (getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50 + 2)->isMoving && getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50 + 2)->mapPosition.x <= 5)))
                             a.destR.x += a.bspeed.x;
-                        // cout << "RIGHT " << (a.destR.y - 35) / 50 << " " << (a.destR.x - 100) / 50 + 2 << endl;
-
                         break;
                     case SDLK_DOWN:
                         if (map[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] == '0')
