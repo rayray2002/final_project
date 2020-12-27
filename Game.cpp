@@ -87,7 +87,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     // colliders.addComponent<SpriteComponent>()
 
     //Music
-    MusicPlay("./mp3/miku.wav", 0);
+    MusicPlay("./mp3/miku.wav", 64);
 
     //LinkStart
     LinkStart("Game Initailizing...", 1000, 100, 600);
@@ -123,8 +123,6 @@ void Game::handleEveants()
 
 void Game::update()
 {
-    // SDL_Rect playerCol = player.getComponent<ColliderComponent>().collider;
-    // Vector2D playerPos = player.getComponent<TransformComponent>().position;
     static bool anyBlocksOnBoardIsMoving;
     anyBlocksOnBoardIsMoving = true;
     manager.refresh();
@@ -142,49 +140,8 @@ void Game::update()
                 anyBlocksOnBoardIsMoving = false;
         }
 
-        // if (!anyBlocksOnBoardIsMoving)
-        // {
-        //     // cout << "Nothing Moving" << endl;
-        //     gameboard.getComponent<GameBoardComponent>().init();
-        // }
-
-        // for (auto &a : c->getComponent<GameBoardComponent>().blocks)
-        // {
-        //     if (a.destR.y < 50 || a.destR.y >= 650)
-        //     {
-        //         a.speed.y = 0;
-        //         a.speed.x = 0;
-        //         // cout << "Very Good" << endl;
-        //     }
-        //     for (auto &b : c->getComponent<GameBoardComponent>().blocks)
-        //     {
-        //         if (!b.isMoving && &a != &b)
-        //         {
-        //             if (Collision::AABBDOWN(a.destR, b.destR))
-        //                 a.speed.y = 0;
-
-        //             // if (Collision::AABBHORIZONTALRIGHT(a.destR, b.destR))
-        //             //     a.bspeed.y = 0;
-        //             // if (!Collision::AABBHORIZONTALRIGHT(a.destR, b.destR))
-        //             //     a.bspeed.y = 50;
-        //             // if (Collision::AABBHORIZONTALLEFT(a.destR, b.destR))
-        //             //     a.bspeed.x = 0;
-        //             // if (!Collision::AABBHORIZONTALLEFT(a.destR, b.destR))
-        //             //     a.bspeed.x = 50;
-        //         }
-        //     }
         if (!anyBlocksOnBoardIsMoving)
-        {
-            cout << "Nothing Moving" << endl;
             gameboard.getComponent<GameBoardComponent>().init();
-        }
-        // if (c->getComponent<GameBoardComponent>().destR.y < 35 ||
-        //     c->getComponent<GameBoardComponent>().destR.y >= 635)
-        // {
-        //     c->getComponent<GameBoardComponent>().speed.y = 0;
-        //     c->getComponent<GameBoardComponent>().speed.x = 0;
-        //     c->getComponent<GameBoardComponent>().destR.y = 635;
-        // }
 
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
@@ -192,7 +149,45 @@ void Game::update()
             {
                 a.speed.y = 0;
                 a.speed.x = 0;
-                cout << "Very Good" << endl;
+            }
+            for (auto &b : c->getComponent<GameBoardComponent>().blocks)
+            {
+                if (!b.isMoving && &a != &b)
+                    if (Collision::AABBDOWN(a.destR, b.destR))
+                        a.speed.y = 0;
+            }
+            for (auto &b : c->getComponent<GameBoardComponent>().blocks)
+            {
+                static bool leftHasBlock;
+                leftHasBlock = false;
+                if (!b.isMoving && &a != &b)
+                {
+                    if (Collision::AABBHORIZONTALRIGHT(a.destR, b.destR))
+                    {
+                        a.bspeed.x = 0;
+                        leftHasBlock = true;
+                    }
+                    if (leftHasBlock)
+                        break;
+                }
+                a.bspeed.x = 50;
+            }
+
+            for (auto &b : c->getComponent<GameBoardComponent>().blocks)
+            {
+                static bool rightHasBlock;
+                rightHasBlock = false;
+                if (!b.isMoving && &a != &b)
+                {
+                    if (Collision::AABBHORIZONTALLEFT(a.destR, b.destR))
+                    {
+                        a.bspeed.y = 0;
+                        rightHasBlock = true;
+                    }
+                    if (rightHasBlock)
+                        break;
+                }
+                a.bspeed.y = 50;
             }
         }
     }
