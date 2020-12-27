@@ -18,7 +18,7 @@ class GameBoardComponent : public Component
 private:
     char map[14][8];
 
-public:
+public: //
     struct unit
     {
         SDL_Texture *texture;
