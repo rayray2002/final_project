@@ -204,6 +204,33 @@ Game.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Game.cpp.s
 .PHONY : Game.cpp.s
 
+GameBoard.o: GameBoard.cpp.o
+
+.PHONY : GameBoard.o
+
+# target to build an object file
+GameBoard.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameBoard.cpp.o
+.PHONY : GameBoard.cpp.o
+
+GameBoard.i: GameBoard.cpp.i
+
+.PHONY : GameBoard.i
+
+# target to preprocess a source file
+GameBoard.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameBoard.cpp.i
+.PHONY : GameBoard.cpp.i
+
+GameBoard.s: GameBoard.cpp.s
+
+.PHONY : GameBoard.s
+
+# target to generate assembly for a file
+GameBoard.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameBoard.cpp.s
+.PHONY : GameBoard.cpp.s
+
 GameObject.o: GameObject.cpp.o
 
 .PHONY : GameObject.o
@@ -357,6 +384,9 @@ help:
 	@echo "... Game.o"
 	@echo "... Game.i"
 	@echo "... Game.s"
+	@echo "... GameBoard.o"
+	@echo "... GameBoard.i"
+	@echo "... GameBoard.s"
 	@echo "... GameObject.o"
 	@echo "... GameObject.i"
 	@echo "... GameObject.s"

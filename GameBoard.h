@@ -45,7 +45,7 @@ char color_to_char(Color);
 class GameBoard
 {
 public:
-	Color board[BOARDHEIGHT+1][BOARDWIDTH+2] = {};
+	Color board[BOARDHEIGHT + 1][BOARDWIDTH + 2] = {};
 
 	GameBoard();
 
@@ -56,6 +56,10 @@ public:
 	void printer();
 
 	bool update();
+
+	bool isUpdated;
+
+	bool isChanged;
 
 	int get_combo() const;
 

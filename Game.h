@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "GameBoard.h"
 #define NUMMENU 5
 #define WIDTH 1280
 #define HEIGHT 720

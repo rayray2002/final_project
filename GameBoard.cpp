@@ -68,9 +68,9 @@ char color_to_char(Color in)
 
 GameBoard::GameBoard()
 {
-	for (int i = 1; i < BOARDHEIGHT+1; i++)
+	for (int i = 1; i < BOARDHEIGHT + 1; i++)
 	{
-		for (int j = 1; j < BOARDWIDTH+1; j++)
+		for (int j = 1; j < BOARDWIDTH + 1; j++)
 		{
 			Color c = Empty;
 			board[i][j] = c;
@@ -80,22 +80,22 @@ GameBoard::GameBoard()
 
 GameBoard::GameBoard(char board_i[][BOARDWIDTH])
 {
-	for (int i = 1; i < BOARDHEIGHT+1; i++)
+	for (int i = 1; i < BOARDHEIGHT + 1; i++)
 	{
-		for (int j = 1; j < BOARDWIDTH+1; j++)
+		for (int j = 1; j < BOARDWIDTH + 1; j++)
 		{
-			board[i][j] = char_to_color(board_i[i-1][j-1]);
+			board[i][j] = char_to_color(board_i[i - 1][j - 1]);
 		}
 	}
 }
 
 GameBoard::GameBoard(Color board_i[][BOARDWIDTH])
 {
-	for (int i = 1; i < BOARDHEIGHT+1; i++)
+	for (int i = 1; i < BOARDHEIGHT + 1; i++)
 	{
-		for (int j = 1; j < BOARDWIDTH+1; j++)
+		for (int j = 1; j < BOARDWIDTH + 1; j++)
 		{
-			board[i][j] = board_i[i-1][j-1];
+			board[i][j] = board_i[i - 1][j - 1];
 		}
 	}
 }
@@ -103,9 +103,9 @@ GameBoard::GameBoard(Color board_i[][BOARDWIDTH])
 void GameBoard::printer()
 {
 	cout << "######\n";
-	for (int i = 1; i < BOARDHEIGHT+1; i++)
+	for (int i = 1; i < BOARDHEIGHT + 1; i++)
 	{
-		for (int j = 1; j < BOARDWIDTH+1; j++)
+		for (int j = 1; j < BOARDWIDTH + 1; j++)
 		{
 			cout << color_to_char(board[i][j]);
 		}
@@ -119,7 +119,7 @@ vector<Block> GameBoard::check_chained(int x, int y)
 	queue<Block> q;
 	vector<Block> chain;
 	q.push((Block){x, y});
-	bool visited[BOARDWIDTH+2][BOARDHEIGHT+1] = {};
+	bool visited[BOARDWIDTH + 2][BOARDHEIGHT + 1] = {};
 
 	while (!q.empty())
 	{
@@ -140,13 +140,13 @@ vector<Block> GameBoard::check_chained(int x, int y)
 			q.push((Block){top.x, top.y - 1});
 			visited[top.x - 1][top.y] = true;
 		}
-		if (top.x + 1 < BOARDWIDTH+1 && (board[top.y][top.x + 1] == board[y][x] || board[top.y][top.x + 1] == Rainbow) &&
+		if (top.x + 1 < BOARDWIDTH + 1 && (board[top.y][top.x + 1] == board[y][x] || board[top.y][top.x + 1] == Rainbow) &&
 			!visited[top.x + 1][top.y])
 		{
 			q.push((Block){top.x + 1, top.y});
 			visited[top.x + 1][top.y] = true;
 		}
-		if (top.y + 1 < BOARDHEIGHT+1 && (board[top.y + 1][top.x] == board[y][x] || board[top.y + 1][top.x] == Rainbow) &&
+		if (top.y + 1 < BOARDHEIGHT + 1 && (board[top.y + 1][top.x] == board[y][x] || board[top.y + 1][top.x] == Rainbow) &&
 			!visited[top.x][top.y + 1])
 		{
 			q.push((Block){top.x, top.y + 1});
@@ -168,9 +168,9 @@ bool GameBoard::remove(Block block)
 		board[block.y][block.x - 1] = Empty;
 	if (block.y - 1 >= 1 && board[block.y - 1][block.x] == Trash)
 		board[block.y - 1][block.x] = Empty;
-	if (block.x + 1 < BOARDWIDTH+1 && board[block.y][block.x + 1] == Trash)
+	if (block.x + 1 < BOARDWIDTH + 1 && board[block.y][block.x + 1] == Trash)
 		board[block.y][block.x + 1] = Empty;
-	if (block.y + 1 < BOARDHEIGHT+1 && board[block.y + 1][block.x] == Trash)
+	if (block.y + 1 < BOARDHEIGHT + 1 && board[block.y + 1][block.x] == Trash)
 		board[block.y + 1][block.x] = Empty;
 	return success_removal;
 }
@@ -183,7 +183,7 @@ void GameBoard::fill()
 		quit = true;
 		for (int i = 1; i < BOARDHEIGHT; i++)
 		{
-			for (int j = 1; j < BOARDWIDTH+1; j++)
+			for (int j = 1; j < BOARDWIDTH + 1; j++)
 			{
 				if (board[i][j] != Empty && board[i + 1][j] == Empty)
 				{
@@ -199,14 +199,12 @@ void GameBoard::fill()
 bool GameBoard::update()
 {
 	vector<Block> chain;
-	bool is_updated = false;
-//	if (DEBUG)
-//		fill();
-    printer();
+	isUpdated = false;
+	printer();
 	vector<vector<Block>> to_remove;
-	for (int i = 1; i < BOARDHEIGHT+1; i++)
+	for (int i = 1; i < BOARDHEIGHT + 1; i++)
 	{
-		for (int j = 1; j < BOARDWIDTH+1; j++)
+		for (int j = 1; j < BOARDWIDTH + 1; j++)
 		{
 			if (board[i][j] != Empty)
 			{
@@ -250,7 +248,7 @@ bool GameBoard::update()
 	if (!to_remove.empty())
 	{
 		combo++;
-		is_updated = true;
+		isUpdated = true;
 		if (DEBUG)
 			cout << "combo" << combo << endl;
 		for (int i = 0; i < to_remove.size(); i++)
@@ -266,7 +264,7 @@ bool GameBoard::update()
 	if (DEBUG)
 		printer();
 
-	if (!is_updated)
+	if (!isUpdated)
 	{
 		int score_add;
 		if (color_bonus.size() != 1)
@@ -281,7 +279,7 @@ bool GameBoard::update()
 		score += score_add;
 	}
 
-	return is_updated;
+	return isUpdated;
 }
 
 int GameBoard::get_combo() const

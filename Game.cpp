@@ -140,8 +140,8 @@ void Game::update()
                 anyBlocksOnBoardIsMoving = false;
         }
 
-//        if (!anyBlocksOnBoardIsMoving)
-//            gameboard.getComponent<GameBoardComponent>().init();
+        //        if (!anyBlocksOnBoardIsMoving)
+        //            gameboard.getComponent<GameBoardComponent>().init();
 
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
@@ -161,10 +161,15 @@ void Game::update()
 
     for (auto &b : gameboards)
     {
-        if (!anyBlocksOnBoardIsMoving) {
-            if (!b->getComponent<GameBoardComponent>().chaining()) {
+        if (!anyBlocksOnBoardIsMoving)
+        {
+            if (!b->getComponent<GameBoardComponent>().isChanged)
                 gameboard.getComponent<GameBoardComponent>().init();
-            }
+            else
+                while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
+                {
+                    b->getComponent<GameBoardComponent>().MoveDown();
+                }
         }
         b->getComponent<GameBoardComponent>().update();
     }
