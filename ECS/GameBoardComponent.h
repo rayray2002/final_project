@@ -153,13 +153,13 @@ public:
             {
                 SDL_Surface *tmpSurface;
                 if (a.color == 1)
-                    tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
+                    tmpSurface = SDL_LoadBMP("./img/padoru1.bmp");
                 else if (a.color == 2)
-                    tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
+                    tmpSurface = SDL_LoadBMP("./img/padoru2.bmp");
                 else if (a.color == 3)
-                    tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
+                    tmpSurface = SDL_LoadBMP("./img/padoru3.bmp");
                 else
-                    tmpSurface = SDL_LoadBMP("./img/banana.bmp");
+                    tmpSurface = SDL_LoadBMP("./img/padoru4.bmp");
                 a.texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
                 SDL_FreeSurface(tmpSurface);
                 TextureManager::Draw(a.texture, a.srcR, a.destR);
