@@ -13,6 +13,7 @@ void GameBoardComponent::ReSetAllArrayZero()
             UnitArray[i][j].color = Empty;
             UnitArray[i][j].isActive = false;
             UnitArray[i][j].isMoving = false;
+            UnitArray[i][j].ispaired = false;
             UnitArray[i][j].mapPosition.x = j;
             UnitArray[i][j].mapPosition.y = i;
             UnitArray[i][j].srcR.x = 0;
@@ -24,11 +25,12 @@ void GameBoardComponent::ReSetAllArrayZero()
         }
 }
 
-void GameBoardComponent::ReSetZeroUnit(int xpos, int ypos)
+void GameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos)
 {
     UnitArray[ypos][xpos].color = Empty;
     UnitArray[ypos][xpos].isActive = false;
     UnitArray[ypos][xpos].isMoving = false;
+    UnitArray[ypos][xpos].ispaired = false;
     SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
     UnitArray[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
     SDL_FreeSurface(tmpSurface);
@@ -42,7 +44,7 @@ void GameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2)
     UnitArray[y2][x2] = tmpUnit;
 }
 
-void GameBoardComponent::SwapTwoUnit(unit u1, unit u2)
+void GameBoardComponent::SwapTwoUnit(unit &u1, unit &u2)
 {
     SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y);
 }
@@ -60,7 +62,7 @@ void GameBoardComponent::UpdateUnitArray()
         }
 }
 
-void GameBoardComponent::InitializeRamdomUnitOnTop(int topx)
+void GameBoardComponent::InitializeRamdomUnitOnTop(int &topx)
 {
     Color tmpColor;
     switch (rand() % 5)
@@ -84,4 +86,39 @@ void GameBoardComponent::InitializeRamdomUnitOnTop(int topx)
     UnitArray[0][topx].color = tmpColor;
     UnitArray[0][topx].isMoving = true;
     UnitArray[0][topx].isActive = true;
+    UnitArray[0][topx].ispaired = true;
+}
+
+bool GameBoardComponent::AnyThingMoving()
+{
+    for (int i = 0; i < 13; i++)
+        for (int j = 0; j < 6; j++)
+        {
+            if (UnitArray[i][j].isMoving)
+                return true;
+        }
+    return false;
+}
+
+void GameBoardComponent::AddMovingPair(unit u1, unit u2)
+{
+    MovingPair.push_back(u1);
+    MovingPair.push_back(u2);
+}
+
+void GameBoardComponent::DeleteUsedMovingPair(unit u1, unit u2)
+{
+    MovingPair.pop_front();
+    MovingPair.pop_front();
+}
+
+void GameBoardComponent::Move()
+{
+    if (Game::event.type == SDL_KEYDOWN)
+    {
+        switch (Game::event.key.keysym.sym)
+        {
+        case SDLK_DOWN:
+        }
+    }
 }
