@@ -128,12 +128,12 @@ public:
     {
         setInitialMap();
         for (auto &a : blocks)
-            gameboard.board[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 1] = a.color;
+            gameboard.board[(a.destR.y - 35) / 50 +1][(a.destR.x - 100) / 50 + 1] = a.color;
 
         for (auto &a : blocks)
         {
             a.mapPosition.x = (a.destR.x - 100) / 50 + 1;
-            a.mapPosition.y = (a.destR.y - 35) / 50;
+            a.mapPosition.y = (a.destR.y - 35) / 50+1;
         }
         static int num = 0;
         for (auto &a : blocks)
@@ -147,20 +147,20 @@ public:
                     {
                     case SDLK_LEFT:
                         if (a.destR.x >= 150 &&
-                            (gameboard.board[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50] == Empty ||
-                             (getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50)->isMoving &&
-                              getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50)->mapPosition.x >= 2)))
+                            (gameboard.board[(a.destR.y - 35) / 50+1][(a.destR.x - 100) / 50] == Empty ||
+                             (getDataByMapPosition((a.destR.y - 35) / 50+1, (a.destR.x - 100) / 50)->isMoving &&
+                              getDataByMapPosition((a.destR.y - 35) / 50+1, (a.destR.x - 100) / 50)->mapPosition.x >= 2)))
                             a.destR.x -= a.bspeed.y;
                         break;
                     case SDLK_RIGHT:
                         if (a.destR.x <= 300 &&
-                            (gameboard.board[(a.destR.y - 35) / 50][(a.destR.x - 100) / 50 + 2] == Empty ||
-                             (getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50 + 2)->isMoving &&
-                              getDataByMapPosition((a.destR.y - 35) / 50, (a.destR.x - 100) / 50 + 2)->mapPosition.x <= 5)))
+                            (gameboard.board[(a.destR.y - 35) / 50+1][(a.destR.x - 100) / 50 + 2] == Empty ||
+                             (getDataByMapPosition((a.destR.y - 35) / 50+1, (a.destR.x - 100) / 50 + 2)->isMoving &&
+                              getDataByMapPosition((a.destR.y - 35) / 50+1, (a.destR.x - 100) / 50 + 2)->mapPosition.x <= 5)))
                             a.destR.x += a.bspeed.x;
                         break;
                     case SDLK_DOWN:
-                        if (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] == Empty)
+                        if (gameboard.board[(a.destR.y - 35) / 50 + 2][(a.destR.x - 100) / 50 + 1] == Empty)
                             a.destR.y += a.speed.y;
                         break;
                     case SDLK_SPACE:
@@ -236,14 +236,18 @@ public:
 
     void MoveDown()
     {
-        for (int i = 13; i >= 0; i++)
+    	cout << "falling\n";
+        for (int i = 13; i >= 0; i--)
         {
             for (int j = 1; j <= 7; j++)
             {
-                if (gameboard.board[getDataByMapPosition(j, i)->mapPosition.y + 1][getDataByMapPosition(j, i)->mapPosition.x] == 0)
+                if (gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] == Empty)
                 {
-                    if (getDataByMapPosition(j, i)->destR.y >= 12)
-                        getDataByMapPosition(j, i)->destR.y += 50;
+                    if (getDataByMapPosition(j, i)->destR.y >= 12) {
+	                    getDataByMapPosition(j, i)->destR.y += 50;
+	                    gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] = gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y][(int)getDataByMapPosition(j, i)->mapPosition.x];
+	                    gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] = Empty;
+                    }
                 }
             }
         }
@@ -253,7 +257,7 @@ public:
     {
         for (auto &a : blocks)
         {
-            if (gameboard.board[a.mapPosition.y + 1][a.mapPosition.x] == 0)
+            if (gameboard.board[(int)a.mapPosition.y + 1][(int)a.mapPosition.x] == Empty)
                 return true;
         }
         return false;

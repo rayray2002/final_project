@@ -163,6 +163,7 @@ void Game::update()
     {
         if (!anyBlocksOnBoardIsMoving)
         {
+	        b->getComponent<GameBoardComponent>().chaining();
             if (!b->getComponent<GameBoardComponent>().isChanged)
                 gameboard.getComponent<GameBoardComponent>().init();
             else
