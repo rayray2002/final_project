@@ -115,6 +115,7 @@ public:
                 return &b;
             }
         }
+	    return nullptr;
     }
 
     void init() override
