@@ -166,11 +166,12 @@ void Game::update()
             b->getComponent<GameBoardComponent>().chaining();
             if (!b->getComponent<GameBoardComponent>().isChanged)
                 gameboard.getComponent<GameBoardComponent>().init();
-            else
-                while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
-                {
-                    b->getComponent<GameBoardComponent>().MoveDown();
-                }
+            b->getComponent<GameBoardComponent>().MoveDown();
+            // else
+            //     while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
+            //     {
+            //         b->getComponent<GameBoardComponent>().MoveDown();
+            //     }
         }
         b->getComponent<GameBoardComponent>().update();
     }

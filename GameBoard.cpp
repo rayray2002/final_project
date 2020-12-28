@@ -200,7 +200,7 @@ bool GameBoard::update()
 {
 	vector<Block> chain;
 	isUpdated = false;
-	printer();
+	// printer();
 	vector<vector<Block>> to_remove;
 	for (int i = 1; i < BOARDHEIGHT + 1; i++)
 	{
@@ -262,22 +262,22 @@ bool GameBoard::update()
 	}
 
 	if (DEBUG)
-		printer();
+		// printer();
 
-	if (!isUpdated)
-	{
-		int score_add;
-		if (color_bonus.size() != 1)
+		if (!isUpdated)
 		{
-			score_add = 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
+			int score_add;
+			if (color_bonus.size() != 1)
+			{
+				score_add = 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
+			}
+			else
+			{
+				score_add = 10 * count * (group_bonus + combo);
+			}
+			trash_num = score_add / 70;
+			score += score_add;
 		}
-		else
-		{
-			score_add = 10 * count * (group_bonus + combo);
-		}
-		trash_num = score_add / 70;
-		score += score_add;
-	}
 
 	return isUpdated;
 }

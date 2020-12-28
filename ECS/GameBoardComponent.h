@@ -236,18 +236,18 @@ public:
 
     void MoveDown()
     {
-        for (int i = 13; i >= 0; i++)
+        for (int i = 12; i >= 0; i++)
         {
             for (int j = 1; j <= 7; j++)
             {
                 int ypos = getDataByMapPosition(j, i)->mapPosition.y;
                 int xpos = getDataByMapPosition(j, i)->mapPosition.x;
-                if (gameboard.board[ypos + 1][xpos] == 0)
+                if (gameboard.board[ypos + 1][xpos] == Empty)
                 {
-                    if (getDataByMapPosition(j, i)->destR.y >= 12)
+                    if (getDataByMapPosition(j, i)->mapPosition.y <= 12)
                     {
                         getDataByMapPosition(j, i)->destR.y += 50;
-                        printf("Position (%d, %d) move down", i, j);
+                        printf("Position (%d, %d) move down\n", i, j);
                     }
                 }
             }
@@ -263,7 +263,7 @@ public:
             if (gameboard.board[ypos + 1][xpos] == 0)
                 return true;
         }
-        printf("No block can move");
+        printf("No block can move\n");
         return false;
     }
 };
