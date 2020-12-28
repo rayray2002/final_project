@@ -222,7 +222,7 @@ public:
 //        else
 //            gameboard.isChanged = false;
 
-        if (gameboard.isChanged)
+        if (isChanged)
             for (int i = 0; i < blocks.size(); i++)
             {
                 auto a = blocks[i];
