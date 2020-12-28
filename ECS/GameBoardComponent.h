@@ -202,7 +202,7 @@ public:
             }
         }
 
-        gameboard.printer();
+        // gameboard.printer();
 
         //        for (int i = 0; i < 13; i++) {
         //            for (int j = 0; j < 8; j++) {
@@ -216,7 +216,7 @@ public:
 
     void chaining()
     {
-        bool changed = gameboard.update();
+        gameboard.isUpdated = gameboard.update();
         if (gameboard.isUpdated)
             gameboard.isChanged = true;
         else
@@ -240,10 +240,15 @@ public:
         {
             for (int j = 1; j <= 7; j++)
             {
-                if (gameboard.board[getDataByMapPosition(j, i)->mapPosition.y + 1][getDataByMapPosition(j, i)->mapPosition.x] == 0)
+                int ypos = getDataByMapPosition(j, i)->mapPosition.y;
+                int xpos = getDataByMapPosition(j, i)->mapPosition.x;
+                if (gameboard.board[ypos + 1][xpos] == 0)
                 {
                     if (getDataByMapPosition(j, i)->destR.y >= 12)
+                    {
                         getDataByMapPosition(j, i)->destR.y += 50;
+                        printf("Position (%d, %d) move down", i, j);
+                    }
                 }
             }
         }
@@ -253,9 +258,12 @@ public:
     {
         for (auto &a : blocks)
         {
-            if (gameboard.board[a.mapPosition.y + 1][a.mapPosition.x] == 0)
+            int ypos = a.mapPosition.y;
+            int xpos = a.mapPosition.x;
+            if (gameboard.board[ypos + 1][xpos] == 0)
                 return true;
         }
+        printf("No block can move");
         return false;
     }
 };

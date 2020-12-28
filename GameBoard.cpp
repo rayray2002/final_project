@@ -103,7 +103,7 @@ GameBoard::GameBoard(Color board_i[][BOARDWIDTH])
 void GameBoard::printer()
 {
 	cout << "######\n";
-	for (int i = 1; i < BOARDHEIGHT + 1; i++)
+	for (int i = 1; i < BOARDHEIGHT; i++)
 	{
 		for (int j = 1; j < BOARDWIDTH + 1; j++)
 		{
