@@ -16,6 +16,18 @@
 
 using namespace std;
 
+struct unit
+{
+    SDL_Texture *texture;
+    SDL_Rect srcR, destR;
+    Vector2D speed;
+    Vector2D bspeed;
+    Vector2D mapPosition;
+    Color color;
+    bool isMoving = true;
+    bool isActive = true;
+};
+
 class GameBoardComponent : public Component
 {
 private:
@@ -23,17 +35,15 @@ private:
 
 public:
     GameBoard gameboard;
-    struct unit
-    {
-        SDL_Texture *texture;
-        SDL_Rect srcR, destR;
-        Vector2D speed;
-        Vector2D bspeed;
-        Vector2D mapPosition;
-        Color color;
-        bool isMoving = true;
-        bool isActive = true;
-    };
+    // char map[14][8];
+    unit UnitArray[13][6];
+    void ReSetZeroUnit(int xpos, int ypos);
+    void ReSetAllArrayZero();
+    void SwapTwoUnit(int x1, int y1, int x2, int y2);
+    void SwapTwoUnit(unit u1, unit u2);
+    void UpdateUnitArray();
+    void InitializeRamdomUnitOnTop(int topx);
+
     deque<unit> blocks;
 
     bool isChanged;
