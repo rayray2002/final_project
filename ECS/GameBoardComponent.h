@@ -216,11 +216,11 @@ public:
 
     void chaining()
     {
-        bool changed = gameboard.update();
-        if (gameboard.isUpdated)
-            gameboard.isChanged = true;
-        else
-            gameboard.isChanged = false;
+        isChanged = gameboard.update();
+//        if (gameboard.isUpdated)
+//            gameboard.isChanged = true;
+//        else
+//            gameboard.isChanged = false;
 
         if (gameboard.isChanged)
             for (int i = 0; i < blocks.size(); i++)
