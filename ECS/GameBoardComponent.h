@@ -58,6 +58,14 @@ public:
         }
     }
 
+    void resetSize()
+    {
+        while (blocks.size() > 0)
+        {
+            blocks.pop_back();
+        }
+    }
+
     void initBlock(int randNumber, int xpos)
     {
         unit a;
@@ -242,9 +250,10 @@ public:
             {
                 int ypos = getDataByMapPosition(j, i)->mapPosition.y;
                 int xpos = getDataByMapPosition(j, i)->mapPosition.x;
-                if (gameboard.board[ypos + 1][xpos] == Empty)
+                if (gameboard.board[ypos + 1][xpos] == Empty && ypos <= 12)
                 {
-                    if (getDataByMapPosition(j, i)->mapPosition.y <= 12)
+                    printf("Position (%d, %d) move down\n", i, j);
+                    if (ypos <= 12)
                     {
                         getDataByMapPosition(j, i)->destR.y += 50;
                         printf("Position (%d, %d) move down\n", i, j);
@@ -260,7 +269,7 @@ public:
         {
             int ypos = a.mapPosition.y;
             int xpos = a.mapPosition.x;
-            if (gameboard.board[ypos + 1][xpos] == 0)
+            if (gameboard.board[ypos + 1][xpos] == Empty && ypos <= 12)
                 return true;
         }
         printf("No block can move\n");
