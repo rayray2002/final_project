@@ -46,6 +46,7 @@ public:
     void InitializeRamdomUnitOnTop(int topx);
     void AddMovingPair(unit u1, unit u2);
     void DeleteUsedMovingPair(unit u1, unit u2);
+    void UpdateBoardMovingState();
     bool AnyThingMoving();
     void Move();
     deque<unit> MovingPair;
@@ -153,58 +154,58 @@ public:
         InitializeRamdomUnitOnTop(200);
     }
 
-    void update() override
-    {
-        setInitialMap();
-        for (auto &a : blocks)
-            gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] = a.color;
+    void update() override;
+    // {
+    //     setInitialMap();
+    //     for (auto &a : blocks)
+    //         gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] = a.color;
 
-        for (auto &a : blocks)
-        {
-            a.mapPosition.x = (a.destR.x - 100) / 50 + 1;
-            a.mapPosition.y = (a.destR.y - 35) / 50 + 1;
-        }
-        static int num = 0;
-        for (auto &a : blocks)
-        {
-            if (a.speed.y == 0)
-                a.isMoving = false;
-            if (num % 10 == 0 && a.isMoving)
-            {
-                if (Game::event.type == SDL_KEYDOWN)
-                    switch (Game::event.key.keysym.sym)
-                    {
-                    case SDLK_LEFT:
-                        if (a.destR.x >= 150 &&
-                            (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50] == Empty ||
-                             (getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50)->isMoving &&
-                              getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50)->mapPosition.x >= 2)))
-                            a.destR.x -= a.bspeed.y;
-                        break;
-                    case SDLK_RIGHT:
-                        if (a.destR.x <= 300 &&
-                            (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 2] == Empty ||
-                             (getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50 + 2)->isMoving &&
-                              getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50 + 2)->mapPosition.x <= 5)))
-                            a.destR.x += a.bspeed.x;
-                        break;
-                    case SDLK_DOWN:
-                        if (gameboard.board[(a.destR.y - 35) / 50 + 2][(a.destR.x - 100) / 50 + 1] == Empty)
-                            a.destR.y += a.speed.y;
-                        break;
-                    case SDLK_SPACE:
-                        break;
-                    default:
-                        break;
-                    }
-                else if (num % 60 == 0)
-                    a.destR.y += a.speed.y;
-            }
-        }
-        if (num == 60)
-            num = 0;
-        num++;
-    }
+    //     for (auto &a : blocks)
+    //     {
+    //         a.mapPosition.x = (a.destR.x - 100) / 50 + 1;
+    //         a.mapPosition.y = (a.destR.y - 35) / 50 + 1;
+    //     }
+    //     static int num = 0;
+    //     for (auto &a : blocks)
+    //     {
+    //         if (a.speed.y == 0)
+    //             a.isMoving = false;
+    //         if (num % 10 == 0 && a.isMoving)
+    //         {
+    //             if (Game::event.type == SDL_KEYDOWN)
+    //                 switch (Game::event.key.keysym.sym)
+    //                 {
+    //                 case SDLK_LEFT:
+    //                     if (a.destR.x >= 150 &&
+    //                         (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50] == Empty ||
+    //                          (getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50)->isMoving &&
+    //                           getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50)->mapPosition.x >= 2)))
+    //                         a.destR.x -= a.bspeed.y;
+    //                     break;
+    //                 case SDLK_RIGHT:
+    //                     if (a.destR.x <= 300 &&
+    //                         (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 2] == Empty ||
+    //                          (getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50 + 2)->isMoving &&
+    //                           getDataByMapPosition((a.destR.y - 35) / 50 + 1, (a.destR.x - 100) / 50 + 2)->mapPosition.x <= 5)))
+    //                         a.destR.x += a.bspeed.x;
+    //                     break;
+    //                 case SDLK_DOWN:
+    //                     if (gameboard.board[(a.destR.y - 35) / 50 + 2][(a.destR.x - 100) / 50 + 1] == Empty)
+    //                         a.destR.y += a.speed.y;
+    //                     break;
+    //                 case SDLK_SPACE:
+    //                     break;
+    //                 default:
+    //                     break;
+    //                 }
+    //             else if (num % 60 == 0)
+    //                 a.destR.y += a.speed.y;
+    //         }
+    //     }
+    //     if (num == 60)
+    //         num = 0;
+    //     num++;
+    // }
 
     void draw() override
     {

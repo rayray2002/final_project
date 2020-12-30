@@ -123,12 +123,16 @@ void Game::handleEveants()
 
 void Game::update()
 {
-    // static bool anyBlocksOnBoardIsMoving;
-    // anyBlocksOnBoardIsMoving = true;
     manager.refresh();
     manager.update();
 
-    
+    static bool isAnyThingMoving;
+    for (auto &a : gameboards)
+    {
+        auto b = a->getComponent<GameBoardComponent>();
+        b.UpdateBoardMovingState();
+        isAnyThingMoving = a->getComponent<GameBoardComponent>().AnyThingMoving();
+    }
     // for (auto &c : gameboards)
     // {
     //     for (auto &a : c->getComponent<GameBoardComponent>().blocks)

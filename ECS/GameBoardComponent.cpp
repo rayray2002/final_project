@@ -155,3 +155,30 @@ void GameBoardComponent::MoveDown()
             if (UnitArray[i][j].color != Empty && UnitArray[i + 1][j].color == Empty)
                 SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
 }
+
+void GameBoardComponent::UpdateBoardMovingState()
+{
+    for (int i = 13; i >= 0; i--)
+        for (int j = 0; j < 8; j++)
+        {
+            if (UnitArray[i][j].color == Empty)
+                UnitArray[i][j].isMoving = false;
+            else if (UnitArray[i][j].mapPosition.y == 12)
+                UnitArray[i][j].isMoving == false;
+            else if (UnitArray[i][j].mapPosition.y < 12 && !UnitArray[i + 1][j].isMoving)
+                UnitArray[i][j].isMoving = false;
+            else
+                UnitArray[i][j].isMoving = true;
+        }
+}
+
+void GameBoardComponent::update()
+{
+    static int n = 0;
+    if (n == 60)
+    {
+        Move();
+        n = 0;
+    }
+    n++;
+}
