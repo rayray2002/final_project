@@ -1,12 +1,12 @@
-*.pdf
-.DS_Store
-/.vs/
-/.vscode/
-/cmake-build-debug/
-/cmake/
-/out/
-*.cmake
-/CMakeFiles/
-CMakeCache.txt
-CMakeLists.txt
-/img/miku/background/
+# *.pdf
+# .DS_Store
+# /.vs/
+# /.vscode/
+# /cmake-build-debug/
+# /cmake/
+# /out/
+# *.cmake
+# /CMakeFiles/
+# CMakeCache.txt
+# CMakeLists.txt
+# /img/miku/background/

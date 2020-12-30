@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/shyu/Desktop/final_project_all/GameBoard.cpp
+GameBoard.h
+/home/shyu/Desktop/final_project_all/GameBoard.h
+
+/home/shyu/Desktop/final_project_all/GameBoard.h
+iostream
+-
+vector
+-
+queue
+-
+cmath
+-
+
+/home/shyu/Desktop/final_project_all/Puyo_test.cpp
+GameBoard.h
+/home/shyu/Desktop/final_project_all/GameBoard.h
+

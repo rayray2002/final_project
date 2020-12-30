@@ -176,7 +176,9 @@ void Game::update()
             else
                 while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
                 {
+                    cout << "MOVE" << endl;
                     b->getComponent<GameBoardComponent>().MoveDown();
+                    cout << "END" << endl;
                 }
         }
         b->getComponent<GameBoardComponent>().update();

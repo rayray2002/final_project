@@ -250,25 +250,28 @@ public:
         if (isChanged)
             for (int i = 0; i < blocks.size(); i++)
             {
+                cout << "1" << endl;
                 auto a = blocks[i];
                 if (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] == Empty)
                 {
                     blocks.erase(blocks.begin() + i);
                     i--;
                 }
+                cout << "2" << endl;
             }
+        cout << "OK" << endl;
     }
 
     void MoveDown()
     {
         cout << "falling\n";
-        for (int i = 13; i >= 0; i--)
+        for (int i = 12; i >= 0; i--)
         {
             for (int j = 1; j <= 7; j++)
             {
                 if (gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] == Empty)
                 {
-                    if (getDataByMapPosition(j, i)->destR.y >= 12)
+                    if (getDataByMapPosition(j, i)->mapPosition.y >= 12)
                     {
                         getDataByMapPosition(j, i)->destR.y += 50;
                         gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] = gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y][(int)getDataByMapPosition(j, i)->mapPosition.x];
