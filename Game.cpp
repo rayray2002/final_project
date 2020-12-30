@@ -128,10 +128,6 @@ void Game::update()
     manager.refresh();
     manager.update();
 
-    // static int Count = 0;
-    // if (Count == 0)
-    //     gameboard.getComponent<GameBoardComponent>().resetSize();
-    // Count++;
     for (auto &c : gameboards)
     {
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
@@ -144,10 +140,6 @@ void Game::update()
             else
                 anyBlocksOnBoardIsMoving = false;
         }
-
-        //        if (!anyBlocksOnBoardIsMoving)
-        //            gameboard.getComponent<GameBoardComponent>().init();
-
         for (auto &a : c->getComponent<GameBoardComponent>().blocks)
         {
             if (a.destR.y < 35 || a.destR.y >= 635)
@@ -171,8 +163,6 @@ void Game::update()
             b->getComponent<GameBoardComponent>().chaining();
             if (!b->getComponent<GameBoardComponent>().isChanged)
                 gameboard.getComponent<GameBoardComponent>().init();
-            // cout << b->getComponent<GameBoardComponent>().blocks.size() << endl;
-            // cout << b->getComponent<GameBoardComponent>().isAnyBlocksCanMove() << endl;
             else
                 while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
                 {

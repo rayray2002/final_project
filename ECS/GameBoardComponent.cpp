@@ -62,7 +62,7 @@ void GameBoardComponent::UpdateUnitArray()
         }
 }
 
-void GameBoardComponent::InitializeRamdomUnitOnTop(int &topx)
+void GameBoardComponent::InitializeRamdomUnitOnTop(int topx)
 {
     Color tmpColor;
     switch (rand() % 5)
@@ -121,4 +121,12 @@ void GameBoardComponent::Move()
         case SDLK_DOWN:
         }
     }
+}
+
+void GameBoardComponent::MoveDown()
+{
+    for (int i = 12; i >= 0; i--)
+        for (int j = 0; j < 8; j++)
+            if (UnitArray[i][j].color != Empty && UnitArray[i + 1][j].color == Empty)
+                SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
 }

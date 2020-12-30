@@ -43,7 +43,7 @@ public:
     void SwapTwoUnit(int x1, int y1, int x2, int y2);
     void SwapTwoUnit(unit &u1, unit &u2);
     void UpdateUnitArray();
-    void InitializeRamdomUnitOnTop(int &topx);
+    void InitializeRamdomUnitOnTop(int topx);
     void AddMovingPair(unit u1, unit u2);
     void DeleteUsedMovingPair(unit u1, unit u2);
     bool AnyThingMoving();
@@ -54,7 +54,7 @@ public:
 
     bool isChanged;
 
-    GameBoardComponent(int xpos, int ypos, int color)
+    GameBoardComponent()
     {
         setInitialMap();
     }
@@ -146,9 +146,11 @@ public:
 
     void init() override
     {
-        initBlock(rand(), 150);
-        srand(time(0));
-        initBlock(rand(), 200);
+        // initBlock(rand(), 150);
+        // srand(time(0));
+        // initBlock(rand(), 200);
+        InitializeRamdomUnitOnTop(150);
+        InitializeRamdomUnitOnTop(200);
     }
 
     void update() override
@@ -206,40 +208,72 @@ public:
 
     void draw() override
     {
-        for (auto &a : blocks)
-        {
-            if (a.isActive && a.color != Empty)
+        // for (auto &a : blocks)
+        // {
+        //     if (a.isActive && a.color != Empty)
+        //     {
+        //         SDL_Surface *tmpSurface;
+        //         if (a.color == Red)
+        //             tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
+        //         else if (a.color == Green)
+        //             tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
+        //         else if (a.color == Yellow)
+        //             tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
+        //         else if (a.color == Purple)
+        //             tmpSurface = SDL_LoadBMP("./img/PP.bmp");
+        //         else if (a.color == Blue)
+        //             tmpSurface = SDL_LoadBMP("./img/sample_blue.bmp");
+        //         else
+        //             tmpSurface = SDL_LoadBMP("./img/banana.bmp");
+        //         a.texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+        //         SDL_FreeSurface(tmpSurface);
+        //         TextureManager::Draw(a.texture, a.srcR, a.destR);
+        //     }
+        for (int i = 0; i < 14; i++)
+            for (int j = 0; j < 8; j++)
             {
                 SDL_Surface *tmpSurface;
-                if (a.color == Red)
-                    tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
-                else if (a.color == Green)
-                    tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
-                else if (a.color == Yellow)
-                    tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
-                else if (a.color == Purple)
-                    tmpSurface = SDL_LoadBMP("./img/PP.bmp");
-                else if (a.color == Blue)
-                    tmpSurface = SDL_LoadBMP("./img/sample_blue.bmp");
-                else
-                    tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-                a.texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+                if (UnitArray[i][j].isActive)
+                {
+                    switch (UnitArray[i][j].color)
+                    {
+                    case Empty:
+                        break;
+                    case Red:
+                        tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
+                        break;
+                    case Green:
+                        tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
+                        break;
+                    case Yellow:
+                        tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
+                        break;
+                    case Purple:
+                        tmpSurface = SDL_LoadBMP("./img/PP.bmp");
+                        break;
+                    case Blue:
+                        tmpSurface = SDL_LoadBMP("./img/sample_blue.bmp");
+                        break;
+                    default:
+                        tmpSurface = SDL_LoadBMP("./img/banana.bmp");
+                    }
+                }
+                UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
                 SDL_FreeSurface(tmpSurface);
-                TextureManager::Draw(a.texture, a.srcR, a.destR);
+                TextureManager::Draw(UnitArray[i][j].texture, UnitArray[i][j].srcR, UnitArray[i][j].destR);
             }
-        }
-
-        // gameboard.printer();
-
-        //        for (int i = 0; i < 13; i++) {
-        //            for (int j = 0; j < 8; j++) {
-        //                cout << color_to_char(gameboard.board[i][j]) << " ";
-        //            }
-        //            cout << '\n';
-        //        }
-        //
-        //        cout << "\n************************\n\n";
     }
+
+    // gameboard.printer();
+
+    //        for (int i = 0; i < 13; i++) {
+    //            for (int j = 0; j < 8; j++) {
+    //                cout << color_to_char(gameboard.board[i][j]) << " ";
+    //            }
+    //            cout << '\n';
+    //        }
+    //
+    //        cout << "\n************************\n\n";
 
     void chaining()
     {
@@ -264,29 +298,29 @@ public:
         cout << "OK" << endl;
     }
 
-    void MoveDown()
-    {
-        cout << "falling\n";
-        for (int i = 12; i >= 0; i--)
-        {
-            cout << "falling2\n";
-            for (int j = 1; j <= 7; j++)
-            {
-                cout << "falling3\n";
-                if (gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] == Empty)
-                {
-                    cout << "falling4\n";
-                    if (getDataByMapPosition(i, j)->mapPosition.y >= 12)
-                    {
-                        cout << "falling5\n";
-                        getDataByMapPosition(i, j)->destR.y += 50;
-                        gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] = gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y][(int)getDataByMapPosition(i, j)->mapPosition.x];
-                        gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] = Empty;
-                    }
-                }
-            }
-        }
-    }
+    void MoveDown();
+    // {
+    //     cout << "falling\n";
+    //     for (int i = 12; i >= 0; i--)
+    //     {
+    //         cout << "falling2\n";
+    //         for (int j = 1; j <= 7; j++)
+    //         {
+    //             cout << "falling3\n";
+    //             if (gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] == Empty)
+    //             {
+    //                 cout << "falling4\n";
+    //                 if (getDataByMapPosition(i, j)->mapPosition.y >= 12)
+    //                 {
+    //                     cout << "falling5\n";
+    //                     getDataByMapPosition(i, j)->destR.y += 50;
+    //                     gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] = gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y][(int)getDataByMapPosition(i, j)->mapPosition.x];
+    //                     gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] = Empty;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     bool isAnyBlocksCanMove()
     {
@@ -297,6 +331,22 @@ public:
         }
         printf("No block can move\n");
         return false;
+    }
+
+    friend ostream &operator<<(ostream &stream, const unit *u)
+    {
+        stream << "********" << endl
+               << endl;
+        for (int i = 0; i < 14; i++)
+        {
+            for (int j = 0; j < 8; j++)
+            {
+                stream << u->color << " ";
+            }
+            stream << endl;
+        }
+        stream << "********" << endl
+               << endl;
     }
 };
 
