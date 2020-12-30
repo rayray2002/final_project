@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/Puyo_test.dir/Puyo_test.cpp.o CMakeFiles/Puyo_test.dir/GameBoard.cpp.o  -o Puyo_test 

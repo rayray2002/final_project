@@ -81,7 +81,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    gameboard.addComponent<GameBoardComponent>(100, 100, 2);
+    gameboard.addComponent<GameBoardComponent>();
     gameboard.addGroup(groupGameBoards);
 
     // colliders.addComponent<SpriteComponent>()

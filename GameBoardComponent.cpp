@@ -1,4 +1,4 @@
-#include "GameBoardComponent.h"
+#include "ECS/GameBoardComponent.h"
 #include "Game.h"
 #include <SDL.h>
 
