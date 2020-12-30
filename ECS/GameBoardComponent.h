@@ -26,7 +26,6 @@ struct unit
     Color color;
     bool isMoving;
     bool isActive;
-    bool ispaired;
 };
 
 class GameBoardComponent : public Component
@@ -42,7 +41,7 @@ private:
     };
 
 public:
-    unit UnitArray[13][6];
+    unit UnitArray[14][8];
     void ReSetZeroUnit(int &xpos, int &ypos);         // set default unit
     void ReSetAllArrayZero();                         // reset gameboard
     void SwapTwoUnit(int x1, int y1, int x2, int y2); // pass position to swap

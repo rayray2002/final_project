@@ -1,21 +1,30 @@
-#include "ECS/GameBoardComponent.h"
-#include "Game.h"
+#include "GameBoardComponent.h"
+#include "../Game.h"
 #include <SDL.h>
 
 void GameBoardComponent::init()
 {
+    cout << "Game Board Init!" << endl;
+    ReSetAllArrayZero();
     InitializeRamdomUnitOnTop(150);
     InitializeRamdomUnitOnTop(200);
+    cout << "Game Board Inited!" << endl;
 }
 
 void GameBoardComponent::draw()
 {
+    ReSetAllArrayZero();
+    cout << " Game Board Draw 1 " << endl;
     for (int i = 0; i < 14; i++)
         for (int j = 0; j < 8; j++)
         {
+            cout << " i = " << i << " j = " << j << endl;
             SDL_Surface *tmpSurface;
-            if (UnitArray[i][j].isActive)
+            cout << " OK 1 " << endl;
+            cout << "UnitArray[i][j].isActive = " << UnitArray[i][j].isActive << endl;
+            if (&UnitArray[i][j].isActive)
             {
+                cout << " OK 2 " << endl;
                 switch (UnitArray[i][j].color)
                 {
                 case Empty:
@@ -38,11 +47,16 @@ void GameBoardComponent::draw()
                 default:
                     tmpSurface = SDL_LoadBMP("./img/banana.bmp");
                 }
+                cout << " OK 3 " << endl;
             }
             UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+            cout << " OK 4 " << endl;
             SDL_FreeSurface(tmpSurface);
+            cout << " OK 5 " << endl;
             TextureManager::Draw(UnitArray[i][j].texture, UnitArray[i][j].srcR, UnitArray[i][j].destR);
+            cout << " OK 6 " << endl;
         }
+    cout << " Game Board Draw 2 " << endl;
 }
 
 unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
@@ -52,25 +66,36 @@ unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
 
 void GameBoardComponent::ReSetAllArrayZero()
 {
-    for (int i = 0; i < 13; i++)
-        for (int j = 0; j < 6; j++)
+    cout << " reset 1 " << endl;
+    for (int i = 0; i < 14; i++)
+        for (int j = 0; j < 8; j++)
         {
+            // cout << "0." << endl;
             UnitArray[i][j].destR.x = 35 + 50 * i;
             UnitArray[i][j].destR.y = 100 + 50 * j;
+            // cout << "1." << endl;
             UnitArray[i][j].destR.w = UnitArray[i][j].destR.h = 50;
+            // cout << "2." << endl;
             UnitArray[i][j].color = Empty;
+            // cout << "3." << endl;
             UnitArray[i][j].isActive = false;
             UnitArray[i][j].isMoving = false;
-            UnitArray[i][j].ispaired = false;
+            // cout << "4." << endl;
             UnitArray[i][j].mapPosition.x = j;
             UnitArray[i][j].mapPosition.y = i;
+            // cout << "5." << endl;
             UnitArray[i][j].srcR.x = 0;
             UnitArray[i][j].srcR.y = UnitArray[i][j].srcR.x = 0;
             UnitArray[i][j].srcR.w = UnitArray[i][j].srcR.h = 1000;
+            // cout << "6." << endl;
             SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
+            // cout << "7." << endl;
             UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+            // cout << "8." << endl;
             SDL_FreeSurface(tmpSurface);
+            // cout << "9." << endl;
         }
+    cout << " reset 2 " << endl;
 }
 
 void GameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos)
@@ -78,7 +103,6 @@ void GameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos)
     UnitArray[ypos][xpos].color = Empty;
     UnitArray[ypos][xpos].isActive = false;
     UnitArray[ypos][xpos].isMoving = false;
-    UnitArray[ypos][xpos].ispaired = false;
     SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
     UnitArray[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
     SDL_FreeSurface(tmpSurface);
@@ -121,7 +145,6 @@ void GameBoardComponent::InitializeRamdomUnitOnTop(int topx)
     UnitArray[0][topx].color = tmpColor;
     UnitArray[0][topx].isMoving = true;
     UnitArray[0][topx].isActive = true;
-    UnitArray[0][topx].ispaired = true;
 }
 
 bool GameBoardComponent::AnyThingMoving()
@@ -146,6 +169,7 @@ void GameBoardComponent::ClearMovingPair()
 
 void GameBoardComponent::Move()
 {
+    cout << "Game Board Move!" << endl;
     if (Game::event.type == SDL_KEYDOWN)
     {
         switch (Game::event.key.keysym.sym)
@@ -180,6 +204,7 @@ void GameBoardComponent::Move()
             break;
         }
     }
+    cout << "Game Board Moved!" << endl;
 }
 
 void GameBoardComponent::MoveDown()
@@ -208,6 +233,7 @@ void GameBoardComponent::UpdateBoardMovingState()
 
 void GameBoardComponent::update()
 {
+    cout << "Game Board Update!" << endl;
     static int n = 0;
     if (n == 60)
     {
@@ -215,6 +241,7 @@ void GameBoardComponent::update()
         n = 0;
     }
     n++;
+    cout << "Game Board Updated!" << endl;
 }
 
 void GameBoardComponent::GetMovingPair()

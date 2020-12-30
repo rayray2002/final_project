@@ -15,7 +15,7 @@ SDL_Rect Game::camera = {10, 10, 1800, 1600};
 
 bool Game::isRunning = false;
 
-auto &player(manager.addEntity());
+// auto &player(manager.addEntity());
 auto &back(manager.addEntity());
 auto &buttom(manager.addEntity());
 auto &gameboard(manager.addEntity());
@@ -69,11 +69,11 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
         isRunning = false;
     }
 
-    player.addComponent<TransformComponent>(100);
-    player.addComponent<SpriteComponent>("./img/miku.bmp", true);
-    player.addComponent<KeyBoardController>();
-    player.addComponent<ColliderComponent>("player");
-    player.addGroup(groupPlayers);
+    // player.addComponent<TransformComponent>(100);
+    // player.addComponent<SpriteComponent>("./img/miku.bmp", true);
+    // player.addComponent<KeyBoardController>();
+    // player.addComponent<ColliderComponent>("player");
+    // player.addGroup(groupPlayers);
 
     buttom.addComponent<TextButtomComponent>(WIDTH - 320, HEIGHT - 220, 200, 300);
     buttom.addGroup(groupTextButtoms);
@@ -97,7 +97,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
 }
 
 auto &tiles(manager.getGroup(Game::groupMap));
-auto &players(manager.getGroup(Game::groupPlayers));
+// auto &players(manager.getGroup(Game::groupPlayers));
 auto &colliders(manager.getGroup(Game::groupColliders));
 auto &backs(manager.getGroup(Game::groupBackGrounds));
 auto &buttoms(manager.getGroup(Game::groupTextButtoms));
@@ -126,22 +126,20 @@ void Game::update()
     manager.refresh();
     manager.update();
 
+    cout << "update end" << endl;
     static bool isAnyThingMoving;
     for (auto &a : gameboards)
     {
-        auto b = a->getComponent<GameBoardComponent>();
-        b.UpdateBoardMovingState();
+        cout << " 1 " << endl;
+        a->getComponent<GameBoardComponent>().UpdateBoardMovingState();
+        cout << " 2 " << endl;
         isAnyThingMoving = a->getComponent<GameBoardComponent>().AnyThingMoving();
+        cout << " 3 " << endl;
     }
 }
 
 void Game::render()
 {
-
-    for (auto &p : players)
-    {
-        //p->draw();
-    }
 
     for (auto &b : backs)
     {
@@ -155,7 +153,9 @@ void Game::render()
 
     for (auto &b : gameboards)
     {
+        cout << " draw 1 " << endl;
         b->getComponent<GameBoardComponent>().draw();
+        cout << " draw 2 " << endl;
     }
 
     SDL_RenderPresent(Game::renderer);

@@ -6,7 +6,7 @@
 class Miku : public CharactorComponent
 {
 public:
-    void Skill() override;
-    void Initialize() override;
+    // void Skill() override;
+    // void Initialize() override;
 };
 #endif

@@ -10,6 +10,6 @@
 #include "BackGroundComponent.h"
 #include "TextButtomComponent.h"
 #include "GameBoardComponent.h"
-#include "CharactorComponent.h"
+// #include "CharactorComponent.h"
 
 #endif

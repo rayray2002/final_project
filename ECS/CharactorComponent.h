@@ -15,8 +15,8 @@ private:
     int Combo;
 
 public:
-    virtual void Skill() = 0;
-    virtual void Initialize() = 0;
+    virtual void Skill(){};
+    virtual void Initialize(){};
 };
 
 #endif
