@@ -123,56 +123,57 @@ void Game::handleEveants()
 
 void Game::update()
 {
-    static bool anyBlocksOnBoardIsMoving;
-    anyBlocksOnBoardIsMoving = true;
+    // static bool anyBlocksOnBoardIsMoving;
+    // anyBlocksOnBoardIsMoving = true;
     manager.refresh();
     manager.update();
 
-    for (auto &c : gameboards)
-    {
-        for (auto &a : c->getComponent<GameBoardComponent>().blocks)
-        {
-            if (a.isMoving)
-            {
-                anyBlocksOnBoardIsMoving = true;
-                break;
-            }
-            else
-                anyBlocksOnBoardIsMoving = false;
-        }
-        for (auto &a : c->getComponent<GameBoardComponent>().blocks)
-        {
-            if (a.destR.y < 35 || a.destR.y >= 635)
-            {
-                a.speed.y = 0;
-                a.speed.x = 0;
-            }
-            for (auto &b : c->getComponent<GameBoardComponent>().blocks)
-            {
-                if (!b.isMoving && &a != &b)
-                    if (Collision::AABBDOWN(a.destR, b.destR))
-                        a.speed.y = 0;
-            }
-        }
-    }
+    
+    // for (auto &c : gameboards)
+    // {
+    //     for (auto &a : c->getComponent<GameBoardComponent>().blocks)
+    //     {
+    //         if (a.isMoving)
+    //         {
+    //             anyBlocksOnBoardIsMoving = true;
+    //             break;
+    //         }
+    //         else
+    //             anyBlocksOnBoardIsMoving = false;
+    //     }
+    //     for (auto &a : c->getComponent<GameBoardComponent>().blocks)
+    //     {
+    //         if (a.destR.y < 35 || a.destR.y >= 635)
+    //         {
+    //             a.speed.y = 0;
+    //             a.speed.x = 0;
+    //         }
+    //         for (auto &b : c->getComponent<GameBoardComponent>().blocks)
+    //         {
+    //             if (!b.isMoving && &a != &b)
+    //                 if (Collision::AABBDOWN(a.destR, b.destR))
+    //                     a.speed.y = 0;
+    //         }
+    //     }
+    // }
 
-    for (auto &b : gameboards)
-    {
-        if (!anyBlocksOnBoardIsMoving)
-        {
-            b->getComponent<GameBoardComponent>().chaining();
-            if (!b->getComponent<GameBoardComponent>().isChanged)
-                gameboard.getComponent<GameBoardComponent>().init();
-            else
-                while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
-                {
-                    cout << "MOVE" << endl;
-                    b->getComponent<GameBoardComponent>().MoveDown();
-                    cout << "END" << endl;
-                }
-        }
-        b->getComponent<GameBoardComponent>().update();
-    }
+    // for (auto &b : gameboards)
+    // {
+    //     if (!anyBlocksOnBoardIsMoving)
+    //     {
+    //         b->getComponent<GameBoardComponent>().chaining();
+    //         if (!b->getComponent<GameBoardComponent>().isChanged)
+    //             gameboard.getComponent<GameBoardComponent>().init();
+    //         else
+    //             while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
+    //             {
+    //                 cout << "MOVE" << endl;
+    //                 b->getComponent<GameBoardComponent>().MoveDown();
+    //                 cout << "END" << endl;
+    //             }
+    //     }
+    //     b->getComponent<GameBoardComponent>().update();
+    // }
 }
 
 void Game::render()

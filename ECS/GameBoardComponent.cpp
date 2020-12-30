@@ -119,6 +119,31 @@ void GameBoardComponent::Move()
         switch (Game::event.key.keysym.sym)
         {
         case SDLK_DOWN:
+            for (int i = 0; i < 13; i++)
+                for (int j = 1; j < 7; j++)
+                {
+                    if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
+                        SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+                }
+            break;
+        case SDLK_LEFT:
+            for (int i = 0; i < 13; i++)
+                for (int j = 2; j < 7; j++) // start from 2
+                {
+                    if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
+                        SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
+                }
+            break;
+        case SDLK_RIGHT:
+            for (int i = 0; i < 13; i++)
+                for (int j = 1; j < 6; j++) // end at 6
+                {
+                    if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
+                        SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
+                }
+            break;
+        default:
+            break;
         }
     }
 }
