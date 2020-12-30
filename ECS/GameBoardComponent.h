@@ -65,21 +65,23 @@ public:
 
     void setInitialMap()
     {
-        for (int i = 0; i < 14; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                gameboard.board[i][j] = Empty;
-            }
-        }
+        ReSetAllArrayZero();
+        // for (int i = 0; i < 14; i++)
+        // {
+        //     for (int j = 0; j < 8; j++)
+        //     {
+        //         gameboard.board[i][j] = Empty;
+        //     }
+        // }
     }
 
     void resetSize()
     {
-        while (blocks.size() > 0)
-        {
-            blocks.pop_back();
-        }
+        // while (blocks.size() > 0)
+        // {
+        //     blocks.pop_back();
+        // }
+        ReSetAllArrayZero();
     }
 
     void initBlock(int randNumber, int xpos)
@@ -132,14 +134,14 @@ public:
 
     unit *getDataByMapPosition(int ypos, int xpos)
     {
-        for (auto &b : blocks)
-        {
-            if (b.mapPosition.x == xpos && b.mapPosition.y == ypos)
-            {
-                return &b;
-            }
-        }
-        return nullptr;
+        // for (auto &b : blocks)
+        // {
+        //     if (b.mapPosition.x == xpos && b.mapPosition.y == ypos)
+        //     {
+        //         return &b;
+        //     }
+        // }
+        return &UnitArray[ypos][xpos];
     }
 
     void init() override
@@ -267,15 +269,19 @@ public:
         cout << "falling\n";
         for (int i = 12; i >= 0; i--)
         {
+            cout << "falling2\n";
             for (int j = 1; j <= 7; j++)
             {
-                if (gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] == Empty)
+                cout << "falling3\n";
+                if (gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] == Empty)
                 {
-                    if (getDataByMapPosition(j, i)->mapPosition.y >= 12)
+                    cout << "falling4\n";
+                    if (getDataByMapPosition(i, j)->mapPosition.y >= 12)
                     {
-                        getDataByMapPosition(j, i)->destR.y += 50;
-                        gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] = gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y][(int)getDataByMapPosition(j, i)->mapPosition.x];
-                        gameboard.board[(int)getDataByMapPosition(j, i)->mapPosition.y + 1][(int)getDataByMapPosition(j, i)->mapPosition.x] = Empty;
+                        cout << "falling5\n";
+                        getDataByMapPosition(i, j)->destR.y += 50;
+                        gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] = gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y][(int)getDataByMapPosition(i, j)->mapPosition.x];
+                        gameboard.board[(int)getDataByMapPosition(i, j)->mapPosition.y + 1][(int)getDataByMapPosition(i, j)->mapPosition.x] = Empty;
                     }
                 }
             }
