@@ -259,15 +259,23 @@ void GameBoardComponent::Spin()
     {
     case UP_AND_DOWN:
         if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y)
+        {
             SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x - 1]);
+        }
         else if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y)
+        {
             SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x - 1]);
+        }
         break;
     case RIGHT_AND_LEFT:
         if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+        {
             SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
+        }
         else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+        {
             SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x - 1]);
+        }
         else if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x)
         {
             MovingPair[0].mapPosition.y++;
