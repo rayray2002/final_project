@@ -2,6 +2,54 @@
 #include "Game.h"
 #include <SDL.h>
 
+void GameBoardComponent::init()
+{
+    InitializeRamdomUnitOnTop(150);
+    InitializeRamdomUnitOnTop(200);
+}
+
+void GameBoardComponent::draw()
+{
+    for (int i = 0; i < 14; i++)
+        for (int j = 0; j < 8; j++)
+        {
+            SDL_Surface *tmpSurface;
+            if (UnitArray[i][j].isActive)
+            {
+                switch (UnitArray[i][j].color)
+                {
+                case Empty:
+                    break;
+                case Red:
+                    tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
+                    break;
+                case Green:
+                    tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
+                    break;
+                case Yellow:
+                    tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
+                    break;
+                case Purple:
+                    tmpSurface = SDL_LoadBMP("./img/PP.bmp");
+                    break;
+                case Blue:
+                    tmpSurface = SDL_LoadBMP("./img/sample_blue.bmp");
+                    break;
+                default:
+                    tmpSurface = SDL_LoadBMP("./img/banana.bmp");
+                }
+            }
+            UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+            SDL_FreeSurface(tmpSurface);
+            TextureManager::Draw(UnitArray[i][j].texture, UnitArray[i][j].srcR, UnitArray[i][j].destR);
+        }
+}
+
+unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
+{
+    return &UnitArray[ypos][xpos];
+}
+
 void GameBoardComponent::ReSetAllArrayZero()
 {
     for (int i = 0; i < 13; i++)
