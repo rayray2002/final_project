@@ -135,16 +135,13 @@ bool GameBoardComponent::AnyThingMoving()
     return false;
 }
 
-void GameBoardComponent::AddMovingPair(unit u1, unit u2)
+void GameBoardComponent::ClearMovingPair()
 {
-    MovingPair.push_back(u1);
-    MovingPair.push_back(u2);
-}
-
-void GameBoardComponent::DeleteUsedMovingPair(unit u1, unit u2)
-{
-    MovingPair.pop_front();
-    MovingPair.pop_front();
+    if (MovingPair.size() == 2)
+    {
+        MovingPair.pop_back();
+        MovingPair.pop_back();
+    }
 }
 
 void GameBoardComponent::Move()
@@ -248,6 +245,7 @@ void GameBoardComponent::UpdateMovingPairState()
         else
             MovingPairState = SEPERATED;
     }
+    ClearMovingPair();
 }
 
 void GameBoardComponent::Spin()

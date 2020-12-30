@@ -31,6 +31,8 @@ struct unit
 
 class GameBoardComponent : public Component
 {
+    friend class CharactorComponent;
+
 private:
     enum PairState
     {
@@ -46,8 +48,7 @@ public:
     void SwapTwoUnit(int x1, int y1, int x2, int y2); // pass position to swap
     void SwapTwoUnit(unit &u1, unit &u2);             // pass unit to swap
     void InitializeRamdomUnitOnTop(int topx);         // set new unit
-    void AddMovingPair(unit u1, unit u2);             // not used now
-    void DeleteUsedMovingPair(unit u1, unit u2);      // not used now
+    void ClearMovingPair();                           // not used now
     void UpdateBoardMovingState();                    // set moving state
     void GetMovingPair();
     bool AnyThingMoving();
@@ -56,7 +57,7 @@ public:
     void MoveDown(); // drop
     void Spin();
 
-    deque<unit> MovingPair;
+    vector<unit> MovingPair;
     PairState MovingPairState;
     bool isChanged;
 

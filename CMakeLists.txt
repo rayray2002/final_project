@@ -7,7 +7,7 @@ message(${CMAKE_SOURCE_DIR})
 
 # add_executable(Puyo_test Puyo_test.cpp GameBoard.cpp)
 # add_executable(show_board test_fall_board.cpp)
-add_executable(main main.cpp ECS/ECS.cpp Collision.cpp Game.cpp GameObject.cpp Map.cpp TextureManager.cpp Vector2D.cpp GameBoard.cpp)
+add_executable(main main.cpp ECS/ECS.cpp Collision.cpp Game.cpp GameObject.cpp Map.cpp TextureManager.cpp Vector2D.cpp GameBoard.cpp GameBoardComponent.cpp)
 
 #set(SDL2_LIBRARY "/Library/frameworks/SDL2.framework")
 #set(SDL2_IMAGE_LIBRARY "/Library/frameworks/SDL2_image.framework")

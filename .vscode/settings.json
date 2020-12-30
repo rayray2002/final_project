@@ -4,6 +4,7 @@
         "ctime": "cpp",
         "iostream": "cpp",
         "type_traits": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "deque": "cpp"
     }
 }

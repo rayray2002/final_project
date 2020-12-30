@@ -1,4 +1,3 @@
-// #pragma once
 #ifndef _COMPONENTS_H
 #define _COMPONENTS_H
 
@@ -11,4 +10,6 @@
 #include "BackGroundComponent.h"
 #include "TextButtomComponent.h"
 #include "GameBoardComponent.h"
+#include "CharactorComponent.h"
+
 #endif
