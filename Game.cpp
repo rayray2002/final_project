@@ -171,14 +171,13 @@ void Game::update()
             b->getComponent<GameBoardComponent>().chaining();
             if (!b->getComponent<GameBoardComponent>().isChanged)
                 gameboard.getComponent<GameBoardComponent>().init();
-            cout << b->getComponent<GameBoardComponent>().blocks.size() << endl;
-            cout << b->getComponent<GameBoardComponent>().isAnyBlocksCanMove() << endl;
-            // b->getComponent<GameBoardComponent>().MoveDown();
-            // else
-            //     while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
-            //     {
-            //         b->getComponent<GameBoardComponent>().MoveDown();
-            //     }
+            // cout << b->getComponent<GameBoardComponent>().blocks.size() << endl;
+            // cout << b->getComponent<GameBoardComponent>().isAnyBlocksCanMove() << endl;
+            else
+                while (b->getComponent<GameBoardComponent>().isAnyBlocksCanMove())
+                {
+                    b->getComponent<GameBoardComponent>().MoveDown();
+                }
         }
         b->getComponent<GameBoardComponent>().update();
     }

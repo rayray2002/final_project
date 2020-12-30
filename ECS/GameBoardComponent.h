@@ -216,7 +216,7 @@ public:
                 else if (a.color == Yellow)
                     tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
                 else if (a.color == Purple)
-                    tmpSurface = SDL_LoadBMP("./img/sample_purple.bmp");
+                    tmpSurface = SDL_LoadBMP("./img/PP.bmp");
                 else if (a.color == Blue)
                     tmpSurface = SDL_LoadBMP("./img/sample_blue.bmp");
                 else
