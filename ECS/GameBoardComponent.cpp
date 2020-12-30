@@ -4,30 +4,26 @@
 
 void GameBoardComponent::init()
 {
-    cout << "Game Board Init!" << endl;
-    ReSetAllArrayZero();
-    InitializeRamdomUnitOnTop(150);
-    InitializeRamdomUnitOnTop(200);
-    cout << "Game Board Inited!" << endl;
+    // cout << "Game Board Init!" << endl;
+    // ReSetAllArrayZero();
+    InitializeRamdomUnitOnTop(2);
+    InitializeRamdomUnitOnTop(3);
+    // cout << "Game Board Inited!" << endl;
 }
 
 void GameBoardComponent::draw()
 {
-    ReSetAllArrayZero();
-    cout << " Game Board Draw 1 " << endl;
-    for (int i = 0; i < 14; i++)
-        for (int j = 0; j < 8; j++)
+    // cout << UnitArray << endl;
+    for (int i = 0; i < 13; i++)
+        for (int j = 0; j < 6; j++)
         {
-            cout << " i = " << i << " j = " << j << endl;
-            SDL_Surface *tmpSurface;
-            cout << " OK 1 " << endl;
-            cout << "UnitArray[i][j].isActive = " << UnitArray[i][j].isActive << endl;
-            if (&UnitArray[i][j].isActive)
+            if (UnitArray[i][j].isMoving)
             {
-                cout << " OK 2 " << endl;
+                SDL_Surface *tmpSurface;
                 switch (UnitArray[i][j].color)
                 {
                 case Empty:
+                    tmpSurface = SDL_LoadBMP("./img/padoru1.bmp");
                     break;
                 case Red:
                     tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
@@ -47,16 +43,12 @@ void GameBoardComponent::draw()
                 default:
                     tmpSurface = SDL_LoadBMP("./img/banana.bmp");
                 }
-                cout << " OK 3 " << endl;
+                UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+                SDL_FreeSurface(tmpSurface);
+                if (UnitArray[i][j].color != Empty)
+                    TextureManager::Draw(UnitArray[i][j].texture, UnitArray[i][j].srcR, UnitArray[i][j].destR);
             }
-            UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-            cout << " OK 4 " << endl;
-            SDL_FreeSurface(tmpSurface);
-            cout << " OK 5 " << endl;
-            TextureManager::Draw(UnitArray[i][j].texture, UnitArray[i][j].srcR, UnitArray[i][j].destR);
-            cout << " OK 6 " << endl;
         }
-    cout << " Game Board Draw 2 " << endl;
 }
 
 unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
@@ -66,36 +58,25 @@ unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
 
 void GameBoardComponent::ReSetAllArrayZero()
 {
-    cout << " reset 1 " << endl;
-    for (int i = 0; i < 14; i++)
-        for (int j = 0; j < 8; j++)
+    for (int i = 0; i < 13; i++)
+        for (int j = 0; j < 6; j++)
         {
-            // cout << "0." << endl;
-            UnitArray[i][j].destR.x = 35 + 50 * i;
-            UnitArray[i][j].destR.y = 100 + 50 * j;
-            // cout << "1." << endl;
+            UnitArray[i][j].destR.x = 100 + 50 * j;
+            UnitArray[i][j].destR.y = 35 + 50 * i;
             UnitArray[i][j].destR.w = UnitArray[i][j].destR.h = 50;
-            // cout << "2." << endl;
             UnitArray[i][j].color = Empty;
-            // cout << "3." << endl;
             UnitArray[i][j].isActive = false;
             UnitArray[i][j].isMoving = false;
-            // cout << "4." << endl;
             UnitArray[i][j].mapPosition.x = j;
             UnitArray[i][j].mapPosition.y = i;
-            // cout << "5." << endl;
             UnitArray[i][j].srcR.x = 0;
             UnitArray[i][j].srcR.y = UnitArray[i][j].srcR.x = 0;
             UnitArray[i][j].srcR.w = UnitArray[i][j].srcR.h = 1000;
-            // cout << "6." << endl;
             SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-            // cout << "7." << endl;
             UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-            // cout << "8." << endl;
             SDL_FreeSurface(tmpSurface);
-            // cout << "9." << endl;
         }
-    cout << " reset 2 " << endl;
+    // cout << " reset 2 " << endl;
 }
 
 void GameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos)
@@ -116,7 +97,7 @@ void GameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2)
     UnitArray[y2][x2] = tmpUnit;
 }
 
-void GameBoardComponent::SwapTwoUnit(unit &u1, unit &u2)
+void GameBoardComponent::SwapTwoUnit(unit u1, unit u2)
 {
     SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y);
 }
@@ -169,22 +150,23 @@ void GameBoardComponent::ClearMovingPair()
 
 void GameBoardComponent::Move()
 {
-    cout << "Game Board Move!" << endl;
+    // cout << "Game Board Move!" << endl;
     if (Game::event.type == SDL_KEYDOWN)
     {
         switch (Game::event.key.keysym.sym)
         {
         case SDLK_DOWN:
             for (int i = 0; i < 13; i++)
-                for (int j = 1; j < 7; j++)
+                for (int j = 0; j < 6; j++)
                 {
-                    if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
-                        SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+                    if (UnitArray[i][j].mapPosition.y < 13)
+                        if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
                 }
             break;
         case SDLK_LEFT:
             for (int i = 0; i < 13; i++)
-                for (int j = 2; j < 7; j++) // start from 2
+                for (int j = 1; j < 6; j++) // start from 1
                 {
                     if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
                         SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
@@ -192,7 +174,7 @@ void GameBoardComponent::Move()
             break;
         case SDLK_RIGHT:
             for (int i = 0; i < 13; i++)
-                for (int j = 1; j < 6; j++) // end at 6
+                for (int j = 1; j < 5; j++) // end at 5
                 {
                     if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
                         SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
@@ -204,27 +186,27 @@ void GameBoardComponent::Move()
             break;
         }
     }
-    cout << "Game Board Moved!" << endl;
+    // cout << "Game Board Moved!" << endl;
 }
 
 void GameBoardComponent::MoveDown()
 {
     for (int i = 12; i >= 0; i--)
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < 6; j++)
             if (UnitArray[i][j].color != Empty && UnitArray[i + 1][j].color == Empty)
                 SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
 }
 
 void GameBoardComponent::UpdateBoardMovingState()
 {
-    for (int i = 13; i >= 0; i--)
-        for (int j = 0; j < 8; j++)
+    for (int i = 12; i >= 0; i--)
+        for (int j = 0; j < 6; j++)
         {
             if (UnitArray[i][j].color == Empty)
                 UnitArray[i][j].isMoving = false;
             else if (UnitArray[i][j].mapPosition.y == 12)
                 UnitArray[i][j].isMoving == false;
-            else if (UnitArray[i][j].mapPosition.y < 12 && !UnitArray[i + 1][j].isMoving)
+            else if (UnitArray[i][j].mapPosition.y < 12 && (UnitArray[i + 1][j].color != Empty && !UnitArray[i][j].isMoving))
                 UnitArray[i][j].isMoving = false;
             else
                 UnitArray[i][j].isMoving = true;
@@ -233,7 +215,7 @@ void GameBoardComponent::UpdateBoardMovingState()
 
 void GameBoardComponent::update()
 {
-    cout << "Game Board Update!" << endl;
+    // cout << "Game Board Update!" << endl;
     static int n = 0;
     if (n == 60)
     {
@@ -241,7 +223,7 @@ void GameBoardComponent::update()
         n = 0;
     }
     n++;
-    cout << "Game Board Updated!" << endl;
+    // cout << "Game Board Updated!" << endl;
 }
 
 void GameBoardComponent::GetMovingPair()

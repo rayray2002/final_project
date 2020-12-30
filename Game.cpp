@@ -125,16 +125,19 @@ void Game::update()
 {
     manager.refresh();
     manager.update();
-
-    cout << "update end" << endl;
     static bool isAnyThingMoving;
     for (auto &a : gameboards)
     {
-        cout << " 1 " << endl;
+        // cout << a->getComponent<GameBoardComponent>().UnitArray << endl;
         a->getComponent<GameBoardComponent>().UpdateBoardMovingState();
-        cout << " 2 " << endl;
         isAnyThingMoving = a->getComponent<GameBoardComponent>().AnyThingMoving();
-        cout << " 3 " << endl;
+        if (!isAnyThingMoving)
+        {
+            a->getComponent<GameBoardComponent>().init();
+            a->getComponent<GameBoardComponent>().Move();
+        }
+        else
+            a->getComponent<GameBoardComponent>().MoveDown();
     }
 }
 
@@ -150,13 +153,13 @@ void Game::render()
     {
         b->getComponent<TextButtomComponent>().draw();
     }
-
+    int t = SDL_GetTicks();
     for (auto &b : gameboards)
     {
-        cout << " draw 1 " << endl;
         b->getComponent<GameBoardComponent>().draw();
-        cout << " draw 2 " << endl;
     }
+    t = SDL_GetTicks() - t;
+    cout << "Third = " << t << endl;
 
     SDL_RenderPresent(Game::renderer);
     SDL_RenderClear(Game::renderer);
