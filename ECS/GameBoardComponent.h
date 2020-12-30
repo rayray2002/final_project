@@ -32,20 +32,32 @@ struct unit
 class GameBoardComponent : public Component
 {
 private:
+    enum PairState
+    {
+        UP_AND_DOWN,
+        RIGHT_AND_LEFT,
+        SEPERATED
+    };
+
 public:
     unit UnitArray[13][6];
-    void ReSetZeroUnit(int &xpos, int &ypos);
-    void ReSetAllArrayZero();
-    void SwapTwoUnit(int x1, int y1, int x2, int y2);
-    void SwapTwoUnit(unit &u1, unit &u2);
-    void UpdateUnitArray();
-    void InitializeRamdomUnitOnTop(int topx);
-    void AddMovingPair(unit u1, unit u2);
-    void DeleteUsedMovingPair(unit u1, unit u2);
-    void UpdateBoardMovingState();
+    void ReSetZeroUnit(int &xpos, int &ypos);         // set default unit
+    void ReSetAllArrayZero();                         // reset gameboard
+    void SwapTwoUnit(int x1, int y1, int x2, int y2); // pass position to swap
+    void SwapTwoUnit(unit &u1, unit &u2);             // pass unit to swap
+    void InitializeRamdomUnitOnTop(int topx);         // set new unit
+    void AddMovingPair(unit u1, unit u2);             // not used now
+    void DeleteUsedMovingPair(unit u1, unit u2);      // not used now
+    void UpdateBoardMovingState();                    // set moving state
+    void GetMovingPair();
     bool AnyThingMoving();
-    void Move();
+    void UpdateMovingPairState();
+    void Move();     // get keyboard event
+    void MoveDown(); // drop
+    void Spin();
+
     deque<unit> MovingPair;
+    PairState MovingPairState;
     bool isChanged;
 
     GameBoardComponent()
@@ -78,8 +90,6 @@ public:
         //     }
         // cout << "OK" << endl;
     }
-
-    void MoveDown();
 
     friend ostream &operator<<(ostream &stream, const unit *u)
     {

@@ -97,19 +97,6 @@ void GameBoardComponent::SwapTwoUnit(unit &u1, unit &u2)
     SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y);
 }
 
-void GameBoardComponent::UpdateUnitArray()
-{
-    for (int i = 12; i >= 0; i--)
-        for (int j = 0; j < 6; j++)
-        {
-            if (UnitArray[i][j].mapPosition.y <= 12)
-                if (UnitArray[i][j + 1].color == Empty)
-                {
-                    SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
-                }
-        }
-}
-
 void GameBoardComponent::InitializeRamdomUnitOnTop(int topx)
 {
     Color tmpColor;
@@ -190,6 +177,8 @@ void GameBoardComponent::Move()
                         SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
                 }
             break;
+        case SDLK_UP:
+            Spin();
         default:
             break;
         }
@@ -229,4 +218,70 @@ void GameBoardComponent::update()
         n = 0;
     }
     n++;
+}
+
+void GameBoardComponent::GetMovingPair()
+{
+    static int n = 0;
+    for (int i = 0; i < 14; i++)
+        for (int j = 0; j < 8; j++)
+        {
+            if (n == 2)
+                break;
+            if (UnitArray[i][j].isMoving)
+            {
+                MovingPair.push_back(UnitArray[i][j]);
+                n++;
+            }
+        }
+}
+
+void GameBoardComponent::UpdateMovingPairState()
+{
+    GetMovingPair();
+    if (!MovingPair.empty())
+    {
+        if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y + 1 || MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y - 1)
+            MovingPairState = UP_AND_DOWN;
+        else if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x + 1 || MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x - 1)
+            MovingPairState = RIGHT_AND_LEFT;
+        else
+            MovingPairState = SEPERATED;
+    }
+}
+
+void GameBoardComponent::Spin()
+{
+    UpdateBoardMovingState();
+    GetMovingPair();
+    UpdateMovingPairState();
+    switch (MovingPairState)
+    {
+    case UP_AND_DOWN:
+        if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y)
+            SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x - 1]);
+        else if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y)
+            SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x - 1]);
+        break;
+    case RIGHT_AND_LEFT:
+        if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+            SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
+        else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+            SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x - 1]);
+        else if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x)
+        {
+            MovingPair[0].mapPosition.y++;
+            MovingPair[1].mapPosition.y++;
+            SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
+        }
+        else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x)
+        {
+            MovingPair[0].mapPosition.y++;
+            MovingPair[1].mapPosition.y++;
+            SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
+        }
+        break;
+    case SEPERATED:
+        break;
+    }
 }
