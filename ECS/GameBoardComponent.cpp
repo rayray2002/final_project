@@ -375,14 +375,6 @@ void GameBoardComponent::Spin()
         }
 }
 
-void GameBoardComponent::UpdateColor()
-{
-    for (int i = 0; i < 13; i++)
-        for (int j = 0; j < 6; j++)
-        {
-        }
-}
-
 bool GameBoardComponent::PairAdjacent()
 {
     if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x - 1 && MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y)

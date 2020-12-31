@@ -56,7 +56,6 @@ public:
     void MoveDown(); // drop
     void Spin();
     void Swap(unit &a, unit &b);
-    void UpdateColor();
     void UpdateMovingPairLastestVersion();
     bool PairAdjacent();
 
