@@ -47,7 +47,6 @@ public:
     void SwapTwoUnit(int x1, int y1, int x2, int y2); // pass position to swap
     void SwapTwoUnit(unit &u1, unit &u2);             // pass unit to swap
     void InitializeRamdomUnitOnTop(int topx);         // set new unit
-    void ClearMovingPair();                           // not used now
     void UpdateBoardMovingState();                    // set moving state
     void GetMovingPair();
     bool AnyThingMoving();
