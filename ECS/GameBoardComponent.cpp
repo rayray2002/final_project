@@ -295,6 +295,12 @@ void GameBoardComponent::UpdateMovingPairLastestVersion()
     UpdateMovingPairState();
 }
 
+void GameBoardComponent::SpaceAction()
+{
+    UpdateBoardMovingState();
+    UpdateMovingPairLastestVersion();
+}
+
 void GameBoardComponent::Spin()
 {
     UpdateBoardMovingState();

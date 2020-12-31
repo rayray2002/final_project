@@ -54,6 +54,7 @@ public:
     void Move();     // get keyboard event
     void MoveDown(); // drop
     void Spin();
+    void SpaceAction();
     void Swap(unit &a, unit &b);
     void UpdateMovingPairLastestVersion();
     bool PairAdjacent();
