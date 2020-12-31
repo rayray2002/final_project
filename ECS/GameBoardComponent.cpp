@@ -74,13 +74,13 @@ unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
     return &UnitArray[ypos][xpos];
 }
 
-void GameBoardComponent::ReSetAllArrayZero()
+void GameBoardComponent::ReSetAllArrayZero(int gameBoardx, int gameBoardy)
 {
     for (int i = 0; i < 13; i++)
         for (int j = 0; j < 6; j++)
         {
-            UnitArray[i][j].destR.x = 100 + 50 * j;
-            UnitArray[i][j].destR.y = 35 + 50 * i;
+            UnitArray[i][j].destR.x = gameBoardx + 50 * j;
+            UnitArray[i][j].destR.y = gameBoardy + 50 * i;
             UnitArray[i][j].destR.w = UnitArray[i][j].destR.h = 50;
             UnitArray[i][j].color = Empty;
             UnitArray[i][j].isActive = false;
@@ -94,7 +94,6 @@ void GameBoardComponent::ReSetAllArrayZero()
             UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
             SDL_FreeSurface(tmpSurface);
         }
-    // cout << " reset 2 " << endl;
 }
 
 void GameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos)
@@ -172,49 +171,94 @@ void GameBoardComponent::Move()
 {
     if (Game::event.type == SDL_KEYDOWN)
     {
-        switch (Game::event.key.keysym.sym)
-        {
-        case SDLK_DOWN:
-            cout << "DOWN" << endl;
-            for (int i = 11; i >= 0; i--) // start from 11 to 0
-                for (int j = 0; j < 6; j++)
-                {
-                    if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
-                        SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
-                }
-            break;
-        case SDLK_LEFT:
-            cout << "LEFT" << endl;
-            for (int i = 0; i < 13; i++)
-                for (int j = 1; j < 6; j++) // start from 1
-                {
-                    if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
-                        SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
-                }
-            break;
-        case SDLK_RIGHT:
-            cout << "RIGHT" << endl;
-            for (int i = 0; i < 13; i++)
-                for (int j = 4; j >= 0; j--) // end at 0
-                {
-                    if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
-                        SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
-                }
-            break;
-        case SDLK_UP:
-            cout << "UP" << endl;
-            Spin();
-            break;
-        case SDLK_SPACE:
-            cout << "SPACE" << endl;
-            SpaceAction();
-            break;
-        case SDLK_ESCAPE:
-            Game::isRunning = false;
-            break;
-        default:
-            break;
-        }
+        if (mode == 1)
+            switch (Game::event.key.keysym.sym)
+            {
+            case SDLK_s:
+                cout << "DOWN" << endl;
+                for (int i = 11; i >= 0; i--) // start from 11 to 0
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+                    }
+                break;
+            case SDLK_a:
+                cout << "LEFT" << endl;
+                for (int i = 0; i < 13; i++)
+                    for (int j = 1; j < 6; j++) // start from 1
+                    {
+                        if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
+                    }
+                break;
+            case SDLK_d:
+                cout << "RIGHT" << endl;
+                for (int i = 0; i < 13; i++)
+                    for (int j = 4; j >= 0; j--) // end at 0
+                    {
+                        if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
+                    }
+                break;
+            case SDLK_w:
+                cout << "UP" << endl;
+                Spin();
+                break;
+            case SDLK_SPACE:
+                cout << "SPACE" << endl;
+                SpaceAction();
+                break;
+            case SDLK_ESCAPE:
+                Game::isRunning = false;
+                break;
+            default:
+                break;
+            }
+        if (mode == 2)
+            switch (Game::event.key.keysym.sym)
+            {
+            case SDLK_DOWN:
+                cout << "DOWN" << endl;
+                for (int i = 11; i >= 0; i--) // start from 11 to 0
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+                    }
+                break;
+            case SDLK_LEFT:
+                cout << "LEFT" << endl;
+                for (int i = 0; i < 13; i++)
+                    for (int j = 1; j < 6; j++) // start from 1
+                    {
+                        if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
+                    }
+                break;
+            case SDLK_RIGHT:
+                cout << "RIGHT" << endl;
+                for (int i = 0; i < 13; i++)
+                    for (int j = 4; j >= 0; j--) // end at 0
+                    {
+                        if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
+                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
+                    }
+                break;
+            case SDLK_UP:
+                cout << "UP" << endl;
+                Spin();
+                break;
+            case SDLK_SPACE:
+                cout << "SPACE" << endl;
+                SpaceAction();
+                break;
+            case SDLK_ESCAPE:
+                Game::isRunning = false;
+                break;
+            default:
+                break;
+            }
     }
 }
 
@@ -323,47 +367,27 @@ void GameBoardComponent::Spin()
             if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y && MovingPair[1].mapPosition.x < 5)
             {
                 if (UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1].color == Empty)
+                {
                     SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
-            }
-            else if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y && MovingPair[0].mapPosition.x < 5)
-            {
-                if (UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1].color == Empty)
-                    SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
+                }
             }
             else if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y && MovingPair[1].mapPosition.x == 5)
             {
-                MovingPair[0].mapPosition.x--;
-                MovingPair[1].mapPosition.x--;
+                SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y][(int)MovingPair[0].mapPosition.x - 1]);
+                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y][(int)MovingPair[1].mapPosition.x - 1]);
                 if (UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1].color == Empty)
                     SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
             }
-            else if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y && MovingPair[0].mapPosition.x == 5)
-            {
-                MovingPair[0].mapPosition.x--;
-                MovingPair[1].mapPosition.x--;
-                if (UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1].color == Empty)
-                    SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
-            }
             break;
         case RIGHT_AND_LEFT:
-            if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
-            {
-                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
-            }
-            else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+            if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
             {
                 SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
             }
-            else if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x)
-            {
-                MovingPair[0].mapPosition.y++;
-                MovingPair[1].mapPosition.y++;
-                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
-            }
             else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x)
             {
-                MovingPair[0].mapPosition.y++;
-                MovingPair[1].mapPosition.y++;
+                SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x]);
+                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[1].mapPosition.x]);
                 SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
             }
             break;

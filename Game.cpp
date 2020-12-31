@@ -18,7 +18,8 @@ bool Game::isRunning = false;
 // auto &player(manager.addEntity());
 auto &back(manager.addEntity());
 auto &buttom(manager.addEntity());
-auto &gameboard(manager.addEntity());
+auto &gameboard1(manager.addEntity());
+auto &gameboard2(manager.addEntity());
 
 vector<Entity *> gameblock;
 
@@ -81,8 +82,11 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    gameboard.addComponent<GameBoardComponent>();
-    gameboard.addGroup(groupGameBoards);
+    gameboard1.addComponent<GameBoardComponent>(100, 35, 1);
+    gameboard1.addGroup(groupGameBoards);
+
+    gameboard2.addComponent<GameBoardComponent>(880, 35, 2);
+    gameboard2.addGroup(groupGameBoards);
 
     // colliders.addComponent<SpriteComponent>()
 

@@ -19,7 +19,6 @@ int main(int argc, const char *argv[])
 
     while (game->running())
     {
-        // SDL_Delay(1000);
         frameStart = SDL_GetTicks();
 
         game->handleEveants();
