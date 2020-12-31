@@ -45,7 +45,7 @@ public:
     void ReSetZeroUnit(int &xpos, int &ypos);         // set default unit
     void ReSetAllArrayZero();                         // reset gameboard
     void SwapTwoUnit(int x1, int y1, int x2, int y2); // pass position to swap
-    void SwapTwoUnit(unit u1, unit u2);               // pass unit to swap
+    void SwapTwoUnit(unit &u1, unit &u2);             // pass unit to swap
     void InitializeRamdomUnitOnTop(int topx);         // set new unit
     void ClearMovingPair();                           // not used now
     void UpdateBoardMovingState();                    // set moving state
@@ -55,6 +55,7 @@ public:
     void Move();     // get keyboard event
     void MoveDown(); // drop
     void Spin();
+    void Swap(unit &a, unit &b);
 
     vector<unit> MovingPair;
     PairState MovingPairState;

@@ -125,16 +125,25 @@ void Game::update()
 {
     manager.refresh();
     manager.update();
+
     static bool isAnyThingMoving;
     for (auto &a : gameboards)
     {
-        // cout << a->getComponent<GameBoardComponent>().UnitArray << endl;
+        for (int j = 0; j < 6; j++)
+        {
+            for (int i = 0; i < 13; i++)
+            {
+                cout << a->getComponent<GameBoardComponent>().UnitArray[i][j].isMoving << " ";
+            }
+            cout << endl
+                 << endl;
+        }
+
         a->getComponent<GameBoardComponent>().UpdateBoardMovingState();
         isAnyThingMoving = a->getComponent<GameBoardComponent>().AnyThingMoving();
         if (!isAnyThingMoving)
         {
             a->getComponent<GameBoardComponent>().init();
-            a->getComponent<GameBoardComponent>().Move();
         }
         else
             a->getComponent<GameBoardComponent>().MoveDown();
@@ -153,13 +162,10 @@ void Game::render()
     {
         b->getComponent<TextButtomComponent>().draw();
     }
-    int t = SDL_GetTicks();
     for (auto &b : gameboards)
     {
         b->getComponent<GameBoardComponent>().draw();
     }
-    t = SDL_GetTicks() - t;
-    cout << "Third = " << t << endl;
 
     SDL_RenderPresent(Game::renderer);
     SDL_RenderClear(Game::renderer);

@@ -4,11 +4,8 @@
 
 void GameBoardComponent::init()
 {
-    // cout << "Game Board Init!" << endl;
-    // ReSetAllArrayZero();
     InitializeRamdomUnitOnTop(2);
     InitializeRamdomUnitOnTop(3);
-    // cout << "Game Board Inited!" << endl;
 }
 
 void GameBoardComponent::draw()
@@ -89,17 +86,30 @@ void GameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos)
     SDL_FreeSurface(tmpSurface);
 }
 
-void GameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2)
+void GameBoardComponent::Swap(unit &a, unit &b)
 {
-    unit tmpUnit;
-    tmpUnit = UnitArray[y1][x1];
-    UnitArray[y1][x1] = UnitArray[y2][x2];
-    UnitArray[y2][x2] = tmpUnit;
+    unit t = a;
+    a.isMoving = b.isMoving;
+    a.isActive = b.isActive;
+    a.texture = b.texture;
+    a.color = b.color;
+
+    b.isMoving = t.isMoving;
+    b.isActive = t.isActive;
+    b.texture = t.texture;
+    b.color = t.color;
 }
 
-void GameBoardComponent::SwapTwoUnit(unit u1, unit u2)
+void GameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2)
 {
+    Swap(UnitArray[y1][x1], UnitArray[y2][x2]);
+}
+
+void GameBoardComponent::SwapTwoUnit(unit &u1, unit &u2)
+{
+    cout << " SWAP B " << u1.isMoving << endl;
     SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y);
+    cout << " SWAP E " << u1.isMoving << endl;
 }
 
 void GameBoardComponent::InitializeRamdomUnitOnTop(int topx)
@@ -150,13 +160,14 @@ void GameBoardComponent::ClearMovingPair()
 
 void GameBoardComponent::Move()
 {
-    // cout << "Game Board Move!" << endl;
+    // cout << "MOVE" << endl;
     if (Game::event.type == SDL_KEYDOWN)
     {
         switch (Game::event.key.keysym.sym)
         {
         case SDLK_DOWN:
-            for (int i = 0; i < 13; i++)
+            cout << "DOWN" << endl;
+            for (int i = 11; i >= 0; i--) // start from 11 to 0
                 for (int j = 0; j < 6; j++)
                 {
                     if (UnitArray[i][j].mapPosition.y < 13)
@@ -165,6 +176,7 @@ void GameBoardComponent::Move()
                 }
             break;
         case SDLK_LEFT:
+            cout << "LEFT" << endl;
             for (int i = 0; i < 13; i++)
                 for (int j = 1; j < 6; j++) // start from 1
                 {
@@ -173,8 +185,9 @@ void GameBoardComponent::Move()
                 }
             break;
         case SDLK_RIGHT:
+            cout << "RIGHT" << endl;
             for (int i = 0; i < 13; i++)
-                for (int j = 1; j < 5; j++) // end at 5
+                for (int j = 4; j >= 0; j--) // end at 0
                 {
                     if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
                         SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
@@ -182,6 +195,10 @@ void GameBoardComponent::Move()
             break;
         case SDLK_UP:
             Spin();
+            break;
+        case SDLK_ESCAPE:
+            Game::isRunning = false;
+            break;
         default:
             break;
         }
@@ -191,10 +208,16 @@ void GameBoardComponent::Move()
 
 void GameBoardComponent::MoveDown()
 {
-    for (int i = 12; i >= 0; i--)
-        for (int j = 0; j < 6; j++)
-            if (UnitArray[i][j].color != Empty && UnitArray[i + 1][j].color == Empty)
-                SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+    static int ii = 0;
+    if (ii == 30)
+    {
+        for (int i = 12; i >= 0; i--)
+            for (int j = 0; j < 6; j++)
+                if (UnitArray[i][j].color != Empty && UnitArray[i + 1][j].color == Empty)
+                    SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+        ii = 0;
+    }
+    ii++;
 }
 
 void GameBoardComponent::UpdateBoardMovingState()
@@ -203,11 +226,20 @@ void GameBoardComponent::UpdateBoardMovingState()
         for (int j = 0; j < 6; j++)
         {
             if (UnitArray[i][j].color == Empty)
+            {
                 UnitArray[i][j].isMoving = false;
+                UnitArray[i][j].isActive = false;
+            }
             else if (UnitArray[i][j].mapPosition.y == 12)
-                UnitArray[i][j].isMoving == false;
-            else if (UnitArray[i][j].mapPosition.y < 12 && (UnitArray[i + 1][j].color != Empty && !UnitArray[i][j].isMoving))
+            {
                 UnitArray[i][j].isMoving = false;
+                UnitArray[i][j].isActive = false;
+            }
+            else if (UnitArray[i][j].mapPosition.y < 12 && (UnitArray[i + 1][j].color != Empty && !UnitArray[i][j].isMoving))
+            {
+                UnitArray[i][j].isMoving = false;
+                UnitArray[i][j].isActive = false;
+            }
             else
                 UnitArray[i][j].isMoving = true;
         }
@@ -215,15 +247,15 @@ void GameBoardComponent::UpdateBoardMovingState()
 
 void GameBoardComponent::update()
 {
-    // cout << "Game Board Update!" << endl;
+    // cout << "UPDATE" << endl;
     static int n = 0;
-    if (n == 60)
+    if (n == 10)
     {
+        UpdateBoardMovingState();
         Move();
         n = 0;
     }
     n++;
-    // cout << "Game Board Updated!" << endl;
 }
 
 void GameBoardComponent::GetMovingPair()
