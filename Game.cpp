@@ -124,32 +124,6 @@ void Game::update()
 {
     manager.refresh();
     manager.update();
-
-    // static bool isAnyThingMoving;
-    // for (auto &a : gameboards)
-    // {
-    //     a->getComponent<GameBoardComponent>().GetMovingPair();
-    //     a->getComponent<GameBoardComponent>().UpdateMovingPairState();
-    //     for (int i = 0; i < 13; i++)
-    //     {
-    //         for (int j = 0; j < 6; j++)
-    //         {
-    //             cout << a->getComponent<GameBoardComponent>().UnitArray[i][j].isMoving << " ";
-    //         }
-    //         cout << endl;
-    //     }
-    //     cout << "************" << endl;
-
-    //     a->getComponent<GameBoardComponent>().UpdateBoardMovingState();
-    //     isAnyThingMoving = a->getComponent<GameBoardComponent>().AnyThingMoving();
-    //     if (!isAnyThingMoving)
-    //     {
-    //         a->getComponent<GameBoardComponent>().init();
-    //     }
-    //     else
-    //         a->getComponent<GameBoardComponent>().MoveDown();
-    //     a->getComponent<GameBoardComponent>().ClearMovingPair();
-    // }
 }
 
 void Game::render()

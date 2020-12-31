@@ -216,7 +216,6 @@ void GameBoardComponent::Move()
             break;
         }
     }
-    // cout << "Game Board Moved!" << endl;
 }
 
 void GameBoardComponent::MoveDown()
@@ -259,7 +258,6 @@ void GameBoardComponent::UpdateBoardMovingState()
 void GameBoardComponent::GetMovingPair()
 {
     int n = 0;
-    // if (MovingPair.size() < 2)
     for (int i = 0; i < 13; i++)
         for (int j = 0; j < 6; j++)
         {
@@ -271,13 +269,10 @@ void GameBoardComponent::GetMovingPair()
                 n++;
             }
         }
-    // cout << " Pair Size = " << MovingPair.size() << endl;
 }
 
 void GameBoardComponent::UpdateMovingPairState()
 {
-    // if (!MovingPair.empty())
-    // {
     if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y + 1 || MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y - 1)
     {
         if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x)
@@ -290,7 +285,6 @@ void GameBoardComponent::UpdateMovingPairState()
     }
     else
         MovingPairState = SEPERATED;
-    // }
 }
 
 void GameBoardComponent::UpdateMovingPairLastestVersion()
