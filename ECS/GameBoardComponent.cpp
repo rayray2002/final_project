@@ -152,11 +152,11 @@ bool GameBoardComponent::AnyThingMoving()
 
 void GameBoardComponent::ClearMovingPair()
 {
-    if (MovingPair.size() >= 2)
-    {
-        MovingPair.pop_back();
-        MovingPair.pop_back();
-    }
+    // if (MovingPair.size() >= 2)
+    // {
+    //     MovingPair.pop_back();
+    //     MovingPair.pop_back();
+    // }
 }
 
 void GameBoardComponent::Move()
@@ -246,7 +246,7 @@ void GameBoardComponent::UpdateBoardMovingState()
 void GameBoardComponent::update()
 {
     static int n = 0;
-    if (n == 10)
+    if (n == 5)
     {
         UpdateBoardMovingState();
         Move();
@@ -255,15 +255,15 @@ void GameBoardComponent::update()
     n++;
 
     UpdateBoardMovingState();
-    GetMovingPair();
-    UpdateMovingPairState();
+    // GetMovingPair();
+    // UpdateMovingPairState();
     if (!AnyThingMoving())
     {
         init();
     }
     else
         MoveDown();
-    ClearMovingPair();
+    // ClearMovingPair();
     // for (int i = 0; i < 13; i++)
     // {
     //     for (int j = 0; j < 6; j++)
@@ -273,88 +273,106 @@ void GameBoardComponent::update()
     //     cout << endl;
     // }
     // cout << "**************" << endl;
-    cout << "MovingPairState = " << MovingPairState << endl;
+    // cout << "MovingPairState = " << MovingPairState << endl;
 }
 
 void GameBoardComponent::GetMovingPair()
 {
     int n = 0;
-    if (MovingPair.size() < 2)
-        for (int i = 0; i < 13; i++)
-            for (int j = 0; j < 6; j++)
+    // if (MovingPair.size() < 2)
+    for (int i = 0; i < 13; i++)
+        for (int j = 0; j < 6; j++)
+        {
+            if (n == 2)
+                break;
+            if (UnitArray[i][j].isMoving)
             {
-                if (n == 2)
-                    break;
-                if (UnitArray[i][j].isMoving)
-                {
-                    MovingPair.push_back(UnitArray[i][j]);
-                    n++;
-                }
+                MovingPair[n] = UnitArray[i][j];
+                n++;
             }
-    cout << " Pair Size = " << MovingPair.size() << endl;
+        }
+    // cout << " Pair Size = " << MovingPair.size() << endl;
 }
 
 void GameBoardComponent::UpdateMovingPairState()
 {
-    if (!MovingPair.empty())
+    // if (!MovingPair.empty())
+    // {
+    if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y + 1 || MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y - 1)
     {
-        if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y + 1 || MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y - 1)
-        {
-            if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x)
-                MovingPairState = UP_AND_DOWN;
-        }
-        else if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x + 1 || MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x - 1)
-        {
-            if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y)
-                MovingPairState = RIGHT_AND_LEFT;
-        }
-        else
-            MovingPairState = SEPERATED;
+        if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x)
+            MovingPairState = UP_AND_DOWN;
     }
+    else if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x + 1 || MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x - 1)
+    {
+        if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y)
+            MovingPairState = RIGHT_AND_LEFT;
+    }
+    else
+        MovingPairState = SEPERATED;
+    // }
+}
+
+void GameBoardComponent::UpdateMovingPairLastestVersion()
+{
+    GetMovingPair();
+    UpdateMovingPairState();
 }
 
 void GameBoardComponent::Spin()
 {
     UpdateBoardMovingState();
-    UpdateMovingPairState();
-    GetMovingPair();
-    switch (MovingPairState)
-    {
-    case UP_AND_DOWN:
-        if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y)
+    UpdateMovingPairLastestVersion();
+    if (PairAdjacent())
+        switch (MovingPairState)
         {
-            SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x - 1]);
+        case UP_AND_DOWN:
+            if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y && MovingPair[1].mapPosition.x < 5)
+            {
+                SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
+            }
+            else if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y && MovingPair[0].mapPosition.x < 5)
+            {
+                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
+            }
+            else if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y && MovingPair[1].mapPosition.x == 5)
+            {
+                MovingPair[0].mapPosition.x--;
+                MovingPair[1].mapPosition.x--;
+                SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
+            }
+            else if (MovingPair[0].mapPosition.y > MovingPair[1].mapPosition.y && MovingPair[0].mapPosition.x == 5)
+            {
+                MovingPair[0].mapPosition.x--;
+                MovingPair[1].mapPosition.x--;
+                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y + 1][(int)MovingPair[0].mapPosition.x + 1]);
+            }
+            break;
+        case RIGHT_AND_LEFT:
+            if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+            {
+                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
+            }
+            else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
+            {
+                SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
+            }
+            else if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x)
+            {
+                MovingPair[0].mapPosition.y++;
+                MovingPair[1].mapPosition.y++;
+                SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
+            }
+            else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x)
+            {
+                MovingPair[0].mapPosition.y++;
+                MovingPair[1].mapPosition.y++;
+                SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
+            }
+            break;
+        case SEPERATED:
+            break;
         }
-        else if (MovingPair[0].mapPosition.y < MovingPair[1].mapPosition.y)
-        {
-            SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x - 1]);
-        }
-        break;
-    case RIGHT_AND_LEFT:
-        if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
-        {
-            SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
-        }
-        else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x && MovingPair[0].mapPosition.y > 0)
-        {
-            SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
-        }
-        else if (MovingPair[0].mapPosition.x > MovingPair[1].mapPosition.x)
-        {
-            MovingPair[0].mapPosition.y++;
-            MovingPair[1].mapPosition.y++;
-            SwapTwoUnit(MovingPair[1], UnitArray[(int)MovingPair[1].mapPosition.y - 1][(int)MovingPair[1].mapPosition.x + 1]);
-        }
-        else if (MovingPair[0].mapPosition.x < MovingPair[1].mapPosition.x)
-        {
-            MovingPair[0].mapPosition.y++;
-            MovingPair[1].mapPosition.y++;
-            SwapTwoUnit(MovingPair[0], UnitArray[(int)MovingPair[0].mapPosition.y - 1][(int)MovingPair[0].mapPosition.x + 1]);
-        }
-        break;
-    case SEPERATED:
-        break;
-    }
 }
 
 void GameBoardComponent::UpdateColor()
@@ -363,4 +381,14 @@ void GameBoardComponent::UpdateColor()
         for (int j = 0; j < 6; j++)
         {
         }
+}
+
+bool GameBoardComponent::PairAdjacent()
+{
+    if (MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x - 1 && MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y)
+        return true;
+    if (MovingPair[0].mapPosition.y == MovingPair[1].mapPosition.y - 1 && MovingPair[0].mapPosition.x == MovingPair[1].mapPosition.x)
+        return true;
+    else
+        return false;
 }

@@ -57,8 +57,10 @@ public:
     void Spin();
     void Swap(unit &a, unit &b);
     void UpdateColor();
+    void UpdateMovingPairLastestVersion();
+    bool PairAdjacent();
 
-    vector<unit> MovingPair;
+    unit MovingPair[2];
     PairState MovingPairState;
     bool isChanged;
 
