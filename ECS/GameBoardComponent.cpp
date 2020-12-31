@@ -170,7 +170,6 @@ bool GameBoardComponent::AnyThingMoving()
 
 void GameBoardComponent::Move()
 {
-    // cout << "MOVE" << endl;
     if (Game::event.type == SDL_KEYDOWN)
     {
         switch (Game::event.key.keysym.sym)
@@ -203,7 +202,12 @@ void GameBoardComponent::Move()
                 }
             break;
         case SDLK_UP:
+            cout << "UP" << endl;
             Spin();
+            break;
+        case SDLK_SPACE:
+            cout << "SPACE" << endl;
+            SpaceAction();
             break;
         case SDLK_ESCAPE:
             Game::isRunning = false;
@@ -299,6 +303,19 @@ void GameBoardComponent::SpaceAction()
 {
     UpdateBoardMovingState();
     UpdateMovingPairLastestVersion();
+    int p1yd;
+    int p2yd;
+    if (MovingPairState == RIGHT_AND_LEFT)
+        for (int i = 0; i < 13; i++)
+            for (int j = 0; j < 6; j++)
+            {
+                if (UnitArray[i][j].mapPosition.x == MovingPair[0].mapPosition.x && UnitArray[i][j].color == Empty)
+                    p1yd = UnitArray[i][j].mapPosition.y;
+                if (UnitArray[i][j].mapPosition.x == MovingPair[1].mapPosition.x && UnitArray[i][j].color == Empty)
+                    p2yd = UnitArray[i][j].mapPosition.y;
+            }
+    SwapTwoUnit(MovingPair[0], UnitArray[p1yd][(int)MovingPair[0].mapPosition.x]);
+    SwapTwoUnit(MovingPair[1], UnitArray[p2yd][(int)MovingPair[1].mapPosition.x]);
 }
 
 void GameBoardComponent::Spin()
