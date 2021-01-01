@@ -28,8 +28,14 @@ void DoubleGameBoardComponent::update()
 {
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
-	Move(1);
-	Move(2);
+	static int n = 0;
+	if (n == 5)
+	{
+		Move(1);
+		Move(2);
+		n = 0;
+	}
+	n++;
 
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
