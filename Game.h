@@ -20,21 +20,21 @@ using namespace std;
 
 class ColliderComponent;
 
-struct unit
-{
-    SDL_Texture *texture;
-    SDL_Rect srcR, destR;
-    Vector2D speed;
-    Vector2D bspeed;
-    Vector2D mapPosition;
-    Color color;
-    bool isMoving;
-    bool isActive;
-    SDL_Surface *surface;
-    int Combo;
-    int Score;
-    bool KO;
-};
+//struct unit
+//{
+//    SDL_Texture *texture;
+//    SDL_Rect srcR, destR;
+//    Vector2D speed;
+//    Vector2D bspeed;
+//    Vector2D mapPosition;
+//    Color color;
+//    bool isMoving;
+//    bool isActive;
+//    SDL_Surface *surface;
+//    int Combo;
+//    int Score;
+//    bool KO;
+//};
 class Game
 {
 public:

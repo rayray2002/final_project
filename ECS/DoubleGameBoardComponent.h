@@ -29,9 +29,11 @@ private:
     };
 
 public:
-    unit UnitArray1[13][6];
-    unit UnitArray2[13][6];
+//    unit UnitArray1[13][6];
+//    unit UnitArray2[13][6];
 
+    GameBoard gameboard1;
+	GameBoard gameboard2;
     void ReSetZeroUnit(int &xpos, int &ypos, int side);         // set default unit
     void ReSetAllArrayZero(int side);                           // reset gameboard
     void SwapTwoUnit(int x1, int y1, int x2, int y2, int side); // pass position to swap
@@ -68,23 +70,7 @@ public:
     void init1();
     void init2();
 
-    void chaining()
-    {
-        // isChanged = gameboard.update();
-        // if (isChanged)
-        //     for (int i = 0; i < blocks.size(); i++)
-        //     {
-        //         cout << "1" << endl;
-        //         auto a = blocks[i];
-        //         if (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] == Empty)
-        //         {
-        //             blocks.erase(blocks.begin() + i);
-        //             i--;
-        //         }
-        //         cout << "2" << endl;
-        //     }
-        // cout << "OK" << endl;
-    }
+    void chaining(int);
 };
 
 #endif

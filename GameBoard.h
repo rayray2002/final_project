@@ -10,19 +10,25 @@
 #define BOARDWIDTH 6
 #endif
 
-#ifndef GAMEBOARD_H
-#define GAMEBOARD_H
-
 #include <algorithm>
 #include <iostream>
 #include <vector>
 #include <queue>
 #include <cmath>
+#include <SDL.h>
+#include "Vector2D.h"
+//#include "Game.h"
+
+#ifndef GAMEBOARD_H
+#define GAMEBOARD_H
 
 using namespace std;
 
-enum Color
-{
+struct Block {
+	int x, y;
+};
+
+enum Color {
 	Empty,
 	Trash,
 	Rainbow,
@@ -33,19 +39,33 @@ enum Color
 	Purple
 };
 
-struct Block
+struct unit
 {
-	int x, y;
+	SDL_Texture *texture;
+	SDL_Rect srcR, destR;
+	Vector2D speed;
+	Vector2D bspeed;
+	Vector2D mapPosition;
+	Color color;
+	bool isMoving;
+	bool isActive;
+	SDL_Surface *surface;
+	int Combo;
+	int Score;
+	bool KO;
 };
 
 Color char_to_color(char);
 
 char color_to_char(Color);
 
-class GameBoard
-{
+class GameBoard {
+	friend ostream &operator<<(ostream &, const GameBoard &);
+
 public:
-	Color board[BOARDHEIGHT + 1][BOARDWIDTH + 2] = {};
+	unit UnitArray[BOARDHEIGHT][BOARDWIDTH];
+
+//	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
 
 	GameBoard();
 

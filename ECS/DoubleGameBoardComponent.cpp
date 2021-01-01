@@ -35,7 +35,8 @@ void DoubleGameBoardComponent::update()
     UpdateBoardMovingState(2);
     if (!AnyThingMoving(1))
     {
-        init1();
+    	chaining(1);
+        if (!isChanged1) init1();
     }
     else
     {
@@ -43,7 +44,8 @@ void DoubleGameBoardComponent::update()
     }
     if (!AnyThingMoving(2))
     {
-        init2();
+	    chaining(2);
+	    if (!isChanged2) init2();
     }
     else
     {
@@ -51,17 +53,24 @@ void DoubleGameBoardComponent::update()
     }
 }
 
+void DoubleGameBoardComponent::chaining(int side) {
+	if (side == 1) {
+		isChanged1 = gameboard1.update();
+	} else {
+		isChanged2 = gameboard2.update();
+	}
+}
 void DoubleGameBoardComponent::draw()
 {
     for (int i = 0; i < 13; i++)
         for (int j = 0; j < 6; j++)
         {
-            if (UnitArray1[i][j].color != Empty)
-                UnitArray1[i][j].isActive = true;
-            if (UnitArray1[i][j].isMoving || UnitArray1[i][j].isActive)
+            if (gameboard1.UnitArray[i][j].color != Empty)
+                gameboard1.UnitArray[i][j].isActive = true;
+            if (gameboard1.UnitArray[i][j].isMoving || gameboard1.UnitArray[i][j].isActive)
             {
                 SDL_Surface *tmpSurface;
-                switch (UnitArray1[i][j].color)
+                switch (gameboard1.UnitArray[i][j].color)
                 {
                 case Empty:
                     tmpSurface = SDL_LoadBMP("./img/padoru1.bmp");
@@ -84,21 +93,21 @@ void DoubleGameBoardComponent::draw()
                 default:
                     tmpSurface = SDL_LoadBMP("./img/banana.bmp");
                 }
-                UnitArray1[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+                gameboard1.UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
                 SDL_FreeSurface(tmpSurface);
-                if (UnitArray1[i][j].color != Empty)
-                    TextureManager::Draw(UnitArray1[i][j].texture, UnitArray1[i][j].srcR, UnitArray1[i][j].destR);
+                if (gameboard1.UnitArray[i][j].color != Empty)
+                    TextureManager::Draw(gameboard1.UnitArray[i][j].texture, gameboard1.UnitArray[i][j].srcR, gameboard1.UnitArray[i][j].destR);
             }
         }
     for (int i = 0; i < 13; i++)
         for (int j = 0; j < 6; j++)
         {
-            if (UnitArray2[i][j].color != Empty)
-                UnitArray2[i][j].isActive = true;
-            if (UnitArray2[i][j].isMoving || UnitArray2[i][j].isActive)
+            if (gameboard2.UnitArray[i][j].color != Empty)
+                gameboard2.UnitArray[i][j].isActive = true;
+            if (gameboard2.UnitArray[i][j].isMoving || gameboard2.UnitArray[i][j].isActive)
             {
                 SDL_Surface *tmpSurface;
-                switch (UnitArray2[i][j].color)
+                switch (gameboard2.UnitArray[i][j].color)
                 {
                 case Empty:
                     tmpSurface = SDL_LoadBMP("./img/padoru1.bmp");
@@ -121,10 +130,10 @@ void DoubleGameBoardComponent::draw()
                 default:
                     tmpSurface = SDL_LoadBMP("./img/banana.bmp");
                 }
-                UnitArray2[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+                gameboard2.UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
                 SDL_FreeSurface(tmpSurface);
-                if (UnitArray2[i][j].color != Empty)
-                    TextureManager::Draw(UnitArray2[i][j].texture, UnitArray2[i][j].srcR, UnitArray2[i][j].destR);
+                if (gameboard2.UnitArray[i][j].color != Empty)
+                    TextureManager::Draw(gameboard2.UnitArray[i][j].texture, gameboard2.UnitArray[i][j].srcR, gameboard2.UnitArray[i][j].destR);
             }
         }
 }
@@ -132,9 +141,9 @@ void DoubleGameBoardComponent::draw()
 unit *DoubleGameBoardComponent::getDataByMapPosition(int ypos, int xpos, int side)
 {
     if (side == 1)
-        return &UnitArray1[ypos][xpos];
+        return &gameboard1.UnitArray[ypos][xpos];
     else if (side == 2)
-        return &UnitArray2[ypos][xpos];
+        return &gameboard2.UnitArray[ypos][xpos];
 }
 
 void DoubleGameBoardComponent::ReSetAllArrayZero(int side)
@@ -144,20 +153,20 @@ void DoubleGameBoardComponent::ReSetAllArrayZero(int side)
         for (int i = 0; i < 13; i++)
             for (int j = 0; j < 6; j++)
             {
-                UnitArray1[i][j].destR.x = 100 + 50 * j;
-                UnitArray1[i][j].destR.y = 35 + 50 * i;
-                UnitArray1[i][j].destR.w = UnitArray1[i][j].destR.h = 50;
-                UnitArray1[i][j].color = Empty;
-                UnitArray1[i][j].isActive = false;
-                UnitArray1[i][j].isMoving = false;
-                UnitArray1[i][j].mapPosition.x = j;
-                UnitArray1[i][j].mapPosition.y = i;
-                UnitArray1[i][j].srcR.x = 0;
-                UnitArray1[i][j].srcR.y = UnitArray1[i][j].srcR.x = 0;
-                UnitArray1[i][j].srcR.w = UnitArray1[i][j].srcR.h = 1000;
-                UnitArray1[i][j].surface = SDL_LoadBMP("./img/banana.bmp");
-                UnitArray1[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, UnitArray1[i][j].surface);
-                SDL_FreeSurface(UnitArray1[i][j].surface);
+                gameboard1.UnitArray[i][j].destR.x = 100 + 50 * j;
+                gameboard1.UnitArray[i][j].destR.y = 35 + 50 * i;
+                gameboard1.UnitArray[i][j].destR.w = gameboard1.UnitArray[i][j].destR.h = 50;
+                gameboard1.UnitArray[i][j].color = Empty;
+                gameboard1.UnitArray[i][j].isActive = false;
+                gameboard1.UnitArray[i][j].isMoving = false;
+                gameboard1.UnitArray[i][j].mapPosition.x = j;
+                gameboard1.UnitArray[i][j].mapPosition.y = i;
+                gameboard1.UnitArray[i][j].srcR.x = 0;
+                gameboard1.UnitArray[i][j].srcR.y = gameboard1.UnitArray[i][j].srcR.x = 0;
+                gameboard1.UnitArray[i][j].srcR.w = gameboard1.UnitArray[i][j].srcR.h = 1000;
+                gameboard1.UnitArray[i][j].surface = SDL_LoadBMP("./img/banana.bmp");
+                gameboard1.UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, gameboard1.UnitArray[i][j].surface);
+                SDL_FreeSurface(gameboard1.UnitArray[i][j].surface);
             }
     }
     else if (side == 2)
@@ -165,20 +174,20 @@ void DoubleGameBoardComponent::ReSetAllArrayZero(int side)
         for (int i = 0; i < 13; i++)
             for (int j = 0; j < 6; j++)
             {
-                UnitArray2[i][j].destR.x = 880 + 50 * j;
-                UnitArray2[i][j].destR.y = 35 + 50 * i;
-                UnitArray2[i][j].destR.w = UnitArray2[i][j].destR.h = 50;
-                UnitArray2[i][j].color = Empty;
-                UnitArray2[i][j].isActive = false;
-                UnitArray2[i][j].isMoving = false;
-                UnitArray2[i][j].mapPosition.x = j;
-                UnitArray2[i][j].mapPosition.y = i;
-                UnitArray2[i][j].srcR.x = 0;
-                UnitArray2[i][j].srcR.y = UnitArray2[i][j].srcR.x = 0;
-                UnitArray2[i][j].srcR.w = UnitArray2[i][j].srcR.h = 1000;
-                UnitArray2[i][j].surface = SDL_LoadBMP("./img/banana.bmp");
-                UnitArray2[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, UnitArray2[i][j].surface);
-                SDL_FreeSurface(UnitArray2[i][j].surface);
+                gameboard2.UnitArray[i][j].destR.x = 880 + 50 * j;
+                gameboard2.UnitArray[i][j].destR.y = 35 + 50 * i;
+                gameboard2.UnitArray[i][j].destR.w = gameboard2.UnitArray[i][j].destR.h = 50;
+                gameboard2.UnitArray[i][j].color = Empty;
+                gameboard2.UnitArray[i][j].isActive = false;
+                gameboard2.UnitArray[i][j].isMoving = false;
+                gameboard2.UnitArray[i][j].mapPosition.x = j;
+                gameboard2.UnitArray[i][j].mapPosition.y = i;
+                gameboard2.UnitArray[i][j].srcR.x = 0;
+                gameboard2.UnitArray[i][j].srcR.y = gameboard2.UnitArray[i][j].srcR.x = 0;
+                gameboard2.UnitArray[i][j].srcR.w = gameboard2.UnitArray[i][j].srcR.h = 1000;
+                gameboard2.UnitArray[i][j].surface = SDL_LoadBMP("./img/banana.bmp");
+                gameboard2.UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, gameboard2.UnitArray[i][j].surface);
+                SDL_FreeSurface(gameboard2.UnitArray[i][j].surface);
             }
     }
 }
@@ -187,20 +196,20 @@ void DoubleGameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos, int side)
 {
     if (side == 1)
     {
-        UnitArray1[ypos][xpos].color = Empty;
-        UnitArray1[ypos][xpos].isActive = false;
-        UnitArray1[ypos][xpos].isMoving = false;
+        gameboard1.UnitArray[ypos][xpos].color = Empty;
+        gameboard1.UnitArray[ypos][xpos].isActive = false;
+        gameboard1.UnitArray[ypos][xpos].isMoving = false;
         SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-        UnitArray1[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+        gameboard1.UnitArray[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
         SDL_FreeSurface(tmpSurface);
     }
     else if (side == 2)
     {
-        UnitArray2[ypos][xpos].color = Empty;
-        UnitArray2[ypos][xpos].isActive = false;
-        UnitArray2[ypos][xpos].isMoving = false;
+        gameboard2.UnitArray[ypos][xpos].color = Empty;
+        gameboard2.UnitArray[ypos][xpos].isActive = false;
+        gameboard2.UnitArray[ypos][xpos].isMoving = false;
         SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-        UnitArray2[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
+        gameboard2.UnitArray[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
         SDL_FreeSurface(tmpSurface);
     }
 }
@@ -222,9 +231,9 @@ void DoubleGameBoardComponent::Swap(unit &a, unit &b)
 void DoubleGameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2, int side)
 {
     if (side == 1)
-        Swap(UnitArray1[y1][x1], UnitArray1[y2][x2]);
+        Swap(gameboard1.UnitArray[y1][x1], gameboard1.UnitArray[y2][x2]);
     else if (side == 2)
-        Swap(UnitArray2[y1][x1], UnitArray2[y2][x2]);
+        Swap(gameboard2.UnitArray[y1][x1], gameboard2.UnitArray[y2][x2]);
 }
 
 void DoubleGameBoardComponent::SwapTwoUnit(unit &u1, unit &u2, int side)
@@ -255,15 +264,15 @@ void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
     }
     if (side == 1)
     {
-        UnitArray1[0][topx].color = tmpColor;
-        UnitArray1[0][topx].isMoving = true;
-        UnitArray1[0][topx].isActive = true;
+        gameboard1.UnitArray[0][topx].color = tmpColor;
+        gameboard1.UnitArray[0][topx].isMoving = true;
+        gameboard1.UnitArray[0][topx].isActive = true;
     }
     else if (side == 2)
     {
-        UnitArray2[0][topx].color = tmpColor;
-        UnitArray2[0][topx].isMoving = true;
-        UnitArray2[0][topx].isActive = true;
+        gameboard2.UnitArray[0][topx].color = tmpColor;
+        gameboard2.UnitArray[0][topx].isMoving = true;
+        gameboard2.UnitArray[0][topx].isActive = true;
     }
 }
 
@@ -274,7 +283,7 @@ bool DoubleGameBoardComponent::AnyThingMoving(int side)
         for (int i = 0; i < 13; i++)
             for (int j = 0; j < 6; j++)
             {
-                if (UnitArray1[i][j].isMoving)
+                if (gameboard1.UnitArray[i][j].isMoving)
                     return true;
             }
         return false;
@@ -284,7 +293,7 @@ bool DoubleGameBoardComponent::AnyThingMoving(int side)
         for (int i = 0; i < 13; i++)
             for (int j = 0; j < 6; j++)
             {
-                if (UnitArray2[i][j].isMoving)
+                if (gameboard2.UnitArray[i][j].isMoving)
                     return true;
             }
         return false;
@@ -303,24 +312,24 @@ void DoubleGameBoardComponent::Move(int side)
                 for (int i = 11; i >= 0; i--) // start from 11 to 0
                     for (int j = 0; j < 6; j++)
                     {
-                        if (UnitArray2[i][j].isMoving && UnitArray2[i + 1][j].color == Empty)
-                            SwapTwoUnit(UnitArray2[i][j], UnitArray2[i + 1][j], 2);
+                        if (gameboard2.UnitArray[i][j].isMoving && gameboard2.UnitArray[i + 1][j].color == Empty)
+                            SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i + 1][j], 2);
                     }
                 break;
             case SDLK_LEFT:
                 for (int i = 0; i < 13; i++)
                     for (int j = 1; j < 6; j++) // start from 1
                     {
-                        if (UnitArray2[i][j].isMoving && UnitArray2[i][j - 1].color == Empty)
-                            SwapTwoUnit(UnitArray2[i][j], UnitArray2[i][j - 1], 2);
+                        if (gameboard2.UnitArray[i][j].isMoving && gameboard2.UnitArray[i][j - 1].color == Empty)
+                            SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i][j - 1], 2);
                     }
                 break;
             case SDLK_RIGHT:
                 for (int i = 0; i < 13; i++)
                     for (int j = 4; j >= 0; j--) // end at 0
                     {
-                        if (UnitArray2[i][j].isMoving && UnitArray2[i][j + 1].color == Empty)
-                            SwapTwoUnit(UnitArray2[i][j], UnitArray2[i][j + 1], 2);
+                        if (gameboard2.UnitArray[i][j].isMoving && gameboard2.UnitArray[i][j + 1].color == Empty)
+                            SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i][j + 1], 2);
                     }
                 break;
             case SDLK_UP:
@@ -347,24 +356,24 @@ void DoubleGameBoardComponent::Move(int side)
                 for (int i = 11; i >= 0; i--) // start from 11 to 0
                     for (int j = 0; j < 6; j++)
                     {
-                        if (UnitArray1[i][j].isMoving && UnitArray1[i + 1][j].color == Empty)
-                            SwapTwoUnit(UnitArray1[i][j], UnitArray1[i + 1][j], 1);
+                        if (gameboard1.UnitArray[i][j].isMoving && gameboard1.UnitArray[i + 1][j].color == Empty)
+                            SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i + 1][j], 1);
                     }
                 break;
             case SDLK_a:
                 for (int i = 0; i < 13; i++)
                     for (int j = 1; j < 6; j++) // start from 1
                     {
-                        if (UnitArray1[i][j].isMoving && UnitArray1[i][j - 1].color == Empty)
-                            SwapTwoUnit(UnitArray1[i][j], UnitArray1[i][j - 1], 1);
+                        if (gameboard1.UnitArray[i][j].isMoving && gameboard1.UnitArray[i][j - 1].color == Empty)
+                            SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i][j - 1], 1);
                     }
                 break;
             case SDLK_d:
                 for (int i = 0; i < 13; i++)
                     for (int j = 4; j >= 0; j--) // end at 0
                     {
-                        if (UnitArray1[i][j].isMoving && UnitArray1[i][j + 1].color == Empty)
-                            SwapTwoUnit(UnitArray1[i][j], UnitArray1[i][j + 1], 1);
+                        if (gameboard1.UnitArray[i][j].isMoving && gameboard1.UnitArray[i][j + 1].color == Empty)
+                            SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i][j + 1], 1);
                     }
                 break;
             case SDLK_w:
@@ -392,8 +401,8 @@ void DoubleGameBoardComponent::MoveDown(int side)
         {
             for (int i = 11; i >= 0; i--)
                 for (int j = 0; j < 6; j++)
-                    if (UnitArray1[i][j].color != Empty && UnitArray1[i + 1][j].color == Empty)
-                        SwapTwoUnit(UnitArray1[i][j], UnitArray1[i + 1][j], 1);
+                    if (gameboard1.UnitArray[i][j].color != Empty && gameboard1.UnitArray[i + 1][j].color == Empty)
+                        SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i + 1][j], 1);
             ii = 0;
         }
         ii++;
@@ -405,8 +414,8 @@ void DoubleGameBoardComponent::MoveDown(int side)
         {
             for (int i = 11; i >= 0; i--)
                 for (int j = 0; j < 6; j++)
-                    if (UnitArray2[i][j].color != Empty && UnitArray2[i + 1][j].color == Empty)
-                        SwapTwoUnit(UnitArray2[i][j], UnitArray2[i + 1][j], 2);
+                    if (gameboard2.UnitArray[i][j].color != Empty && gameboard2.UnitArray[i + 1][j].color == Empty)
+                        SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i + 1][j], 2);
             ii = 0;
         }
         ii++;
@@ -420,21 +429,21 @@ void DoubleGameBoardComponent::UpdateBoardMovingState(int side)
         for (int i = 12; i >= 0; i--)
             for (int j = 0; j < 6; j++)
             {
-                if (UnitArray1[i][j].color == Empty)
+                if (gameboard1.UnitArray[i][j].color == Empty)
                 {
-                    UnitArray1[i][j].isMoving = false;
+                    gameboard1.UnitArray[i][j].isMoving = false;
                 }
-                else if (UnitArray1[i][j].mapPosition.y == 12)
+                else if (gameboard1.UnitArray[i][j].mapPosition.y == 12)
                 {
-                    UnitArray1[i][j].isMoving = false;
+                    gameboard1.UnitArray[i][j].isMoving = false;
                 }
-                else if (UnitArray1[i][j].mapPosition.y < 12)
+                else if (gameboard1.UnitArray[i][j].mapPosition.y < 12)
                 {
-                    if (UnitArray1[i + 1][j].color != Empty && !UnitArray1[i + 1][j].isMoving)
-                        UnitArray1[i][j].isMoving = false;
+                    if (gameboard1.UnitArray[i + 1][j].color != Empty && !gameboard1.UnitArray[i + 1][j].isMoving)
+                        gameboard1.UnitArray[i][j].isMoving = false;
                 }
                 else
-                    UnitArray1[i][j].isMoving = true;
+                    gameboard1.UnitArray[i][j].isMoving = true;
             }
     }
     else if (side == 2)
@@ -442,21 +451,21 @@ void DoubleGameBoardComponent::UpdateBoardMovingState(int side)
         for (int i = 12; i >= 0; i--)
             for (int j = 0; j < 6; j++)
             {
-                if (UnitArray2[i][j].color == Empty)
+                if (gameboard2.UnitArray[i][j].color == Empty)
                 {
-                    UnitArray2[i][j].isMoving = false;
+                    gameboard2.UnitArray[i][j].isMoving = false;
                 }
-                else if (UnitArray2[i][j].mapPosition.y == 12)
+                else if (gameboard2.UnitArray[i][j].mapPosition.y == 12)
                 {
-                    UnitArray2[i][j].isMoving = false;
+                    gameboard2.UnitArray[i][j].isMoving = false;
                 }
-                else if (UnitArray2[i][j].mapPosition.y < 12)
+                else if (gameboard2.UnitArray[i][j].mapPosition.y < 12)
                 {
-                    if (UnitArray2[i + 1][j].color != Empty && !UnitArray2[i + 1][j].isMoving)
-                        UnitArray2[i][j].isMoving = false;
+                    if (gameboard2.UnitArray[i + 1][j].color != Empty && !gameboard2.UnitArray[i + 1][j].isMoving)
+                        gameboard2.UnitArray[i][j].isMoving = false;
                 }
                 else
-                    UnitArray2[i][j].isMoving = true;
+                    gameboard2.UnitArray[i][j].isMoving = true;
             }
     }
 }
@@ -471,9 +480,9 @@ void DoubleGameBoardComponent::GetMovingPair(int side)
             {
                 if (n == 2)
                     break;
-                if (UnitArray1[i][j].isMoving)
+                if (gameboard1.UnitArray[i][j].isMoving)
                 {
-                    MovingPair1[n] = UnitArray1[i][j];
+                    MovingPair1[n] = gameboard1.UnitArray[i][j];
                     n++;
                 }
             }
@@ -486,9 +495,9 @@ void DoubleGameBoardComponent::GetMovingPair(int side)
             {
                 if (n == 2)
                     break;
-                if (UnitArray2[i][j].isMoving)
+                if (gameboard2.UnitArray[i][j].isMoving)
                 {
-                    MovingPair2[n] = UnitArray2[i][j];
+                    MovingPair2[n] = gameboard2.UnitArray[i][j];
                     n++;
                 }
             }
@@ -547,13 +556,13 @@ void DoubleGameBoardComponent::SpaceAction(int side)
             for (int i = 0; i < 13; i++)
                 for (int j = 0; j < 6; j++)
                 {
-                    if (UnitArray1[i][j].mapPosition.x == MovingPair1[0].mapPosition.x && UnitArray1[i][j].color == Empty)
-                        p1yd = UnitArray1[i][j].mapPosition.y;
-                    if (UnitArray1[i][j].mapPosition.x == MovingPair1[1].mapPosition.x && UnitArray1[i][j].color == Empty)
-                        p2yd = UnitArray1[i][j].mapPosition.y;
+                    if (gameboard1.UnitArray[i][j].mapPosition.x == MovingPair1[0].mapPosition.x && gameboard1.UnitArray[i][j].color == Empty)
+                        p1yd = gameboard1.UnitArray[i][j].mapPosition.y;
+                    if (gameboard1.UnitArray[i][j].mapPosition.x == MovingPair1[1].mapPosition.x && gameboard1.UnitArray[i][j].color == Empty)
+                        p2yd = gameboard1.UnitArray[i][j].mapPosition.y;
                 }
-        SwapTwoUnit(MovingPair1[0], UnitArray1[p1yd][(int)MovingPair1[0].mapPosition.x], 1);
-        SwapTwoUnit(MovingPair1[1], UnitArray1[p2yd][(int)MovingPair1[1].mapPosition.x], 1);
+        SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[p1yd][(int)MovingPair1[0].mapPosition.x], 1);
+        SwapTwoUnit(MovingPair1[1], gameboard1.UnitArray[p2yd][(int)MovingPair1[1].mapPosition.x], 1);
     }
     else if (side == 2)
     {
@@ -563,13 +572,13 @@ void DoubleGameBoardComponent::SpaceAction(int side)
             for (int i = 0; i < 13; i++)
                 for (int j = 0; j < 6; j++)
                 {
-                    if (UnitArray2[i][j].mapPosition.x == MovingPair2[0].mapPosition.x && UnitArray2[i][j].color == Empty)
-                        p1yd = UnitArray1[i][j].mapPosition.y;
-                    if (UnitArray2[i][j].mapPosition.x == MovingPair2[1].mapPosition.x && UnitArray2[i][j].color == Empty)
-                        p2yd = UnitArray2[i][j].mapPosition.y;
+                    if (gameboard2.UnitArray[i][j].mapPosition.x == MovingPair2[0].mapPosition.x && gameboard2.UnitArray[i][j].color == Empty)
+                        p1yd = gameboard1.UnitArray[i][j].mapPosition.y;
+                    if (gameboard2.UnitArray[i][j].mapPosition.x == MovingPair2[1].mapPosition.x && gameboard2.UnitArray[i][j].color == Empty)
+                        p2yd = gameboard2.UnitArray[i][j].mapPosition.y;
                 }
-        SwapTwoUnit(MovingPair2[0], UnitArray2[p1yd][(int)MovingPair2[0].mapPosition.x], 2);
-        SwapTwoUnit(MovingPair2[1], UnitArray2[p2yd][(int)MovingPair2[1].mapPosition.x], 2);
+        SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[p1yd][(int)MovingPair2[0].mapPosition.x], 2);
+        SwapTwoUnit(MovingPair2[1], gameboard2.UnitArray[p2yd][(int)MovingPair2[1].mapPosition.x], 2);
     }
 }
 
@@ -586,29 +595,29 @@ void DoubleGameBoardComponent::Spin(int side)
             case UP_AND_DOWN:
                 if (MovingPair1[0].mapPosition.y < MovingPair1[1].mapPosition.y && MovingPair1[1].mapPosition.x < 5)
                 {
-                    if (UnitArray1[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1].color == Empty)
+                    if (gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1].color == Empty)
                     {
-                        SwapTwoUnit(MovingPair1[0], UnitArray1[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
+                        SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
                     }
                 }
                 else if (MovingPair1[0].mapPosition.y < MovingPair1[1].mapPosition.y && MovingPair1[1].mapPosition.x == 5)
                 {
-                    SwapTwoUnit(MovingPair1[0], UnitArray1[(int)MovingPair1[0].mapPosition.y][(int)MovingPair1[0].mapPosition.x - 1], 1);
-                    SwapTwoUnit(MovingPair1[1], UnitArray1[(int)MovingPair1[1].mapPosition.y][(int)MovingPair1[1].mapPosition.x - 1], 1);
-                    if (UnitArray1[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1].color == Empty)
-                        SwapTwoUnit(MovingPair1[0], UnitArray1[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
+                    SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y][(int)MovingPair1[0].mapPosition.x - 1], 1);
+                    SwapTwoUnit(MovingPair1[1], gameboard1.UnitArray[(int)MovingPair1[1].mapPosition.y][(int)MovingPair1[1].mapPosition.x - 1], 1);
+                    if (gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1].color == Empty)
+                        SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
                 }
                 break;
             case RIGHT_AND_LEFT:
                 if (MovingPair1[0].mapPosition.x < MovingPair1[1].mapPosition.x && MovingPair1[0].mapPosition.y > 0)
                 {
-                    SwapTwoUnit(MovingPair1[0], UnitArray1[(int)MovingPair1[0].mapPosition.y - 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
+                    SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y - 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
                 }
                 else if (MovingPair1[0].mapPosition.x < MovingPair1[1].mapPosition.x)
                 {
-                    SwapTwoUnit(MovingPair1[0], UnitArray1[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x], 1);
-                    SwapTwoUnit(MovingPair1[1], UnitArray1[(int)MovingPair1[1].mapPosition.y + 1][(int)MovingPair1[1].mapPosition.x], 1);
-                    SwapTwoUnit(MovingPair1[0], UnitArray1[(int)MovingPair1[0].mapPosition.y - 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
+                    SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y + 1][(int)MovingPair1[0].mapPosition.x], 1);
+                    SwapTwoUnit(MovingPair1[1], gameboard1.UnitArray[(int)MovingPair1[1].mapPosition.y + 1][(int)MovingPair1[1].mapPosition.x], 1);
+                    SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[(int)MovingPair1[0].mapPosition.y - 1][(int)MovingPair1[0].mapPosition.x + 1], 1);
                 }
                 break;
             case SEPERATED:
@@ -625,29 +634,29 @@ void DoubleGameBoardComponent::Spin(int side)
             case UP_AND_DOWN:
                 if (MovingPair2[0].mapPosition.y < MovingPair2[1].mapPosition.y && MovingPair2[1].mapPosition.x < 5)
                 {
-                    if (UnitArray2[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1].color == Empty)
+                    if (gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1].color == Empty)
                     {
-                        SwapTwoUnit(MovingPair2[0], UnitArray2[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
+                        SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
                     }
                 }
                 else if (MovingPair2[0].mapPosition.y < MovingPair2[1].mapPosition.y && MovingPair2[1].mapPosition.x == 5)
                 {
-                    SwapTwoUnit(MovingPair2[0], UnitArray2[(int)MovingPair2[0].mapPosition.y][(int)MovingPair2[0].mapPosition.x - 1], 2);
-                    SwapTwoUnit(MovingPair2[1], UnitArray2[(int)MovingPair2[1].mapPosition.y][(int)MovingPair2[1].mapPosition.x - 1], 2);
-                    if (UnitArray2[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1].color == Empty)
-                        SwapTwoUnit(MovingPair2[0], UnitArray2[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
+                    SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y][(int)MovingPair2[0].mapPosition.x - 1], 2);
+                    SwapTwoUnit(MovingPair2[1], gameboard2.UnitArray[(int)MovingPair2[1].mapPosition.y][(int)MovingPair2[1].mapPosition.x - 1], 2);
+                    if (gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1].color == Empty)
+                        SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
                 }
                 break;
             case RIGHT_AND_LEFT:
                 if (MovingPair2[0].mapPosition.x < MovingPair2[1].mapPosition.x && MovingPair2[0].mapPosition.y > 0)
                 {
-                    SwapTwoUnit(MovingPair2[0], UnitArray2[(int)MovingPair2[0].mapPosition.y - 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
+                    SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y - 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
                 }
                 else if (MovingPair2[0].mapPosition.x < MovingPair2[1].mapPosition.x)
                 {
-                    SwapTwoUnit(MovingPair2[0], UnitArray2[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x], 2);
-                    SwapTwoUnit(MovingPair2[1], UnitArray2[(int)MovingPair2[1].mapPosition.y + 1][(int)MovingPair2[1].mapPosition.x], 2);
-                    SwapTwoUnit(MovingPair2[0], UnitArray2[(int)MovingPair2[0].mapPosition.y - 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
+                    SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y + 1][(int)MovingPair2[0].mapPosition.x], 2);
+                    SwapTwoUnit(MovingPair2[1], gameboard2.UnitArray[(int)MovingPair2[1].mapPosition.y + 1][(int)MovingPair2[1].mapPosition.x], 2);
+                    SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[(int)MovingPair2[0].mapPosition.y - 1][(int)MovingPair2[0].mapPosition.x + 1], 2);
                 }
                 break;
             case SEPERATED:
