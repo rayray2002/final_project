@@ -61,7 +61,8 @@ public:
         groupColliders,
         groupBackGrounds,
         groupTextButtoms,
-        groupGameBoards
+        groupGameBoards,
+        groupDoubleGameBoards
     };
 
 private:

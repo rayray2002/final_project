@@ -18,8 +18,8 @@ bool Game::isRunning = false;
 // auto &player(manager.addEntity());
 auto &back(manager.addEntity());
 auto &buttom(manager.addEntity());
-auto &gameboard1(manager.addEntity());
-// auto &gameboard2(manager.addEntity());
+// auto &gameboard1(manager.addEntity());
+auto &gameboard2(manager.addEntity());
 
 vector<Entity *> gameblock;
 
@@ -82,8 +82,11 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    gameboard1.addComponent<GameBoardComponent>(100, 35, 1);
-    gameboard1.addGroup(groupGameBoards);
+    // gameboard1.addComponent<GameBoardComponent>(100, 35, 1);
+    // gameboard1.addGroup(groupGameBoards);
+
+    gameboard2.addComponent<DoubleGameBoardComponent>();
+    gameboard2.addGroup(groupDoubleGameBoards);
 
     // gameboard2.addComponent<GameBoardComponent>(880, 35, 2);
     // gameboard2.addGroup(groupGameBoards);
@@ -105,7 +108,8 @@ auto &tiles(manager.getGroup(Game::groupMap));
 auto &colliders(manager.getGroup(Game::groupColliders));
 auto &backs(manager.getGroup(Game::groupBackGrounds));
 auto &buttoms(manager.getGroup(Game::groupTextButtoms));
-auto &gameboards(manager.getGroup(Game::groupGameBoards));
+// auto &gameboards(manager.getGroup(Game::groupGameBoards));
+auto &gameboards2(manager.getGroup(Game::groupDoubleGameBoards));
 
 void Game::handleEveants()
 {
@@ -142,9 +146,13 @@ void Game::render()
     {
         b->getComponent<TextButtomComponent>().draw();
     }
-    for (auto &b : gameboards)
+    // for (auto &b : gameboards)
+    // {
+    //     b->getComponent<GameBoardComponent>().draw();
+    // }
+    for (auto &b : gameboards2)
     {
-        b->getComponent<GameBoardComponent>().draw();
+        b->getComponent<DoubleGameBoardComponent>().draw();
     }
 
     SDL_RenderPresent(Game::renderer);

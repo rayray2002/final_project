@@ -21,15 +21,16 @@ void DoubleGameBoardComponent::init2()
 void DoubleGameBoardComponent::update()
 {
     static int n = 0;
-    if (n == 6)
+    if (n == 2)
     {
-        UpdateBoardMovingState(1);
-        UpdateBoardMovingState(2);
-        Move(1);
-        Move(2);
+
         n = 0;
     }
     n++;
+    UpdateBoardMovingState(1);
+    UpdateBoardMovingState(2);
+    Move(1);
+    Move(2);
 
     UpdateBoardMovingState(1);
     UpdateBoardMovingState(2);
@@ -294,6 +295,7 @@ bool DoubleGameBoardComponent::AnyThingMoving(int side)
 void DoubleGameBoardComponent::Move(int side)
 {
     if (side == 2)
+    {
         if (Game::event.type == SDL_KEYDOWN)
         {
             switch (Game::event.key.keysym.sym)
@@ -335,50 +337,51 @@ void DoubleGameBoardComponent::Move(int side)
                 break;
             }
         }
-        else if (side == 1)
+    }
+    else if (side == 1)
+    {
+        if (Game::event.type == SDL_KEYDOWN)
         {
-            if (Game::event.type == SDL_KEYDOWN)
+            switch (Game::event.key.keysym.sym)
             {
-                switch (Game::event.key.keysym.sym)
-                {
-                case SDLK_s:
-                    for (int i = 11; i >= 0; i--) // start from 11 to 0
-                        for (int j = 0; j < 6; j++)
-                        {
-                            if (UnitArray1[i][j].isMoving && UnitArray1[i + 1][j].color == Empty)
-                                SwapTwoUnit(UnitArray1[i][j], UnitArray1[i + 1][j], 1);
-                        }
-                    break;
-                case SDLK_a:
-                    for (int i = 0; i < 13; i++)
-                        for (int j = 1; j < 6; j++) // start from 1
-                        {
-                            if (UnitArray1[i][j].isMoving && UnitArray1[i][j - 1].color == Empty)
-                                SwapTwoUnit(UnitArray1[i][j], UnitArray1[i][j - 1], 1);
-                        }
-                    break;
-                case SDLK_d:
-                    for (int i = 0; i < 13; i++)
-                        for (int j = 4; j >= 0; j--) // end at 0
-                        {
-                            if (UnitArray1[i][j].isMoving && UnitArray1[i][j + 1].color == Empty)
-                                SwapTwoUnit(UnitArray1[i][j], UnitArray1[i][j + 1], 1);
-                        }
-                    break;
-                case SDLK_w:
-                    Spin(1);
-                    break;
-                case SDLK_SPACE:
-                    SpaceAction(1);
-                    break;
-                case SDLK_ESCAPE:
-                    Game::isRunning = false;
-                    break;
-                default:
-                    break;
-                }
+            case SDLK_s:
+                for (int i = 11; i >= 0; i--) // start from 11 to 0
+                    for (int j = 0; j < 6; j++)
+                    {
+                        if (UnitArray1[i][j].isMoving && UnitArray1[i + 1][j].color == Empty)
+                            SwapTwoUnit(UnitArray1[i][j], UnitArray1[i + 1][j], 1);
+                    }
+                break;
+            case SDLK_a:
+                for (int i = 0; i < 13; i++)
+                    for (int j = 1; j < 6; j++) // start from 1
+                    {
+                        if (UnitArray1[i][j].isMoving && UnitArray1[i][j - 1].color == Empty)
+                            SwapTwoUnit(UnitArray1[i][j], UnitArray1[i][j - 1], 1);
+                    }
+                break;
+            case SDLK_d:
+                for (int i = 0; i < 13; i++)
+                    for (int j = 4; j >= 0; j--) // end at 0
+                    {
+                        if (UnitArray1[i][j].isMoving && UnitArray1[i][j + 1].color == Empty)
+                            SwapTwoUnit(UnitArray1[i][j], UnitArray1[i][j + 1], 1);
+                    }
+                break;
+            case SDLK_w:
+                Spin(1);
+                break;
+            case SDLK_SPACE:
+                SpaceAction(1);
+                break;
+            case SDLK_ESCAPE:
+                Game::isRunning = false;
+                break;
+            default:
+                break;
             }
         }
+    }
 }
 
 void DoubleGameBoardComponent::MoveDown(int side)
