@@ -5,6 +5,7 @@ CMakeFiles/main.dir/Collision.cpp.o: Collision.cpp
 CMakeFiles/main.dir/Collision.cpp.o: Collision.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/Animation.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/BackGroundComponent.h
+CMakeFiles/main.dir/Collision.cpp.o: ECS/ButtomComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Collision.cpp.o: ECS/DoubleGameBoardComponent.h
@@ -25,6 +26,7 @@ CMakeFiles/main.dir/Collision.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/Animation.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/BackGroundComponent.h
+CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/ButtomComponent.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/DoubleGameBoardComponent.cpp
@@ -56,6 +58,7 @@ CMakeFiles/main.dir/ECS/ECS.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/Animation.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/BackGroundComponent.h
+CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/ButtomComponent.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/DoubleGameBoardComponent.h
@@ -78,6 +81,7 @@ CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_tt
 CMakeFiles/main.dir/Game.cpp.o: Collision.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/Animation.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/BackGroundComponent.h
+CMakeFiles/main.dir/Game.cpp.o: ECS/ButtomComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/DoubleGameBoardComponent.h
@@ -112,6 +116,7 @@ CMakeFiles/main.dir/GameObject.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/Map.cpp.o: ECS/Animation.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/BackGroundComponent.h
+CMakeFiles/main.dir/Map.cpp.o: ECS/ButtomComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/ColliderComponent.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/Components.h
 CMakeFiles/main.dir/Map.cpp.o: ECS/DoubleGameBoardComponent.h

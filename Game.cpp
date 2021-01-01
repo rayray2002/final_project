@@ -17,10 +17,13 @@ bool Game::isRunning = false;
 
 // auto &player(manager.addEntity());
 auto &back(manager.addEntity());
+
 auto &buttom1(manager.addEntity());
 auto &buttom2(manager.addEntity());
 
-// auto &gameboard1(manager.addEntity());
+// auto &textbuttom1(manager.addEntity());
+
+auto &gameboard1(manager.addEntity());
 auto &gameboard2(manager.addEntity());
 
 vector<Entity *> gameblock;
@@ -83,11 +86,14 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     buttom1.addGroup(groupButtoms);
     buttom2.addGroup(groupButtoms);
 
+    // textbuttom1.addComponent<TextButtomComponent>(440, 150, 100, 100, "./img/kirito1.bmp");
+    // textbuttom1.addGroup(groupTextButtoms);
+
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    // gameboard1.addComponent<GameBoardComponent>(100, 35, 1);
-    // gameboard1.addGroup(groupGameBoards);
+    gameboard1.addComponent<GameBoardComponent>();
+    gameboard1.addGroup(groupGameBoards);
 
     gameboard2.addComponent<DoubleGameBoardComponent>();
     gameboard2.addGroup(groupDoubleGameBoards);
@@ -108,8 +114,9 @@ auto &tiles(manager.getGroup(Game::groupMap));
 // auto &players(manager.getGroup(Game::groupPlayers));
 auto &colliders(manager.getGroup(Game::groupColliders));
 auto &backs(manager.getGroup(Game::groupBackGrounds));
-auto &buttoms(manager.getGroup(Game::groupTextButtoms));
-// auto &gameboards(manager.getGroup(Game::groupGameBoards));
+auto &buttoms(manager.getGroup(Game::groupButtoms));
+// auto &textbuttoms(manager.getGroup(Game::groupTextButtoms));
+auto &gameboards(manager.getGroup(Game::groupGameBoards));
 auto &gameboards2(manager.getGroup(Game::groupDoubleGameBoards));
 
 void Game::handleEveants()
@@ -147,6 +154,11 @@ void Game::render()
     {
         b->getComponent<ButtomComponent>().draw();
     }
+
+    // for (auto &b : textbuttoms)
+    // {
+    //     b->getComponent<TextButtomComponent>().draw();
+    // }
     // for (auto &b : gameboards)
     // {
     //     b->getComponent<GameBoardComponent>().draw();

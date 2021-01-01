@@ -24,6 +24,20 @@ map
 string
 -
 
+/home/shyu/Desktop/final_project_all/ECS/ButtomComponent.h
+SDL.h
+-
+../Game.h
+/home/shyu/Desktop/final_project_all/Game.h
+Components.h
+/home/shyu/Desktop/final_project_all/ECS/Components.h
+../TextureManager.h
+/home/shyu/Desktop/final_project_all/TextureManager.h
+ECS.h
+/home/shyu/Desktop/final_project_all/ECS/ECS.h
+map
+-
+
 /home/shyu/Desktop/final_project_all/ECS/ColliderComponent.h
 string
 -
@@ -47,6 +61,8 @@ TileComponent.h
 /home/shyu/Desktop/final_project_all/ECS/TileComponent.h
 BackGroundComponent.h
 /home/shyu/Desktop/final_project_all/ECS/BackGroundComponent.h
+ButtomComponent.h
+/home/shyu/Desktop/final_project_all/ECS/ButtomComponent.h
 TextButtomComponent.h
 /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
 GameBoardComponent.h

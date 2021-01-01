@@ -9,9 +9,8 @@
 #include "TileComponent.h"
 #include "BackGroundComponent.h"
 #include "ButtomComponent.h"
+#include "TextButtomComponent.h"
 #include "GameBoardComponent.h"
 #include "DoubleGameBoardComponent.h"
-
-// #include "CharactorComponent.h"
 
 #endif

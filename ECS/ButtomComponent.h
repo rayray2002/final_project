@@ -1,7 +1,7 @@
 // #pragma once
 
-#ifndef _TEXTBUTTOMCOMPONENT_H
-#define _TEXTBUTTOMCOMPONENT_H
+#ifndef _BUTTOMCOMPONENT_H
+#define _BUTTOMCOMPONENT_H
 
 #include <SDL.h>
 #include "../Game.h"
