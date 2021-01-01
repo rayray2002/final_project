@@ -16,61 +16,73 @@
 
 using namespace std;
 
-class DoubleGameBoardComponent : public Component
-{
-    friend class CharactorComponent;
+class DoubleGameBoardComponent : public Component {
+	friend class CharactorComponent;
 
 private:
-    enum PairState
-    {
-        UP_AND_DOWN,
-        RIGHT_AND_LEFT,
-        SEPERATED
-    };
+	enum PairState {
+		UP_AND_DOWN,
+		RIGHT_AND_LEFT,
+		SEPERATED
+	};
 
 public:
 //    unit UnitArray1[13][6];
 //    unit UnitArray2[13][6];
 
-    GameBoard gameboard1;
+	GameBoard gameboard1;
 	GameBoard gameboard2;
-    void ReSetZeroUnit(int &xpos, int &ypos, int side);         // set default unit
-    void ReSetAllArrayZero(int side);                           // reset gameboard
-    void SwapTwoUnit(int x1, int y1, int x2, int y2, int side); // pass position to swap
-    void SwapTwoUnit(unit &u1, unit &u2, int side);             // pass unit to swap
-    void InitializeRamdomUnitOnTop(int topx, int side);         // set new unit
-    void UpdateBoardMovingState(int side);                      // set moving state
-    void GetMovingPair(int side);
-    bool AnyThingMoving(int side);
-    void UpdateMovingPairState(int side);
-    void Move(int side);     // get keyboard event
-    void MoveDown(int side); // drop
-    void Spin(int side);
-    void SpaceAction(int side);
-    void Swap(unit &a, unit &b);
-    void UpdateMovingPairLastestVersion(int side);
-    bool PairAdjacent(int side);
 
-    unit MovingPair1[2];
-    unit MovingPair2[2];
+	void ReSetZeroUnit(int &xpos, int &ypos, int side);         // set default unit
+	void ReSetAllArrayZero(int side);                           // reset gameboard
+	void SwapTwoUnit(int x1, int y1, int x2, int y2, int side); // pass position to swap
+	void SwapTwoUnit(unit &u1, unit &u2, int side);             // pass unit to swap
+	void InitializeRamdomUnitOnTop(int topx, int side);         // set new unit
+	void UpdateBoardMovingState(int side);                      // set moving state
+	void GetMovingPair(int side);
 
-    PairState MovingPairState1;
-    PairState MovingPairState2;
+	bool AnyThingMoving(int side);
 
-    bool isChanged1;
-    bool isChanged2;
+	void UpdateMovingPairState(int side);
 
-    DoubleGameBoardComponent();
-    ~DoubleGameBoardComponent() = default;
-    unit *getDataByMapPosition(int ypos, int xpos, int side);
-    void init() override;
-    void update() override;
-    void draw() override;
+	void Move(int side);     // get keyboard event
+	void MoveDown(int side); // drop
+	void Spin(int side);
 
-    void init1();
-    void init2();
+	void SpaceAction(int side);
 
-    void chaining(int);
+	void Swap(unit &a, unit &b);
+
+	void UpdateMovingPairLastestVersion(int side);
+
+	bool PairAdjacent(int side);
+
+	unit MovingPair1[2];
+	unit MovingPair2[2];
+
+	PairState MovingPairState1;
+	PairState MovingPairState2;
+
+	bool isChanged1;
+	bool isChanged2;
+
+	DoubleGameBoardComponent();
+
+	~DoubleGameBoardComponent() = default;
+
+	unit *getDataByMapPosition(int ypos, int xpos, int side);
+
+	void init() override;
+
+	void update() override;
+
+	void draw() override;
+
+	void init1();
+
+	void init2();
+
+	void chaining(int);
 };
 
 #endif
