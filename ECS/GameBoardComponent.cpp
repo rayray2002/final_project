@@ -74,13 +74,13 @@ unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
     return &UnitArray[ypos][xpos];
 }
 
-void GameBoardComponent::ReSetAllArrayZero(int gameBoardx, int gameBoardy)
+void GameBoardComponent::ReSetAllArrayZero()
 {
     for (int i = 0; i < 13; i++)
         for (int j = 0; j < 6; j++)
         {
-            UnitArray[i][j].destR.x = gameBoardx + 50 * j;
-            UnitArray[i][j].destR.y = gameBoardy + 50 * i;
+            UnitArray[i][j].destR.x = 490 + 50 * j;
+            UnitArray[i][j].destR.y = 35 + 50 * i;
             UnitArray[i][j].destR.w = UnitArray[i][j].destR.h = 50;
             UnitArray[i][j].color = Empty;
             UnitArray[i][j].isActive = false;

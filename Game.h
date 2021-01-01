@@ -30,6 +30,10 @@ struct unit
     Color color;
     bool isMoving;
     bool isActive;
+    SDL_Surface *surface;
+    int Combo;
+    int Score;
+    bool KO;
 };
 class Game
 {

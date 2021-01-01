@@ -16,18 +16,6 @@
 
 using namespace std;
 
-// struct unit
-// {
-//     SDL_Texture *texture;
-//     SDL_Rect srcR, destR;
-//     Vector2D speed;
-//     Vector2D bspeed;
-//     Vector2D mapPosition;
-//     Color color;
-//     bool isMoving;
-//     bool isActive;
-// };
-
 class GameBoardComponent : public Component
 {
     friend class CharactorComponent;
@@ -44,12 +32,12 @@ private:
 
 public:
     unit UnitArray[13][6];
-    void ReSetZeroUnit(int &xpos, int &ypos);               // set default unit
-    void ReSetAllArrayZero(int gameBoardx, int gameBoardy); // reset gameboard
-    void SwapTwoUnit(int x1, int y1, int x2, int y2);       // pass position to swap
-    void SwapTwoUnit(unit &u1, unit &u2);                   // pass unit to swap
-    void InitializeRamdomUnitOnTop(int topx);               // set new unit
-    void UpdateBoardMovingState();                          // set moving state
+    void ReSetZeroUnit(int &xpos, int &ypos);         // set default unit
+    void ReSetAllArrayZero();                         // reset gameboard
+    void SwapTwoUnit(int x1, int y1, int x2, int y2); // pass position to swap
+    void SwapTwoUnit(unit &u1, unit &u2);             // pass unit to swap
+    void InitializeRamdomUnitOnTop(int topx);         // set new unit
+    void UpdateBoardMovingState();                    // set moving state
     void GetMovingPair();
     bool AnyThingMoving();
     void UpdateMovingPairState();
@@ -65,10 +53,9 @@ public:
     PairState MovingPairState;
     bool isChanged;
 
-    GameBoardComponent(int x, int y, int m)
+    GameBoardComponent()
     {
-        ReSetAllArrayZero(x, y);
-        this->mode = m;
+        ReSetAllArrayZero();
     }
 
     ~GameBoardComponent()

@@ -20,13 +20,6 @@ void DoubleGameBoardComponent::init2()
 
 void DoubleGameBoardComponent::update()
 {
-    static int n = 0;
-    if (n == 2)
-    {
-
-        n = 0;
-    }
-    n++;
     UpdateBoardMovingState(1);
     UpdateBoardMovingState(2);
     Move(1);
@@ -156,9 +149,9 @@ void DoubleGameBoardComponent::ReSetAllArrayZero(int side)
                 UnitArray1[i][j].srcR.x = 0;
                 UnitArray1[i][j].srcR.y = UnitArray1[i][j].srcR.x = 0;
                 UnitArray1[i][j].srcR.w = UnitArray1[i][j].srcR.h = 1000;
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-                UnitArray1[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-                SDL_FreeSurface(tmpSurface);
+                UnitArray1[i][j].surface = SDL_LoadBMP("./img/banana.bmp");
+                UnitArray1[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, UnitArray1[i][j].surface);
+                SDL_FreeSurface(UnitArray1[i][j].surface);
             }
     }
     else if (side == 2)
@@ -177,9 +170,9 @@ void DoubleGameBoardComponent::ReSetAllArrayZero(int side)
                 UnitArray2[i][j].srcR.x = 0;
                 UnitArray2[i][j].srcR.y = UnitArray2[i][j].srcR.x = 0;
                 UnitArray2[i][j].srcR.w = UnitArray2[i][j].srcR.h = 1000;
-                SDL_Surface *tmpSurface = SDL_LoadBMP("./img/banana.bmp");
-                UnitArray2[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
-                SDL_FreeSurface(tmpSurface);
+                UnitArray2[i][j].surface = SDL_LoadBMP("./img/banana.bmp");
+                UnitArray2[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, UnitArray2[i][j].surface);
+                SDL_FreeSurface(UnitArray2[i][j].surface);
             }
     }
 }
