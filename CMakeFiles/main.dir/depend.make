@@ -103,6 +103,7 @@ CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/GameBoard.cpp.o: GameBoard.cpp
 CMakeFiles/main.dir/GameBoard.cpp.o: GameBoard.h
+CMakeFiles/main.dir/GameBoard.cpp.o: Vector2D.h
 
 CMakeFiles/main.dir/GameObject.cpp.o: Game.h
 CMakeFiles/main.dir/GameObject.cpp.o: GameBoard.h
