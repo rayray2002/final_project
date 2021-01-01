@@ -21,8 +21,6 @@ class DoubleGameBoardComponent : public Component
     friend class CharactorComponent;
 
 private:
-    int mode;
-
     enum PairState
     {
         UP_AND_DOWN,
@@ -60,15 +58,8 @@ public:
     bool isChanged1;
     bool isChanged2;
 
-    DoubleGameBoardComponent()
-    {
-        ReSetAllArrayZero(1);
-        ReSetAllArrayZero(2);
-    }
-
-    ~DoubleGameBoardComponent()
-    {
-    }
+    DoubleGameBoardComponent();
+    ~DoubleGameBoardComponent() = default;
     unit *getDataByMapPosition(int ypos, int xpos, int side);
     void init() override;
     void update() override;

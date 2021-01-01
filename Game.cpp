@@ -17,7 +17,9 @@ bool Game::isRunning = false;
 
 // auto &player(manager.addEntity());
 auto &back(manager.addEntity());
-auto &buttom(manager.addEntity());
+auto &buttom1(manager.addEntity());
+auto &buttom2(manager.addEntity());
+
 // auto &gameboard1(manager.addEntity());
 auto &gameboard2(manager.addEntity());
 
@@ -76,8 +78,10 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     // player.addComponent<ColliderComponent>("player");
     // player.addGroup(groupPlayers);
 
-    buttom.addComponent<TextButtomComponent>(WIDTH - 320, HEIGHT - 220, 200, 300);
-    buttom.addGroup(groupTextButtoms);
+    buttom1.addComponent<ButtomComponent>(440, 35, 100, 100, "./img/kirito1.bmp");
+    buttom2.addComponent<ButtomComponent>(740, 35, 100, 100, "./img/kirito1.bmp");
+    buttom1.addGroup(groupButtoms);
+    buttom2.addGroup(groupButtoms);
 
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
@@ -87,9 +91,6 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
 
     gameboard2.addComponent<DoubleGameBoardComponent>();
     gameboard2.addGroup(groupDoubleGameBoards);
-
-    // gameboard2.addComponent<GameBoardComponent>(880, 35, 2);
-    // gameboard2.addGroup(groupGameBoards);
 
     // colliders.addComponent<SpriteComponent>()
 
@@ -144,7 +145,7 @@ void Game::render()
 
     for (auto &b : buttoms)
     {
-        b->getComponent<TextButtomComponent>().draw();
+        b->getComponent<ButtomComponent>().draw();
     }
     // for (auto &b : gameboards)
     // {

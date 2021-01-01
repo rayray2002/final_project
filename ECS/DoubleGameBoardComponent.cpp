@@ -6,6 +6,12 @@ void DoubleGameBoardComponent::init()
 {
 }
 
+DoubleGameBoardComponent::DoubleGameBoardComponent()
+{
+    ReSetAllArrayZero(1);
+    ReSetAllArrayZero(2);
+}
+
 void DoubleGameBoardComponent::init1()
 {
     InitializeRamdomUnitOnTop(2, 1);

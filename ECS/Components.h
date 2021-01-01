@@ -8,7 +8,7 @@
 #include "ColliderComponent.h"
 #include "TileComponent.h"
 #include "BackGroundComponent.h"
-#include "TextButtomComponent.h"
+#include "ButtomComponent.h"
 #include "GameBoardComponent.h"
 #include "DoubleGameBoardComponent.h"
 
