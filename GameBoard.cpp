@@ -142,6 +142,8 @@ bool GameBoard::remove(Block block) {
 	bool success_removal = false;
 	if (UnitArray[block.y][block.x].color != Empty) {
 		UnitArray[block.y][block.x].color = Empty;
+//		UnitArray[block.y][block.x].isActive = false;
+		UnitArray[block.y][block.x].isMoving = true;
 		success_removal = true;
 	}
 	if (block.x - 1 >= 0 && UnitArray[block.y][block.x - 1].color == Trash)
@@ -227,19 +229,18 @@ bool GameBoard::update() {
 		}
 	}
 
-	if (DEBUG)
-		// printer();
+	if (DEBUG) printer();
 
-		if (!isUpdated) {
-			int score_add;
-			if (color_bonus.size() != 1) {
-				score_add = 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
-			} else {
-				score_add = 10 * count * (group_bonus + combo);
-			}
-			trash_num = score_add / 70;
-			score += score_add;
+	if (!isUpdated) {
+		int score_add;
+		if (color_bonus.size() != 1) {
+			score_add = 10 * count * (group_bonus + 3 * pow(2, color_bonus.size()) + combo);
+		} else {
+			score_add = 10 * count * (group_bonus + combo);
 		}
+		trash_num = score_add / 70;
+		score += score_add;
+	}
 
 	return isUpdated;
 }

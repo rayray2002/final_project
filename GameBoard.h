@@ -39,8 +39,7 @@ enum Color {
 	Purple
 };
 
-struct unit
-{
+struct unit {
 	SDL_Texture *texture;
 	SDL_Rect srcR, destR;
 	Vector2D speed;
@@ -77,9 +76,9 @@ public:
 
 	bool update();
 
-	bool isUpdated;
+	bool isUpdated = false;
 
-	bool isChanged;
+	bool falling = true;
 
 	int get_combo() const;
 
