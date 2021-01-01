@@ -171,94 +171,44 @@ void GameBoardComponent::Move()
 {
     if (Game::event.type == SDL_KEYDOWN)
     {
-        if (mode == 1)
-            switch (Game::event.key.keysym.sym)
-            {
-            case SDLK_s:
-                cout << "DOWN" << endl;
-                for (int i = 11; i >= 0; i--) // start from 11 to 0
-                    for (int j = 0; j < 6; j++)
-                    {
-                        if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
-                            SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
-                    }
-                break;
-            case SDLK_a:
-                cout << "LEFT" << endl;
-                for (int i = 0; i < 13; i++)
-                    for (int j = 1; j < 6; j++) // start from 1
-                    {
-                        if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
-                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
-                    }
-                break;
-            case SDLK_d:
-                cout << "RIGHT" << endl;
-                for (int i = 0; i < 13; i++)
-                    for (int j = 4; j >= 0; j--) // end at 0
-                    {
-                        if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
-                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
-                    }
-                break;
-            case SDLK_w:
-                cout << "UP" << endl;
-                Spin();
-                break;
-            case SDLK_SPACE:
-                cout << "SPACE" << endl;
-                SpaceAction();
-                break;
-            case SDLK_ESCAPE:
-                Game::isRunning = false;
-                break;
-            default:
-                break;
-            }
-        if (mode == 2)
-            switch (Game::event.key.keysym.sym)
-            {
-            case SDLK_DOWN:
-                cout << "DOWN" << endl;
-                for (int i = 11; i >= 0; i--) // start from 11 to 0
-                    for (int j = 0; j < 6; j++)
-                    {
-                        if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
-                            SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
-                    }
-                break;
-            case SDLK_LEFT:
-                cout << "LEFT" << endl;
-                for (int i = 0; i < 13; i++)
-                    for (int j = 1; j < 6; j++) // start from 1
-                    {
-                        if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
-                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
-                    }
-                break;
-            case SDLK_RIGHT:
-                cout << "RIGHT" << endl;
-                for (int i = 0; i < 13; i++)
-                    for (int j = 4; j >= 0; j--) // end at 0
-                    {
-                        if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
-                            SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
-                    }
-                break;
-            case SDLK_UP:
-                cout << "UP" << endl;
-                Spin();
-                break;
-            case SDLK_SPACE:
-                cout << "SPACE" << endl;
-                SpaceAction();
-                break;
-            case SDLK_ESCAPE:
-                Game::isRunning = false;
-                break;
-            default:
-                break;
-            }
+        switch (Game::event.key.keysym.sym)
+        {
+        case SDLK_DOWN:
+            for (int i = 11; i >= 0; i--) // start from 11 to 0
+                for (int j = 0; j < 6; j++)
+                {
+                    if (UnitArray[i][j].isMoving && UnitArray[i + 1][j].color == Empty)
+                        SwapTwoUnit(UnitArray[i][j], UnitArray[i + 1][j]);
+                }
+            break;
+        case SDLK_LEFT:
+            for (int i = 0; i < 13; i++)
+                for (int j = 1; j < 6; j++) // start from 1
+                {
+                    if (UnitArray[i][j].isMoving && UnitArray[i][j - 1].color == Empty)
+                        SwapTwoUnit(UnitArray[i][j], UnitArray[i][j - 1]);
+                }
+            break;
+        case SDLK_RIGHT:
+            for (int i = 0; i < 13; i++)
+                for (int j = 4; j >= 0; j--) // end at 0
+                {
+                    if (UnitArray[i][j].isMoving && UnitArray[i][j + 1].color == Empty)
+                        SwapTwoUnit(UnitArray[i][j], UnitArray[i][j + 1]);
+                }
+            break;
+        case SDLK_UP:
+            Spin();
+            break;
+        case SDLK_SPACE:
+            SpaceAction();
+            break;
+        case SDLK_ESCAPE:
+            Game::isRunning = false;
+            break;
+        default:
+            break;
+        }
     }
 }
 

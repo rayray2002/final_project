@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/shyu/Desktop/final_project_all/Collision.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/main.dir/Collision.cpp.o"
+  "/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
   "/home/shyu/Desktop/final_project_all/ECS/ECS.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/main.dir/ECS/ECS.cpp.o"
   "/home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
   "/home/shyu/Desktop/final_project_all/Game.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/main.dir/Game.cpp.o"

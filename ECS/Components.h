@@ -10,6 +10,8 @@
 #include "BackGroundComponent.h"
 #include "TextButtomComponent.h"
 #include "GameBoardComponent.h"
+#include "DoubleGameBoardComponent.h"
+
 // #include "CharactorComponent.h"
 
 #endif

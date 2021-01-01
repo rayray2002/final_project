@@ -16,23 +16,25 @@
 
 using namespace std;
 
-struct unit
-{
-    SDL_Texture *texture;
-    SDL_Rect srcR, destR;
-    Vector2D speed;
-    Vector2D bspeed;
-    Vector2D mapPosition;
-    Color color;
-    bool isMoving;
-    bool isActive;
-};
+// struct unit
+// {
+//     SDL_Texture *texture;
+//     SDL_Rect srcR, destR;
+//     Vector2D speed;
+//     Vector2D bspeed;
+//     Vector2D mapPosition;
+//     Color color;
+//     bool isMoving;
+//     bool isActive;
+// };
 
 class GameBoardComponent : public Component
 {
     friend class CharactorComponent;
 
 private:
+    int mode;
+
     enum PairState
     {
         UP_AND_DOWN,
@@ -58,7 +60,6 @@ public:
     void Swap(unit &a, unit &b);
     void UpdateMovingPairLastestVersion();
     bool PairAdjacent();
-    int mode;
 
     unit MovingPair[2];
     PairState MovingPairState;
@@ -67,7 +68,7 @@ public:
     GameBoardComponent(int x, int y, int m)
     {
         ReSetAllArrayZero(x, y);
-        mode = m;
+        this->mode = m;
     }
 
     ~GameBoardComponent()

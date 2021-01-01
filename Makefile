@@ -150,6 +150,33 @@ Collision.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Collision.cpp.s
 .PHONY : Collision.cpp.s
 
+ECS/DoubleGameBoardComponent.o: ECS/DoubleGameBoardComponent.cpp.o
+
+.PHONY : ECS/DoubleGameBoardComponent.o
+
+# target to build an object file
+ECS/DoubleGameBoardComponent.cpp.o:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o
+.PHONY : ECS/DoubleGameBoardComponent.cpp.o
+
+ECS/DoubleGameBoardComponent.i: ECS/DoubleGameBoardComponent.cpp.i
+
+.PHONY : ECS/DoubleGameBoardComponent.i
+
+# target to preprocess a source file
+ECS/DoubleGameBoardComponent.cpp.i:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.i
+.PHONY : ECS/DoubleGameBoardComponent.cpp.i
+
+ECS/DoubleGameBoardComponent.s: ECS/DoubleGameBoardComponent.cpp.s
+
+.PHONY : ECS/DoubleGameBoardComponent.s
+
+# target to generate assembly for a file
+ECS/DoubleGameBoardComponent.cpp.s:
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.s
+.PHONY : ECS/DoubleGameBoardComponent.cpp.s
+
 ECS/ECS.o: ECS/ECS.cpp.o
 
 .PHONY : ECS/ECS.o
@@ -405,6 +432,9 @@ help:
 	@echo "... Collision.o"
 	@echo "... Collision.i"
 	@echo "... Collision.s"
+	@echo "... ECS/DoubleGameBoardComponent.o"
+	@echo "... ECS/DoubleGameBoardComponent.i"
+	@echo "... ECS/DoubleGameBoardComponent.s"
 	@echo "... ECS/ECS.o"
 	@echo "... ECS/ECS.i"
 	@echo "... ECS/ECS.s"

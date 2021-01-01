@@ -12,6 +12,7 @@
 #include <map>
 #include <vector>
 #include "GameBoard.h"
+#include "Vector2D.h"
 #define NUMMENU 5
 #define WIDTH 1280
 #define HEIGHT 720
@@ -19,6 +20,17 @@ using namespace std;
 
 class ColliderComponent;
 
+struct unit
+{
+    SDL_Texture *texture;
+    SDL_Rect srcR, destR;
+    Vector2D speed;
+    Vector2D bspeed;
+    Vector2D mapPosition;
+    Color color;
+    bool isMoving;
+    bool isActive;
+};
 class Game
 {
 public:

@@ -47,6 +47,38 @@ TextButtomComponent.h
 /home/shyu/Desktop/final_project_all/ECS/TextButtomComponent.h
 GameBoardComponent.h
 /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
+DoubleGameBoardComponent.h
+/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.h
+
+/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.cpp
+DoubleGameBoardComponent.h
+/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.h
+../Game.h
+/home/shyu/Desktop/final_project_all/Game.h
+SDL.h
+-
+
+/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.h
+SDL.h
+-
+../Game.h
+/home/shyu/Desktop/final_project_all/Game.h
+Components.h
+/home/shyu/Desktop/final_project_all/ECS/Components.h
+../TextureManager.h
+/home/shyu/Desktop/final_project_all/TextureManager.h
+ECS.h
+/home/shyu/Desktop/final_project_all/ECS/ECS.h
+deque
+-
+ctime
+-
+map
+-
+../GameBoard.h
+/home/shyu/Desktop/final_project_all/GameBoard.h
+vector
+-
 
 /home/shyu/Desktop/final_project_all/ECS/ECS.h
 iostream
@@ -63,14 +95,6 @@ array
 -
 ../TextureManager.h
 /home/shyu/Desktop/final_project_all/TextureManager.h
-
-/home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.cpp
-GameBoardComponent.h
-/home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
-../Game.h
-/home/shyu/Desktop/final_project_all/Game.h
-SDL.h
--
 
 /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
 SDL.h
@@ -159,6 +183,8 @@ vector
 -
 GameBoard.h
 /home/shyu/Desktop/final_project_all/GameBoard.h
+Vector2D.h
+/home/shyu/Desktop/final_project_all/Vector2D.h
 
 /home/shyu/Desktop/final_project_all/GameBoard.h
 algorithm
