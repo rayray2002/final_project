@@ -31,7 +31,8 @@ private:
     };
 
 public:
-    unit UnitArray[13][6];
+//    unit UnitArray[13][6];
+    GameBoard gameboard;
     void ReSetZeroUnit(int &xpos, int &ypos);               // set default unit
     void ReSetAllArrayZero(int gameBoardx, int gameBoardy); // reset gameboard
     void SwapTwoUnit(int x1, int y1, int x2, int y2);       // pass position to swap

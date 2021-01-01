@@ -92,7 +92,7 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
     back.addComponent<BackGroundComponent>();
     back.addGroup(groupBackGrounds);
 
-    gameboard1.addComponent<GameBoardComponent>();
+    gameboard1.addComponent<GameBoardComponent>(0,0,0);
     gameboard1.addGroup(groupGameBoards);
 
     gameboard2.addComponent<DoubleGameBoardComponent>();
