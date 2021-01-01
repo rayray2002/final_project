@@ -142,8 +142,6 @@ bool GameBoard::remove(Block block) {
 	bool success_removal = false;
 	if (UnitArray[block.y][block.x].color != Empty) {
 		UnitArray[block.y][block.x].color = Empty;
-//		UnitArray[block.y][block.x].isActive = false;
-		UnitArray[block.y][block.x].isMoving = true;
 		success_removal = true;
 	}
 	if (block.x - 1 >= 0 && UnitArray[block.y][block.x - 1].color == Trash)
