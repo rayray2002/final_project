@@ -17,9 +17,6 @@ public:
     SDL_Rect srcR, destR;
     map<int, const char *> MIKUGIF;
 
-    // static int num;
-    // static int order;
-
     BackGroundComponent()
     {
         srcR.x = 0;
@@ -50,7 +47,6 @@ public:
         static bool OK = true;
         num++;
         SDL_Surface *tmpSurface;
-        // cout << "i = " << i << endl;
         if (num % 2 == 0)
             i++;
         switch (Game::event.type)
@@ -61,7 +57,6 @@ public:
             {
                 OK = !OK;
                 cout << "OK" << endl;
-                // SDL_Delay(100);
             }
         }
         if (1)

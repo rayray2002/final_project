@@ -21,6 +21,9 @@ auto &back(manager.addEntity());
 
 auto &buttom1(manager.addEntity());
 auto &buttom2(manager.addEntity());
+auto &buttom3(manager.addEntity());
+auto &buttom4(manager.addEntity());
+auto &buttom5(manager.addEntity());
 
 // auto &textbuttom1(manager.addEntity());
 
@@ -86,6 +89,14 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
 	buttom2.addComponent<ButtomComponent>(740, 35, 100, 100, "./img/kirito1.bmp");
 	buttom1.addGroup(groupButtoms);
 	buttom2.addGroup(groupButtoms);
+
+	buttom3.addComponent<ButtomComponent>(440, 150, 100, 100, "./img/kirito1.bmp");
+	buttom4.addComponent<ButtomComponent>(740, 150, 100, 100, "./img/kirito1.bmp");
+	buttom3.addGroup(groupButtoms);
+	buttom4.addGroup(groupButtoms);
+
+	buttom5.addComponent<ButtomComponent>(590, 75, 100, 100, "./img/vs.bmp");
+	buttom5.addGroup(groupButtoms);
 
 	// textbuttom1.addComponent<TextButtomComponent>(440, 150, 100, 100, "./img/kirito1.bmp");
 	// textbuttom1.addGroup(groupTextButtoms);
