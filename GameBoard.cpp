@@ -111,26 +111,22 @@ vector<Block> GameBoard::check_chained(const int &x, const int &y) {
 		q.pop();
 		cout << top.x << " " << top.y << endl;
 		if (top.x - 1 >= 0 && (UnitArray[top.y][top.x - 1].color == UnitArray[y][x].color ||
-		                       UnitArray[top.y][top.x - 1].color == Rainbow) &&
-		    !visited[top.x - 1][top.y]) {
+		                       UnitArray[top.y][top.x - 1].color == Rainbow) && !visited[top.x - 1][top.y]) {
 			q.push((Block) {top.x - 1, top.y});
 			visited[top.x - 1][top.y] = true;
 		}
 		if (top.y - 1 >= 0 && (UnitArray[top.y - 1][top.x].color == UnitArray[y][x].color ||
-		                       UnitArray[top.y - 1][top.x].color == Rainbow) &&
-		    !visited[top.x][top.y - 1]) {
+		                       UnitArray[top.y - 1][top.x].color == Rainbow) && !visited[top.x][top.y - 1]) {
 			q.push((Block) {top.x, top.y - 1});
 			visited[top.x - 1][top.y] = true;
 		}
 		if (top.x + 1 < BOARDWIDTH && (UnitArray[top.y][top.x + 1].color == UnitArray[y][x].color ||
-		                               UnitArray[top.y][top.x + 1].color == Rainbow) &&
-		    !visited[top.x + 1][top.y]) {
+		                               UnitArray[top.y][top.x + 1].color == Rainbow) && !visited[top.x + 1][top.y]) {
 			q.push((Block) {top.x + 1, top.y});
 			visited[top.x + 1][top.y] = true;
 		}
 		if (top.y + 1 < BOARDHEIGHT && (UnitArray[top.y + 1][top.x].color == UnitArray[y][x].color ||
-		                                UnitArray[top.y + 1][top.x].color == Rainbow) &&
-		    !visited[top.x][top.y + 1]) {
+		                                UnitArray[top.y + 1][top.x].color == Rainbow) && !visited[top.x][top.y + 1]) {
 			q.push((Block) {top.x, top.y + 1});
 			visited[top.x][top.y + 1] = true;
 		}
@@ -142,6 +138,7 @@ bool GameBoard::remove(const Block &block) {
 	bool success_removal = false;
 	if (UnitArray[block.y][block.x].color != Empty) {
 		UnitArray[block.y][block.x].color = Empty;
+		UnitArray[block.y][block.x].isActive = false;
 		success_removal = true;
 	}
 	if (block.x - 1 >= 0 && UnitArray[block.y][block.x - 1].color == Trash)
@@ -224,6 +221,8 @@ bool GameBoard::update() {
 				if (remove(to_remove[i][j]))
 					count++;
 			}
+			to_remove[i].clear();
+			to_remove[i].shrink_to_fit();
 		}
 	}
 
@@ -239,7 +238,8 @@ bool GameBoard::update() {
 		trash_num = score_add / 70;
 		score += score_add;
 	}
-
+	chain.clear();
+	chain.shrink_to_fit();
 	return isUpdated;
 }
 

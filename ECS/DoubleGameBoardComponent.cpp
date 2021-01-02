@@ -60,7 +60,7 @@ void DoubleGameBoardComponent::update()
 	{
 		MoveDown(1);
 	}
-
+	cout << gameboard1 << endl;
 	if (!AnyThingMoving(2))
 	{
 		if (!gameboard2.falling)
