@@ -76,22 +76,7 @@ public:
 
 	void draw() override;
 
-	void chaining() {
-		// isChanged = gameboard.update();
-		// if (isChanged)
-		//     for (int i = 0; i < blocks.size(); i++)
-		//     {
-		//         cout << "1" << endl;
-		//         auto a = blocks[i];
-		//         if (gameboard.board[(a.destR.y - 35) / 50 + 1][(a.destR.x - 100) / 50 + 1] == Empty)
-		//         {
-		//             blocks.erase(blocks.begin() + i);
-		//             i--;
-		//         }
-		//         cout << "2" << endl;
-		//     }
-		// cout << "OK" << endl;
-	}
+	void chaining();
 
 	friend ostream &operator<<(ostream &stream, const unit **u) {
 		stream << "********" << endl
@@ -104,6 +89,7 @@ public:
 		}
 		stream << "********" << endl
 		       << endl;
+		return stream;
 	}
 };
 

@@ -150,7 +150,7 @@ void DoubleGameBoardComponent::draw() {
 unit *DoubleGameBoardComponent::getDataByMapPosition(int ypos, int xpos, int side) {
 	if (side == 1)
 		return &gameboard1.UnitArray[ypos][xpos];
-	else if (side == 2)
+	else
 		return &gameboard2.UnitArray[ypos][xpos];
 }
 
@@ -284,6 +284,7 @@ bool DoubleGameBoardComponent::AnyThingMoving(int side) {
 			}
 		return false;
 	}
+	return false;
 }
 
 void DoubleGameBoardComponent::Move(int side) {
@@ -629,4 +630,5 @@ bool DoubleGameBoardComponent::PairAdjacent(int side) {
 		else
 			return false;
 	}
+	return false;
 }
