@@ -31,6 +31,11 @@ private:
 public:
 	//    unit UnitArray1[13][6];
 	//    unit UnitArray2[13][6];
+	void MikuSkill(int side);
+	void MeiSkill(int side);
+	void SakuraSkill(int side);
+	void FuhuaSkill(int side);
+	void PSkill(int side);
 
 	GameBoard gameboard1;
 	GameBoard gameboard2;
@@ -40,6 +45,7 @@ public:
 	void SwapTwoUnit(int x1, int y1, int x2, int y2, int side); // pass position to swap
 	void SwapTwoUnit(unit &u1, unit &u2, int side);				// pass unit to swap
 	void InitializeRamdomUnitOnTop(int topx, int side);			// set new unit
+	void InitializeRainbowUnitOnTop(int topx, int side);		// set new unit
 	void UpdateBoardMovingState(int side);						// set moving state
 	void GetMovingPair(int side);
 
@@ -81,10 +87,9 @@ public:
 	void draw() override;
 
 	void init1();
-
 	void init2();
 
-	void chaining(int);
+	void chaining(int side);
 };
 
 #endif

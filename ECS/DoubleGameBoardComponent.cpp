@@ -331,6 +331,22 @@ void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
 	}
 }
 
+void DoubleGameBoardComponent::InitializeRainbowUnitOnTop(int topx, int side)
+{
+	if (side == 1)
+	{
+		gameboard1.UnitArray[0][topx].color = Rainbow;
+		gameboard1.UnitArray[0][topx].isMoving = true;
+		gameboard1.UnitArray[0][topx].isActive = true;
+	}
+	else if (side == 2)
+	{
+		gameboard2.UnitArray[0][topx].color = Rainbow;
+		gameboard2.UnitArray[0][topx].isMoving = true;
+		gameboard2.UnitArray[0][topx].isActive = true;
+	}
+}
+
 bool DoubleGameBoardComponent::AnyThingMoving(int side)
 {
 	if (side == 1)
@@ -769,4 +785,86 @@ bool DoubleGameBoardComponent::PairAdjacent(int side)
 			return false;
 	}
 	return false;
+}
+
+void DoubleGameBoardComponent::SakuraSkill(int side)
+{
+	if (side == 1)
+	{
+		for (int i = 1; i < 13; i++) // start from 1
+		{
+			for (int j = 0; j < 6; j++)
+			{
+				SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i - 1][j], 1);
+			}
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			gameboard1.UnitArray[12][i].color = Trash;
+		}
+	}
+	else if (side == 2)
+	{
+		for (int i = 1; i < 13; i++) // start from 1
+		{
+			for (int j = 0; j < 6; j++)
+			{
+				SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i - 1][j], 1);
+			}
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			gameboard2.UnitArray[12][i].color = Trash;
+		}
+	}
+}
+
+void DoubleGameBoardComponent::PSkill(int side)
+{
+	if (side == 1)
+	{
+		gameboard1.score * 4 / 5;
+	}
+	else if (side == 2)
+	{
+		gameboard2.score * 4 / 5;
+	}
+}
+
+void DoubleGameBoardComponent::MikuSkill(int side)
+{
+	if (side == 1)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			gameboard1.UnitArray[12][j].color = Empty;
+			gameboard1.UnitArray[12][j].isActive = false;
+			gameboard1.UnitArray[12][j].isMoving = false;
+		}
+		gameboard1.score += 1000;
+	}
+	else if (side == 2)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			gameboard2.UnitArray[12][j].color = Empty;
+			gameboard2.UnitArray[12][j].isActive = false;
+			gameboard2.UnitArray[12][j].isMoving = false;
+		}
+		gameboard2.score += 1000;
+	}
+}
+
+void DoubleGameBoardComponent::MeiSkill(int side)
+{
+	if (side == 1)
+	{
+		InitializeRainbowUnitOnTop(2, 1);
+		InitializeRainbowUnitOnTop(3, 1);
+	}
+	else if (side == 2)
+	{
+		InitializeRainbowUnitOnTop(2, 2);
+		InitializeRainbowUnitOnTop(3, 2);
+	}
 }

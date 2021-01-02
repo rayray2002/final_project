@@ -1,5 +1,5 @@
 #include "Miku.h"
 
-void Miku::Skill()
+bool Miku::Skill()
 {
 }

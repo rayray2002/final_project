@@ -24,11 +24,13 @@
 
 using namespace std;
 
-struct Block {
+struct Block
+{
 	int x, y;
 };
 
-enum Color {
+enum Color
+{
 	Empty,
 	Trash,
 	Rainbow,
@@ -39,7 +41,8 @@ enum Color {
 	Purple
 };
 
-struct unit {
+struct unit
+{
 	SDL_Texture *texture;
 	SDL_Rect srcR, destR;
 	Vector2D mapPosition;
@@ -56,7 +59,8 @@ Color char_to_color(char);
 
 char color_to_char(Color);
 
-class GameBoard {
+class GameBoard
+{
 	friend ostream &operator<<(ostream &, const GameBoard &);
 
 public:
@@ -86,6 +90,8 @@ public:
 
 	void reset();
 
+	int score = 0;
+
 private:
 	vector<Block> check_chained(const int &, const int &);
 
@@ -95,7 +101,6 @@ private:
 
 	int combo = 0;
 	int count = 0;
-	int score = 0;
 	int trash_num = 0;
 
 	int group_bonus = 0;
