@@ -93,9 +93,9 @@ public:
 	void reset();
 
 private:
-	vector<Block> check_chained(int, int);
+	vector<Block> check_chained(const int&, const int&);
 
-	bool remove(Block);
+	bool remove(const Block &block);
 
 	void fill();
 
