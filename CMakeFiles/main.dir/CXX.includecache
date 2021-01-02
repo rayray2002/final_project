@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/shyu/Desktop/final_project_all/Collision.h
-ECS/Components.h
-/home/shyu/Desktop/final_project_all/ECS/Components.h
-
 /home/shyu/Desktop/final_project_all/ECS/Animation.h
 
 /home/shyu/Desktop/final_project_all/ECS/BackGroundComponent.h
@@ -69,6 +65,14 @@ GameBoardComponent.h
 /home/shyu/Desktop/final_project_all/ECS/GameBoardComponent.h
 DoubleGameBoardComponent.h
 /home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.h
+
+/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.cpp
+DoubleGameBoardComponent.h
+/home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.h
+../Game.h
+/home/shyu/Desktop/final_project_all/Game.h
+SDL.h
+-
 
 /home/shyu/Desktop/final_project_all/ECS/DoubleGameBoardComponent.h
 SDL.h
@@ -171,18 +175,6 @@ SDL.h
 /home/shyu/Desktop/final_project_all/ECS/TransformComponent.h
 ../Vector2D.h
 /home/shyu/Desktop/final_project_all/Vector2D.h
-
-/home/shyu/Desktop/final_project_all/Game.cpp
-Game.h
-/home/shyu/Desktop/final_project_all/Game.h
-ECS/Components.h
-/home/shyu/Desktop/final_project_all/ECS/Components.h
-TextureManager.h
-/home/shyu/Desktop/final_project_all/TextureManager.h
-Vector2D.h
-/home/shyu/Desktop/final_project_all/Vector2D.h
-Collision.h
-/home/shyu/Desktop/final_project_all/Collision.h
 
 /home/shyu/Desktop/final_project_all/Game.h
 SDL.h
