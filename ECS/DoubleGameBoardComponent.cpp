@@ -28,8 +28,8 @@ void DoubleGameBoardComponent::update()
 {
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
-	Move(1);
-	Move(2);
+	if (!gameboard1.falling) Move(1);
+	if (!gameboard1.falling) Move(2);
 
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
