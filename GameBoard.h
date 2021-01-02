@@ -62,8 +62,6 @@ class GameBoard {
 public:
 	unit UnitArray[BOARDHEIGHT][BOARDWIDTH];
 
-	//	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
-
 	GameBoard();
 
 	GameBoard(char[][BOARDWIDTH]);

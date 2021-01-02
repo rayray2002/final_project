@@ -109,7 +109,7 @@ vector<Block> GameBoard::check_chained(const int &x, const int &y) {
 		chain.push_back(top);
 		visited[top.x][top.y] = true;
 		q.pop();
-		cout << top.x << " " << top.y << endl;
+//		cout << top.x << " " << top.y << endl;
 		if (top.x - 1 >= 0 && (UnitArray[top.y][top.x - 1].color == UnitArray[y][x].color ||
 		                       UnitArray[top.y][top.x - 1].color == Rainbow) && !visited[top.x - 1][top.y]) {
 			q.push((Block) {top.x - 1, top.y});
@@ -171,7 +171,6 @@ void GameBoard::fill() {
 bool GameBoard::update() {
 	vector<Block> chain;
 	isUpdated = false;
-	// printer();
 	vector<vector<Block>> to_remove;
 	for (int i = 0; i < BOARDHEIGHT; i++) {
 		for (int j = 0; j < BOARDWIDTH; j++) {
@@ -275,5 +274,6 @@ ostream &operator<<(ostream &output, const GameBoard &g) {
 		output << '\n';
 	}
 	output << "######\n";
+	output << "Score:" << g.score << "\nCombo:" << g.combo << "\nTrash:" << g.trash_num << '\n';
 	return output;
 }

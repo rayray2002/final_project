@@ -30,8 +30,8 @@ void DoubleGameBoardComponent::update() {
 	UpdateBoardMovingState(2);
 
 	if (!AnyThingMoving(1)) {
+		cout << "Side1:\n" << gameboard1 << endl;
 		if (!gameboard1.falling) {
-			// init1();
 			chaining(1);
 			if (isChanged1) {
 				gameboard1.falling = true;
@@ -46,10 +46,10 @@ void DoubleGameBoardComponent::update() {
 	} else {
 		MoveDown(1);
 	}
-	cout << gameboard1 << endl;
+
 	if (!AnyThingMoving(2)) {
+		cout << "Side2:\n" << gameboard2 << endl;
 		if (!gameboard2.falling) {
-			// init2();
 			chaining(2);
 			if (isChanged2) {
 				gameboard2.falling = true;
