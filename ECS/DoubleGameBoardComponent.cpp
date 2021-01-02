@@ -38,6 +38,7 @@ void DoubleGameBoardComponent::update()
 	{
 		if (!gameboard1.falling)
 		{
+			// init1();
 			chaining(1);
 			if (isChanged1)
 			{
@@ -64,6 +65,7 @@ void DoubleGameBoardComponent::update()
 	{
 		if (!gameboard2.falling)
 		{
+			// init2();
 			chaining(2);
 			if (isChanged2)
 			{

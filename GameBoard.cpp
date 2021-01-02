@@ -203,6 +203,8 @@ bool GameBoard::update()
 	isUpdated = false;
 	// printer();
 	vector<vector<Block>> to_remove;
+	cout << "chain = " << chain.size() << endl;
+	cout << "to_remove = " << to_remove.size() << endl;
 	for (int i = 0; i < BOARDHEIGHT; i++)
 	{
 		for (int j = 0; j < BOARDWIDTH; j++)
@@ -251,15 +253,15 @@ bool GameBoard::update()
 		combo++;
 		isUpdated = true;
 		if (DEBUG)
-			cout << "combo" << combo << endl;
-		for (int i = 0; i < to_remove.size(); i++)
-		{
-			for (int j = 0; j < to_remove[i].size(); j++)
+			// cout << "combo" << combo << endl;
+			for (int i = 0; i < to_remove.size(); i++)
 			{
-				if (remove(to_remove[i][j]))
-					count++;
+				for (int j = 0; j < to_remove[i].size(); j++)
+				{
+					if (remove(to_remove[i][j]))
+						count++;
+				}
 			}
-		}
 	}
 
 	if (DEBUG)
