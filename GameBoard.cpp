@@ -127,10 +127,17 @@ vector<Block> GameBoard::check_chained(const int &x, const int &y)
 		chain.push_back(top);
 		visited[top.x][top.y] = true;
 		q.pop();
+<<<<<<< HEAD
 		cout << top.x << " " << top.y << endl;
 		if (top.x - 1 >= 0 && (UnitArray[top.y][top.x - 1].color == UnitArray[y][x].color || UnitArray[top.y][top.x - 1].color == Rainbow) && !visited[top.x - 1][top.y])
 		{
 			q.push((Block){top.x - 1, top.y});
+=======
+//		cout << top.x << " " << top.y << endl;
+		if (top.x - 1 >= 0 && (UnitArray[top.y][top.x - 1].color == UnitArray[y][x].color ||
+		                       UnitArray[top.y][top.x - 1].color == Rainbow) && !visited[top.x - 1][top.y]) {
+			q.push((Block) {top.x - 1, top.y});
+>>>>>>> 22cacfdef391aa3b247a44ab627b9b410d2a652b
 			visited[top.x - 1][top.y] = true;
 		}
 		if (top.y - 1 >= 0 && (UnitArray[top.y - 1][top.x].color == UnitArray[y][x].color || UnitArray[top.y - 1][top.x].color == Rainbow) && !visited[top.x][top.y - 1])
@@ -197,7 +204,6 @@ bool GameBoard::update()
 {
 	vector<Block> chain;
 	isUpdated = false;
-	// printer();
 	vector<vector<Block>> to_remove;
 	for (int i = 0; i < BOARDHEIGHT; i++)
 	{
@@ -322,5 +328,6 @@ ostream &operator<<(ostream &output, const GameBoard &g)
 		output << '\n';
 	}
 	output << "######\n";
+	output << "Score:" << g.score << "\nCombo:" << g.combo << "\nTrash:" << g.trash_num << '\n';
 	return output;
 }

@@ -20,12 +20,38 @@ void GameBoardComponent::update()
 	n++;
 
 	UpdateBoardMovingState();
+
 	if (!AnyThingMoving())
 	{
-		init();
+		cout << gameboard << endl;
+		if (!gameboard.falling)
+		{
+			chaining();
+			if (isChanged)
+			{
+				gameboard.falling = true;
+			}
+			else
+			{
+				init();
+				gameboard.reset();
+			}
+		}
+		else
+		{
+			MoveDown();
+			gameboard.falling = false;
+		}
 	}
 	else
+	{
 		MoveDown();
+	}
+}
+
+void GameBoardComponent::chaining()
+{
+	isChanged = gameboard.update();
 }
 
 void GameBoardComponent::draw()
