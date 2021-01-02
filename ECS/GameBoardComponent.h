@@ -16,35 +16,37 @@
 
 using namespace std;
 
-class GameBoardComponent : public Component {
+class GameBoardComponent : public Component
+{
 	friend class CharactorComponent;
 
 private:
 	int mode;
 
-	enum PairState {
+	enum PairState
+	{
 		UP_AND_DOWN,
 		RIGHT_AND_LEFT,
 		SEPERATED
 	};
 
 public:
-//    unit UnitArray[13][6];
+	//    unit UnitArray[13][6];
 	GameBoard gameboard;
 
-	void ReSetZeroUnit(int &xpos, int &ypos);               // set default unit
+	void ReSetZeroUnit(int &xpos, int &ypos);				// set default unit
 	void ReSetAllArrayZero(int gameBoardx, int gameBoardy); // reset gameboard
-	void SwapTwoUnit(int x1, int y1, int x2, int y2);       // pass position to swap
-	void SwapTwoUnit(unit &u1, unit &u2);                   // pass unit to swap
-	void InitializeRamdomUnitOnTop(int topx);               // set new unit
-	void UpdateBoardMovingState();                          // set moving state
+	void SwapTwoUnit(int x1, int y1, int x2, int y2);		// pass position to swap
+	void SwapTwoUnit(unit &u1, unit &u2);					// pass unit to swap
+	void InitializeRamdomUnitOnTop(int topx);				// set new unit
+	void UpdateBoardMovingState();							// set moving state
 	void GetMovingPair();
 
 	bool AnyThingMoving();
 
 	void UpdateMovingPairState();
 
-	void Move();     // get keyboard event
+	void Move();	 // get keyboard event
 	void MoveDown(); // drop
 	void Spin();
 
@@ -60,12 +62,14 @@ public:
 	PairState MovingPairState;
 	bool isChanged;
 
-	GameBoardComponent(int x, int y, int m) {
+	GameBoardComponent(int x, int y, int m)
+	{
 		ReSetAllArrayZero(x, y);
 		this->mode = m;
 	}
 
-	~GameBoardComponent() {
+	~GameBoardComponent()
+	{
 	}
 
 	unit *getDataByMapPosition(int ypos, int xpos);
@@ -76,7 +80,8 @@ public:
 
 	void draw() override;
 
-	void chaining() {
+	void chaining()
+	{
 		// isChanged = gameboard.update();
 		// if (isChanged)
 		//     for (int i = 0; i < blocks.size(); i++)
@@ -93,17 +98,20 @@ public:
 		// cout << "OK" << endl;
 	}
 
-	friend ostream &operator<<(ostream &stream, const unit **u) {
+	friend ostream &operator<<(ostream &stream, const unit **u)
+	{
 		stream << "********" << endl
-		       << endl;
-		for (int i = 0; i < 13; i++) {
-			for (int j = 0; j < 6; j++) {
+			   << endl;
+		for (int i = 0; i < 13; i++)
+		{
+			for (int j = 0; j < 6; j++)
+			{
 				stream << u[i][j].color << " ";
 			}
 			stream << endl;
 		}
 		stream << "********" << endl
-		       << endl;
+			   << endl;
 	}
 };
 

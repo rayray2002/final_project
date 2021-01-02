@@ -93,7 +93,7 @@ public:
 	void reset();
 
 private:
-	vector<Block> check_chained(const int&, const int&);
+	vector<Block> check_chained(const int &, const int &);
 
 	bool remove(const Block &block);
 
