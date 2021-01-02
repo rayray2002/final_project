@@ -24,11 +24,13 @@
 
 using namespace std;
 
-struct Block {
+struct Block
+{
 	int x, y;
 };
 
-enum Color {
+enum Color
+{
 	Empty,
 	Trash,
 	Rainbow,
@@ -39,11 +41,10 @@ enum Color {
 	Purple
 };
 
-struct unit {
+struct unit
+{
 	SDL_Texture *texture;
 	SDL_Rect srcR, destR;
-	Vector2D speed;
-	Vector2D bspeed;
 	Vector2D mapPosition;
 	Color color;
 	bool isMoving;
@@ -58,13 +59,14 @@ Color char_to_color(char);
 
 char color_to_char(Color);
 
-class GameBoard {
+class GameBoard
+{
 	friend ostream &operator<<(ostream &, const GameBoard &);
 
 public:
 	unit UnitArray[BOARDHEIGHT][BOARDWIDTH];
 
-//	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
+	//	Color board[BOARDHEIGHT][BOARDWIDTH] = {};
 
 	GameBoard();
 
