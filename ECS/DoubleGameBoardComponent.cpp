@@ -33,7 +33,7 @@ void DoubleGameBoardComponent::update()
 	{
 		if (!gameboard1.falling)
 			Move(1);
-		if (!gameboard1.falling)
+		if (!gameboard2.falling)
 			Move(2);
 		ii = 0;
 	}
@@ -72,8 +72,7 @@ void DoubleGameBoardComponent::update()
 
 	if (!AnyThingMoving(2))
 	{
-		cout << "Side2:\n"
-			 << gameboard2 << endl;
+		cout << "Side2:\n" << gameboard2 << endl;
 		if (!gameboard2.falling)
 		{
 			chaining(2);
@@ -118,6 +117,9 @@ void DoubleGameBoardComponent::draw()
 		{
 			if (gameboard1.UnitArray[i][j].color != Empty)
 				gameboard1.UnitArray[i][j].isActive = true;
+			else
+				gameboard1.UnitArray[i][j].isActive = false;
+
 			if (gameboard1.UnitArray[i][j].isMoving || gameboard1.UnitArray[i][j].isActive)
 			{
 				SDL_Surface *tmpSurface;
