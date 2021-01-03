@@ -1,6 +1,6 @@
 //#ifndef _MENUCOMPONENT_H
 //#define _MENUCOMPONENT_H
-#include "test_initial_SDL.h"
+//#include "test_initial_SDL.h"
 #include <SDL2/SDL.h>
 //#include "Components.h"
 //#include "../Game.h"
@@ -429,6 +429,8 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer){
 		SDL_RenderClear(renderer);
 		SDL_Texture *texture=SDL_CreateTextureFromSurface(renderer,screen);
 		SDL_RenderCopy(renderer,texture,NULL,NULL);
+		SDL_DestroyTexture(texture);
+
 		SDL_Texture *charactertexture[num];
 		for(int i=0;i<num;i++){
 			charactertexture[i]=SDL_CreateTextureFromSurface(renderer,character[i]);
