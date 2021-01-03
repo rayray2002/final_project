@@ -31,7 +31,6 @@ Menu::Menu()
 }
 Menu::~Menu()
 {
-	;
 }
 void Menu::startmenu(SDL_Window *window, SDL_Renderer *renderer)
 {
