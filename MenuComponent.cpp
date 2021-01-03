@@ -90,13 +90,15 @@ int Menu::firstmenu(SDL_Window *window,SDL_Renderer *renderer)
 	int z=0;
 	//initail renderer
 	//SDL_SetRenderDrawColor(renderer,255,255,255,255);
+	SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
 	SDL_SetColorKey(screen,SDL_TRUE,SDL_MapRGB( screen->format, 0, 0, 0 ));
+	SDL_SetRenderDrawColor(renderer,255,255,255,255);
 	
 	SDL_Event event;
 	while (1) {
 		
 		SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-		SDL_FreeSurface(screen);
+		
 		//string path="./img/miku/000"+to_string(z)+".bmp";
 		string path;
 		if(z<10) path = "./img/miku/000" + to_string(z) + ".bmp";
