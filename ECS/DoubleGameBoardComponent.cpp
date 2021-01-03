@@ -158,6 +158,9 @@ void DoubleGameBoardComponent::draw()
 		{
 			if (gameboard2.UnitArray[i][j].color != Empty)
 				gameboard2.UnitArray[i][j].isActive = true;
+			else
+				gameboard2.UnitArray[i][j].isActive = false;
+
 			if (gameboard2.UnitArray[i][j].isMoving || gameboard2.UnitArray[i][j].isActive)
 			{
 				SDL_Surface *tmpSurface;
