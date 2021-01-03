@@ -8,8 +8,8 @@
 //#include <sstream>
 //#include <map>
 #include <SDL2/SDL_ttf.h>
-//#define WIDTH 1280
-//#define HEIGHT 720
+#define WIDTH 1280
+#define HEIGHT 720
 int P1=-1,P2=-1;
 using namespace std;
 
@@ -38,7 +38,7 @@ void Menu::startmenu(SDL_Window *window, SDL_Renderer *renderer)
 {
    	switch (firstmenu(window,renderer))
    	{
-   	case 0:/*single*/;
+   	case 0:/*single player*/;
    	case 1:
    		Charactermenu(window,renderer);
    		break;
@@ -51,7 +51,7 @@ void Menu::Charactermenu(SDL_Window *window, SDL_Renderer *renderer)
     case -1:
    		startmenu(window,renderer);
    		break;
-   	case 0:/*double*/;
+   	case 0:/*double player*/;
 
    } 
 }
@@ -76,16 +76,16 @@ int Menu::firstmenu(SDL_Window *window,SDL_Renderer *renderer)
 	menus[0] = TTF_RenderText_Solid(font, text1, color[0]);
 	menus[1] = TTF_RenderText_Solid(font, text2, color[0]);
 	SDL_Rect pos[num];
-	pos[0].x = screen->clip_rect.w / 2 - menus[0]->clip_rect.w / 2;
-	pos[0].y = screen->clip_rect.h / 2 - menus[0]->clip_rect.h;
-	pos[1].x = screen->clip_rect.w / 2 - menus[1]->clip_rect.w / 2;
-	pos[1].y = screen->clip_rect.h / 2 + menus[1]->clip_rect.h;
+	pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
+	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
+	pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;
+	pos[1].y = HEIGHT / 2 + menus[1]->clip_rect.h;
 	
 	SDL_Rect bgpos;
 	bgpos.x=0;
 	bgpos.y=0;
-	bgpos.w=screen->clip_rect.w;
-	bgpos.h=screen->clip_rect.h;
+	bgpos.w=WIDTH;
+	bgpos.h=HEIGHT;
 	
 	int z=0;
 	//initail renderer
@@ -220,8 +220,8 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer){
 	
 	SDL_Rect pos[num];
 	for(int i=0;i<num;i++){
-		pos[i].x = screen->clip_rect.w*(2*i+1)/10-menus[i]->clip_rect.w/2;
-		pos[i].y = screen->clip_rect.h*28/50-menus[i]->clip_rect.h/2;
+		pos[i].x = WIDTH*(2*i+1)/10-menus[i]->clip_rect.w/2;
+		pos[i].y = HEIGHT*28/50-menus[i]->clip_rect.h/2;
 	}
 	
 	//title
@@ -232,7 +232,7 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer){
 	title[1]=TTF_RenderText_Solid(font,Title2, color[0]);
 	
 	SDL_Rect titlepos;
-	titlepos.x = screen->clip_rect.w/2-title[0]->clip_rect.w/2;
+	titlepos.x = WIDTH/2-title[0]->clip_rect.w/2;
 	titlepos.y=10;
 	
 	//subtitle
@@ -246,9 +246,9 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer){
 	SDL_Rect subtitlepos[3];
 	subtitlepos[0].x=10;
 	subtitlepos[0].y=100;
-	subtitlepos[1].x=screen->clip_rect.w-10-subtitle[1]->clip_rect.w;
+	subtitlepos[1].x=WIDTH-10-subtitle[1]->clip_rect.w;
 	subtitlepos[1].y=100;
-	subtitlepos[2].x=screen->clip_rect.w/2-subtitle[2]->clip_rect.w/2;
+	subtitlepos[2].x=WIDTH/2-subtitle[2]->clip_rect.w/2;
 	subtitlepos[2].y=100;
 	
 	//P1 : P2
@@ -262,10 +262,10 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer){
 	P1pos.y=100;
 	P2pos.y=100;
 	
-//	pos[0].x = screen->clip_rect.w / 2 - menus[0]->clip_rect.w / 2;
-//	pos[0].y = screen->clip_rect.h / 2 - menus[0]->clip_rect.h;
-//	pos[1].x = screen->clip_rect.w / 2 - menus[1]->clip_rect.w / 2;
-//	pos[1].y = screen->clip_rect.h / 2 + menus[1]->clip_rect.h;
+//	pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
+//	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
+//	pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;
+//	pos[1].y = HEIGHT / 2 + menus[1]->clip_rect.h;
 
 	
 	SDL_Surface *character[num];
@@ -278,8 +278,8 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer){
 	int charactersize=200;
 	SDL_Rect characterpos[num];
 	for(int i=0;i<num;i++){
-		characterpos[i].x=screen->clip_rect.w*i/5+22;
-		characterpos[i].y=screen->clip_rect.h-230;
+		characterpos[i].x=WIDTH*i/5+22;
+		characterpos[i].y=HEIGHT-230;
 		characterpos[i].w=charactersize;
 		characterpos[i].h=charactersize;
 	}
