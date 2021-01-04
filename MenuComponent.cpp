@@ -1,31 +1,13 @@
-//#ifndef _MENUCOMPONENT_H
-//#define _MENUCOMPONENT_H
 #include "test_initial_SDL.h"
 #include <SDL2/SDL.h>
-//#include "Components.h"
-//#include "../Game.h"
 #include <string>
-//#include <sstream>
-//#include <map>
 #include <SDL2/SDL_ttf.h>
+#include "MenuComponent.h"
 #define WIDTH 1280
 #define HEIGHT 720
 int P1 = -1, P2 = -1;
 using namespace std;
 
-class Menu
-//: public Component
-{
-public:
-	Menu();
-	~Menu();
-	int firstmenu(SDL_Window *, SDL_Renderer *);
-	int charactermenu(SDL_Window *, SDL_Renderer *);
-	void startmenu(SDL_Window *, SDL_Renderer *);
-	void Charactermenu(SDL_Window *, SDL_Renderer *);
-
-private:
-};
 Menu::Menu()
 {
 }
@@ -88,18 +70,23 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 	int z = 0;
 	//initail renderer
 	//SDL_SetRenderDrawColor(renderer,255,255,255,255);
-	SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-	SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
+
+	// SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+	// SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
+
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 	SDL_Event event;
+
 	while (1)
 	{
 
-		SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+		// SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
 
 		//string path="./img/miku/000"+to_string(z)+".bmp";
 		string path;
+		cout << "OK" << endl;
+
 		if (z < 10)
 			path = "./img/miku/000" + to_string(z) + ".bmp";
 		else
@@ -110,6 +97,7 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 		if (z > 54)
 			z = 0;
 		//time = SDL_GetTicks();
+
 		while (SDL_PollEvent(&event))
 		{
 			switch (event.type)
@@ -176,6 +164,8 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 				break;
 			}
 		}
+		cout << "OK" << endl;
+
 		for (int i = 0; i < num; i++)
 		{
 			SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
@@ -214,7 +204,7 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 {
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
-	SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0, 0, 0));
+	// SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0, 0, 0));
 	Uint32 time;
 	int x = 0, y = 0;
 	const int num = 5;
@@ -305,7 +295,7 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 		characterpos[i].h = charactersize;
 	}
 
-	SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+	// SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
 
 	SDL_Event event;
 	while (1)
@@ -314,7 +304,7 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 
 		//background free and color
 		SDL_FreeSurface(screen);
-		SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+		// SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
 
 		while (SDL_PollEvent(&event))
 		{

@@ -235,12 +235,6 @@ GameBoard.h
 /home/shyu/Desktop/final_project_all/GameBoard.h
 Vector2D.h
 /home/shyu/Desktop/final_project_all/Vector2D.h
-Menu.h
-/home/shyu/Desktop/final_project_all/Menu.h
-
-/home/shyu/Desktop/final_project_all/GameBoard.cpp
-GameBoard.h
-/home/shyu/Desktop/final_project_all/GameBoard.h
 
 /home/shyu/Desktop/final_project_all/GameBoard.h
 algorithm
@@ -282,14 +276,6 @@ SDL.h
 string
 -
 
-/home/shyu/Desktop/final_project_all/Menu.h
-SDL2/SDL.h
--
-string
--
-SDL2/SDL_ttf.h
--
-
 /home/shyu/Desktop/final_project_all/TextureManager.cpp
 TextureManager.h
 /home/shyu/Desktop/final_project_all/TextureManager.h
@@ -301,10 +287,6 @@ Game.h
 /home/shyu/Desktop/final_project_all/Game.h
 map
 -
-
-/home/shyu/Desktop/final_project_all/Vector2D.cpp
-Vector2D.h
-/home/shyu/Desktop/final_project_all/Vector2D.h
 
 /home/shyu/Desktop/final_project_all/Vector2D.h
 iostream
