@@ -238,6 +238,10 @@ Vector2D.h
 Menu.h
 /home/shyu/Desktop/final_project_all/Menu.h
 
+/home/shyu/Desktop/final_project_all/GameBoard.cpp
+GameBoard.h
+/home/shyu/Desktop/final_project_all/GameBoard.h
+
 /home/shyu/Desktop/final_project_all/GameBoard.h
 algorithm
 -
@@ -297,6 +301,10 @@ Game.h
 /home/shyu/Desktop/final_project_all/Game.h
 map
 -
+
+/home/shyu/Desktop/final_project_all/Vector2D.cpp
+Vector2D.h
+/home/shyu/Desktop/final_project_all/Vector2D.h
 
 /home/shyu/Desktop/final_project_all/Vector2D.h
 iostream
