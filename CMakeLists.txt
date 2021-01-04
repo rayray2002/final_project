@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(final_project)
+project(1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
@@ -7,7 +7,7 @@ message(${CMAKE_SOURCE_DIR})
 
 # add_executable(Puyo_test Puyo_test.cpp GameBoard.cpp)
 # add_executable(show_board test_fall_board.cpp)
-# add_executable(main main.cpp ECS/ECS.cpp Collision.cpp Game.cpp GameObject.cpp Map.cpp TextureManager.cpp Vector2D.cpp GameBoard.cpp ECS/GameBoardComponent.cpp ECS/DoubleGameBoardComponent.cpp)
+# add_executable(main main.cpp ECS/ECS.cpp Collision.cpp Game.cpp GameObject.cpp Map.cpp TextureManager.cpp Vector2D.cpp GameBoard.cpp ECS/GameBoardComponent.cpp ECS/DoubleGameBoardComponent.cpp MenuComponent.cpp)
 add_executable(menu MenuComponent.cpp)
 
 #set(SDL2_LIBRARY "/Library/frameworks/SDL2.framework")
