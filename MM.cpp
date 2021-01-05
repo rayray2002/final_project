@@ -73,6 +73,7 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 	char text2[] = "Double Player";
 	menus[0] = TTF_RenderText_Solid(font, text1, color[0]);
 	menus[1] = TTF_RenderText_Solid(font, text2, color[0]);
+
 	SDL_Rect pos[num];
 	pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
 	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
@@ -90,9 +91,8 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 	//SDL_SetRenderDrawColor(renderer,255,255,255,255);
 
 	//SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-	SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
+	// SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-
 	SDL_Event event;
 	while (1)
 	{
@@ -185,10 +185,10 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 		}
 		for (int i = 0; i < num; i++)
 		{
-			// SDL_Texture *menutexture[num];
-			// menutexture[i] = SDL_CreateTextureFromSurface(renderer, menus[i]);
-			// SDL_RenderCopy(renderer, menutexture[i], NULL, &pos[i]);
-			SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
+			SDL_Texture *menutexture[num];
+			menutexture[i] = SDL_CreateTextureFromSurface(renderer, menus[i]);
+			SDL_RenderCopy(renderer, menutexture[i], NULL, &pos[i]);
+			//SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
 			//SDL_DestroyTexture(menutexture[i]);
 		}
 
@@ -219,7 +219,7 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 {
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
-	SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0, 0, 0));
+	// SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0, 0, 0));
 	Uint32 time;
 	int x = 0, y = 0;
 	const int num = 5;

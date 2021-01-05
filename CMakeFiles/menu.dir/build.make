@@ -57,27 +57,27 @@ include CMakeFiles/menu.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/menu.dir/flags.make
 
-CMakeFiles/menu.dir/MenuComponent.cpp.o: CMakeFiles/menu.dir/flags.make
-CMakeFiles/menu.dir/MenuComponent.cpp.o: MenuComponent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/menu.dir/MenuComponent.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/menu.dir/MenuComponent.cpp.o -c /home/shyu/Desktop/final_project_all/MenuComponent.cpp
+CMakeFiles/menu.dir/MM.cpp.o: CMakeFiles/menu.dir/flags.make
+CMakeFiles/menu.dir/MM.cpp.o: MM.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/menu.dir/MM.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/menu.dir/MM.cpp.o -c /home/shyu/Desktop/final_project_all/MM.cpp
 
-CMakeFiles/menu.dir/MenuComponent.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/menu.dir/MenuComponent.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/MenuComponent.cpp > CMakeFiles/menu.dir/MenuComponent.cpp.i
+CMakeFiles/menu.dir/MM.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/menu.dir/MM.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/MM.cpp > CMakeFiles/menu.dir/MM.cpp.i
 
-CMakeFiles/menu.dir/MenuComponent.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/menu.dir/MenuComponent.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/MenuComponent.cpp -o CMakeFiles/menu.dir/MenuComponent.cpp.s
+CMakeFiles/menu.dir/MM.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/menu.dir/MM.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/MM.cpp -o CMakeFiles/menu.dir/MM.cpp.s
 
 # Object files for target menu
 menu_OBJECTS = \
-"CMakeFiles/menu.dir/MenuComponent.cpp.o"
+"CMakeFiles/menu.dir/MM.cpp.o"
 
 # External object files for target menu
 menu_EXTERNAL_OBJECTS =
 
-menu: CMakeFiles/menu.dir/MenuComponent.cpp.o
+menu: CMakeFiles/menu.dir/MM.cpp.o
 menu: CMakeFiles/menu.dir/build.make
 menu: /usr/local/lib/libSDL2main.a
 menu: /usr/local/lib/libSDL2.so

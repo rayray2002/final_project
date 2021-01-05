@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/shyu/Desktop/final_project_all/MenuComponent.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/menu.dir/MenuComponent.cpp.o"
+  "/home/shyu/Desktop/final_project_all/MM.cpp" "/home/shyu/Desktop/final_project_all/CMakeFiles/menu.dir/MM.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

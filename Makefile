@@ -123,32 +123,32 @@ menu/fast:
 	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/build
 .PHONY : menu/fast
 
-MenuComponent.o: MenuComponent.cpp.o
+MM.o: MM.cpp.o
 
-.PHONY : MenuComponent.o
+.PHONY : MM.o
 
 # target to build an object file
-MenuComponent.cpp.o:
-	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/MenuComponent.cpp.o
-.PHONY : MenuComponent.cpp.o
+MM.cpp.o:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/MM.cpp.o
+.PHONY : MM.cpp.o
 
-MenuComponent.i: MenuComponent.cpp.i
+MM.i: MM.cpp.i
 
-.PHONY : MenuComponent.i
+.PHONY : MM.i
 
 # target to preprocess a source file
-MenuComponent.cpp.i:
-	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/MenuComponent.cpp.i
-.PHONY : MenuComponent.cpp.i
+MM.cpp.i:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/MM.cpp.i
+.PHONY : MM.cpp.i
 
-MenuComponent.s: MenuComponent.cpp.s
+MM.s: MM.cpp.s
 
-.PHONY : MenuComponent.s
+.PHONY : MM.s
 
 # target to generate assembly for a file
-MenuComponent.cpp.s:
-	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/MenuComponent.cpp.s
-.PHONY : MenuComponent.cpp.s
+MM.cpp.s:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/MM.cpp.s
+.PHONY : MM.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... menu"
-	@echo "... MenuComponent.o"
-	@echo "... MenuComponent.i"
-	@echo "... MenuComponent.s"
+	@echo "... MM.o"
+	@echo "... MM.i"
+	@echo "... MM.s"
 .PHONY : help
 
 

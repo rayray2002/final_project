@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/menu.dir/MenuComponent.cpp.o"
+  "CMakeFiles/menu.dir/MM.cpp.o"
   "menu"
   "menu.pdb"
 )

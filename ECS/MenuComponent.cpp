@@ -299,7 +299,7 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 		//background free and color
 		SDL_FreeSurface(screen);
 		// SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-
+		cout << "OK" << endl;
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_KEYDOWN)
@@ -422,6 +422,7 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 				break;
 			}
 		}
+		cout << "OK" << endl;
 
 		//BlitSurface
 		if (P1 == -1)
@@ -480,13 +481,3 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 		}
 	}
 }
-
-// int main(int argc, char *argv[])
-// {
-// 	init();
-// 	Menu menu;
-// 	menu.startmenu(window, renderer);
-
-// 	close();
-// 	return 0;
-// }
