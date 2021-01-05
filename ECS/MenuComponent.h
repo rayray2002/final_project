@@ -1,5 +1,6 @@
 #ifndef _MENUCOMPONENT_H
 #define _MENUCOMPONENT_H
+#include <SDL.h>
 class Menu
 {
 public:
