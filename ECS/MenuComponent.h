@@ -10,7 +10,7 @@ public:
     int charactermenu(SDL_Window *, SDL_Renderer *);
     void startmenu(SDL_Window *, SDL_Renderer *);
     void Charactermenu(SDL_Window *, SDL_Renderer *);
-    int getMode() { return Mode; };
+    // int getMode() { return Mode; };
 
 private:
     int mode;

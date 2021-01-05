@@ -13,6 +13,7 @@
 #include <vector>
 #include "GameBoard.h"
 #include "Vector2D.h"
+// #include "ECS/Components.h"
 #define NUMMENU 5
 #define WIDTH 1280
 #define HEIGHT 720
@@ -70,11 +71,11 @@ public:
         groupDoubleGameBoards
     };
 
-    Menu getMenu();
-    int showMenu();
+    // Menu getMenu();
+    // int showMenu();
 
 private:
-    Menu menu;
+    // Menu menu;
 
     // int cnt = 64; //count
     // bool isRunning;
