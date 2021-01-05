@@ -224,7 +224,7 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 {
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
-	SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0, 0, 0));
+	SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
 	Uint32 time;
 	int x = 0, y = 0;
 	const int num = 5;
