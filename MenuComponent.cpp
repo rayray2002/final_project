@@ -73,11 +73,16 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 	char text2[] = "Double Player";
 	menus[0] = TTF_RenderText_Solid(font, text1, color[0]);
 	menus[1] = TTF_RenderText_Solid(font, text2, color[0]);
+
 	SDL_Rect pos[num];
 	pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
 	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
+	pos[0].w = menus[0]->clip_rect.w;
+	pos[0].h = menus[0]->clip_rect.h;
 	pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;
 	pos[1].y = HEIGHT / 2 + menus[1]->clip_rect.h;
+	pos[1].w = menus[0]->clip_rect.w;
+	pos[1].h = menus[0]->clip_rect.h;
 
 	SDL_Rect bgpos;
 	bgpos.x = 0;
@@ -90,7 +95,7 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 	//SDL_SetRenderDrawColor(renderer,255,255,255,255);
 
 	//SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-	SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
+	// SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
 	SDL_Event event;
@@ -185,10 +190,10 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 		}
 		for (int i = 0; i < num; i++)
 		{
-			// SDL_Texture *menutexture[num];
-			// menutexture[i] = SDL_CreateTextureFromSurface(renderer, menus[i]);
-			// SDL_RenderCopy(renderer, menutexture[i], NULL, &pos[i]);
-			SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
+			SDL_Texture *menutexture[num];
+			menutexture[i] = SDL_CreateTextureFromSurface(renderer, menus[i]);
+			SDL_RenderCopy(renderer, menutexture[i], NULL, &pos[i]);
+			//SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
 			//SDL_DestroyTexture(menutexture[i]);
 		}
 
@@ -200,16 +205,16 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 		// 	SDL_DestroyTexture(menutexture[i]);
 		// }
 
-		SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
-		SDL_RenderCopy(renderer, texture, NULL, NULL);
-		SDL_DestroyTexture(texture);
+		//SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
+		// SDL_RenderCopy(renderer, texture, NULL, NULL);
+		// SDL_DestroyTexture(texture);
 
 		//SDL_UpdateWindowSurface(window);
 		SDL_RenderPresent(renderer);
 
 		SDL_Delay(70);
 		SDL_FreeSurface(img);
-		SDL_FreeSurface(screen);
+		//SDL_FreeSurface(screen);
 		//		if (1000 / 30 > (SDL_GetTicks() - time)) {
 		//			SDL_Delay(1000 / 30 - (SDL_GetTicks() - time));
 		//		}
