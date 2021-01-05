@@ -79,6 +79,11 @@ menu_EXTERNAL_OBJECTS =
 
 menu: CMakeFiles/menu.dir/MenuComponent.cpp.o
 menu: CMakeFiles/menu.dir/build.make
+menu: /usr/local/lib/libSDL2main.a
+menu: /usr/local/lib/libSDL2.so
+menu: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
+menu: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
+menu: /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so
 menu: CMakeFiles/menu.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/amos/Desktop/123/1/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable menu"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/menu.dir/link.txt --verbose=$(VERBOSE)

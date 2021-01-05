@@ -424,7 +424,7 @@ void DoubleGameBoardComponent::Move(int side)
 			}
 		}
 	}
-	else if (side == 1)
+	if (side == 1)
 	{
 		if (Game::event.type == SDL_KEYDOWN)
 		{

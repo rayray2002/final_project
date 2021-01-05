@@ -1,4 +1,3 @@
 /home/amos/Desktop/123/1/CMakeFiles/rebuild_cache.dir
 /home/amos/Desktop/123/1/CMakeFiles/edit_cache.dir
 /home/amos/Desktop/123/1/CMakeFiles/menu.dir
-/home/amos/Desktop/123/1/CMakeFiles/main.dir

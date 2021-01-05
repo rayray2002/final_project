@@ -54,7 +54,6 @@ CMAKE_BINARY_DIR = /home/amos/Desktop/123/1
 
 # The main recursive "all" target.
 all: CMakeFiles/menu.dir/all
-all: CMakeFiles/main.dir/all
 
 .PHONY : all
 
@@ -65,7 +64,6 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/menu.dir/clean
-clean: CMakeFiles/main.dir/clean
 
 .PHONY : clean
 
@@ -76,7 +74,7 @@ clean: CMakeFiles/main.dir/clean
 CMakeFiles/menu.dir/all:
 	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/depend
 	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amos/Desktop/123/1/CMakeFiles --progress-num=13,14 "Built target menu"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amos/Desktop/123/1/CMakeFiles --progress-num=1,2 "Built target menu"
 .PHONY : CMakeFiles/menu.dir/all
 
 # Build rule for subdir invocation for target.
@@ -95,33 +93,6 @@ menu: CMakeFiles/menu.dir/rule
 CMakeFiles/menu.dir/clean:
 	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/clean
 .PHONY : CMakeFiles/menu.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/main.dir
-
-# All Build rule for target.
-CMakeFiles/main.dir/all:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/amos/Desktop/123/1/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target main"
-.PHONY : CMakeFiles/main.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/amos/Desktop/123/1/CMakeFiles 12
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/amos/Desktop/123/1/CMakeFiles 0
-.PHONY : CMakeFiles/main.dir/rule
-
-# Convenience name for target.
-main: CMakeFiles/main.dir/rule
-
-.PHONY : main
-
-# clean rule for target.
-CMakeFiles/main.dir/clean:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/clean
-.PHONY : CMakeFiles/main.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

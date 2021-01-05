@@ -19,10 +19,10 @@ class Menu
 public:
 	Menu();
 	~Menu();
-	int firstmenu(SDL_Window *, SDL_Renderer *);
-	int charactermenu(SDL_Window *, SDL_Renderer *);
-	void startmenu(SDL_Window *, SDL_Renderer *);
-	void Charactermenu(SDL_Window *, SDL_Renderer *);
+	int firstmenu(SDL_Renderer *);
+	int charactermenu(SDL_Renderer *);
+	void startmenu(SDL_Renderer *);
+	void Charactermenu(SDL_Renderer *);
 
 private:
 };
@@ -33,30 +33,30 @@ Menu::~Menu()
 {
 	;
 }
-void Menu::startmenu(SDL_Window *window, SDL_Renderer *renderer)
+void Menu::startmenu(SDL_Renderer *renderer)
 {
-	switch (firstmenu(window, renderer))
+	switch (firstmenu(renderer))
 	{
 	case 0: /*single player*/;
 	case 1:
-		Charactermenu(window, renderer);
+		Charactermenu(renderer);
 		break;
 	}
 }
-void Menu::Charactermenu(SDL_Window *window, SDL_Renderer *renderer)
+void Menu::Charactermenu(SDL_Renderer *renderer)
 {
-	switch (charactermenu(window, renderer))
+	switch (charactermenu(renderer))
 	{
 	case -1:
-		startmenu(window, renderer);
+		startmenu(renderer);
 		break;
 	case 0: /*double player*/;
 	}
 }
 
-int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
+int Menu::firstmenu(SDL_Renderer *renderer)
 {
-	SDL_Surface *screen = SDL_GetWindowSurface(window);
+	//SDL_Surface *screen = SDL_GetWindowSurface(window);
 	SDL_Surface *img;
 
 	//Uint32 time;
@@ -221,10 +221,10 @@ int Menu::firstmenu(SDL_Window *window, SDL_Renderer *renderer)
 	}
 }
 
-int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
+int Menu::charactermenu(SDL_Renderer *renderer)
 {
-	SDL_Surface *screen = SDL_GetWindowSurface(window);
-	SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
+	//SDL_Surface *screen = SDL_GetWindowSurface(window);
+	//SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
 	Uint32 time;
 	int x = 0, y = 0;
 	const int num = 5;
@@ -253,6 +253,8 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 	{
 		pos[i].x = WIDTH * (2 * i + 1) / 10 - menus[i]->clip_rect.w / 2;
 		pos[i].y = HEIGHT * 28 / 50 - menus[i]->clip_rect.h / 2;
+		pos[i].w = menus[i]->clip_rect.w;
+		pos[i].h = menus[i]->clip_rect.h;
 	}
 
 	//title
@@ -265,6 +267,8 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 	SDL_Rect titlepos;
 	titlepos.x = WIDTH / 2 - title[0]->clip_rect.w / 2;
 	titlepos.y = 10;
+	titlepos.w = title[0]->clip_rect.w;
+	titlepos.h = title[0]->clip_rect.h;
 
 	//subtitle
 	char Subtitle1[] = "1P";
@@ -277,10 +281,16 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 	SDL_Rect subtitlepos[3];
 	subtitlepos[0].x = 10;
 	subtitlepos[0].y = 100;
+	subtitlepos[0].w = subtitle[0]->clip_rect.w;
+	subtitlepos[0].h = subtitle[0]->clip_rect.h;
 	subtitlepos[1].x = WIDTH - 10 - subtitle[1]->clip_rect.w;
 	subtitlepos[1].y = 100;
+	subtitlepos[1].w = subtitle[1]->clip_rect.w;
+	subtitlepos[1].h = subtitle[1]->clip_rect.h;
 	subtitlepos[2].x = WIDTH / 2 - subtitle[2]->clip_rect.w / 2;
 	subtitlepos[2].y = 100;
+	subtitlepos[2].w = subtitle[2]->clip_rect.w;
+	subtitlepos[2].h = subtitle[2]->clip_rect.h;
 
 	//P1 : P2
 	SDL_Surface *Psurface[num];
@@ -315,7 +325,9 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 		characterpos[i].h = charactersize;
 	}
 
-	SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+
+	//SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
 
 	SDL_Event event;
 	while (1)
@@ -323,8 +335,8 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 		time = SDL_GetTicks();
 
 		//background free and color
-		SDL_FreeSurface(screen);
-		SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+		//SDL_FreeSurface(screen);
+		//SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
 
 		while (SDL_PollEvent(&event))
 		{
@@ -436,12 +448,16 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 						{
 							P1 = i;
 							P1pos.x = (subtitlepos[0].x + subtitlepos[0].w + subtitlepos[2].x) / 2 - Psurface[P1]->clip_rect.w / 2;
+							P1pos.w = Psurface[P1]->clip_rect.w;
+							P1pos.h = Psurface[P1]->clip_rect.h;
 							break;
 						}
 						else if (P2 == -1)
 						{
 							P2 = i;
 							P2pos.x = (subtitlepos[2].x + subtitlepos[2].w + subtitlepos[1].x) / 2 - Psurface[P2]->clip_rect.w / 2;
+							P2pos.w = Psurface[P2]->clip_rect.w;
+							P2pos.h = Psurface[P2]->clip_rect.h;
 						}
 
 						//						// FreeSurface
@@ -462,44 +478,59 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 			}
 		}
 
-		//BlitSurface
+		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+
+		//RenderCopy
 		if (P1 == -1)
 		{
-			SDL_BlitSurface(title[0], NULL, screen, &titlepos);
+			SDL_Texture *titletexture = SDL_CreateTextureFromSurface(renderer, title[0]);
+			SDL_RenderCopy(renderer, titletexture, NULL, &titlepos);
+			SDL_DestroyTexture(titletexture);
 		}
 		else if (P2 == -1)
 		{
-			SDL_BlitSurface(title[1], NULL, screen, &titlepos);
+			SDL_Texture *titletexture = SDL_CreateTextureFromSurface(renderer, title[1]);
+			SDL_RenderCopy(renderer, titletexture, NULL, &titlepos);
+			SDL_DestroyTexture(titletexture);
 		}
 
+		SDL_Texture *subtitletexture[3];
 		for (int i = 0; i < 3; i++)
 		{
-			SDL_BlitSurface(subtitle[i], NULL, screen, &subtitlepos[i]);
+			subtitletexture[i] = SDL_CreateTextureFromSurface(renderer, subtitle[i]);
+			SDL_RenderCopy(renderer, subtitletexture[i], NULL, &subtitlepos[i]);
+			SDL_DestroyTexture(subtitletexture[i]);
 		}
 
 		if (P1 != -1)
 		{
-			SDL_BlitSurface(Psurface[P1], NULL, screen, &P1pos);
+			SDL_Texture *P1texture = SDL_CreateTextureFromSurface(renderer, Psurface[P1]);
+			SDL_RenderCopy(renderer, P1texture, NULL, &P1pos);
+			SDL_DestroyTexture(P1texture);
 		}
 
 		if (P2 != -1)
 		{
-			SDL_BlitSurface(Psurface[P2], NULL, screen, &P2pos);
+			SDL_Texture *P2texture = SDL_CreateTextureFromSurface(renderer, Psurface[P2]);
+			SDL_RenderCopy(renderer, P2texture, NULL, &P2pos);
+			SDL_DestroyTexture(P2texture);
 		}
 
 		//		for(int i=0;i<num;i++){
 		//			SDL_BlitSurface(character[i],NULL,screen,&characterpos[i]);
 		//		}
-
+		SDL_Texture *menutexture[5];
 		for (int i = 0; i < num; i++)
 		{
-			SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
+			menutexture[i] = SDL_CreateTextureFromSurface(renderer, menus[i]);
+			SDL_RenderCopy(renderer, menutexture[i], NULL, &pos[i]);
+			SDL_DestroyTexture(menutexture[i]);
 		}
 
-		SDL_RenderClear(renderer);
-		SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
-		SDL_RenderCopy(renderer, texture, NULL, NULL);
-		SDL_DestroyTexture(texture);
+		// SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
+		// SDL_RenderCopy(renderer, texture, NULL, NULL);
+		// SDL_DestroyTexture(texture);
 
 		SDL_Texture *charactertexture[num];
 		for (int i = 0; i < num; i++)
@@ -831,7 +862,7 @@ int main(int argc, char *argv[])
 {
 	init();
 	Menu menu;
-	menu.startmenu(window, renderer);
+	menu.startmenu(renderer);
 
 	close();
 	return 0;
