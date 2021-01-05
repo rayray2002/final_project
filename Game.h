@@ -70,11 +70,11 @@ public:
         groupDoubleGameBoards
     };
 
-    Menu getMenu();
-    int showMenu();
+//    Menu getMenu();
+//    int showMenu();
 
 private:
-    Menu menu;
+//    Menu menu;
 
     // int cnt = 64; //count
     // bool isRunning;

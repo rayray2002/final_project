@@ -162,20 +162,20 @@ void Game::update()
 		b->getComponent<ButtomComponent>().update();
 	}
 
-	if (menu.getMode() == 2)
-	{
+//	if (menu.getMode() == 2)
+//	{
 		for (auto &b : gameboards2)
 		{
 			b->getComponent<DoubleGameBoardComponent>().update();
 		}
-	}
-	else if (menu.getMode() == 1)
-	{
-		for (auto &b : gameboards)
-		{
-			b->getComponent<GameBoardComponent>().update();
-		}
-	}
+//	}
+//	else if (menu.getMode() == 1)
+//	{
+//		for (auto &b : gameboards)
+//		{
+//			b->getComponent<GameBoardComponent>().update();
+//		}
+//	}
 }
 
 void Game::render()
@@ -190,20 +190,20 @@ void Game::render()
 	{
 		b->getComponent<ButtomComponent>().draw();
 	}
-	if (menu.getMode() == 2)
-	{
+//	if (menu.getMode() == 2)
+//	{
 		for (auto &b : gameboards2)
 		{
 			b->getComponent<DoubleGameBoardComponent>().draw();
 		}
-	}
-	else if (menu.getMode() == 1)
-	{
-		for (auto &b : gameboards)
-		{
-			b->getComponent<GameBoardComponent>().draw();
-		}
-	}
+//	}
+//	else if (menu.getMode() == 1)
+//	{
+//		for (auto &b : gameboards)
+//		{
+//			b->getComponent<GameBoardComponent>().draw();
+//		}
+//	}
 	SDL_RenderPresent(Game::renderer);
 	SDL_RenderClear(Game::renderer);
 }
@@ -572,12 +572,12 @@ void Game::MusicPlay(const char *Music, int volume)
 	cout << "Music Loaded!\n";
 }
 
-Menu Game::getMenu()
-{
-	return menu;
-}
-
-int Game::showMenu()
-{
-	menu.startmenu(window, renderer);
-}
+//Menu Game::getMenu()
+//{
+//	return menu;
+//}
+//
+//int Game::showMenu()
+//{
+//	menu.startmenu(window, renderer);
+//}

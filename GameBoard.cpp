@@ -109,7 +109,8 @@ vector<Block> GameBoard::check_chained(const int &x, const int &y) {
 		chain.push_back(top);
 		visited[top.x][top.y] = true;
 		q.pop();
-		//		cout << top.x << " " << top.y << endl;
+//		cout << q.size() << endl;
+//		cout << top.x << " " << top.y << endl;
 		if (top.x - 1 >= 0 && (UnitArray[top.y][top.x - 1].color == UnitArray[y][x].color ||
 		                       UnitArray[top.y][top.x - 1].color == Rainbow) && !visited[top.x - 1][top.y]) {
 			q.push((Block) {top.x - 1, top.y});

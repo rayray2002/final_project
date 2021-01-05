@@ -7,7 +7,7 @@
 #include <string>
 //#include <sstream>
 //#include <map>
-#include <SDL2/SDL_ttf.h>
+#include <SDL_ttf.h>
 #define WIDTH 1280
 #define HEIGHT 720
 int P1 = -1, P2 = -1;
