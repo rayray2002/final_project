@@ -13,7 +13,6 @@
 #include <vector>
 #include "GameBoard.h"
 #include "Vector2D.h"
-// #include "Menu.h"
 #define NUMMENU 5
 #define WIDTH 1280
 #define HEIGHT 720
@@ -41,7 +40,6 @@ class Game
 public:
     Game();
     ~Game();
-    // Menu menu;
 
     void handleEveants();
     void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
@@ -72,8 +70,13 @@ public:
         groupDoubleGameBoards
     };
 
+    Menu getMenu();
+    int showMenu();
+
 private:
-    int cnt = 64; //count
+    Menu menu;
+
+    // int cnt = 64; //count
     // bool isRunning;
     SDL_Window *window;
 

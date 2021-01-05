@@ -14,8 +14,8 @@ int main(int argc, const char *argv[])
     game = new Game();
 
     game->init("The Seed", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
-    //game->FirstMenu();
-    // game->showmenu();
+
+    game->showMenu();
 
     while (game->running())
     {

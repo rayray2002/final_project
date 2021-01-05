@@ -13,7 +13,7 @@ public:
     int getMode() { return Mode; };
 
 private:
-    int Mode;
+    int mode;
 };
 
 #endif
