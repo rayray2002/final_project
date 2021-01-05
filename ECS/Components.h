@@ -2,16 +2,15 @@
 #define _COMPONENTS_H
 
 #include "ECS.h"
-#include "TileComponent.h"
-#include "MenuComponent.h"
-#include "ButtomComponent.h"
-#include "SpriteComponent.h"
-#include "ColliderComponent.h"
-#include "GameBoardComponent.h"
-#include "KeyBoardController.h"
 #include "TransformComponent.h"
+#include "SpriteComponent.h"
+#include "KeyBoardController.h"
+#include "ColliderComponent.h"
+#include "TileComponent.h"
 #include "BackGroundComponent.h"
+#include "ButtomComponent.h"
 #include "TextButtomComponent.h"
+#include "GameBoardComponent.h"
 #include "DoubleGameBoardComponent.h"
 
 #endif
