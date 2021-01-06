@@ -1,5 +1,3 @@
-// #pragma once
-
 #ifndef _BUTTOMCOMPONENT_H
 #define _BUTTOMCOMPONENT_H
 

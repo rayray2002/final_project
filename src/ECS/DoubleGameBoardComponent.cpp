@@ -72,7 +72,8 @@ void DoubleGameBoardComponent::update()
 
 	if (!AnyThingMoving(2))
 	{
-		cout << "Side2:\n" << gameboard2 << endl;
+		cout << "Side2:\n"
+			 << gameboard2 << endl;
 		if (!gameboard2.falling)
 		{
 			chaining(2);
@@ -228,7 +229,7 @@ void DoubleGameBoardComponent::ReSetAllArrayZero(int side)
 				SDL_FreeSurface(gameboard1.UnitArray[i][j].surface);
 			}
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		for (int i = 0; i < 13; i++)
 			for (int j = 0; j < 6; j++)
@@ -263,7 +264,7 @@ void DoubleGameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos, int side)
 		gameboard1.UnitArray[ypos][xpos].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
 		SDL_FreeSurface(tmpSurface);
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		gameboard2.UnitArray[ypos][xpos].color = Empty;
 		gameboard2.UnitArray[ypos][xpos].isActive = false;
@@ -292,7 +293,7 @@ void DoubleGameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2, int s
 {
 	if (side == 1)
 		Swap(gameboard1.UnitArray[y1][x1], gameboard1.UnitArray[y2][x2]);
-	else if (side == 2)
+	if (side == 2)
 		Swap(gameboard2.UnitArray[y1][x1], gameboard2.UnitArray[y2][x2]);
 }
 
@@ -328,7 +329,7 @@ void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
 		gameboard1.UnitArray[0][topx].isMoving = true;
 		gameboard1.UnitArray[0][topx].isActive = true;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		gameboard2.UnitArray[0][topx].color = tmpColor;
 		gameboard2.UnitArray[0][topx].isMoving = true;
@@ -344,7 +345,7 @@ void DoubleGameBoardComponent::InitializeRainbowUnitOnTop(int topx, int side)
 		gameboard1.UnitArray[0][topx].isMoving = true;
 		gameboard1.UnitArray[0][topx].isActive = true;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		gameboard2.UnitArray[0][topx].color = Rainbow;
 		gameboard2.UnitArray[0][topx].isMoving = true;
@@ -364,7 +365,7 @@ bool DoubleGameBoardComponent::AnyThingMoving(int side)
 			}
 		return false;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		for (int i = 0; i < 13; i++)
 			for (int j = 0; j < 6; j++)
@@ -412,7 +413,7 @@ void DoubleGameBoardComponent::Move(int side)
 			case SDLK_UP:
 				Spin(2);
 				break;
-			case SDLK_SPACE:
+			case SDLK_RSHIFT:
 				SpaceAction(2);
 				break;
 			case SDLK_ESCAPE:
@@ -423,7 +424,7 @@ void DoubleGameBoardComponent::Move(int side)
 			}
 		}
 	}
-	else if (side == 1)
+	if (side == 1)
 	{
 		if (Game::event.type == SDL_KEYDOWN)
 		{
@@ -484,7 +485,7 @@ void DoubleGameBoardComponent::MoveDown(int side)
 		}
 		ii++;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		static int ii = 0;
 		if (ii == 30)
@@ -527,7 +528,7 @@ void DoubleGameBoardComponent::UpdateBoardMovingState(int side)
 					gameboard1.UnitArray[i][j].isMoving = true;
 			}
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		for (int i = 12; i >= 0; i--)
 			for (int j = 0; j < 6; j++)
@@ -572,7 +573,7 @@ void DoubleGameBoardComponent::GetMovingPair(int side)
 				}
 			}
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		int n = 0;
 		for (int i = 0; i < 13; i++)
@@ -608,7 +609,7 @@ void DoubleGameBoardComponent::UpdateMovingPairState(int side)
 		else
 			MovingPairState1 = SEPERATED;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		if (MovingPair2[0].mapPosition.y == MovingPair2[1].mapPosition.y + 1 ||
 			MovingPair2[0].mapPosition.y == MovingPair2[1].mapPosition.y - 1)
@@ -655,7 +656,7 @@ void DoubleGameBoardComponent::SpaceAction(int side)
 		SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[p1yd][(int)MovingPair1[0].mapPosition.x], 1);
 		SwapTwoUnit(MovingPair1[1], gameboard1.UnitArray[p2yd][(int)MovingPair1[1].mapPosition.x], 1);
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		int p1yd;
 		int p2yd;
@@ -721,7 +722,7 @@ void DoubleGameBoardComponent::Spin(int side)
 			}
 		}
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		if (PairAdjacent(side))
 		{
@@ -778,7 +779,7 @@ bool DoubleGameBoardComponent::PairAdjacent(int side)
 		else
 			return false;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		if (MovingPair2[0].mapPosition.x == MovingPair2[1].mapPosition.x - 1 &&
 			MovingPair2[0].mapPosition.y == MovingPair2[1].mapPosition.y)
@@ -808,7 +809,7 @@ void DoubleGameBoardComponent::SakuraSkill(int side)
 			gameboard1.UnitArray[12][i].color = Trash;
 		}
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		for (int i = 1; i < 13; i++) // start from 1
 		{
@@ -828,11 +829,11 @@ void DoubleGameBoardComponent::PSkill(int side)
 {
 	if (side == 1)
 	{
-		gameboard1.score * 4 / 5;
+		gameboard1.score = gameboard1.score * 4 / 5;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
-		gameboard2.score * 4 / 5;
+		gameboard2.score = gameboard2.score * 4 / 5;
 	}
 }
 
@@ -848,7 +849,7 @@ void DoubleGameBoardComponent::MikuSkill(int side)
 		}
 		gameboard1.score += 1000;
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		for (int j = 0; j < 6; j++)
 		{
@@ -867,7 +868,7 @@ void DoubleGameBoardComponent::MeiSkill(int side)
 		InitializeRainbowUnitOnTop(2, 1);
 		InitializeRainbowUnitOnTop(3, 1);
 	}
-	else if (side == 2)
+	if (side == 2)
 	{
 		InitializeRainbowUnitOnTop(2, 2);
 		InitializeRainbowUnitOnTop(3, 2);
