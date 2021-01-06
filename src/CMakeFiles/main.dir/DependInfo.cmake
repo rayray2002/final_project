@@ -4,20 +4,21 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/ECS/ECS.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/Game.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/Game.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/GameBoard.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/GameBoard.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/TextureManager.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/TextureManager.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/Vector2D.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/Vector2D.cpp.o"
-  "/home/shyu/Desktop/final_project_all/src/main.cpp" "/home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/main.cpp.o"
+  "/home/amos/Desktop/123/1/src/ECS/DoubleGameBoardComponent.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
+  "/home/amos/Desktop/123/1/src/ECS/ECS.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/ECS/ECS.cpp.o"
+  "/home/amos/Desktop/123/1/src/ECS/GameBoardComponent.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
+  "/home/amos/Desktop/123/1/src/Game.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/Game.cpp.o"
+  "/home/amos/Desktop/123/1/src/GameBoard.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/GameBoard.cpp.o"
+  "/home/amos/Desktop/123/1/src/TextureManager.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/TextureManager.cpp.o"
+  "/home/amos/Desktop/123/1/src/Vector2D.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/Vector2D.cpp.o"
+  "/home/amos/Desktop/123/1/src/main.cpp" "/home/amos/Desktop/123/1/src/CMakeFiles/main.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include/SDL2"
+  "/usr/include/SDL2"
   )
 
 # Targets to which this target links.

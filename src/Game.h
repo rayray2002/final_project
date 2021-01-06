@@ -21,6 +21,7 @@ class Game
 
 private:
     SDL_Window *window;
+
     bool stop;
 
 public:
