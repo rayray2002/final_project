@@ -35,6 +35,11 @@ private:
 	bool ch1skilled = true;
 	bool ch2skilled;
 
+	bool chKO1;
+	bool chKO2;
+
+	bool stop;
+
 public:
 	void MikuSkill(int side);
 	void MeiSkill(int side);
@@ -49,7 +54,7 @@ public:
 	void ReSetAllArrayZero(int side);							// reset gameboard
 	void SwapTwoUnit(int x1, int y1, int x2, int y2, int side); // pass position to swap
 	void SwapTwoUnit(unit &u1, unit &u2, int side);				// pass unit to swap
-	void InitializeRamdomUnitOnTop(int topx, int side);			// set new unit
+	void InitializeRandomUnitOnTop(int topx, int side);			// set new unit
 	void InitializeRainbowUnitOnTop(int topx, int side);		// set new unit
 	void UpdateBoardMovingState(int side);						// set moving state
 	void GetMovingPair(int side);
@@ -69,6 +74,8 @@ public:
 	void UpdateMovingPairLastestVersion(int side);
 
 	bool PairAdjacent(int side);
+
+	void stopAll(int side);
 
 	unit MovingPair1[2];
 	unit MovingPair2[2];

@@ -14,14 +14,14 @@ DoubleGameBoardComponent::DoubleGameBoardComponent()
 
 void DoubleGameBoardComponent::init1()
 {
-	InitializeRamdomUnitOnTop(2, 1);
-	InitializeRamdomUnitOnTop(3, 1);
+	InitializeRandomUnitOnTop(2, 1);
+	InitializeRandomUnitOnTop(3, 1);
 }
 
 void DoubleGameBoardComponent::init2()
 {
-	InitializeRamdomUnitOnTop(2, 2);
-	InitializeRamdomUnitOnTop(3, 2);
+	InitializeRandomUnitOnTop(2, 2);
+	InitializeRandomUnitOnTop(3, 2);
 }
 
 void DoubleGameBoardComponent::update()
@@ -336,7 +336,7 @@ void DoubleGameBoardComponent::SwapTwoUnit(unit &u1, unit &u2, int side)
 	SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y, side);
 }
 
-void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
+void DoubleGameBoardComponent::InitializeRandomUnitOnTop(int topx, int side)
 {
 	Color tmpColor;
 	switch (rand() % 3)
@@ -359,6 +359,11 @@ void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
 	}
 	if (side == 1)
 	{
+		if (gameboard1.UnitArray[0][topx].color != Empty)
+		{
+			chKO1 = true;
+			return;
+		}
 		if (ch1 == 2 && !ch1skilled)
 		{
 			gameboard1.UnitArray[0][topx].color = tmpColor;
@@ -373,6 +378,11 @@ void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
 	}
 	if (side == 2)
 	{
+		if (gameboard2.UnitArray[0][topx].color != Empty)
+		{
+			chKO2 = true;
+			return;
+		}
 		if (ch2 == 2 && !ch2skilled)
 		{
 			gameboard2.UnitArray[0][topx].color = tmpColor;
@@ -936,5 +946,34 @@ void DoubleGameBoardComponent::FuhuaSkill(int side)
 	case 2:
 		gameboard2.score *= 1.1;
 		break;
+	}
+}
+
+void DoubleGameBoardComponent::stopAll(int side)
+{
+	if (chKO1 || chKO2)
+	{
+		SDL_Rect dest, src;
+		src.x = 0;
+		src.y = 0;
+		src.h = 100;
+		src.w = 100;
+		dest.y = 0;
+		dest.h = 100;
+		dest.w = 100;
+		SDL_Texture *tex;
+		if (chKO1)
+		{
+			dest.x = 0;
+			tex = TextureManager::LoadTexture("./img/kirito1.bmp");
+			TextureManager::Draw(tex, src, dest);
+		}
+		if (chKO2)
+		{
+			dest.x = 1180;
+			tex = TextureManager::LoadTexture("./img/kirito1.bmp");
+			TextureManager::Draw(tex, src, dest);
+		}
+		stop = true;
 	}
 }
