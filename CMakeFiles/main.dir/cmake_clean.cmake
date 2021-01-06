@@ -1,12 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/main.dir/Collision.cpp.o"
   "CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
   "CMakeFiles/main.dir/ECS/ECS.cpp.o"
   "CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
   "CMakeFiles/main.dir/Game.cpp.o"
   "CMakeFiles/main.dir/GameBoard.cpp.o"
-  "CMakeFiles/main.dir/GameObject.cpp.o"
-  "CMakeFiles/main.dir/Map.cpp.o"
   "CMakeFiles/main.dir/TextureManager.cpp.o"
   "CMakeFiles/main.dir/Vector2D.cpp.o"
   "CMakeFiles/main.dir/main.cpp.o"

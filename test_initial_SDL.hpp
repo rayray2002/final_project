@@ -13,9 +13,6 @@ SDL_Window *Window = NULL;
 
 SDL_Renderer *Renderer = NULL;
 
-//SDL_Texture* texture = NULL;
-
-//SDL_Surface* surface = NULL;
 bool init()
 {
     //Initialization flag
@@ -29,7 +26,8 @@ bool init()
     }
     else
     {
-        if (TTF_Init() == -1) {
+        if (TTF_Init() == -1)
+        {
             std::cout << "TTF_Init: " << TTF_GetError() << std::endl;
             return 3;
         }

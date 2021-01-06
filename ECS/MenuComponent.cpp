@@ -448,10 +448,6 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 			SDL_BlitSurface(Psurface[P2], NULL, screen, &P2pos);
 		}
 
-		//		for(int i=0;i<num;i++){
-		//			SDL_BlitSurface(character[i],NULL,screen,&characterpos[i]);
-		//		}
-
 		for (int i = 0; i < num; i++)
 		{
 			SDL_BlitSurface(menus[i], NULL, screen, &pos[i]);
