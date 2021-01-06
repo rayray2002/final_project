@@ -27,6 +27,62 @@ Menu::~Menu()
 
 void Menu::startmenu(SDL_Renderer *renderer)
 {
+	startvideo(renderer);
+	Firstmenu(renderer);
+}
+
+void Menu::startvideo(SDL_Renderer *renderer)
+{
+	SDL_Surface *start;
+	string path;
+	int startnum = 0;
+	bool stop = 0;
+	SDL_Event event;
+	while (!stop)
+	{
+		while (SDL_PollEvent(&event))
+		{
+			switch (event.type)
+			{
+			case SDL_QUIT:
+				SDL_FreeSurface(start);
+				return;
+			}
+		}
+		if (startnum < 10)
+		{
+			path = "./img/start/000" + to_string(startnum) + ".bmp";
+		}
+		else if (startnum < 100)
+		{
+			path = "./img/start/00" + to_string(startnum) + ".bmp";
+		}
+		else
+		{
+			path = "./img/start/0" + to_string(startnum) + ".bmp";
+		}
+		start = SDL_LoadBMP(path.c_str());
+		startnum++;
+		if (startnum == 23)
+			startnum = 63;
+		if (startnum == 169)
+			stop = true;
+		SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, start);
+		SDL_RenderCopy(renderer, texture, NULL, NULL);
+		SDL_DestroyTexture(texture);
+		SDL_RenderPresent(renderer);
+		if (startnum <= 22)
+		{
+			SDL_Delay(105);
+		}
+		else
+			SDL_Delay(70);
+	}
+	SDL_FreeSurface(start);
+}
+
+void Menu::Firstmenu(SDL_Renderer *renderer)
+{
 	switch (firstmenu(renderer))
 	{
 	case 0: /*single player*/
@@ -44,7 +100,7 @@ void Menu::Charactermenu(SDL_Renderer *renderer)
 	switch (charactermenu(renderer))
 	{
 	case -1:
-		startmenu(renderer);
+		Firstmenu(renderer);
 		Mode = -1;
 		P1 = -1;
 		P2 = -1;
@@ -225,7 +281,7 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	//SDL_Surface *screen = SDL_GetWindowSurface(window);
 	//SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
 	Uint32 time;
-	int picturenum = 0;
+	int picturenum = 0, bgnum = 0;
 	int x = 0, y = 0;
 	const int num = 5;
 
@@ -475,6 +531,24 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 				break;
 			}
 		}
+		SDL_Surface *bgimg;
+		string bgpath;
+		if (bgnum < 10)
+		{
+			bgpath = "./img/opendoor/000" + to_string(bgnum) + ".bmp";
+		}
+		else if (bgnum < 100)
+		{
+			bgpath = "./img/opendoor/00" + to_string(bgnum) + ".bmp";
+		}
+		else
+		{
+			bgpath = "./img/opendoor/0" + to_string(bgnum) + ".bmp";
+		}
+		bgimg = SDL_LoadBMP(bgpath.c_str());
+		bgnum++;
+		if (bgnum > 61)
+			bgnum = 1;
 
 		SDL_Surface *character[num];
 		string path[num];
@@ -519,6 +593,9 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 		SDL_RenderClear(renderer);
 
 		//RenderCopy
+		SDL_Texture *bgtexture = SDL_CreateTextureFromSurface(renderer, bgimg);
+		SDL_RenderCopy(renderer, bgtexture, NULL, NULL);
+		SDL_DestroyTexture(bgtexture);
 		if (P1 == -1)
 		{
 			SDL_Texture *titletexture = SDL_CreateTextureFromSurface(renderer, title[0]);

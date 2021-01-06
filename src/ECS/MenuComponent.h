@@ -6,10 +6,12 @@ class Menu
 public:
     Menu();
     ~Menu();
+    void startvideo(SDL_Renderer *);
     int firstmenu(SDL_Renderer *);
+    void Firstmenu(SDL_Renderer *);
     int charactermenu(SDL_Renderer *);
-    void startmenu(SDL_Renderer *);
     void Charactermenu(SDL_Renderer *);
+    void startmenu(SDL_Renderer *);
     int GetMode();
     int GetP1();
     int GetP2();
