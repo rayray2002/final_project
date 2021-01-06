@@ -18,6 +18,11 @@
 using namespace std;
 class Game
 {
+
+private:
+    SDL_Window *window;
+    bool stop;
+
 public:
     Game();
     ~Game();
@@ -52,9 +57,6 @@ public:
         groupGameBoards,
         groupDoubleGameBoards
     };
-
-private:
-    SDL_Window *window;
 };
 
 #endif /* Game_hpp */

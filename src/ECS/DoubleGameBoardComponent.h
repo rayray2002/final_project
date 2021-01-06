@@ -29,6 +29,12 @@ private:
 		SEPERATED
 	};
 
+	int ch1 = 1;
+	int ch2;
+
+	bool ch1skilled = true;
+	bool ch2skilled;
+
 public:
 	void MikuSkill(int side);
 	void MeiSkill(int side);

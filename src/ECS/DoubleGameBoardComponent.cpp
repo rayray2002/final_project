@@ -97,6 +97,40 @@ void DoubleGameBoardComponent::update()
 	{
 		MoveDown(2);
 	}
+	if (ch1skilled)
+		switch (ch1)
+		{
+		case 1:
+			MikuSkill(1);
+			break;
+		case 3:
+			SakuraSkill(1);
+			break;
+		case 4:
+			FuhuaSkill(1);
+			break;
+		case 5:
+			PSkill(1);
+			break;
+		}
+	if (ch2skilled)
+		switch (ch2)
+		{
+		case 1:
+			MikuSkill(2);
+			break;
+		case 3:
+			SakuraSkill(2);
+			break;
+		case 4:
+			FuhuaSkill(2);
+			break;
+		case 5:
+			PSkill(2);
+			break;
+		}
+	ch1skilled = false;
+	ch2skilled = false;
 }
 
 void DoubleGameBoardComponent::chaining(int side)
@@ -325,15 +359,31 @@ void DoubleGameBoardComponent::InitializeRamdomUnitOnTop(int topx, int side)
 	}
 	if (side == 1)
 	{
-		gameboard1.UnitArray[0][topx].color = tmpColor;
-		gameboard1.UnitArray[0][topx].isMoving = true;
-		gameboard1.UnitArray[0][topx].isActive = true;
+		if (ch1 == 2 && !ch1skilled)
+		{
+			gameboard1.UnitArray[0][topx].color = tmpColor;
+			gameboard1.UnitArray[0][topx].isMoving = true;
+			gameboard1.UnitArray[0][topx].isActive = true;
+		}
+		else
+		{
+			InitializeRainbowUnitOnTop(2, 1);
+			InitializeRainbowUnitOnTop(3, 1);
+		}
 	}
 	if (side == 2)
 	{
-		gameboard2.UnitArray[0][topx].color = tmpColor;
-		gameboard2.UnitArray[0][topx].isMoving = true;
-		gameboard2.UnitArray[0][topx].isActive = true;
+		if (ch2 == 2 && !ch2skilled)
+		{
+			gameboard2.UnitArray[0][topx].color = tmpColor;
+			gameboard2.UnitArray[0][topx].isMoving = true;
+			gameboard2.UnitArray[0][topx].isActive = true;
+		}
+		else
+		{
+			InitializeRainbowUnitOnTop(2, 2);
+			InitializeRainbowUnitOnTop(3, 2);
+		}
 	}
 }
 
@@ -863,14 +913,28 @@ void DoubleGameBoardComponent::MikuSkill(int side)
 
 void DoubleGameBoardComponent::MeiSkill(int side)
 {
-	if (side == 1)
+	switch (side)
 	{
+	case 1:
 		InitializeRainbowUnitOnTop(2, 1);
 		InitializeRainbowUnitOnTop(3, 1);
-	}
-	if (side == 2)
-	{
+		break;
+	case 2:
 		InitializeRainbowUnitOnTop(2, 2);
 		InitializeRainbowUnitOnTop(3, 2);
+		break;
+	}
+}
+
+void DoubleGameBoardComponent::FuhuaSkill(int side)
+{
+	switch (side)
+	{
+	case 1:
+		gameboard1.score *= 1.1;
+		break;
+	case 2:
+		gameboard2.score *= 1.1;
+		break;
 	}
 }

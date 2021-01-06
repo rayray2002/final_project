@@ -104,7 +104,6 @@ auto &gameboards2(manager.getGroup(Game::groupDoubleGameBoards));
 void Game::handleEveants()
 {
 	SDL_PollEvent(&event);
-
 	switch (event.type)
 	{
 	case SDL_QUIT:
@@ -132,19 +131,21 @@ void Game::update()
 	{
 		b->getComponent<ButtomComponent>().update();
 	}
-
-	if (playerNumber == 2)
+	if (!stop)
 	{
-		for (auto &b : gameboards2)
+		if (playerNumber == 2)
 		{
-			b->getComponent<DoubleGameBoardComponent>().update();
+			for (auto &b : gameboards2)
+			{
+				b->getComponent<DoubleGameBoardComponent>().update();
+			}
 		}
-	}
-	else if (playerNumber == 1)
-	{
-		for (auto &b : gameboards)
+		else if (playerNumber == 1)
 		{
-			b->getComponent<GameBoardComponent>().update();
+			for (auto &b : gameboards)
+			{
+				b->getComponent<GameBoardComponent>().update();
+			}
 		}
 	}
 }
@@ -161,20 +162,24 @@ void Game::render()
 	{
 		b->getComponent<ButtomComponent>().draw();
 	}
-	if (playerNumber == 2)
+	if (!stop)
 	{
-		for (auto &b : gameboards2)
+		if (playerNumber == 2)
 		{
-			b->getComponent<DoubleGameBoardComponent>().draw();
+			for (auto &b : gameboards2)
+			{
+				b->getComponent<DoubleGameBoardComponent>().draw();
+			}
+		}
+		else if (playerNumber == 1)
+		{
+			for (auto &b : gameboards)
+			{
+				b->getComponent<GameBoardComponent>().draw();
+			}
 		}
 	}
-	else if (playerNumber == 1)
-	{
-		for (auto &b : gameboards)
-		{
-			b->getComponent<GameBoardComponent>().draw();
-		}
-	}
+
 	SDL_RenderPresent(Game::renderer);
 	SDL_RenderClear(Game::renderer);
 }
