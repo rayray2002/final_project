@@ -12,6 +12,7 @@
 #include <vector>
 #include "GameBoard.h"
 #include "Vector2D.h"
+#include "./ECS/MenuComponent.h"
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -27,7 +28,7 @@ private:
 public:
     Game();
     ~Game();
-
+    Menu menu;
     void handleEveants();
     void init(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
     void update();

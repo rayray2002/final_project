@@ -6,14 +6,18 @@ class Menu
 public:
     Menu();
     ~Menu();
-    int firstmenu(SDL_Window *, SDL_Renderer *);
-    int charactermenu(SDL_Window *, SDL_Renderer *);
-    void startmenu(SDL_Window *, SDL_Renderer *);
-    void Charactermenu(SDL_Window *, SDL_Renderer *);
-    int getMode() { return mode; };
+    int firstmenu(SDL_Renderer *);
+    int charactermenu(SDL_Renderer *);
+    void startmenu(SDL_Renderer *);
+    void Charactermenu(SDL_Renderer *);
+    int GetMode();
+    int GetP1();
+    int GetP2();
 
 private:
-    int mode;
+    int Mode;
+    int P1;
+    int P2;
 };
 
 #endif

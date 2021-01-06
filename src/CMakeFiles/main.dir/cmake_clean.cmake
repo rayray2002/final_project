@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
   "CMakeFiles/main.dir/ECS/ECS.cpp.o"
   "CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
+  "CMakeFiles/main.dir/ECS/MenuComponent.cpp.o"
   "CMakeFiles/main.dir/Game.cpp.o"
   "CMakeFiles/main.dir/GameBoard.cpp.o"
   "CMakeFiles/main.dir/TextureManager.cpp.o"

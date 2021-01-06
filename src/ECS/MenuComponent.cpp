@@ -1,7 +1,9 @@
 //#ifndef _MENUCOMPONENT_H
 //#define _MENUCOMPONENT_H
-#include "test_initial_SDL.h"
+//#include "test_initial_SDL.h"
 #include <SDL2/SDL.h>
+#include "MenuComponent.h"
+
 //#include "Components.h"
 //#include "../Game.h"
 #include <string>
@@ -12,26 +14,6 @@
 #define HEIGHT 720
 
 using namespace std;
-
-class Menu
-//: public Component
-{
-public:
-	Menu();
-	~Menu();
-	int firstmenu(SDL_Renderer *);
-	int charactermenu(SDL_Renderer *);
-	void startmenu(SDL_Renderer *);
-	void Charactermenu(SDL_Renderer *);
-	int GetMode();
-	int GetP1();
-	int GetP2();
-
-private:
-	int Mode;
-	int P1;
-	int P2;
-};
 
 Menu::Menu() : P1(-1), P2(-1), Mode(-1)
 {
@@ -626,14 +608,14 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	}
 }
 
-int main(int argc, char *argv[])
-{
-	init();
-	Menu menu;
-	menu.startmenu(renderer);
-	cout << menu.GetMode() << endl;
-	cout << menu.GetP1() << endl;
-	cout << menu.GetP2() << endl;
-	close();
-	return 0;
-}
+// int main(int argc, char *argv[])
+// {
+// 	init();
+// 	Menu menu;
+// 	menu.startmenu(renderer);
+// 	cout << menu.GetMode() << endl;
+// 	cout << menu.GetP1() << endl;
+// 	cout << menu.GetP2() << endl;
+// 	close();
+// 	return 0;
+// }
