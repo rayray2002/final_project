@@ -2,8 +2,6 @@
 #define _CHARATORCOMPONET_H
 
 #include "Components.h"
-#include "Charactor/Miku.h"
-
 class Charactor : protected Component
 {
 private:

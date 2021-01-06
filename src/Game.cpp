@@ -4,13 +4,12 @@
 
 using namespace std;
 
-SDL_Renderer *Game::renderer = nullptr;
 Manager manager;
+SDL_Renderer *Game::renderer = nullptr;
 SDL_Event Game::event;
 
 bool Game::isRunning = false;
 
-// auto &player(manager.addEntity());
 auto &back(manager.addEntity());
 
 auto &buttom1(manager.addEntity());
@@ -18,8 +17,6 @@ auto &buttom2(manager.addEntity());
 auto &buttom3(manager.addEntity());
 auto &buttom4(manager.addEntity());
 auto &buttom5(manager.addEntity());
-
-// auto &textbuttom1(manager.addEntity());
 
 auto &gameboard1(manager.addEntity());
 auto &gameboard2(manager.addEntity());
@@ -90,14 +87,11 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
 	gameboard2.addComponent<DoubleGameBoardComponent>();
 	gameboard2.addGroup(groupDoubleGameBoards);
 
-	//Music
 	MusicPlay("./mp3/miku.wav", 64);
 
-	//LinkStart
 	LinkStart("Game Initailizing...", 1000, 100, 600);
 	LinkStart("Game Initailized!", 1000, 100, 600);
 	LinkStart("Link Start!", 2000, 200, 600);
-	//LinkStart
 }
 
 auto &tiles(manager.getGroup(Game::groupMap));
@@ -239,8 +233,8 @@ void Game::LinkStart(string text, int second, int h, int w)
 
 void Game::MusicPlay(const char *Music, int volume)
 {
-	// load support for the MP3 sample/music formats
 	int mflags = MIX_INIT_MP3;
+
 	if ((Mix_Init(mflags) & mflags) != mflags)
 	{
 		cout << "Mix_Init: Failed to init required ogg and mod support!\n";
@@ -254,16 +248,16 @@ void Game::MusicPlay(const char *Music, int volume)
 			 << Mix_GetError() << endl;
 	}
 
-	// load the MP3 file to play as music
-	Mix_Music *music;
-	music = Mix_LoadMUS(Music);
-	//Mix_LoadMUS
+	Mix_Music *music = Mix_LoadMUS(Music);
+
 	if (!music)
 	{
 		cout << "Mix_LoadMUS(\"miku.mp3\"): %s\n"
 			 << Mix_GetError();
 	}
+
 	Mix_VolumeMusic(volume);
 	Mix_PlayMusic(music, -1);
+
 	cout << "Music Loaded!\n";
 }

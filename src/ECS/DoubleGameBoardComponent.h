@@ -1,25 +1,26 @@
-// #pragma once
-
 #ifndef _DOUBLEGAMEBOARDCOMPONENT_H
 #define _DOUBLEGAMEBOARDCOMPONENT_H
 
+/*SDL*/
 #include <SDL.h>
-#include "../Game.h"
-#include "Components.h"
-#include "../TextureManager.h"
-#include "ECS.h"
+
+/*STL*/
 #include <deque>
 #include <ctime>
 #include <map>
-#include "../GameBoard.h"
 #include <vector>
+
+/*SOURCE CODE*/
+#include "../Game.h"
+#include "../GameBoard.h"
+#include "../TextureManager.h"
+#include "Components.h"
+#include "ECS.h"
 
 using namespace std;
 
 class DoubleGameBoardComponent : public Component
 {
-	friend class CharactorComponent;
-
 private:
 	enum PairState
 	{
@@ -29,8 +30,6 @@ private:
 	};
 
 public:
-	//    unit UnitArray1[13][6];
-	//    unit UnitArray2[13][6];
 	void MikuSkill(int side);
 	void MeiSkill(int side);
 	void SakuraSkill(int side);
@@ -81,9 +80,7 @@ public:
 	unit *getDataByMapPosition(int ypos, int xpos, int side);
 
 	void init() override;
-
 	void update() override;
-
 	void draw() override;
 
 	void init1();

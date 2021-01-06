@@ -9,7 +9,7 @@ int main(int argc, const char *argv[])
     const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
-    int frameTime; //int
+    int frameTime;
 
     game = new Game();
 
@@ -28,7 +28,7 @@ int main(int argc, const char *argv[])
         frameTime = SDL_GetTicks() - frameStart;
 
         if (frameDelay > frameTime)
-        { //make the screen more smooth
+        {
             SDL_Delay(frameDelay - frameTime);
         }
     }

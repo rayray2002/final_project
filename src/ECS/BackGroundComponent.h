@@ -1,5 +1,3 @@
-// #pragma once
-
 #ifndef _BACKGROUNDCOMPONENT_H
 #define _BACKGROUNDCOMPONENT_H
 

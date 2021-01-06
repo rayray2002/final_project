@@ -17,7 +17,6 @@
 #include <cmath>
 #include <SDL.h>
 #include "Vector2D.h"
-//#include "Game.h"
 
 #ifndef GAMEBOARD_H
 #define GAMEBOARD_H
