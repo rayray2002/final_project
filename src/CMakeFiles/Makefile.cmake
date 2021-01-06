@@ -25,8 +25,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake"
   "/usr/share/cmake-3.16/Modules/CheckCSourceCompiles.cmake"
-  "/usr/share/cmake-3.16/Modules/CheckFunctionExists.c"
-  "/usr/share/cmake-3.16/Modules/CheckIncludeFile.c.in"
   "/usr/share/cmake-3.16/Modules/CheckIncludeFile.cmake"
   "/usr/share/cmake-3.16/Modules/CheckLibraryExists.cmake"
   "/usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
@@ -57,5 +55,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/main.dir/DependInfo.cmake"
+  "CMakeFiles/menu.dir/DependInfo.cmake"
   )

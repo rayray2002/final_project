@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shyu/Desktop/final_project_all/src
+CMAKE_SOURCE_DIR = /home/amos/Desktop/123/1/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shyu/Desktop/final_project_all/src
+CMAKE_BINARY_DIR = /home/amos/Desktop/123/1/src
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shyu/Desktop/final_project_all/src/CMakeFiles /home/shyu/Desktop/final_project_all/src/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amos/Desktop/123/1/src/CMakeFiles /home/amos/Desktop/123/1/src/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/shyu/Desktop/final_project_all/src/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/amos/Desktop/123/1/src/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,233 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named menu
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 main
-.PHONY : main
+menu: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 menu
+.PHONY : menu
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+menu/fast:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/build
+.PHONY : menu/fast
 
-ECS/DoubleGameBoardComponent.o: ECS/DoubleGameBoardComponent.cpp.o
+ECS/MenuComponent.o: ECS/MenuComponent.cpp.o
 
-.PHONY : ECS/DoubleGameBoardComponent.o
-
-# target to build an object file
-ECS/DoubleGameBoardComponent.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o
-.PHONY : ECS/DoubleGameBoardComponent.cpp.o
-
-ECS/DoubleGameBoardComponent.i: ECS/DoubleGameBoardComponent.cpp.i
-
-.PHONY : ECS/DoubleGameBoardComponent.i
-
-# target to preprocess a source file
-ECS/DoubleGameBoardComponent.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.i
-.PHONY : ECS/DoubleGameBoardComponent.cpp.i
-
-ECS/DoubleGameBoardComponent.s: ECS/DoubleGameBoardComponent.cpp.s
-
-.PHONY : ECS/DoubleGameBoardComponent.s
-
-# target to generate assembly for a file
-ECS/DoubleGameBoardComponent.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.s
-.PHONY : ECS/DoubleGameBoardComponent.cpp.s
-
-ECS/ECS.o: ECS/ECS.cpp.o
-
-.PHONY : ECS/ECS.o
+.PHONY : ECS/MenuComponent.o
 
 # target to build an object file
-ECS/ECS.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/ECS.cpp.o
-.PHONY : ECS/ECS.cpp.o
+ECS/MenuComponent.cpp.o:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/ECS/MenuComponent.cpp.o
+.PHONY : ECS/MenuComponent.cpp.o
 
-ECS/ECS.i: ECS/ECS.cpp.i
+ECS/MenuComponent.i: ECS/MenuComponent.cpp.i
 
-.PHONY : ECS/ECS.i
-
-# target to preprocess a source file
-ECS/ECS.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/ECS.cpp.i
-.PHONY : ECS/ECS.cpp.i
-
-ECS/ECS.s: ECS/ECS.cpp.s
-
-.PHONY : ECS/ECS.s
-
-# target to generate assembly for a file
-ECS/ECS.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/ECS.cpp.s
-.PHONY : ECS/ECS.cpp.s
-
-ECS/GameBoardComponent.o: ECS/GameBoardComponent.cpp.o
-
-.PHONY : ECS/GameBoardComponent.o
-
-# target to build an object file
-ECS/GameBoardComponent.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o
-.PHONY : ECS/GameBoardComponent.cpp.o
-
-ECS/GameBoardComponent.i: ECS/GameBoardComponent.cpp.i
-
-.PHONY : ECS/GameBoardComponent.i
+.PHONY : ECS/MenuComponent.i
 
 # target to preprocess a source file
-ECS/GameBoardComponent.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.i
-.PHONY : ECS/GameBoardComponent.cpp.i
+ECS/MenuComponent.cpp.i:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/ECS/MenuComponent.cpp.i
+.PHONY : ECS/MenuComponent.cpp.i
 
-ECS/GameBoardComponent.s: ECS/GameBoardComponent.cpp.s
+ECS/MenuComponent.s: ECS/MenuComponent.cpp.s
 
-.PHONY : ECS/GameBoardComponent.s
-
-# target to generate assembly for a file
-ECS/GameBoardComponent.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.s
-.PHONY : ECS/GameBoardComponent.cpp.s
-
-Game.o: Game.cpp.o
-
-.PHONY : Game.o
-
-# target to build an object file
-Game.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Game.cpp.o
-.PHONY : Game.cpp.o
-
-Game.i: Game.cpp.i
-
-.PHONY : Game.i
-
-# target to preprocess a source file
-Game.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Game.cpp.i
-.PHONY : Game.cpp.i
-
-Game.s: Game.cpp.s
-
-.PHONY : Game.s
+.PHONY : ECS/MenuComponent.s
 
 # target to generate assembly for a file
-Game.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Game.cpp.s
-.PHONY : Game.cpp.s
-
-GameBoard.o: GameBoard.cpp.o
-
-.PHONY : GameBoard.o
-
-# target to build an object file
-GameBoard.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameBoard.cpp.o
-.PHONY : GameBoard.cpp.o
-
-GameBoard.i: GameBoard.cpp.i
-
-.PHONY : GameBoard.i
-
-# target to preprocess a source file
-GameBoard.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameBoard.cpp.i
-.PHONY : GameBoard.cpp.i
-
-GameBoard.s: GameBoard.cpp.s
-
-.PHONY : GameBoard.s
-
-# target to generate assembly for a file
-GameBoard.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/GameBoard.cpp.s
-.PHONY : GameBoard.cpp.s
-
-TextureManager.o: TextureManager.cpp.o
-
-.PHONY : TextureManager.o
-
-# target to build an object file
-TextureManager.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/TextureManager.cpp.o
-.PHONY : TextureManager.cpp.o
-
-TextureManager.i: TextureManager.cpp.i
-
-.PHONY : TextureManager.i
-
-# target to preprocess a source file
-TextureManager.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/TextureManager.cpp.i
-.PHONY : TextureManager.cpp.i
-
-TextureManager.s: TextureManager.cpp.s
-
-.PHONY : TextureManager.s
-
-# target to generate assembly for a file
-TextureManager.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/TextureManager.cpp.s
-.PHONY : TextureManager.cpp.s
-
-Vector2D.o: Vector2D.cpp.o
-
-.PHONY : Vector2D.o
-
-# target to build an object file
-Vector2D.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Vector2D.cpp.o
-.PHONY : Vector2D.cpp.o
-
-Vector2D.i: Vector2D.cpp.i
-
-.PHONY : Vector2D.i
-
-# target to preprocess a source file
-Vector2D.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Vector2D.cpp.i
-.PHONY : Vector2D.cpp.i
-
-Vector2D.s: Vector2D.cpp.s
-
-.PHONY : Vector2D.s
-
-# target to generate assembly for a file
-Vector2D.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Vector2D.cpp.s
-.PHONY : Vector2D.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
-.PHONY : main.cpp.s
+ECS/MenuComponent.cpp.s:
+	$(MAKE) -f CMakeFiles/menu.dir/build.make CMakeFiles/menu.dir/ECS/MenuComponent.cpp.s
+.PHONY : ECS/MenuComponent.cpp.s
 
 # Help Target
 help:
@@ -347,31 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... main"
-	@echo "... ECS/DoubleGameBoardComponent.o"
-	@echo "... ECS/DoubleGameBoardComponent.i"
-	@echo "... ECS/DoubleGameBoardComponent.s"
-	@echo "... ECS/ECS.o"
-	@echo "... ECS/ECS.i"
-	@echo "... ECS/ECS.s"
-	@echo "... ECS/GameBoardComponent.o"
-	@echo "... ECS/GameBoardComponent.i"
-	@echo "... ECS/GameBoardComponent.s"
-	@echo "... Game.o"
-	@echo "... Game.i"
-	@echo "... Game.s"
-	@echo "... GameBoard.o"
-	@echo "... GameBoard.i"
-	@echo "... GameBoard.s"
-	@echo "... TextureManager.o"
-	@echo "... TextureManager.i"
-	@echo "... TextureManager.s"
-	@echo "... Vector2D.o"
-	@echo "... Vector2D.i"
-	@echo "... Vector2D.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... menu"
+	@echo "... ECS/MenuComponent.o"
+	@echo "... ECS/MenuComponent.i"
+	@echo "... ECS/MenuComponent.s"
 .PHONY : help
 
 

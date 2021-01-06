@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/shyu/Desktop/final_project_all/src
+CMAKE_SOURCE_DIR = /home/amos/Desktop/123/1/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/shyu/Desktop/final_project_all/src
+CMAKE_BINARY_DIR = /home/amos/Desktop/123/1/src
 
 # Include any dependencies generated for this target.
 include CMakeFiles/main.dir/depend.make
@@ -59,107 +59,107 @@ include CMakeFiles/main.dir/flags.make
 
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /home/shyu/Desktop/final_project_all/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /home/amos/Desktop/123/1/src/main.cpp
 
 CMakeFiles/main.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/main.cpp > CMakeFiles/main.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/main.cpp > CMakeFiles/main.dir/main.cpp.i
 
 CMakeFiles/main.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/main.cpp -o CMakeFiles/main.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/main.cpp -o CMakeFiles/main.dir/main.cpp.s
 
 CMakeFiles/main.dir/ECS/ECS.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/ECS/ECS.cpp.o: ECS/ECS.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/ECS/ECS.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ECS/ECS.cpp.o -c /home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/ECS/ECS.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ECS/ECS.cpp.o -c /home/amos/Desktop/123/1/src/ECS/ECS.cpp
 
 CMakeFiles/main.dir/ECS/ECS.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/ECS/ECS.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp > CMakeFiles/main.dir/ECS/ECS.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/ECS/ECS.cpp > CMakeFiles/main.dir/ECS/ECS.cpp.i
 
 CMakeFiles/main.dir/ECS/ECS.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/ECS/ECS.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp -o CMakeFiles/main.dir/ECS/ECS.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/ECS/ECS.cpp -o CMakeFiles/main.dir/ECS/ECS.cpp.s
 
 CMakeFiles/main.dir/Game.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Game.cpp.o: Game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/Game.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Game.cpp.o -c /home/shyu/Desktop/final_project_all/src/Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/Game.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Game.cpp.o -c /home/amos/Desktop/123/1/src/Game.cpp
 
 CMakeFiles/main.dir/Game.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Game.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/Game.cpp > CMakeFiles/main.dir/Game.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/Game.cpp > CMakeFiles/main.dir/Game.cpp.i
 
 CMakeFiles/main.dir/Game.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Game.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/Game.cpp -o CMakeFiles/main.dir/Game.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/Game.cpp -o CMakeFiles/main.dir/Game.cpp.s
 
 CMakeFiles/main.dir/TextureManager.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/TextureManager.cpp.o: TextureManager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/TextureManager.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/TextureManager.cpp.o -c /home/shyu/Desktop/final_project_all/src/TextureManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/TextureManager.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/TextureManager.cpp.o -c /home/amos/Desktop/123/1/src/TextureManager.cpp
 
 CMakeFiles/main.dir/TextureManager.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/TextureManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/TextureManager.cpp > CMakeFiles/main.dir/TextureManager.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/TextureManager.cpp > CMakeFiles/main.dir/TextureManager.cpp.i
 
 CMakeFiles/main.dir/TextureManager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/TextureManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/TextureManager.cpp -o CMakeFiles/main.dir/TextureManager.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/TextureManager.cpp -o CMakeFiles/main.dir/TextureManager.cpp.s
 
 CMakeFiles/main.dir/Vector2D.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/Vector2D.cpp.o: Vector2D.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/Vector2D.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Vector2D.cpp.o -c /home/shyu/Desktop/final_project_all/src/Vector2D.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/Vector2D.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/Vector2D.cpp.o -c /home/amos/Desktop/123/1/src/Vector2D.cpp
 
 CMakeFiles/main.dir/Vector2D.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/Vector2D.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/Vector2D.cpp > CMakeFiles/main.dir/Vector2D.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/Vector2D.cpp > CMakeFiles/main.dir/Vector2D.cpp.i
 
 CMakeFiles/main.dir/Vector2D.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/Vector2D.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/Vector2D.cpp -o CMakeFiles/main.dir/Vector2D.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/Vector2D.cpp -o CMakeFiles/main.dir/Vector2D.cpp.s
 
 CMakeFiles/main.dir/GameBoard.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/GameBoard.cpp.o: GameBoard.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/GameBoard.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/GameBoard.cpp.o -c /home/shyu/Desktop/final_project_all/src/GameBoard.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/GameBoard.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/GameBoard.cpp.o -c /home/amos/Desktop/123/1/src/GameBoard.cpp
 
 CMakeFiles/main.dir/GameBoard.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/GameBoard.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/GameBoard.cpp > CMakeFiles/main.dir/GameBoard.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/GameBoard.cpp > CMakeFiles/main.dir/GameBoard.cpp.i
 
 CMakeFiles/main.dir/GameBoard.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/GameBoard.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/GameBoard.cpp -o CMakeFiles/main.dir/GameBoard.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/GameBoard.cpp -o CMakeFiles/main.dir/GameBoard.cpp.s
 
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/GameBoardComponent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o -c /home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o -c /home/amos/Desktop/123/1/src/ECS/GameBoardComponent.cpp
 
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.cpp > CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/ECS/GameBoardComponent.cpp > CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.i
 
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.cpp -o CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/ECS/GameBoardComponent.cpp -o CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.s
 
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: ECS/DoubleGameBoardComponent.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o -c /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o -c /home/amos/Desktop/123/1/src/ECS/DoubleGameBoardComponent.cpp
 
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp > CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/amos/Desktop/123/1/src/ECS/DoubleGameBoardComponent.cpp > CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.i
 
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp -o CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/amos/Desktop/123/1/src/ECS/DoubleGameBoardComponent.cpp -o CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.s
 
 # Object files for target main
 main_OBJECTS = \
@@ -186,11 +186,11 @@ main: CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: /usr/local/lib/libSDL2main.a
 main: /usr/local/lib/libSDL2.so
-main: /usr/local/lib/libSDL2_image.so
-main: /usr/local/lib/libSDL2_ttf.so
-main: /usr/local/lib/libSDL2_mixer.so
+main: /usr/lib/x86_64-linux-gnu/libSDL2_image.so
+main: /usr/lib/x86_64-linux-gnu/libSDL2_ttf.so
+main: /usr/lib/x86_64-linux-gnu/libSDL2_mixer.so
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/shyu/Desktop/final_project_all/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/amos/Desktop/123/1/src/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -203,6 +203,6 @@ CMakeFiles/main.dir/clean:
 .PHONY : CMakeFiles/main.dir/clean
 
 CMakeFiles/main.dir/depend:
-	cd /home/shyu/Desktop/final_project_all/src && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/shyu/Desktop/final_project_all/src /home/shyu/Desktop/final_project_all/src /home/shyu/Desktop/final_project_all/src /home/shyu/Desktop/final_project_all/src /home/shyu/Desktop/final_project_all/src/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/amos/Desktop/123/1/src && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/amos/Desktop/123/1/src /home/amos/Desktop/123/1/src /home/amos/Desktop/123/1/src /home/amos/Desktop/123/1/src /home/amos/Desktop/123/1/src/CMakeFiles/main.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/main.dir/depend
 
