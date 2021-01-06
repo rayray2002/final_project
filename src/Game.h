@@ -36,8 +36,7 @@ public:
     void MusicPlay(const char *Music, int volume);
     static void LinkStart(string text, int second, int h, int w);
 
-    int FirstMenu();
-    int playerNumber = 2;
+    int playerNumber = 1;
     bool running() { return isRunning; };
 
     static bool isRunning;
