@@ -269,11 +269,17 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 		SDL_Delay(70);
 		SDL_FreeSurface(img);
+		//SDL_FreeSurface(screen);
+		//		if (1000 / 30 > (SDL_GetTicks() - time)) {
+		//			SDL_Delay(1000 / 30 - (SDL_GetTicks() - time));
+		//		}
 	}
 }
 
 int Menu::charactermenu(SDL_Renderer *renderer)
 {
+	//SDL_Surface *screen = SDL_GetWindowSurface(window);
+	//SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
 	Uint32 time;
 	int picturenum = 0, bgnum = 0;
 	int x = 0, y = 0;
@@ -625,6 +631,9 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 			SDL_DestroyTexture(P2texture);
 		}
 
+		//		for(int i=0;i<num;i++){
+		//			SDL_BlitSurface(character[i],NULL,screen,&characterpos[i]);
+		//		}
 		SDL_Texture *menutexture[5];
 		for (int i = 0; i < num; i++)
 		{
@@ -646,6 +655,9 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 
 			SDL_RenderFillRect(renderer, &columnpos[i]);
 		}
+		// SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
+		// SDL_RenderCopy(renderer, texture, NULL, NULL);
+		// SDL_DestroyTexture(texture);
 
 		SDL_Texture *charactertexture[num];
 		for (int i = 0; i < num; i++)
@@ -655,6 +667,15 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 			SDL_DestroyTexture(charactertexture[i]);
 		}
 		SDL_RenderPresent(renderer);
+
+		//SDL_UpdateWindowSurface(window);
+
+		// make more smooth
+		// if (1000 / 30 > (SDL_GetTicks() - time))
+		// {
+		// 	SDL_Delay(1000 / 30 - (SDL_GetTicks() - time));
+		// }
+
 		SDL_Delay(20);
 
 		for (int i = 0; i < num; i++)
@@ -663,3 +684,15 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 		}
 	}
 }
+
+// int main(int argc, char *argv[])
+// {
+// 	init();
+// 	Menu menu;
+// 	menu.startmenu(renderer);
+// 	cout << menu.GetMode() << endl;
+// 	cout << menu.GetP1() << endl;
+// 	cout << menu.GetP2() << endl;
+// 	close();
+// 	return 0;
+// }
