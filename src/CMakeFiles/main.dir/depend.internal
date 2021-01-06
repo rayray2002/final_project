@@ -15,6 +15,9 @@ CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o
  /home/shyu/Desktop/final_project_all/src/GameBoard.h
  /home/shyu/Desktop/final_project_all/src/TextureManager.h
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
+ /usr/local/include/SDL2/SDL_image.h
+ /usr/local/include/SDL2/SDL_mixer.h
+ /usr/local/include/SDL2/SDL_ttf.h
 CMakeFiles/main.dir/ECS/ECS.cpp.o
  /home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp
  /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
@@ -22,6 +25,9 @@ CMakeFiles/main.dir/ECS/ECS.cpp.o
  /home/shyu/Desktop/final_project_all/src/GameBoard.h
  /home/shyu/Desktop/final_project_all/src/TextureManager.h
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
+ /usr/local/include/SDL2/SDL_image.h
+ /usr/local/include/SDL2/SDL_mixer.h
+ /usr/local/include/SDL2/SDL_ttf.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o
  /home/shyu/Desktop/final_project_all/src/ECS/BackGroundComponent.h
  /home/shyu/Desktop/final_project_all/src/ECS/ButtomComponent.h
@@ -36,6 +42,9 @@ CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o
  /home/shyu/Desktop/final_project_all/src/GameBoard.h
  /home/shyu/Desktop/final_project_all/src/TextureManager.h
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
+ /usr/local/include/SDL2/SDL_image.h
+ /usr/local/include/SDL2/SDL_mixer.h
+ /usr/local/include/SDL2/SDL_ttf.h
 CMakeFiles/main.dir/Game.cpp.o
  /home/shyu/Desktop/final_project_all/src/ECS/BackGroundComponent.h
  /home/shyu/Desktop/final_project_all/src/ECS/ButtomComponent.h
@@ -50,6 +59,9 @@ CMakeFiles/main.dir/Game.cpp.o
  /home/shyu/Desktop/final_project_all/src/GameBoard.h
  /home/shyu/Desktop/final_project_all/src/TextureManager.h
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
+ /usr/local/include/SDL2/SDL_image.h
+ /usr/local/include/SDL2/SDL_mixer.h
+ /usr/local/include/SDL2/SDL_ttf.h
 CMakeFiles/main.dir/GameBoard.cpp.o
  /home/shyu/Desktop/final_project_all/src/GameBoard.cpp
  /home/shyu/Desktop/final_project_all/src/GameBoard.h
@@ -60,6 +72,9 @@ CMakeFiles/main.dir/TextureManager.cpp.o
  /home/shyu/Desktop/final_project_all/src/TextureManager.cpp
  /home/shyu/Desktop/final_project_all/src/TextureManager.h
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
+ /usr/local/include/SDL2/SDL_image.h
+ /usr/local/include/SDL2/SDL_mixer.h
+ /usr/local/include/SDL2/SDL_ttf.h
 CMakeFiles/main.dir/Vector2D.cpp.o
  /home/shyu/Desktop/final_project_all/src/Vector2D.cpp
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
@@ -68,3 +83,6 @@ CMakeFiles/main.dir/main.cpp.o
  /home/shyu/Desktop/final_project_all/src/GameBoard.h
  /home/shyu/Desktop/final_project_all/src/Vector2D.h
  /home/shyu/Desktop/final_project_all/src/main.cpp
+ /usr/local/include/SDL2/SDL_image.h
+ /usr/local/include/SDL2/SDL_mixer.h
+ /usr/local/include/SDL2/SDL_ttf.h

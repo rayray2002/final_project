@@ -14,6 +14,9 @@ CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: Game.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: GameBoard.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: TextureManager.h
 CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: Vector2D.h
+CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_image.h
+CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
+CMakeFiles/main.dir/ECS/DoubleGameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/ECS/ECS.cpp.o: ECS/ECS.cpp
 CMakeFiles/main.dir/ECS/ECS.cpp.o: ECS/ECS.h
@@ -21,6 +24,9 @@ CMakeFiles/main.dir/ECS/ECS.cpp.o: Game.h
 CMakeFiles/main.dir/ECS/ECS.cpp.o: GameBoard.h
 CMakeFiles/main.dir/ECS/ECS.cpp.o: TextureManager.h
 CMakeFiles/main.dir/ECS/ECS.cpp.o: Vector2D.h
+CMakeFiles/main.dir/ECS/ECS.cpp.o: /usr/local/include/SDL2/SDL_image.h
+CMakeFiles/main.dir/ECS/ECS.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
+CMakeFiles/main.dir/ECS/ECS.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/BackGroundComponent.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: ECS/ButtomComponent.h
@@ -35,6 +41,9 @@ CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: Game.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: GameBoard.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: TextureManager.h
 CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: Vector2D.h
+CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_image.h
+CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
+CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/Game.cpp.o: ECS/BackGroundComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/ButtomComponent.h
@@ -49,6 +58,9 @@ CMakeFiles/main.dir/Game.cpp.o: Game.h
 CMakeFiles/main.dir/Game.cpp.o: GameBoard.h
 CMakeFiles/main.dir/Game.cpp.o: TextureManager.h
 CMakeFiles/main.dir/Game.cpp.o: Vector2D.h
+CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_image.h
+CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
+CMakeFiles/main.dir/Game.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/GameBoard.cpp.o: GameBoard.cpp
 CMakeFiles/main.dir/GameBoard.cpp.o: GameBoard.h
@@ -59,6 +71,9 @@ CMakeFiles/main.dir/TextureManager.cpp.o: GameBoard.h
 CMakeFiles/main.dir/TextureManager.cpp.o: TextureManager.cpp
 CMakeFiles/main.dir/TextureManager.cpp.o: TextureManager.h
 CMakeFiles/main.dir/TextureManager.cpp.o: Vector2D.h
+CMakeFiles/main.dir/TextureManager.cpp.o: /usr/local/include/SDL2/SDL_image.h
+CMakeFiles/main.dir/TextureManager.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
+CMakeFiles/main.dir/TextureManager.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/Vector2D.cpp.o: Vector2D.cpp
 CMakeFiles/main.dir/Vector2D.cpp.o: Vector2D.h
@@ -67,4 +82,7 @@ CMakeFiles/main.dir/main.cpp.o: Game.h
 CMakeFiles/main.dir/main.cpp.o: GameBoard.h
 CMakeFiles/main.dir/main.cpp.o: Vector2D.h
 CMakeFiles/main.dir/main.cpp.o: main.cpp
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/SDL2/SDL_image.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/SDL2/SDL_mixer.h
+CMakeFiles/main.dir/main.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 

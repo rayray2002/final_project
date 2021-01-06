@@ -477,12 +477,12 @@ int Menu::charactermenu(SDL_Window *window, SDL_Renderer *renderer)
 	}
 }
 
-// int main(int argc, char *argv[])
-// {
-// 	init();
-// 	Menu menu;
-// 	menu.startmenu(window, renderer);
+int main(int argc, char *argv[])
+{
+	init();
+	Menu menu;
+	menu.startmenu(window, renderer);
 
-// 	close();
-// 	return 0;
-// }
+	close();
+	return 0;
+}
