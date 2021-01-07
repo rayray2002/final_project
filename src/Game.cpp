@@ -161,6 +161,65 @@ void Game::render()
 	{
 		if (playerNumber == 2)
 		{
+			SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 64);
+			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_BLEND);
+			SDL_Rect rec1, rec2;
+			rec1.x = 100;
+			rec1.y = 35;
+			rec1.h = 650;
+			rec1.w = 300;
+			rec2.x = 880;
+			rec2.y = 35;
+			rec2.h = 650;
+			rec2.w = 300;
+			SDL_RenderDrawRect(Game::renderer, &rec1);
+			SDL_RenderDrawRect(Game::renderer, &rec2);
+			SDL_RenderFillRect(Game::renderer, &rec1);
+			SDL_RenderFillRect(Game::renderer, &rec2);
+
+			SDL_SetRenderDrawColor(Game::renderer, 255, 223, 0, 255);
+			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_NONE);
+			for (int i = -2; i <= 2; ++i)
+			{
+				//1
+				SDL_RenderDrawLine(Game::renderer, 100 + i, 35 + i, 400 + i, 35 + i);
+				SDL_RenderDrawLine(Game::renderer, 100 + i, 685 + i, 400 + i, 685 + i);
+				SDL_RenderDrawLine(Game::renderer, 100 + i, 35 + i, 100 + i, 685 + i);
+				SDL_RenderDrawLine(Game::renderer, 400 + i, 35 + i, 400 + i, 685 + i);
+				//2
+				SDL_RenderDrawLine(Game::renderer, 1180 + i, 35 + i, 880 + i, 35 + i);
+				SDL_RenderDrawLine(Game::renderer, 1180 + i, 685 + i, 880 + i, 685 + i);
+				SDL_RenderDrawLine(Game::renderer, 1180 + i, 35 + i, 1180 + i, 685 + i);
+				SDL_RenderDrawLine(Game::renderer, 880 + i, 35 + i, 880 + i, 685 + i);
+			}
+
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "score:", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 425;
+			textrec1.y = 335;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+
+			TTF_Font *font2 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font2, TTF_STYLE_ITALIC);
+			SDL_Surface *textsurface2 = TTF_RenderText_Solid(font2, "score:", {255, 223, 0});
+			SDL_Texture *texttexture2 = SDL_CreateTextureFromSurface(Game::renderer, textsurface2);
+			SDL_Rect textrec2;
+			textrec2.x = 1280 - 425 - textsurface2->clip_rect.w;
+			textrec2.y = 335;
+			textrec2.h = textsurface2->clip_rect.h;
+			textrec2.w = textsurface2->clip_rect.w;
+			SDL_FreeSurface(textsurface2);
+			SDL_RenderCopy(Game::renderer, texttexture2, NULL, &textrec2);
+			SDL_DestroyTexture(texttexture2);
+			TTF_CloseFont(font2);
 			for (auto &b : gameboards2)
 			{
 				b->getComponent<DoubleGameBoardComponent>().draw();
@@ -173,6 +232,39 @@ void Game::render()
 		}
 		else if (playerNumber == 1)
 		{
+			SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 64);
+			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_BLEND);
+			SDL_Rect rec1;
+			rec1.x = 640 - 150;
+			rec1.y = 35;
+			rec1.h = 650;
+			rec1.w = 300;
+			SDL_RenderDrawRect(Game::renderer, &rec1);
+			SDL_RenderFillRect(Game::renderer, &rec1);
+
+			SDL_SetRenderDrawColor(Game::renderer, 255, 223, 0, 255);
+			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_NONE);
+			for (int i = -2; i <= 2; ++i)
+			{
+				SDL_RenderDrawLine(Game::renderer, 490 + i, 35 + i, 490 + 300 + i, 35 + i);
+				SDL_RenderDrawLine(Game::renderer, 490 + i, 685 + i, 490 + 300 + i, 685 + i);
+				SDL_RenderDrawLine(Game::renderer, 490 + i, 35 + i, 490 + i, 685 + i);
+				SDL_RenderDrawLine(Game::renderer, 490 + 300 + i, 35 + i, 490 + 300 + i, 685 + i);
+			}
+
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "score:", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 100;
+			textrec1.y = 335;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
 			for (auto &b : gameboards)
 			{
 				b->getComponent<GameBoardComponent>().draw();

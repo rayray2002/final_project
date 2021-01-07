@@ -16,6 +16,7 @@ int main(int argc, const char *argv[])
     game->init("The Seed", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
 menu:
     game->menu.startmenu(Game::renderer);
+    game->playerNumber = game->menu.GetMode();
 
     while (game->running())
     {

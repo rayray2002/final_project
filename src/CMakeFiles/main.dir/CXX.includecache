@@ -48,6 +48,14 @@ TextButtomComponent.h
 DoubleGameBoardComponent.h
 /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
 
+/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp
+DoubleGameBoardComponent.h
+/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
+../Game.h
+/home/shyu/Desktop/final_project_all/src/Game.h
+SDL.h
+-
+
 /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
 SDL.h
 -
@@ -67,6 +75,10 @@ vector
 /home/shyu/Desktop/final_project_all/src/TextureManager.h
 Components.h
 /home/shyu/Desktop/final_project_all/src/ECS/Components.h
+ECS.h
+/home/shyu/Desktop/final_project_all/src/ECS/ECS.h
+
+/home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp
 ECS.h
 /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
 
@@ -116,6 +128,16 @@ map
 vector
 -
 
+/home/shyu/Desktop/final_project_all/src/ECS/MenuComponent.cpp
+SDL2/SDL.h
+-
+MenuComponent.h
+/home/shyu/Desktop/final_project_all/src/ECS/MenuComponent.h
+string
+-
+SDL_ttf.h
+-
+
 /home/shyu/Desktop/final_project_all/src/ECS/MenuComponent.h
 SDL.h
 -
@@ -133,6 +155,14 @@ ECS.h
 /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
 map
 -
+
+/home/shyu/Desktop/final_project_all/src/Game.cpp
+Game.h
+/home/shyu/Desktop/final_project_all/src/Game.h
+ECS/Components.h
+/home/shyu/Desktop/final_project_all/src/ECS/Components.h
+TextureManager.h
+/home/shyu/Desktop/final_project_all/src/TextureManager.h
 
 /home/shyu/Desktop/final_project_all/src/Game.h
 SDL.h
@@ -176,6 +206,12 @@ SDL.h
 Vector2D.h
 /home/shyu/Desktop/final_project_all/src/Vector2D.h
 
+/home/shyu/Desktop/final_project_all/src/TextureManager.cpp
+TextureManager.h
+/home/shyu/Desktop/final_project_all/src/TextureManager.h
+map
+-
+
 /home/shyu/Desktop/final_project_all/src/TextureManager.h
 Game.h
 /home/shyu/Desktop/final_project_all/src/Game.h
@@ -185,6 +221,10 @@ map
 /home/shyu/Desktop/final_project_all/src/Vector2D.h
 iostream
 -
+
+/home/shyu/Desktop/final_project_all/src/main.cpp
+Game.h
+/home/shyu/Desktop/final_project_all/src/Game.h
 
 /usr/local/include/SDL2/SDL_image.h
 SDL.h

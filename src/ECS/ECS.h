@@ -1,4 +1,3 @@
-// #pragma once
 #ifndef _ECS_H
 #define _ECS_H
 #include <iostream>
@@ -8,7 +7,6 @@
 #include <bitset>
 #include <array>
 #include "../TextureManager.h"
-// #include "Components.h"
 using namespace std;
 
 class Component;

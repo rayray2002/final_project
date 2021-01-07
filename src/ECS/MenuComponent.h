@@ -6,6 +6,7 @@ class Menu
 public:
     Menu();
     ~Menu();
+    void reset();
     void startvideo(SDL_Renderer *);
     int firstmenu(SDL_Renderer *);
     void Firstmenu(SDL_Renderer *);

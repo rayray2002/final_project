@@ -1,15 +1,23 @@
+//#ifndef _MENUCOMPONENT_H
+//#define _MENUCOMPONENT_H
+//#include "test_initial_SDL.h"
 #include <SDL2/SDL.h>
 #include "MenuComponent.h"
+
+//#include "Components.h"
+//#include "../Game.h"
 #include <string>
+//#include <sstream>
+//#include <map>
 #include <SDL_ttf.h>
 #define WIDTH 1280
 #define HEIGHT 720
 
 using namespace std;
 
-Menu::Menu() : P1(-1), P2(-1), Mode(-1)
+Menu::Menu()
 {
-	;
+	reset();
 }
 
 Menu::~Menu()
@@ -17,6 +25,12 @@ Menu::~Menu()
 	;
 }
 
+void Menu::reset()
+{
+	P1 = -1;
+	P2 = -1;
+	Mode = -1;
+}
 void Menu::startmenu(SDL_Renderer *renderer)
 {
 	startvideo(renderer);
@@ -39,6 +53,11 @@ void Menu::startvideo(SDL_Renderer *renderer)
 			case SDL_QUIT:
 				SDL_FreeSurface(start);
 				return;
+			case SDL_MOUSEBUTTONDOWN:
+				if (event.button.button == SDL_BUTTON_LEFT)
+				{
+					stop = true;
+				}
 			}
 		}
 		if (startnum < 10)
@@ -69,8 +88,8 @@ void Menu::startvideo(SDL_Renderer *renderer)
 		}
 		else
 			SDL_Delay(70);
+		SDL_FreeSurface(start);
 	}
-	SDL_FreeSurface(start);
 }
 
 void Menu::Firstmenu(SDL_Renderer *renderer)
@@ -93,9 +112,7 @@ void Menu::Charactermenu(SDL_Renderer *renderer)
 	{
 	case -1:
 		Firstmenu(renderer);
-		Mode = -1;
-		P1 = -1;
-		P2 = -1;
+		reset();
 		break;
 	case 0: /*double player*/;
 	}
@@ -118,8 +135,10 @@ int Menu::GetP2()
 
 int Menu::firstmenu(SDL_Renderer *renderer)
 {
+	//SDL_Surface *screen = SDL_GetWindowSurface(window);
 	SDL_Surface *img;
 
+	//Uint32 time;
 	int x = 0, y = 0;
 	const int num = 2;
 
@@ -136,7 +155,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 	SDL_Rect pos[num];
 	pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
-	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h + 100;
+	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
 	pos[0].w = menus[0]->clip_rect.w;
 	pos[0].h = menus[0]->clip_rect.h;
 	pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;
@@ -161,12 +180,12 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 	SDL_Event event;
 	while (1)
 	{
+		//string path="./img/miku/000"+to_string(z)+".bmp";
 		string path;
-		// if (z < 10)
-		// 	path = "./img/miku/000" + to_string(z) + ".bmp";
-		// else
-		// 	path = "./img/miku/00" + to_string(z) + ".bmp";
-		path = "./img/background/" + to_string(z) + ".bmp";
+		if (z < 10)
+			path = "./img/miku/000" + to_string(z) + ".bmp";
+		else
+			path = "./img/miku/00" + to_string(z) + ".bmp";
 		img = SDL_LoadBMP(path.c_str());
 
 		SDL_RenderClear(renderer);
@@ -179,7 +198,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 		//SDL_BlitSurface(img,NULL,screen,&bgpos);
 		z++;
-		if (z > 3600)
+		if (z > 54)
 			z = 0;
 		//time = SDL_GetTicks();
 		while (SDL_PollEvent(&event))
@@ -234,15 +253,18 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 			case SDL_MOUSEBUTTONDOWN:
 				x = event.button.x;
 				y = event.button.y;
-				for (int i = 0; i < num; i++)
+				if (event.button.button == SDL_BUTTON_LEFT)
 				{
-					if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
+					for (int i = 0; i < num; i++)
 					{
-						for (int j = 0; j < num; j++)
+						if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
 						{
-							SDL_FreeSurface(menus[j]);
+							for (int j = 0; j < num; j++)
+							{
+								SDL_FreeSurface(menus[j]);
+							}
+							return i;
 						}
-						return i;
 					}
 				}
 				break;
@@ -257,7 +279,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 		SDL_RenderPresent(renderer);
 
-		SDL_Delay(20);
+		SDL_Delay(70);
 		SDL_FreeSurface(img);
 		//SDL_FreeSurface(screen);
 		//		if (1000 / 30 > (SDL_GetTicks() - time)) {
@@ -304,21 +326,35 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	}
 
 	//title
+	TTF_Font *bigfont = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 90);
+	TTF_SetFontStyle(bigfont, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+	bool selectedstart = 0;
+	char **Title = new char *[3];
+	for (int i = 0; i < 3; i++)
+	{
+		Title[i] = new char[10];
+	}
 	const char Title1[] = "Choose P1";
 	const char Title2[] = "Choose P2";
-	SDL_Surface *title[2];
-	title[0] = TTF_RenderText_Solid(font, Title1, color[0]);
-	title[1] = TTF_RenderText_Solid(font, Title2, color[0]);
+	const char Title3[] = "Start";
+	SDL_Surface *title[3];
 
-	SDL_Rect titlepos;
+	title[0] = TTF_RenderText_Solid(bigfont, Title1, color[0]);
+	title[1] = TTF_RenderText_Solid(bigfont, Title2, color[0]);
+	title[2] = TTF_RenderText_Solid(bigfont, Title3, color[0]);
+
+	SDL_Rect titlepos, startpos;
 	titlepos.x = WIDTH / 2 - title[0]->clip_rect.w / 2;
 	titlepos.y = 10;
 	titlepos.w = title[0]->clip_rect.w;
 	titlepos.h = title[0]->clip_rect.h;
 
+	startpos.x = WIDTH / 2 - title[2]->clip_rect.w / 2;
+	startpos.y = 10;
+	startpos.w = title[2]->clip_rect.w;
+	startpos.h = title[2]->clip_rect.h;
+
 	//subtitle
-	TTF_Font *bigfont = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 85);
-	TTF_SetFontStyle(bigfont, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
 	const char Subtitle1[] = "P1";
 	const char Subtitle2[] = "P2";
 	const char Subtitle3[] = ":";
@@ -328,15 +364,15 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	subtitle[2] = TTF_RenderText_Solid(bigfont, Subtitle3, color[0]);
 	SDL_Rect subtitlepos[3];
 	subtitlepos[0].x = 10;
-	subtitlepos[0].y = 100;
+	subtitlepos[0].y = 120;
 	subtitlepos[0].w = subtitle[0]->clip_rect.w;
 	subtitlepos[0].h = subtitle[0]->clip_rect.h;
 	subtitlepos[1].x = WIDTH - 10 - subtitle[1]->clip_rect.w;
-	subtitlepos[1].y = 100;
+	subtitlepos[1].y = 120;
 	subtitlepos[1].w = subtitle[1]->clip_rect.w;
 	subtitlepos[1].h = subtitle[1]->clip_rect.h;
 	subtitlepos[2].x = WIDTH / 2 - subtitle[2]->clip_rect.w / 2;
-	subtitlepos[2].y = 100;
+	subtitlepos[2].y = 120;
 	subtitlepos[2].w = subtitle[2]->clip_rect.w;
 	subtitlepos[2].h = subtitle[2]->clip_rect.h;
 
@@ -347,9 +383,10 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	Psurface[2] = TTF_RenderText_Solid(bigfont, text3, color[0]);
 	Psurface[3] = TTF_RenderText_Solid(bigfont, text4, color[0]);
 	Psurface[4] = TTF_RenderText_Solid(bigfont, text5, color[0]);
-	SDL_Rect P1pos, P2pos;
-	P1pos.y = 100;
-	P2pos.y = 100;
+	SDL_Rect P1pos, P2pos, start;
+	P1pos.y = 120;
+	P2pos.y = 120;
+	start.y = 120;
 
 	//character picture
 	int charactersize = 200;
@@ -416,6 +453,7 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 			case SDL_QUIT:
 				for (int i = 0; i < num; i++)
 					SDL_FreeSurface(menus[i]);
+
 				return 1;
 
 			case SDL_MOUSEMOTION:
@@ -487,6 +525,24 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 							}
 						}
 					}
+					if (x >= startpos.x && x <= startpos.x + startpos.w && y >= startpos.y && y <= startpos.y + startpos.h)
+					{
+						if (!selectedstart)
+						{
+							selectedstart = true;
+							SDL_FreeSurface(title[2]);
+							title[2] = TTF_RenderText_Solid(bigfont, Title3, color[1]);
+						}
+					}
+					else
+					{
+						if (selectedstart)
+						{
+							selectedstart = false;
+							SDL_FreeSurface(title[2]);
+							title[2] = TTF_RenderText_Solid(bigfont, Title3, color[0]);
+						}
+					}
 				}
 				break;
 
@@ -515,6 +571,11 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 								P2pos.h = Psurface[P2]->clip_rect.h;
 							}
 						}
+					}
+					if (x >= startpos.x && x <= startpos.x + startpos.w && y >= startpos.y && y <= startpos.y + startpos.h)
+					{
+
+						return 100;
 					}
 				}
 
@@ -598,6 +659,12 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 			SDL_RenderCopy(renderer, titletexture, NULL, &titlepos);
 			SDL_DestroyTexture(titletexture);
 		}
+		else
+		{
+			SDL_Texture *titletexture = SDL_CreateTextureFromSurface(renderer, title[2]);
+			SDL_RenderCopy(renderer, titletexture, NULL, &startpos);
+			SDL_DestroyTexture(titletexture);
+		}
 
 		SDL_Texture *subtitletexture[3];
 		for (int i = 0; i < 3; i++)
@@ -668,9 +735,22 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 
 		SDL_Delay(20);
 
+		SDL_FreeSurface(bgimg);
 		for (int i = 0; i < num; i++)
 		{
 			SDL_FreeSurface(character[i]);
 		}
 	}
 }
+
+// int main(int argc, char *argv[])
+// {
+// 	init();
+// 	Menu menu;
+// 	menu.startmenu(renderer);
+// 	cout << menu.GetMode() << endl;
+// 	cout << menu.GetP1() << endl;
+// 	cout << menu.GetP2() << endl;
+// 	close();
+// 	return 0;
+// }
