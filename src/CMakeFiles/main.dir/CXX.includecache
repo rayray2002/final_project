@@ -78,10 +78,6 @@ Components.h
 ECS.h
 /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
 
-/home/shyu/Desktop/final_project_all/src/ECS/ECS.cpp
-ECS.h
-/home/shyu/Desktop/final_project_all/src/ECS/ECS.h
-
 /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
 iostream
 -
@@ -210,29 +206,15 @@ SDL.h
 Vector2D.h
 /home/shyu/Desktop/final_project_all/src/Vector2D.h
 
-/home/shyu/Desktop/final_project_all/src/TextureManager.cpp
-TextureManager.h
-/home/shyu/Desktop/final_project_all/src/TextureManager.h
-map
--
-
 /home/shyu/Desktop/final_project_all/src/TextureManager.h
 Game.h
 /home/shyu/Desktop/final_project_all/src/Game.h
 map
 -
-
-/home/shyu/Desktop/final_project_all/src/Vector2D.cpp
-Vector2D.h
-/home/shyu/Desktop/final_project_all/src/Vector2D.h
 
 /home/shyu/Desktop/final_project_all/src/Vector2D.h
 iostream
 -
-
-/home/shyu/Desktop/final_project_all/src/main.cpp
-Game.h
-/home/shyu/Desktop/final_project_all/src/Game.h
 
 /usr/local/include/SDL2/SDL_image.h
 SDL.h

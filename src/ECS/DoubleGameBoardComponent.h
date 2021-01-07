@@ -41,6 +41,9 @@ private:
 	bool stop;
 
 public:
+	void showCharacter();
+	void showScore();
+
 	void MikuSkill(int side);
 	void MeiSkill(int side);
 	void SakuraSkill(int side);

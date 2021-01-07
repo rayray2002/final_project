@@ -1,14 +1,6 @@
-//#ifndef _MENUCOMPONENT_H
-//#define _MENUCOMPONENT_H
-//#include "test_initial_SDL.h"
 #include <SDL2/SDL.h>
 #include "MenuComponent.h"
-
-//#include "Components.h"
-//#include "../Game.h"
 #include <string>
-//#include <sstream>
-//#include <map>
 #include <SDL_ttf.h>
 #define WIDTH 1280
 #define HEIGHT 720
@@ -126,10 +118,8 @@ int Menu::GetP2()
 
 int Menu::firstmenu(SDL_Renderer *renderer)
 {
-	//SDL_Surface *screen = SDL_GetWindowSurface(window);
 	SDL_Surface *img;
 
-	//Uint32 time;
 	int x = 0, y = 0;
 	const int num = 2;
 
@@ -684,15 +674,3 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 		}
 	}
 }
-
-// int main(int argc, char *argv[])
-// {
-// 	init();
-// 	Menu menu;
-// 	menu.startmenu(renderer);
-// 	cout << menu.GetMode() << endl;
-// 	cout << menu.GetP1() << endl;
-// 	cout << menu.GetP2() << endl;
-// 	close();
-// 	return 0;
-// }

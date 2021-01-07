@@ -127,10 +127,6 @@ void Game::update()
 		b->getComponent<BackGroundComponent>().update();
 	}
 
-	for (auto &b : buttoms)
-	{
-		b->getComponent<ButtomComponent>().update();
-	}
 	if (!stop)
 	{
 		if (playerNumber == 2)
@@ -146,6 +142,11 @@ void Game::update()
 			{
 				b->getComponent<GameBoardComponent>().update();
 			}
+
+			for (auto &b : buttoms)
+			{
+				b->getComponent<ButtomComponent>().update();
+			}
 		}
 	}
 }
@@ -158,10 +159,6 @@ void Game::render()
 		b->getComponent<BackGroundComponent>().draw();
 	}
 
-	for (auto &b : buttoms)
-	{
-		b->getComponent<ButtomComponent>().draw();
-	}
 	if (!stop)
 	{
 		if (playerNumber == 2)
@@ -169,6 +166,11 @@ void Game::render()
 			for (auto &b : gameboards2)
 			{
 				b->getComponent<DoubleGameBoardComponent>().draw();
+			}
+
+			for (auto &b : buttoms)
+			{
+				b->getComponent<ButtomComponent>().draw();
 			}
 		}
 		else if (playerNumber == 1)

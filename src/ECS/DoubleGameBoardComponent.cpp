@@ -979,3 +979,10 @@ void DoubleGameBoardComponent::stopAll(int side)
 		stop = true;
 	}
 }
+
+void DoubleGameBoardComponent::showCharacter()
+{
+}
+void DoubleGameBoardComponent::showScore()
+{
+}
