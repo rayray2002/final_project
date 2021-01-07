@@ -136,7 +136,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 	SDL_Rect pos[num];
 	pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
-	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
+	pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h + 100;
 	pos[0].w = menus[0]->clip_rect.w;
 	pos[0].h = menus[0]->clip_rect.h;
 	pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;

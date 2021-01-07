@@ -13,7 +13,6 @@ class BackGroundComponent : public Component
 public:
     SDL_Texture *texture;
     SDL_Rect srcR, destR;
-    map<int, const char *> MIKUGIF;
 
     BackGroundComponent()
     {
