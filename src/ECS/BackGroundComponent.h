@@ -40,6 +40,7 @@ public:
 
     void draw() override
     {
+
         static int num = 0;
         static int i = 1;
         static bool OK = true;
@@ -59,9 +60,9 @@ public:
         }
         if (1)
         {
-            if (i > 81)
+            if (i > 3600)
                 i = 0;
-            string path = "./img/miku/" + to_string(i) + ".bmp";
+            string path = "./img/background/" + to_string(i) + ".bmp";
             tmpSurface = SDL_LoadBMP(path.c_str());
         }
         texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
@@ -70,6 +71,38 @@ public:
             num = 0;
         TextureManager::Draw(texture, srcR, destR);
         SDL_PumpEvents();
+
+        SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 64);
+        SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_BLEND);
+        SDL_Rect rec1, rec2;
+        rec1.x = 100;
+        rec1.y = 35;
+        rec1.h = 650;
+        rec1.w = 300;
+        rec2.x = 880;
+        rec2.y = 35;
+        rec2.h = 650;
+        rec2.w = 300;
+        SDL_RenderDrawRect(Game::renderer, &rec1);
+        SDL_RenderDrawRect(Game::renderer, &rec2);
+        SDL_RenderFillRect(Game::renderer, &rec1);
+        SDL_RenderFillRect(Game::renderer, &rec2);
+
+        SDL_SetRenderDrawColor(Game::renderer, 255, 223, 0, 255);
+        SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_NONE);
+        for (int i = -2; i <= 2; ++i)
+        {
+            //1
+            SDL_RenderDrawLine(Game::renderer, 100 + i, 35 + i, 400 + i, 35 + i);
+            SDL_RenderDrawLine(Game::renderer, 100 + i, 685 + i, 400 + i, 685 + i);
+            SDL_RenderDrawLine(Game::renderer, 100 + i, 35 + i, 100 + i, 685 + i);
+            SDL_RenderDrawLine(Game::renderer, 400 + i, 35 + i, 400 + i, 685 + i);
+            //2
+            SDL_RenderDrawLine(Game::renderer, 1180 + i, 35 + i, 880 + i, 35 + i);
+            SDL_RenderDrawLine(Game::renderer, 1180 + i, 685 + i, 880 + i, 685 + i);
+            SDL_RenderDrawLine(Game::renderer, 1180 + i, 35 + i, 1180 + i, 685 + i);
+            SDL_RenderDrawLine(Game::renderer, 880 + i, 35 + i, 880 + i, 685 + i);
+        }
     }
 };
 
