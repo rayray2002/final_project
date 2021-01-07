@@ -51,7 +51,9 @@ void GameBoardComponent::update()
 
 void GameBoardComponent::chaining()
 {
+	cout << 's' << endl;
 	isChanged = gameboard.update();
+	cout << 'e' << endl;
 }
 
 void GameBoardComponent::draw()

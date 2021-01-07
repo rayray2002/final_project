@@ -123,11 +123,14 @@ vector<Block> GameBoard::check_chained(const int &x, const int &y)
 
 	while (!q.empty())
 	{
+		cout << 1.11 << endl;
+
 		Block top = q.front();
 		chain.push_back(top);
 		visited[top.x][top.y] = true;
 		q.pop();
 		//		cout << top.x << " " << top.y << endl;
+		cout << 1.12 << endl;
 		if (top.x - 1 >= 0 && (UnitArray[top.y][top.x - 1].color == UnitArray[y][x].color || UnitArray[top.y][top.x - 1].color == Rainbow) && !visited[top.x - 1][top.y])
 		{
 			q.push((Block){top.x - 1, top.y});
@@ -148,6 +151,7 @@ vector<Block> GameBoard::check_chained(const int &x, const int &y)
 			q.push((Block){top.x, top.y + 1});
 			visited[top.x][top.y + 1] = true;
 		}
+		cout << 1.13 << endl;
 	}
 	return chain;
 }
@@ -217,11 +221,18 @@ bool GameBoard::update()
 		{
 			if (UnitArray[i][j].color != Empty)
 			{
+				cout << 1.1 << endl;
 				chain = check_chained(j, i);
+				cout << 1.2 << endl;
+
 				if (chain.size() >= 4)
 				{
+					cout << 1.3 << endl;
+
 					if (find(color_bonus.begin(), color_bonus.end(), UnitArray[i][j].color) == color_bonus.end())
 						color_bonus.push_back(UnitArray[i][j].color);
+					cout << 1.4 << endl;
+
 					switch (chain.size())
 					{
 					case 4:
@@ -248,7 +259,10 @@ bool GameBoard::update()
 						group_bonus += 10;
 						break;
 					}
+					cout << 1.5 << endl;
+
 					to_remove.push_back(chain);
+					cout << 1.6 << endl;
 				}
 			}
 		}

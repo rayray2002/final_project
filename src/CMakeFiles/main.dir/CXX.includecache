@@ -48,14 +48,6 @@ TextButtomComponent.h
 DoubleGameBoardComponent.h
 /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
 
-/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp
-DoubleGameBoardComponent.h
-/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
-../Game.h
-/home/shyu/Desktop/final_project_all/src/Game.h
-SDL.h
--
-
 /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
 SDL.h
 -
@@ -93,6 +85,14 @@ array
 -
 ../TextureManager.h
 /home/shyu/Desktop/final_project_all/src/TextureManager.h
+
+/home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.cpp
+GameBoardComponent.h
+/home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.h
+../Game.h
+/home/shyu/Desktop/final_project_all/src/Game.h
+SDL.h
+-
 
 /home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.h
 SDL.h
