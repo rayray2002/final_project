@@ -22,7 +22,6 @@ class Game
 
 private:
     SDL_Window *window;
-
     bool stop;
 
 public:
@@ -38,20 +37,16 @@ public:
     void MusicPlay(const char *Music, int volume);
     static void LinkStart(string text, int second, int h, int w);
 
-    int playerNumber = 1;
+    int playerNumber = 2;
     bool running() { return isRunning; };
 
     static bool isRunning;
 
     static SDL_Renderer *renderer;
     static SDL_Event event;
-    static SDL_Rect camera;
 
     enum groupLabels : std::size_t
     {
-        groupMap,
-        groupPlayers,
-        groupColliders,
         groupBackGrounds,
         groupTextButtoms,
         groupButtoms,

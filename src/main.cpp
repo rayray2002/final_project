@@ -14,13 +14,14 @@ int main(int argc, const char *argv[])
     game = new Game();
 
     game->init("The Seed", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
-
+menu:
     game->menu.startmenu(Game::renderer);
 
     while (game->running())
     {
         frameStart = SDL_GetTicks();
-
+        if (!game->isRunning)
+            goto menu;
         game->handleEveants();
         game->update();
         game->render();

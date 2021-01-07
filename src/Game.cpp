@@ -94,8 +94,6 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
 	LinkStart("Link Start!", 2000, 200, 600);
 }
 
-auto &tiles(manager.getGroup(Game::groupMap));
-auto &colliders(manager.getGroup(Game::groupColliders));
 auto &backs(manager.getGroup(Game::groupBackGrounds));
 auto &buttoms(manager.getGroup(Game::groupButtoms));
 auto &gameboards(manager.getGroup(Game::groupGameBoards));

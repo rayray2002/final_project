@@ -78,7 +78,7 @@ public:
 
 	bool PairAdjacent(int side);
 
-	void stopAll(int side);
+	void stopAll();
 
 	unit MovingPair1[2];
 	unit MovingPair2[2];

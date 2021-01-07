@@ -26,6 +26,21 @@ void DoubleGameBoardComponent::init2()
 
 void DoubleGameBoardComponent::update()
 {
+	static int time = SDL_GetTicks();
+	if (SDL_GetTicks() - time >= 5000)
+	{
+		if (gameboard1.score > gameboard2.score)
+		{
+			chKO2 = true;
+			cout << "2 KO" << endl;
+		}
+		else
+		{
+			chKO1 = true;
+			cout << "1 KO" << endl;
+		}
+		stopAll();
+	}
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
 	static int ii = 0;
@@ -41,6 +56,7 @@ void DoubleGameBoardComponent::update()
 
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
+	// int iiii = SDL_GetTicks();
 
 	if (!AnyThingMoving(1))
 	{
@@ -76,9 +92,9 @@ void DoubleGameBoardComponent::update()
 		// 	 << gameboard2 << endl;
 		if (!gameboard2.falling)
 		{
-			cout << "chaining 2 start" << endl;
+			// cout << "chaining 2 start" << endl;
 			chaining(2);
-			cout << "chaining 2 end" << endl;
+			// cout << "chaining 2 end" << endl;
 			if (isChanged2)
 			{
 				gameboard2.falling = true;
@@ -99,6 +115,8 @@ void DoubleGameBoardComponent::update()
 	{
 		MoveDown(2);
 	}
+	// cout << SDL_GetTicks() - iiii << endl;
+
 	if (ch1skilled)
 		switch (ch1)
 		{
@@ -115,6 +133,14 @@ void DoubleGameBoardComponent::update()
 			PSkill(1);
 			break;
 		}
+	if (gameboard1.score % 2000 == 0 && gameboard1.score > 0)
+	{
+		ch1skilled = true;
+	}
+	if (gameboard2.score % 2000 == 0 && gameboard2.score > 0)
+	{
+		ch2skilled = true;
+	}
 	if (ch2skilled)
 		switch (ch2)
 		{
@@ -539,6 +565,7 @@ void DoubleGameBoardComponent::MoveDown(int side)
 		static int ii = 0;
 		if (ii == 30)
 		{
+			// SDL_Delay(500);
 			for (int i = 11; i >= 0; i--)
 				for (int j = 0; j < 6; j++)
 					if (gameboard1.UnitArray[i][j].color != Empty && gameboard1.UnitArray[i + 1][j].color == Empty)
@@ -552,6 +579,7 @@ void DoubleGameBoardComponent::MoveDown(int side)
 		static int ii = 0;
 		if (ii == 30)
 		{
+			// SDL_Delay(500);
 			for (int i = 11; i >= 0; i--)
 				for (int j = 0; j < 6; j++)
 					if (gameboard2.UnitArray[i][j].color != Empty && gameboard2.UnitArray[i + 1][j].color == Empty)
@@ -951,7 +979,7 @@ void DoubleGameBoardComponent::FuhuaSkill(int side)
 	}
 }
 
-void DoubleGameBoardComponent::stopAll(int side)
+void DoubleGameBoardComponent::stopAll()
 {
 	if (chKO1 || chKO2)
 	{
