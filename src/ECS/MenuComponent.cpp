@@ -161,12 +161,12 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 	SDL_Event event;
 	while (1)
 	{
-		//string path="./img/miku/000"+to_string(z)+".bmp";
 		string path;
-		if (z < 10)
-			path = "./img/miku/000" + to_string(z) + ".bmp";
-		else
-			path = "./img/miku/00" + to_string(z) + ".bmp";
+		// if (z < 10)
+		// 	path = "./img/miku/000" + to_string(z) + ".bmp";
+		// else
+		// 	path = "./img/miku/00" + to_string(z) + ".bmp";
+		path = "./img/background/" + to_string(z) + ".bmp";
 		img = SDL_LoadBMP(path.c_str());
 
 		SDL_RenderClear(renderer);
@@ -179,7 +179,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 		//SDL_BlitSurface(img,NULL,screen,&bgpos);
 		z++;
-		if (z > 54)
+		if (z > 3600)
 			z = 0;
 		//time = SDL_GetTicks();
 		while (SDL_PollEvent(&event))
@@ -257,7 +257,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
 		SDL_RenderPresent(renderer);
 
-		SDL_Delay(70);
+		SDL_Delay(20);
 		SDL_FreeSurface(img);
 		//SDL_FreeSurface(screen);
 		//		if (1000 / 30 > (SDL_GetTicks() - time)) {

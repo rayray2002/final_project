@@ -32,12 +32,12 @@ void DoubleGameBoardComponent::update()
 		if (gameboard1.score > gameboard2.score)
 		{
 			chKO2 = true;
-			cout << "2 KO" << endl;
+			// cout << "2 KO" << endl;
 		}
 		else
 		{
 			chKO1 = true;
-			cout << "1 KO" << endl;
+			// cout << "1 KO" << endl;
 		}
 		stopAll();
 	}
@@ -92,9 +92,9 @@ void DoubleGameBoardComponent::update()
 		// 	 << gameboard2 << endl;
 		if (!gameboard2.falling)
 		{
-			// cout << "chaining 2 start" << endl;
+			cout << "chaining 2 start" << endl;
 			chaining(2);
-			// cout << "chaining 2 end" << endl;
+			cout << "chaining 2 end" << endl;
 			if (isChanged2)
 			{
 				gameboard2.falling = true;
@@ -104,17 +104,21 @@ void DoubleGameBoardComponent::update()
 				init2();
 				gameboard2.reset();
 			}
+			cout << "oK" << endl;
 		}
 		else
 		{
+			cout << "Move d s" << endl;
 			MoveDown(2);
 			gameboard2.falling = false;
+			cout << "Move d e" << endl;
 		}
 	}
 	else
 	{
 		MoveDown(2);
 	}
+
 	// cout << SDL_GetTicks() - iiii << endl;
 
 	if (ch1skilled)

@@ -102,6 +102,20 @@ public:
             SDL_RenderDrawLine(Game::renderer, 1180 + i, 35 + i, 1180 + i, 685 + i);
             SDL_RenderDrawLine(Game::renderer, 880 + i, 35 + i, 880 + i, 685 + i);
         }
+
+        TTF_Font *font = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+        TTF_SetFontStyle(font, TTF_STYLE_ITALIC);
+        SDL_Surface *textsurface = TTF_RenderText_Solid(font, "score:", {255, 223, 0});
+        SDL_Texture *texttexture = SDL_CreateTextureFromSurface(Game::renderer, textsurface);
+        SDL_Rect textrec;
+        textrec.x = 425;
+        textrec.y = 335;
+        textrec.h = textsurface->clip_rect.h;
+        textrec.w = textsurface->clip_rect.w;
+        SDL_FreeSurface(textsurface);
+        SDL_RenderCopy(Game::renderer, texttexture, NULL, &textrec);
+        SDL_DestroyTexture(texttexture);
+        TTF_CloseFont(font);
     }
 };
 

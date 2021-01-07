@@ -1,5 +1,3 @@
-// #pragma once
-
 #ifndef _TEXTBUTTOMCOMPONENT_H
 #define _TEXTBUTTOMCOMPONENT_H
 
@@ -66,7 +64,7 @@ public:
 
     void draw() override
     {
-        font = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 1000);
+        font = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 50);
         TTF_SetFontStyle(font, TTF_STYLE_BOLD | TTF_STYLE_ITALIC);
         color = {255, 223, 0};
         Text.str("");

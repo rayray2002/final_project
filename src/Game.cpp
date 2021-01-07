@@ -200,27 +200,27 @@ void Game::LinkStart(string text, int second, int h, int w)
 	SDL_Texture *LinkStartTexture = NULL;
 	SDL_Surface *LinkStartSurface = NULL;
 	SDL_Rect dst;
-	dst.h = h;
-	dst.w = w;
-	dst.x = WIDTH / 2 - dst.w / 2;
-	dst.y = HEIGHT / 2 - dst.h / 2;
 	if (TTF_Init() == -1)
 	{
 		cout << "TTF_Init: " << TTF_GetError() << endl;
 	}
 	TTF_Font *font;
-	font = TTF_OpenFont("./fonts/SAOUITT-Regular.ttf", 1000);
+	font = TTF_OpenFont("./fonts/GenJyuuGothic-Regular.ttf", 120);
 	if (!font)
 	{
 		cout << "TTF_OpenFont: " << TTF_GetError() << endl;
 	}
-	TTF_SetFontStyle(font, 0 /*TTF_STYLE_BOLD|TTF_STYLE_ITALIC*/);
+	TTF_SetFontStyle(font, TTF_STYLE_BOLD | TTF_STYLE_ITALIC);
 	SDL_Color color = {255, 223, 0};
 	stringstream LinkStartText;
 	LinkStartText.str("");
 	LinkStartText << text;
 	LinkStartSurface = TTF_RenderText_Solid(font, LinkStartText.str().c_str(), color);
 	LinkStartTexture = SDL_CreateTextureFromSurface(renderer, LinkStartSurface);
+	dst.h = LinkStartSurface->clip_rect.h;
+	dst.w = LinkStartSurface->clip_rect.w;
+	dst.x = WIDTH / 2 - dst.w / 2;
+	dst.y = HEIGHT / 2 - dst.h / 2;
 	if (!LinkStartTexture)
 	{
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture from surface: %s", SDL_GetError());
