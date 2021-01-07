@@ -30,10 +30,10 @@ private:
 	};
 
 	int ch1 = 1;
-	int ch2;
+	int ch2 = 1;
 
-	bool ch1skilled = false;
-	bool ch2skilled = false;
+	bool ch1skilled = true;
+	bool ch2skilled = true;
 
 	bool chKO1;
 	bool chKO2;

@@ -94,14 +94,6 @@ array
 ../TextureManager.h
 /home/shyu/Desktop/final_project_all/src/TextureManager.h
 
-/home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.cpp
-GameBoardComponent.h
-/home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.h
-../Game.h
-/home/shyu/Desktop/final_project_all/src/Game.h
-SDL.h
--
-
 /home/shyu/Desktop/final_project_all/src/ECS/GameBoardComponent.h
 SDL.h
 -
@@ -141,14 +133,6 @@ ECS.h
 /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
 map
 -
-
-/home/shyu/Desktop/final_project_all/src/Game.cpp
-Game.h
-/home/shyu/Desktop/final_project_all/src/Game.h
-ECS/Components.h
-/home/shyu/Desktop/final_project_all/src/ECS/Components.h
-TextureManager.h
-/home/shyu/Desktop/final_project_all/src/TextureManager.h
 
 /home/shyu/Desktop/final_project_all/src/Game.h
 SDL.h

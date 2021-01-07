@@ -396,7 +396,7 @@ void DoubleGameBoardComponent::InitializeRandomUnitOnTop(int topx, int side)
 			chKO1 = true;
 			return;
 		}
-		if (ch1 == 2 && !ch1skilled)
+		if (1)
 		{
 			gameboard1.UnitArray[0][topx].color = tmpColor;
 			gameboard1.UnitArray[0][topx].isMoving = true;
@@ -415,7 +415,7 @@ void DoubleGameBoardComponent::InitializeRandomUnitOnTop(int topx, int side)
 			chKO2 = true;
 			return;
 		}
-		if (ch2 == 2 && !ch2skilled)
+		if (1)
 		{
 			gameboard2.UnitArray[0][topx].color = tmpColor;
 			gameboard2.UnitArray[0][topx].isMoving = true;

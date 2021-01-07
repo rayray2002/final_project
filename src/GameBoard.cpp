@@ -210,6 +210,7 @@ bool GameBoard::update()
 	vector<Block> chain;
 	isUpdated = false;
 	vector<vector<Block>> to_remove;
+	cout << 1 << endl;
 	for (int i = 0; i < BOARDHEIGHT; i++)
 	{
 		for (int j = 0; j < BOARDWIDTH; j++)
@@ -252,6 +253,7 @@ bool GameBoard::update()
 			}
 		}
 	}
+	cout << 2 << endl;
 
 	if (!to_remove.empty())
 	{
@@ -270,9 +272,11 @@ bool GameBoard::update()
 			//			to_remove[i].shrink_to_fit();
 		}
 	}
+	cout << 3 << endl;
 
 	if (DEBUG)
 		printer();
+	cout << 4 << endl;
 
 	if (!isUpdated)
 	{
@@ -288,8 +292,12 @@ bool GameBoard::update()
 		trash_num = score_add / 70;
 		score += score_add;
 	}
+	cout << 5 << endl;
+
 	chain.clear();
 	chain.shrink_to_fit();
+	cout << 6 << endl;
+
 	return isUpdated;
 }
 
