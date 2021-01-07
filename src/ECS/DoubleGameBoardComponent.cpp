@@ -44,8 +44,8 @@ void DoubleGameBoardComponent::update()
 
 	if (!AnyThingMoving(1))
 	{
-		cout << "Side1:\n"
-			 << gameboard1 << endl;
+		// cout << "Side1:\n"
+		// 	 << gameboard1 << endl;
 		if (!gameboard1.falling)
 		{
 			chaining(1);
@@ -72,11 +72,13 @@ void DoubleGameBoardComponent::update()
 
 	if (!AnyThingMoving(2))
 	{
-		cout << "Side2:\n"
-			 << gameboard2 << endl;
+		// cout << "Side2:\n"
+		// 	 << gameboard2 << endl;
 		if (!gameboard2.falling)
 		{
+			cout << "chaining 2 start" << endl;
 			chaining(2);
+			cout << "chaining 2 end" << endl;
 			if (isChanged2)
 			{
 				gameboard2.falling = true;
