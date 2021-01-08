@@ -6,27 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/shyu/Desktop/final_project_all/src/GameBoard.cpp
-GameBoard.h
-/home/shyu/Desktop/final_project_all/src/GameBoard.h
+/home/shyu/Desktop/final_project_all/src/ECS/MenuComponent.cpp
+SDL2/SDL.h
+-
+MenuComponent.h
+/home/shyu/Desktop/final_project_all/src/ECS/MenuComponent.h
+string
+-
+SDL_ttf.h
+-
 
-/home/shyu/Desktop/final_project_all/src/GameBoard.h
-algorithm
--
-iostream
--
-vector
--
-queue
--
-cmath
--
+/home/shyu/Desktop/final_project_all/src/ECS/MenuComponent.h
 SDL.h
 -
-Vector2D.h
-/home/shyu/Desktop/final_project_all/src/Vector2D.h
 
-/home/shyu/Desktop/final_project_all/src/Vector2D.h
-iostream
--
+/usr/local/include/SDL2/SDL_ttf.h
+SDL.h
+/usr/local/include/SDL2/SDL.h
+begin_code.h
+/usr/local/include/SDL2/begin_code.h
+close_code.h
+/usr/local/include/SDL2/close_code.h
 

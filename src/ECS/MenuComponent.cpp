@@ -402,7 +402,7 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	SDL_Rect CutCharactrerpos[num];
 	for (int i = 0; i < num; i++)
 	{
-		CutCharactrerpos[i].x = 500;
+		CutCharactrerpos[i].x = 210;
 		CutCharactrerpos[i].y = 50;
 		CutCharactrerpos[i].w = 300;
 		CutCharactrerpos[i].h = 400;
@@ -613,11 +613,11 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 		}
 		if (picturenum < 10)
 		{
-			path[1] = "./img/fuhua/000" + to_string(picturenum) + ".bmp";
+			path[1] = "./img/Fuhua/000" + to_string(picturenum) + ".bmp";
 		}
 		else
 		{
-			path[1] = "./img/fuhua/00" + to_string(picturenum) + ".bmp";
+			path[1] = "./img/Fuhua/00" + to_string(picturenum) + ".bmp";
 		}
 		if (picturenum < 10)
 		{
