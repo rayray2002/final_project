@@ -741,15 +741,3 @@ int Menu::charactermenu(SDL_Renderer *renderer)
         }
     }
 }
-
-// int main(int argc, char *argv[])
-// {
-// 	init();
-// 	Menu menu;
-// 	menu.startmenu(renderer);
-// 	cout << menu.GetMode() << endl;
-// 	cout << menu.GetP1() << endl;
-// 	cout << menu.GetP2() << endl;
-// 	close();
-// 	return 0;
-// }
