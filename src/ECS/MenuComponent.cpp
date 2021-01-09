@@ -114,7 +114,7 @@ void Menu::Charactermenu(SDL_Renderer *renderer)
 		Firstmenu(renderer);
 		reset();
 		break;
-	case 0: /*double player*/;
+	case 0:;
 	}
 }
 
@@ -304,11 +304,11 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	font = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 60);
 	TTF_SetFontStyle(font, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
 
-	const char text1[] = "Ho";
-	const char text2[] = "Shan";
-	const char text3[] = "Shouw";
-	const char text4[] = "S";
-	const char text5[] = "Shung";
+	const char text1[] = "Kiana";
+	const char text2[] = "Rita";
+	const char text3[] = "Fuhua";
+	const char text4[] = "Mei";
+	const char text5[] = "Terisa";
 
 	menus[0] = TTF_RenderText_Solid(font, text1, color[0]);
 	menus[1] = TTF_RenderText_Solid(font, text2, color[0]);
@@ -364,15 +364,15 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	subtitle[2] = TTF_RenderText_Solid(bigfont, Subtitle3, color[0]);
 	SDL_Rect subtitlepos[3];
 	subtitlepos[0].x = 10;
-	subtitlepos[0].y = 120;
+	subtitlepos[0].y = 150;
 	subtitlepos[0].w = subtitle[0]->clip_rect.w;
 	subtitlepos[0].h = subtitle[0]->clip_rect.h;
 	subtitlepos[1].x = WIDTH - 10 - subtitle[1]->clip_rect.w;
-	subtitlepos[1].y = 120;
+	subtitlepos[1].y = 150;
 	subtitlepos[1].w = subtitle[1]->clip_rect.w;
 	subtitlepos[1].h = subtitle[1]->clip_rect.h;
 	subtitlepos[2].x = WIDTH / 2 - subtitle[2]->clip_rect.w / 2;
-	subtitlepos[2].y = 120;
+	subtitlepos[2].y = 150;
 	subtitlepos[2].w = subtitle[2]->clip_rect.w;
 	subtitlepos[2].h = subtitle[2]->clip_rect.h;
 
@@ -383,10 +383,10 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	Psurface[2] = TTF_RenderText_Solid(bigfont, text3, color[0]);
 	Psurface[3] = TTF_RenderText_Solid(bigfont, text4, color[0]);
 	Psurface[4] = TTF_RenderText_Solid(bigfont, text5, color[0]);
-	SDL_Rect P1pos, P2pos, start;
-	P1pos.y = 120;
-	P2pos.y = 120;
-	start.y = 120;
+	SDL_Rect P1pos, P2pos;
+	P1pos.y = 150;
+	P2pos.y = 150;
+	//start.y = 150;
 
 	//character picture
 	int charactersize = 200;
@@ -402,10 +402,10 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 	SDL_Rect CutCharactrerpos[num];
 	for (int i = 0; i < num; i++)
 	{
-		CutCharactrerpos[i].x = 210;
+		CutCharactrerpos[i].x = 70;
 		CutCharactrerpos[i].y = 50;
-		CutCharactrerpos[i].w = 300;
-		CutCharactrerpos[i].h = 400;
+		CutCharactrerpos[i].w = 600;
+		CutCharactrerpos[i].h = 800;
 	}
 
 	//adjustment
@@ -605,38 +605,74 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 		string path[num];
 		if (picturenum < 10)
 		{
-			path[0] = "./img/sakura/000" + to_string(picturenum) + ".bmp";
+			path[0] = "./img/Kiana/000" + to_string(picturenum) + ".bmp";
+		}
+		else if (picturenum < 100)
+		{
+			path[0] = "./img/Kiana/00" + to_string(picturenum) + ".bmp";
 		}
 		else
 		{
-			path[0] = "./img/sakura/00" + to_string(picturenum) + ".bmp";
+			path[0] = "./img/Kiana/0" + to_string(picturenum) + ".bmp";
 		}
 		if (picturenum < 10)
 		{
-			path[1] = "./img/Fuhua/000" + to_string(picturenum) + ".bmp";
+			path[1] = "./img/Rita/000" + to_string(picturenum) + ".bmp";
+		}
+		else if (picturenum < 100)
+		{
+			path[1] = "./img/Rita/00" + to_string(picturenum) + ".bmp";
 		}
 		else
 		{
-			path[1] = "./img/Fuhua/00" + to_string(picturenum) + ".bmp";
+			path[1] = "./img/Rita/0" + to_string(picturenum) + ".bmp";
 		}
 		if (picturenum < 10)
 		{
-			path[2] = "./img/mei/000" + to_string(picturenum) + ".bmp";
+			path[2] = "./img/Fuhua/000" + to_string(picturenum) + ".bmp";
+		}
+		else if (picturenum < 100)
+		{
+			path[2] = "./img/Fuhua/00" + to_string(picturenum) + ".bmp";
 		}
 		else
 		{
-			path[2] = "./img/mei/00" + to_string(picturenum) + ".bmp";
+			path[2] = "./img/Fuhua/0" + to_string(picturenum) + ".bmp";
+		}
+		if (picturenum < 10)
+		{
+			path[3] = "./img/Mei/000" + to_string(picturenum) + ".bmp";
+		}
+		else if (picturenum < 100)
+		{
+			path[3] = "./img/Mei/00" + to_string(picturenum) + ".bmp";
+		}
+		else
+		{
+			path[3] = "./img/Mei/0" + to_string(picturenum) + ".bmp";
+		}
+		if (picturenum < 10)
+		{
+			path[4] = "./img/Terisa/000" + to_string(picturenum) + ".bmp";
+		}
+		else if (picturenum < 100)
+		{
+			path[4] = "./img/Terisa/00" + to_string(picturenum) + ".bmp";
+		}
+		else
+		{
+			path[4] = "./img/Terisa/0" + to_string(picturenum) + ".bmp";
 		}
 
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < num; i++)
 		{
 			character[i] = SDL_LoadBMP(path[i].c_str());
 		}
-		character[3] = SDL_LoadBMP("./img/miku.bmp");
-		character[4] = SDL_LoadBMP("./img/miku.bmp");
+		// character[3] = SDL_LoadBMP("./img/miku.bmp");
+		// character[4] = SDL_LoadBMP("./img/miku.bmp");
 
 		picturenum++;
-		if (picturenum > 99)
+		if (picturenum > 326)
 			picturenum = 1;
 
 		//clear renderer
@@ -664,6 +700,26 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 			SDL_Texture *titletexture = SDL_CreateTextureFromSurface(renderer, title[2]);
 			SDL_RenderCopy(renderer, titletexture, NULL, &startpos);
 			SDL_DestroyTexture(titletexture);
+			if (selectedstart)
+			{
+				SDL_SetRenderDrawColor(renderer, 0, 255, 235, 255);
+			}
+			else
+			{
+				SDL_SetRenderDrawColor(renderer, 255, 223, 0, 255);
+			}
+
+			for (int i = -2; i < 3; i++)
+			{
+				//up
+				SDL_RenderDrawLine(renderer, startpos.x - 10, startpos.y + i + 10, startpos.x + startpos.w - 7, startpos.y + 10 + i);
+				//left
+				SDL_RenderDrawLine(renderer, startpos.x + i - 10, startpos.y + 8, startpos.x + i - 10, startpos.y + startpos.h - 4);
+				//down
+				SDL_RenderDrawLine(renderer, startpos.x - 10, startpos.y + startpos.h + i - 5, startpos.x + startpos.w - 7, startpos.y + startpos.h - 5 + i);
+				//right
+				SDL_RenderDrawLine(renderer, startpos.x + startpos.w + i - 7, startpos.y + 8, startpos.x + startpos.w + i - 7, startpos.y + startpos.h - 3);
+			}
 		}
 
 		SDL_Texture *subtitletexture[3];
@@ -742,3 +798,15 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 		}
 	}
 }
+
+// int main(int argc, char *argv[])
+// {
+// 	init();
+// 	Menu menu;
+// 	menu.startmenu(renderer);
+// 	cout << menu.GetMode() << endl;
+// 	cout << menu.GetP1() << endl;
+// 	cout << menu.GetP2() << endl;
+// 	close();
+// 	return 0;
+// }
