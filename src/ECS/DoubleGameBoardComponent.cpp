@@ -341,24 +341,30 @@ void DoubleGameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos, int side)
 
 void DoubleGameBoardComponent::Swap(unit &a, unit &b)
 {
+	cout << "SWAP1" << endl;
 	unit *t;
 	t = new unit;
 	t->isActive = a.isActive;
 	t->isMoving = a.isMoving;
 	t->texture = a.texture;
 	t->color = a.color;
+	cout << "SWAP2" << endl;
 
 	a.isMoving = b.isMoving;
 	a.isActive = b.isActive;
 	a.texture = b.texture;
 	a.color = b.color;
+	cout << "SWAP3" << endl;
 
 	b.isMoving = t->isMoving;
 	b.isActive = t->isActive;
 	b.texture = t->texture;
 	b.color = t->color;
+	cout << "SWAP4" << endl;
 
 	delete t;
+	t = NULL;
+	SDL_Delay(1);
 }
 
 void DoubleGameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2, int side)
