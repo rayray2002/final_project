@@ -26,7 +26,33 @@ void DoubleGameBoardComponent::init2()
 
 void DoubleGameBoardComponent::update()
 {
-
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			cout << gameboard1.UnitArray[i][j].color << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			cout << gameboard1.UnitArray[i][j].isMoving << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 6; j++)
+		{
+			cout << gameboard1.UnitArray[i][j].isActive << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 	static int time = SDL_GetTicks();
 	if (SDL_GetTicks() - time >= 5000)
 	{
@@ -341,8 +367,7 @@ void DoubleGameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos, int side)
 
 void DoubleGameBoardComponent::Swap(unit &a, unit &b)
 {
-	cout << "SWAP1" << endl;
-	unit *t;
+	static unit *t;
 	t = new unit;
 	t->isActive = a.isActive;
 	t->isMoving = a.isMoving;
@@ -361,31 +386,42 @@ void DoubleGameBoardComponent::Swap(unit &a, unit &b)
 	b.texture = t->texture;
 	b.color = t->color;
 	cout << "SWAP4" << endl;
-
 	delete t;
 	t = NULL;
 	SDL_Delay(1);
+	cout << "SWAP5" << endl;
 }
 
 void DoubleGameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2, int side)
 {
+	// cout << "1111111111111111111111111" << endl;
+
+	cout << x1 << "," << y1 << endl;
+	cout << x2 << "," << y2 << endl;
 	if (side == 1)
 		Swap(gameboard1.UnitArray[y1][x1], gameboard1.UnitArray[y2][x2]);
 	if (side == 2)
 		Swap(gameboard2.UnitArray[y1][x1], gameboard2.UnitArray[y2][x2]);
+	// cout << "1111111111111111111111111" << endl;
 }
 
-void DoubleGameBoardComponent::SwapTwoUnit(unit &u1, unit &u2, int side)
+void DoubleGameBoardComponent::SwapTwoUnit(unit u1, unit u2, int side)
 {
-	if (side == 1)
-		Swap(gameboard1.UnitArray[(int)u1.mapPosition.y][(int)u1.mapPosition.x], gameboard1.UnitArray[(int)u2.mapPosition.y][(int)u2.mapPosition.x]);
-	if (side == 2)
-		Swap(gameboard2.UnitArray[(int)u1.mapPosition.y][(int)u1.mapPosition.x], gameboard2.UnitArray[(int)u2.mapPosition.y][(int)u2.mapPosition.x]);
-	// SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y, side);
+	// cout << "222222222222222222222222" << endl;
+
+	// if (side == 1)
+	// 	Swap(gameboard1.UnitArray[(int)u1.mapPosition.y][(int)u1.mapPosition.x], gameboard1.UnitArray[(int)u2.mapPosition.y][(int)u2.mapPosition.x]);
+	// if (side == 2)
+	// 	Swap(gameboard2.UnitArray[(int)u1.mapPosition.y][(int)u1.mapPosition.x], gameboard2.UnitArray[(int)u2.mapPosition.y][(int)u2.mapPosition.x]);
+
+	SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y, side);
+	cout << u1.mapPosition.x << "," << u1.mapPosition.y << "," << u2.mapPosition.x << "," << u2.mapPosition.y << "p" << endl;
+	// cout << "222222222222222222222222" << endl;
 }
 
 void DoubleGameBoardComponent::InitializeRandomUnitOnTop(int topx, int side)
 {
+	cout << "INIT" << endl;
 	Color tmpColor;
 	switch (rand() % 3)
 	{
@@ -443,6 +479,7 @@ void DoubleGameBoardComponent::InitializeRandomUnitOnTop(int topx, int side)
 			InitializeRainbowUnitOnTop(3, 2);
 		}
 	}
+	cout << "INIT END" << endl;
 }
 
 void DoubleGameBoardComponent::InitializeRainbowUnitOnTop(int topx, int side)
@@ -488,6 +525,7 @@ bool DoubleGameBoardComponent::AnyThingMoving(int side)
 
 void DoubleGameBoardComponent::Move(int side)
 {
+	cout << "move";
 	if (side == 2)
 	{
 		if (Game::event.type == SDL_KEYDOWN)
@@ -498,6 +536,7 @@ void DoubleGameBoardComponent::Move(int side)
 				for (int i = 11; i >= 0; i--) // start from 11 to 0
 					for (int j = 0; j < 6; j++)
 					{
+						cout << "e" << endl;
 						if (gameboard2.UnitArray[i][j].isMoving && gameboard2.UnitArray[i + 1][j].color == Empty)
 							SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i + 1][j], 2);
 					}
@@ -506,6 +545,7 @@ void DoubleGameBoardComponent::Move(int side)
 				for (int i = 0; i < 13; i++)
 					for (int j = 1; j < 6; j++) // start from 1
 					{
+						cout << "f" << endl;
 						if (gameboard2.UnitArray[i][j].isMoving && gameboard2.UnitArray[i][j - 1].color == Empty)
 							SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i][j - 1], 2);
 					}
@@ -514,6 +554,7 @@ void DoubleGameBoardComponent::Move(int side)
 				for (int i = 0; i < 13; i++)
 					for (int j = 4; j >= 0; j--) // end at 0
 					{
+						cout << "g" << endl;
 						if (gameboard2.UnitArray[i][j].isMoving && gameboard2.UnitArray[i][j + 1].color == Empty)
 							SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i][j + 1], 2);
 					}
@@ -542,6 +583,7 @@ void DoubleGameBoardComponent::Move(int side)
 				for (int i = 11; i >= 0; i--) // start from 11 to 0
 					for (int j = 0; j < 6; j++)
 					{
+						cout << "h" << endl;
 						if (gameboard1.UnitArray[i][j].isMoving && gameboard1.UnitArray[i + 1][j].color == Empty)
 							SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i + 1][j], 1);
 					}
@@ -550,6 +592,7 @@ void DoubleGameBoardComponent::Move(int side)
 				for (int i = 0; i < 13; i++)
 					for (int j = 1; j < 6; j++) // start from 1
 					{
+						cout << "i" << endl;
 						if (gameboard1.UnitArray[i][j].isMoving && gameboard1.UnitArray[i][j - 1].color == Empty)
 							SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i][j - 1], 1);
 					}
@@ -558,6 +601,7 @@ void DoubleGameBoardComponent::Move(int side)
 				for (int i = 0; i < 13; i++)
 					for (int j = 4; j >= 0; j--) // end at 0
 					{
+						cout << "j" << endl;
 						if (gameboard1.UnitArray[i][j].isMoving && gameboard1.UnitArray[i][j + 1].color == Empty)
 							SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i][j + 1], 1);
 					}
@@ -581,14 +625,17 @@ void DoubleGameBoardComponent::Move(int side)
 
 void DoubleGameBoardComponent::MoveDown(int side)
 {
+	cout << "movedown";
 	if (side == 1)
 	{
 		static int ii = 0;
 		if (ii == 30)
 		{
+			//cout << "z\n";
 			// SDL_Delay(500);
 			for (int i = 11; i >= 0; i--)
 				for (int j = 0; j < 6; j++)
+
 					if (gameboard1.UnitArray[i][j].color != Empty && gameboard1.UnitArray[i + 1][j].color == Empty)
 						SwapTwoUnit(gameboard1.UnitArray[i][j], gameboard1.UnitArray[i + 1][j], 1);
 			ii = 0;
@@ -600,9 +647,11 @@ void DoubleGameBoardComponent::MoveDown(int side)
 		static int ii = 0;
 		if (ii == 30)
 		{
+			cout << "z\n";
 			// SDL_Delay(500);
 			for (int i = 11; i >= 0; i--)
 				for (int j = 0; j < 6; j++)
+
 					if (gameboard2.UnitArray[i][j].color != Empty && gameboard2.UnitArray[i + 1][j].color == Empty)
 						SwapTwoUnit(gameboard2.UnitArray[i][j], gameboard2.UnitArray[i + 1][j], 2);
 			ii = 0;
@@ -680,7 +729,7 @@ void DoubleGameBoardComponent::GetMovingPair(int side)
 				if (gameboard1.UnitArray[i][j].isMoving)
 				{
 					MovingPair1[n] = gameboard1.UnitArray[i][j];
-					n++;
+					++n;
 				}
 			}
 	}
@@ -695,7 +744,7 @@ void DoubleGameBoardComponent::GetMovingPair(int side)
 				if (gameboard2.UnitArray[i][j].isMoving)
 				{
 					MovingPair2[n] = gameboard2.UnitArray[i][j];
-					n++;
+					++n;
 				}
 			}
 	}
@@ -747,6 +796,7 @@ void DoubleGameBoardComponent::UpdateMovingPairLastestVersion(int side)
 
 void DoubleGameBoardComponent::SpaceAction(int side)
 {
+	cout << "space";
 	UpdateBoardMovingState(side);
 	UpdateMovingPairLastestVersion(side);
 	if (side == 1)
@@ -764,6 +814,17 @@ void DoubleGameBoardComponent::SpaceAction(int side)
 						gameboard1.UnitArray[i][j].color == Empty)
 						p2yd = gameboard1.UnitArray[i][j].mapPosition.y;
 				}
+		else if (MovingPairState1 == UP_AND_DOWN)
+		{
+			for (int i = 0; i < 13; i++)
+				for (int j = 0; j < 6; j++)
+				{
+					if (gameboard1.UnitArray[i][j].mapPosition.x == MovingPair1[1].mapPosition.x &&
+						gameboard1.UnitArray[i][j].color == Empty)
+						p2yd = gameboard1.UnitArray[i][j].mapPosition.y;
+					p1yd = p2yd - 1;
+				}
+		}
 		SwapTwoUnit(MovingPair1[0], gameboard1.UnitArray[p1yd][(int)MovingPair1[0].mapPosition.x], 1);
 		SwapTwoUnit(MovingPair1[1], gameboard1.UnitArray[p2yd][(int)MovingPair1[1].mapPosition.x], 1);
 	}
@@ -771,25 +832,38 @@ void DoubleGameBoardComponent::SpaceAction(int side)
 	{
 		int p1yd;
 		int p2yd;
+		cout << "z\n";
 		if (MovingPairState2 == RIGHT_AND_LEFT)
 			for (int i = 0; i < 13; i++)
 				for (int j = 0; j < 6; j++)
 				{
 					if (gameboard2.UnitArray[i][j].mapPosition.x == MovingPair2[0].mapPosition.x &&
 						gameboard2.UnitArray[i][j].color == Empty)
-						p1yd = gameboard1.UnitArray[i][j].mapPosition.y;
+						p1yd = gameboard2.UnitArray[i][j].mapPosition.y;
 					if (gameboard2.UnitArray[i][j].mapPosition.x == MovingPair2[1].mapPosition.x &&
 						gameboard2.UnitArray[i][j].color == Empty)
 						p2yd = gameboard2.UnitArray[i][j].mapPosition.y;
 				}
-		SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[p1yd][(int)MovingPair2[0].mapPosition.x], 2);
+		else if (MovingPairState2 == UP_AND_DOWN)
+		{
+			for (int i = 0; i < 13; i++)
+				for (int j = 0; j < 6; j++)
+				{
+					if (gameboard2.UnitArray[i][j].mapPosition.x == MovingPair2[1].mapPosition.x &&
+						gameboard2.UnitArray[i][j].color == Empty)
+						p2yd = gameboard2.UnitArray[i][j].mapPosition.y;
+					p1yd = p2yd - 1;
+				}
+		}
 		SwapTwoUnit(MovingPair2[1], gameboard2.UnitArray[p2yd][(int)MovingPair2[1].mapPosition.x], 2);
+		SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[p1yd][(int)MovingPair2[0].mapPosition.x], 2);
 	}
 	SDL_Delay(1);
 }
 
 void DoubleGameBoardComponent::Spin(int side)
 {
+	cout << "spin";
 	UpdateBoardMovingState(side);
 	UpdateMovingPairLastestVersion(side);
 	if (side == 1)

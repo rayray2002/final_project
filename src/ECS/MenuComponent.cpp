@@ -60,23 +60,13 @@ void Menu::startvideo(SDL_Renderer *renderer)
                 }
             }
         }
-        if (startnum < 10)
-        {
-            path = "./img/start/000" + to_string(startnum) + ".bmp";
-        }
-        else if (startnum < 100)
-        {
-            path = "./img/start/00" + to_string(startnum) + ".bmp";
-        }
-        else
-        {
-            path = "./img/start/0" + to_string(startnum) + ".bmp";
-        }
+        path = "./img/cytus/" + to_string(startnum) + ".bmp";
+
         start = SDL_LoadBMP(path.c_str());
         startnum++;
-        if (startnum == 23)
-            startnum = 63;
-        if (startnum == 169)
+        if (startnum == 118)
+            startnum = 268;
+        if (startnum == 419)
             stop = true;
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, start);
         SDL_RenderCopy(renderer, texture, NULL, NULL);
@@ -84,10 +74,10 @@ void Menu::startvideo(SDL_Renderer *renderer)
         SDL_RenderPresent(renderer);
         if (startnum <= 22)
         {
-            SDL_Delay(105);
+            SDL_Delay(35);
         }
         else
-            SDL_Delay(70);
+            SDL_Delay(35);
         SDL_FreeSurface(start);
     }
 }
@@ -180,12 +170,7 @@ int Menu::firstmenu(SDL_Renderer *renderer)
     SDL_Event event;
     while (1)
     {
-        //string path="./img/miku/000"+to_string(z)+".bmp";
-        string path;
-        if (z < 10)
-            path = "./img/miku/000" + to_string(z) + ".bmp";
-        else
-            path = "./img/miku/00" + to_string(z) + ".bmp";
+        string path = "./img/background/" + to_string(z) + ".bmp";
         img = SDL_LoadBMP(path.c_str());
 
         SDL_RenderClear(renderer);
@@ -194,13 +179,9 @@ int Menu::firstmenu(SDL_Renderer *renderer)
         SDL_Texture *bgtexture = SDL_CreateTextureFromSurface(renderer, img);
         SDL_RenderCopy(renderer, bgtexture, NULL, &bgpos);
         SDL_DestroyTexture(bgtexture);
-        //SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-
-        //SDL_BlitSurface(img,NULL,screen,&bgpos);
         z++;
-        if (z > 54)
+        if (z > 3600)
             z = 0;
-        //time = SDL_GetTicks();
         while (SDL_PollEvent(&event))
         {
             switch (event.type)
@@ -279,19 +260,13 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
         SDL_RenderPresent(renderer);
 
-        SDL_Delay(70);
+        SDL_Delay(17);
         SDL_FreeSurface(img);
-        //SDL_FreeSurface(screen);
-        //		if (1000 / 30 > (SDL_GetTicks() - time)) {
-        //			SDL_Delay(1000 / 30 - (SDL_GetTicks() - time));
-        //		}
     }
 }
 
 int Menu::charactermenu(SDL_Renderer *renderer)
 {
-    //SDL_Surface *screen = SDL_GetWindowSurface(window);
-    //SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
     Uint32 time;
     int picturenum = 0, bgnum = 0;
     int x = 0, y = 0;
@@ -386,7 +361,6 @@ int Menu::charactermenu(SDL_Renderer *renderer)
     SDL_Rect P1pos, P2pos;
     P1pos.y = 150;
     P2pos.y = 150;
-    //start.y = 150;
 
     //character picture
     int charactersize = 200;
@@ -572,7 +546,7 @@ int Menu::charactermenu(SDL_Renderer *renderer)
                             }
                         }
                     }
-                    if (x >= startpos.x && x <= startpos.x + startpos.w && y >= startpos.y && y <= startpos.y + startpos.h)
+                    if (x >= startpos.x && x <= startpos.x + startpos.w && y >= startpos.y && y <= startpos.y + startpos.h && P1 != -1 && P2 != -1)
                     {
 
                         return 100;
@@ -583,23 +557,11 @@ int Menu::charactermenu(SDL_Renderer *renderer)
             }
         }
         SDL_Surface *bgimg;
-        string bgpath;
-        if (bgnum < 10)
-        {
-            bgpath = "./img/opendoor/000" + to_string(bgnum) + ".bmp";
-        }
-        else if (bgnum < 100)
-        {
-            bgpath = "./img/opendoor/00" + to_string(bgnum) + ".bmp";
-        }
-        else
-        {
-            bgpath = "./img/opendoor/0" + to_string(bgnum) + ".bmp";
-        }
+        string bgpath = "./img/video/" + to_string(bgnum) + ".bmp";
         bgimg = SDL_LoadBMP(bgpath.c_str());
         bgnum++;
-        if (bgnum > 61)
-            bgnum = 1;
+        if (bgnum > 501)
+            bgnum = 0;
 
         SDL_Surface *character[num];
         string path[num];
@@ -668,8 +630,6 @@ int Menu::charactermenu(SDL_Renderer *renderer)
         {
             character[i] = SDL_LoadBMP(path[i].c_str());
         }
-        // character[3] = SDL_LoadBMP("./img/miku.bmp");
-        // character[4] = SDL_LoadBMP("./img/miku.bmp");
 
         picturenum++;
         if (picturenum > 326)
@@ -743,10 +703,6 @@ int Menu::charactermenu(SDL_Renderer *renderer)
             SDL_RenderCopy(renderer, P2texture, NULL, &P2pos);
             SDL_DestroyTexture(P2texture);
         }
-
-        //		for(int i=0;i<num;i++){
-        //			SDL_BlitSurface(character[i],NULL,screen,&characterpos[i]);
-        //		}
         SDL_Texture *menutexture[5];
         for (int i = 0; i < num; i++)
         {
@@ -768,9 +724,6 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 
             SDL_RenderFillRect(renderer, &columnpos[i]);
         }
-        // SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
-        // SDL_RenderCopy(renderer, texture, NULL, NULL);
-        // SDL_DestroyTexture(texture);
 
         SDL_Texture *charactertexture[num];
         for (int i = 0; i < num; i++)
@@ -780,17 +733,7 @@ int Menu::charactermenu(SDL_Renderer *renderer)
             SDL_DestroyTexture(charactertexture[i]);
         }
         SDL_RenderPresent(renderer);
-
-        //SDL_UpdateWindowSurface(window);
-
-        // make more smooth
-        // if (1000 / 30 > (SDL_GetTicks() - time))
-        // {
-        // 	SDL_Delay(1000 / 30 - (SDL_GetTicks() - time));
-        // }
-
         SDL_Delay(20);
-
         SDL_FreeSurface(bgimg);
         for (int i = 0; i < num; i++)
         {

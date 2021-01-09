@@ -25,8 +25,9 @@ menu:
             goto menu;
         game->handleEveants();
         game->update();
+        // int a = SDL_GetTicks();
         game->render();
-
+        // cout << SDL_GetTicks() - a << endl;
         frameTime = SDL_GetTicks() - frameStart;
 
         if (frameDelay > frameTime)

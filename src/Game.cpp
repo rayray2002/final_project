@@ -117,11 +117,13 @@ void Game::handleEveants()
 
 void Game::update()
 {
-	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 1000 ||
-		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 1000)
+	cout << "123" << endl;
+	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 10000 ||
+		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 10000)
 	{
 		stop = true;
 	}
+	cout << "456" << endl;
 
 	if (stop)
 	{
@@ -137,12 +139,14 @@ void Game::update()
 		SDL_RenderClear(Game::renderer);
 		isRunning = false;
 	}
+	cout << "789" << endl;
 	manager.refresh();
+	cout << "987" << endl;
 	for (auto &b : backs)
 	{
 		b->getComponent<BackGroundComponent>().update();
 	}
-
+	cout << "654" << endl;
 	if (!stop)
 	{
 		if (playerNumber == 2)
@@ -165,6 +169,7 @@ void Game::update()
 			}
 		}
 	}
+	cout << "321" << endl;
 }
 
 void Game::render()

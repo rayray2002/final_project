@@ -56,7 +56,7 @@ public:
 	void ReSetZeroUnit(int &xpos, int &ypos, int side);			// set default unit
 	void ReSetAllArrayZero(int side);							// reset gameboard
 	void SwapTwoUnit(int x1, int y1, int x2, int y2, int side); // pass position to swap
-	void SwapTwoUnit(unit &u1, unit &u2, int side);				// pass unit to swap
+	void SwapTwoUnit(unit u1, unit u2, int side);				// pass unit to swap
 	void InitializeRandomUnitOnTop(int topx, int side);			// set new unit
 	void InitializeRainbowUnitOnTop(int topx, int side);		// set new unit
 	void UpdateBoardMovingState(int side);						// set moving state
