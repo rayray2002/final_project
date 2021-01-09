@@ -103,6 +103,8 @@ public:
 	void init2();
 
 	void chaining(int side);
+
+	void getstop();
 };
 
 #endif

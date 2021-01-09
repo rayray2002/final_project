@@ -93,9 +93,7 @@ void DoubleGameBoardComponent::update()
 		// 	 << gameboard2 << endl;
 		if (!gameboard2.falling)
 		{
-			cout << "chaining 2 start" << endl;
 			chaining(2);
-			cout << "chaining 2 end" << endl;
 			if (isChanged2)
 			{
 				gameboard2.falling = true;
@@ -105,14 +103,11 @@ void DoubleGameBoardComponent::update()
 				init2();
 				gameboard2.reset();
 			}
-			cout << "oK" << endl;
 		}
 		else
 		{
-			cout << "Move d s" << endl;
 			MoveDown(2);
 			gameboard2.falling = false;
-			cout << "Move d e" << endl;
 		}
 	}
 	else
@@ -164,6 +159,7 @@ void DoubleGameBoardComponent::update()
 		}
 	ch1skilled = false;
 	ch2skilled = false;
+	getstop();
 }
 
 void DoubleGameBoardComponent::chaining(int side)
@@ -345,16 +341,24 @@ void DoubleGameBoardComponent::ReSetZeroUnit(int &xpos, int &ypos, int side)
 
 void DoubleGameBoardComponent::Swap(unit &a, unit &b)
 {
-	unit t = a;
+	unit *t;
+	t = new unit;
+	t->isActive = a.isActive;
+	t->isMoving = a.isMoving;
+	t->texture = a.texture;
+	t->color = a.color;
+
 	a.isMoving = b.isMoving;
 	a.isActive = b.isActive;
 	a.texture = b.texture;
 	a.color = b.color;
 
-	b.isMoving = t.isMoving;
-	b.isActive = t.isActive;
-	b.texture = t.texture;
-	b.color = t.color;
+	b.isMoving = t->isMoving;
+	b.isActive = t->isActive;
+	b.texture = t->texture;
+	b.color = t->color;
+
+	delete t;
 }
 
 void DoubleGameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2, int side)
@@ -367,7 +371,11 @@ void DoubleGameBoardComponent::SwapTwoUnit(int x1, int y1, int x2, int y2, int s
 
 void DoubleGameBoardComponent::SwapTwoUnit(unit &u1, unit &u2, int side)
 {
-	SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y, side);
+	if (side == 1)
+		Swap(gameboard1.UnitArray[(int)u1.mapPosition.y][(int)u1.mapPosition.x], gameboard1.UnitArray[(int)u2.mapPosition.y][(int)u2.mapPosition.x]);
+	if (side == 2)
+		Swap(gameboard2.UnitArray[(int)u1.mapPosition.y][(int)u1.mapPosition.x], gameboard2.UnitArray[(int)u2.mapPosition.y][(int)u2.mapPosition.x]);
+	// SwapTwoUnit(u1.mapPosition.x, u1.mapPosition.y, u2.mapPosition.x, u2.mapPosition.y, side);
 }
 
 void DoubleGameBoardComponent::InitializeRandomUnitOnTop(int topx, int side)
@@ -562,6 +570,7 @@ void DoubleGameBoardComponent::Move(int side)
 			}
 		}
 	}
+	SDL_Delay(1);
 }
 
 void DoubleGameBoardComponent::MoveDown(int side)
@@ -770,6 +779,7 @@ void DoubleGameBoardComponent::SpaceAction(int side)
 		SwapTwoUnit(MovingPair2[0], gameboard2.UnitArray[p1yd][(int)MovingPair2[0].mapPosition.x], 2);
 		SwapTwoUnit(MovingPair2[1], gameboard2.UnitArray[p2yd][(int)MovingPair2[1].mapPosition.x], 2);
 	}
+	SDL_Delay(1);
 }
 
 void DoubleGameBoardComponent::Spin(int side)
@@ -1046,4 +1056,17 @@ void DoubleGameBoardComponent::showScore()
 	SDL_RenderCopy(Game::renderer, texttexture2, NULL, &textrec2);
 	SDL_DestroyTexture(texttexture2);
 	TTF_CloseFont(font2);
+}
+
+void DoubleGameBoardComponent::getstop()
+{
+	SDL_Event e;
+	if (e.type == SDL_MOUSEMOTION)
+	{
+		if (e.motion.x > 640 - 100 && e.motion.x < 640 + 100 &&
+			e.motion.y > 35 && e.motion.y < 135)
+		{
+			cout << "Mouse Motion" << endl;
+		}
+	}
 }

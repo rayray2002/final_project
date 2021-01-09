@@ -117,9 +117,28 @@ void Game::handleEveants()
 
 void Game::update()
 {
+	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 2000 ||
+		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 2000)
+	{
+		stop = true;
+	}
 
+	if (stop)
+	{
+		SDL_Texture *t;
+		TextureManager::LoadTexture("./img/banana.bmp");
+		SDL_Rect r;
+		r.x = 0;
+		r.y = 0;
+		r.h = 720;
+		r.w = 1280;
+		TextureManager::Draw(t, r, r);
+		SDL_RenderPresent(Game::renderer);
+		SDL_RenderClear(Game::renderer);
+		SDL_Delay(5000);
+		isRunning = false;
+	}
 	manager.refresh();
-	// manager.update();
 	for (auto &b : backs)
 	{
 		b->getComponent<BackGroundComponent>().update();
@@ -271,6 +290,15 @@ void Game::render()
 			}
 		}
 	}
+	// SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+	// // SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_BLEND);
+	// SDL_Rect rec1;
+	// rec1.x = 640 - 100;
+	// rec1.y = 35;
+	// rec1.h = 100;
+	// rec1.w = 200;
+	// SDL_RenderDrawRect(Game::renderer, &rec1);
+	// SDL_RenderFillRect(Game::renderer, &rec1);
 
 	SDL_RenderPresent(Game::renderer);
 	SDL_RenderClear(Game::renderer);
