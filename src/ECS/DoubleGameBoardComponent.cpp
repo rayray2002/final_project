@@ -71,17 +71,17 @@ void DoubleGameBoardComponent::update()
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
 	static int ii = 0;
-	if (ii == 5)
+	if (ii == 1)
 	{
 		if (!gameboard2.falling)
 			Move(2);
+		if (!gameboard1.falling)
+			Move(1);
 		ii = 0;
 	}
 	ii++;
-	if (!gameboard1.falling)
-		Move(1);
 
-	UpdateBoardMovingState(1);
+		UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
 	// int iiii = SDL_GetTicks();
 
@@ -219,23 +219,24 @@ void DoubleGameBoardComponent::draw()
 					tmpSurface = SDL_LoadBMP("./img/padoru1.bmp");
 					break;
 				case Red:
-					tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
+					tmpSurface = IMG_Load("./img/sample_red.png");
 					break;
 				case Green:
-					tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
+					tmpSurface = IMG_Load("./img/sample_green.png");
 					break;
 				case Yellow:
-					tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
+					tmpSurface = IMG_Load("./img/sample_yellow.png");
 					break;
 				case Purple:
 					tmpSurface = SDL_LoadBMP("./img/PP.bmp");
 					break;
 				case Blue:
-					tmpSurface = SDL_LoadBMP("./img/sample_blue.bmp");
+					tmpSurface = IMG_Load("./img/sample_blue.bmp");
 					break;
 				default:
 					tmpSurface = SDL_LoadBMP("./img/banana.bmp");
 				}
+
 				gameboard1.UnitArray[i][j].texture = SDL_CreateTextureFromSurface(Game::renderer, tmpSurface);
 				SDL_FreeSurface(tmpSurface);
 				if (gameboard1.UnitArray[i][j].color != Empty)
@@ -260,13 +261,13 @@ void DoubleGameBoardComponent::draw()
 					tmpSurface = SDL_LoadBMP("./img/padoru1.bmp");
 					break;
 				case Red:
-					tmpSurface = SDL_LoadBMP("./img/sample_red.bmp");
+					tmpSurface = IMG_Load("./img/sample_red.png");
 					break;
 				case Green:
-					tmpSurface = SDL_LoadBMP("./img/sample_green.bmp");
+					tmpSurface = IMG_Load("./img/sample_green.png");
 					break;
 				case Yellow:
-					tmpSurface = SDL_LoadBMP("./img/sample_yellow.bmp");
+					tmpSurface = IMG_Load("./img/sample_yellow.png");
 					break;
 				case Purple:
 					tmpSurface = SDL_LoadBMP("./img/PP.bmp");
