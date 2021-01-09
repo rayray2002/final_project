@@ -23,6 +23,8 @@ class Game
 private:
     SDL_Window *window;
     bool stop;
+    int P1;
+    int P2;
 
 public:
     Game();
@@ -44,6 +46,9 @@ public:
 
     static SDL_Renderer *renderer;
     static SDL_Event event;
+
+    void getP1(int p);
+    void getP2(int p);
 
     enum groupLabels : std::size_t
     {

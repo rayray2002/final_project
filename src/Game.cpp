@@ -107,9 +107,6 @@ void Game::handleEveants()
 	case SDL_QUIT:
 		isRunning = false;
 		break;
-	case SDLK_SPACE:
-		isRunning = false;
-		break;
 	default:
 		break;
 	}
@@ -117,13 +114,11 @@ void Game::handleEveants()
 
 void Game::update()
 {
-	cout << "123" << endl;
 	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 10000 ||
 		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 10000)
 	{
 		stop = true;
 	}
-	cout << "456" << endl;
 
 	if (stop)
 	{
@@ -139,14 +134,11 @@ void Game::update()
 		SDL_RenderClear(Game::renderer);
 		isRunning = false;
 	}
-	cout << "789" << endl;
 	manager.refresh();
-	cout << "987" << endl;
 	for (auto &b : backs)
 	{
 		b->getComponent<BackGroundComponent>().update();
 	}
-	cout << "654" << endl;
 	if (!stop)
 	{
 		if (playerNumber == 2)
@@ -169,7 +161,6 @@ void Game::update()
 			}
 		}
 	}
-	cout << "321" << endl;
 }
 
 void Game::render()
@@ -248,10 +239,10 @@ void Game::render()
 				b->getComponent<DoubleGameBoardComponent>().draw();
 			}
 
-			for (auto &b : buttoms)
-			{
-				b->getComponent<ButtomComponent>().draw();
-			}
+			// for (auto &b : buttoms)
+			// {
+			// 	b->getComponent<ButtomComponent>().draw();
+			// }
 		}
 		else if (playerNumber == 1)
 		{
@@ -294,15 +285,104 @@ void Game::render()
 			}
 		}
 	}
-	// SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
-	// // SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_BLEND);
-	// SDL_Rect rec1;
-	// rec1.x = 640 - 100;
-	// rec1.y = 35;
-	// rec1.h = 100;
-	// rec1.w = 200;
-	// SDL_RenderDrawRect(Game::renderer, &rec1);
-	// SDL_RenderFillRect(Game::renderer, &rec1);
+
+	static int picturenum = 0;
+	SDL_Surface *character1;
+	SDL_Surface *character2;
+	string path[5];
+	if (picturenum < 10)
+	{
+		path[0] = "./img/Kiana/000" + to_string(picturenum) + ".bmp";
+	}
+	else if (picturenum < 100)
+	{
+		path[0] = "./img/Kiana/00" + to_string(picturenum) + ".bmp";
+	}
+	else
+	{
+		path[0] = "./img/Kiana/0" + to_string(picturenum) + ".bmp";
+	}
+	if (picturenum < 10)
+	{
+		path[1] = "./img/Rita/000" + to_string(picturenum) + ".bmp";
+	}
+	else if (picturenum < 100)
+	{
+		path[1] = "./img/Rita/00" + to_string(picturenum) + ".bmp";
+	}
+	else
+	{
+		path[1] = "./img/Rita/0" + to_string(picturenum) + ".bmp";
+	}
+	if (picturenum < 10)
+	{
+		path[2] = "./img/Fuhua/000" + to_string(picturenum) + ".bmp";
+	}
+	else if (picturenum < 100)
+	{
+		path[2] = "./img/Fuhua/00" + to_string(picturenum) + ".bmp";
+	}
+	else
+	{
+		path[2] = "./img/Fuhua/0" + to_string(picturenum) + ".bmp";
+	}
+	if (picturenum < 10)
+	{
+		path[3] = "./img/Mei/000" + to_string(picturenum) + ".bmp";
+	}
+	else if (picturenum < 100)
+	{
+		path[3] = "./img/Mei/00" + to_string(picturenum) + ".bmp";
+	}
+	else
+	{
+		path[3] = "./img/Mei/0" + to_string(picturenum) + ".bmp";
+	}
+	if (picturenum < 10)
+	{
+		path[4] = "./img/Terisa/000" + to_string(picturenum) + ".bmp";
+	}
+	else if (picturenum < 100)
+	{
+		path[4] = "./img/Terisa/00" + to_string(picturenum) + ".bmp";
+	}
+	else
+	{
+		path[4] = "./img/Terisa/0" + to_string(picturenum) + ".bmp";
+	}
+	character1 = SDL_LoadBMP(path[P1].c_str());
+	character2 = SDL_LoadBMP(path[P2].c_str());
+	picturenum++;
+	if (picturenum > 326)
+		picturenum = 1;
+	SDL_Texture *character1t = SDL_CreateTextureFromSurface(Game::renderer, character1);
+	SDL_Texture *character2t = SDL_CreateTextureFromSurface(Game::renderer, character2);
+	SDL_FreeSurface(character1);
+	SDL_FreeSurface(character2);
+	SDL_Rect r1;
+	r1.x = 440;
+	r1.y = 35;
+	r1.h = 200;
+	r1.w = 130;
+	SDL_Rect r2;
+	r2.x = 710;
+	r2.y = 35;
+	r2.h = 200;
+	r2.w = 130;
+	SDL_Rect rr1;
+	rr1.x = 260;
+	rr1.y = 80;
+	rr1.h = 300;
+	rr1.w = 200;
+	SDL_Rect rr2;
+	rr2.x = 260;
+	rr2.y = 80;
+	rr2.h = 300;
+	rr2.w = 200;
+	SDL_RenderCopy(Game::renderer, character1t, &rr1, &r1);
+	SDL_RenderCopy(Game::renderer, character2t, &rr2, &r2);
+	SDL_DestroyTexture(character1t);
+	SDL_DestroyTexture(character2t);
 
 	SDL_RenderPresent(Game::renderer);
 	SDL_RenderClear(Game::renderer);
@@ -390,4 +470,13 @@ void Game::MusicPlay(const char *Music, int volume)
 	Mix_PlayMusic(music, -1);
 
 	cout << "Music Loaded!\n";
+}
+
+void Game::getP1(int p)
+{
+	P1 = p;
+}
+void Game::getP2(int p)
+{
+	P2 = p;
 }

@@ -48,14 +48,6 @@ TextButtomComponent.h
 DoubleGameBoardComponent.h
 /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
 
-/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.cpp
-DoubleGameBoardComponent.h
-/home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
-../Game.h
-/home/shyu/Desktop/final_project_all/src/Game.h
-SDL.h
--
-
 /home/shyu/Desktop/final_project_all/src/ECS/DoubleGameBoardComponent.h
 SDL.h
 -
@@ -133,6 +125,14 @@ ECS.h
 /home/shyu/Desktop/final_project_all/src/ECS/ECS.h
 map
 -
+
+/home/shyu/Desktop/final_project_all/src/Game.cpp
+Game.h
+/home/shyu/Desktop/final_project_all/src/Game.h
+ECS/Components.h
+/home/shyu/Desktop/final_project_all/src/ECS/Components.h
+TextureManager.h
+/home/shyu/Desktop/final_project_all/src/TextureManager.h
 
 /home/shyu/Desktop/final_project_all/src/Game.h
 SDL.h

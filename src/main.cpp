@@ -15,22 +15,20 @@ int main(int argc, char *argv[])
     game = new Game();
 
     game->init("The Seed", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
-menu:
     game->menu.startmenu(Game::renderer);
     game->playerNumber = game->menu.GetMode();
+    game->getP1(game->menu.GetP1());
+    game->getP2(game->menu.GetP2());
 
     while (game->running())
     {
         frameStart = SDL_GetTicks();
-        if (!game->isRunning)
-            goto menu;
+
         game->handleEveants();
         game->update();
-        // int a = SDL_GetTicks();
         game->render();
-        // cout << SDL_GetTicks() - a << endl;
-        frameTime = SDL_GetTicks() - frameStart;
 
+        frameTime = SDL_GetTicks() - frameStart;
         if (frameDelay > frameTime)
         {
             SDL_Delay(frameDelay - frameTime);

@@ -251,7 +251,6 @@ bool GameBoard::update()
 			}
 		}
 	}
-	cout << 2 << endl;
 
 	if (!to_remove.empty())
 	{
