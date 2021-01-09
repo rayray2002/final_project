@@ -108,7 +108,6 @@ void Menu::Firstmenu(SDL_Renderer *renderer)
 
 void Menu::Charactermenu(SDL_Renderer *renderer)
 {
-<<<<<<< HEAD
     switch (charactermenu(renderer))
     {
     case -1:
@@ -117,16 +116,6 @@ void Menu::Charactermenu(SDL_Renderer *renderer)
         break;
     case 0:;
     }
-=======
-    switch (charactermenu(renderer))
-    {
-    case -1:
-        Firstmenu(renderer);
-        reset();
-        break;
-    case 0:;
-    }
->>>>>>> 041f779481bae5b78d74511e19a0fc2f35984bc2
 }
 
 int Menu::GetMode()

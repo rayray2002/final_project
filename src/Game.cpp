@@ -117,8 +117,8 @@ void Game::handleEveants()
 
 void Game::update()
 {
-	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 50000 ||
-		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 200000)
+	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 1000 ||
+		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 1000)
 	{
 		stop = true;
 	}
@@ -135,7 +135,6 @@ void Game::update()
 		TextureManager::Draw(t, r, r);
 		SDL_RenderPresent(Game::renderer);
 		SDL_RenderClear(Game::renderer);
-		SDL_Delay(5000);
 		isRunning = false;
 	}
 	manager.refresh();
