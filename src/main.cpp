@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
     game = new Game();
 
     game->init("The Seed", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, false);
+    // while (game->running())
+    // {
     game->menu.startmenu(Game::renderer);
     game->playerNumber = game->menu.GetMode();
     game->getP1(game->menu.GetP1());
@@ -33,6 +35,7 @@ int main(int argc, char *argv[])
         {
             SDL_Delay(frameDelay - frameTime);
         }
+        // }
     }
 
     game->clean();

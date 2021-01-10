@@ -22,7 +22,7 @@ class Game
 
 private:
     SDL_Window *window;
-    bool stop;
+    bool stop = false;
     int P1;
     int P2;
 

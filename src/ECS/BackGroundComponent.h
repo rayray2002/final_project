@@ -48,7 +48,7 @@ public:
         static bool OK = true;
         num++;
         SDL_Surface *tmpSurface;
-        if (num % 2 == 0)
+        if (num % 1 == 0)
             i++;
         switch (Game::event.type)
         {
@@ -72,7 +72,6 @@ public:
         if (num == 2)
             num = 0;
         TextureManager::Draw(texture, srcR, destR);
-        SDL_PumpEvents();
     }
 };
 

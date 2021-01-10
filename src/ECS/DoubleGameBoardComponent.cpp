@@ -26,62 +26,62 @@ void DoubleGameBoardComponent::init2()
 
 void DoubleGameBoardComponent::update()
 {
-	for (int i = 0; i < 13; i++)
-	{
-		for (int j = 0; j < 6; j++)
-		{
-			cout << gameboard1.UnitArray[i][j].color << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-	for (int i = 0; i < 13; i++)
-	{
-		for (int j = 0; j < 6; j++)
-		{
-			cout << gameboard1.UnitArray[i][j].isMoving << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
-	for (int i = 0; i < 13; i++)
-	{
-		for (int j = 0; j < 6; j++)
-		{
-			cout << gameboard1.UnitArray[i][j].isActive << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
+	// for (int i = 0; i < 13; i++)
+	// {
+	// 	for (int j = 0; j < 6; j++)
+	// 	{
+	// 		cout << gameboard1.UnitArray[i][j].color << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// cout << endl;
+	// for (int i = 0; i < 13; i++)
+	// {
+	// 	for (int j = 0; j < 6; j++)
+	// 	{
+	// 		cout << gameboard1.UnitArray[i][j].isMoving << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// cout << endl;
+	// for (int i = 0; i < 13; i++)
+	// {
+	// 	for (int j = 0; j < 6; j++)
+	// 	{
+	// 		cout << gameboard1.UnitArray[i][j].isActive << " ";
+	// 	}
+	// 	cout << endl;
+	// }
+	// cout << endl;
 	static int time = SDL_GetTicks();
 	if (SDL_GetTicks() - time >= 5000)
 	{
 		if (gameboard1.score > gameboard2.score)
 		{
 			chKO2 = true;
-			// cout << "2 KO" << endl;
 		}
 		else
 		{
 			chKO1 = true;
-			// cout << "1 KO" << endl;
 		}
 		stopAll();
 	}
 	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
 	static int ii = 0;
-	if (ii == 1)
+	if (ii == 3)
 	{
 		if (!gameboard2.falling)
 			Move(2);
-		if (!gameboard1.falling)
-			Move(1);
+
 		ii = 0;
 	}
 	ii++;
 
-		UpdateBoardMovingState(1);
+	if (!gameboard1.falling)
+		Move(1);
+
+	UpdateBoardMovingState(1);
 	UpdateBoardMovingState(2);
 	// int iiii = SDL_GetTicks();
 

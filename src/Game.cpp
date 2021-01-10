@@ -114,25 +114,105 @@ void Game::handleEveants()
 
 void Game::update()
 {
-	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 10000 ||
-		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 10000)
+	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 1000 ||
+		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 1000)
 	{
 		stop = true;
 	}
 
 	if (stop)
 	{
-		SDL_Texture *t;
-		TextureManager::LoadTexture("./img/banana.bmp");
-		SDL_Rect r;
-		r.x = 0;
-		r.y = 0;
-		r.h = 720;
-		r.w = 1280;
-		TextureManager::Draw(t, r, r);
+		SDL_RenderClear(Game::renderer);
+		TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 100);
+		TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+		string message;
+		for (auto &b : gameboards2)
+		{
+			if (b->getComponent<DoubleGameBoardComponent>().gameboard1.score >
+				b->getComponent<DoubleGameBoardComponent>().gameboard2.score)
+			{
+				if (P1 == 0)
+				{
+					message += "P1 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard1.score);
+				}
+				else if (P1 == 1)
+				{
+					message += "P1 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard1.score);
+				}
+				else if (P1 == 2)
+				{
+					message += "P1 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard1.score);
+				}
+				else if (P1 == 3)
+				{
+					message += "P1 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard1.score);
+				}
+				else if (P1 == 4)
+				{
+					message += "P1 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard1.score);
+				}
+			}
+			else if (b->getComponent<DoubleGameBoardComponent>().gameboard1.score <
+					 b->getComponent<DoubleGameBoardComponent>().gameboard2.score)
+			{
+				if (P2 == 0)
+				{
+					message += "P2 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard2.score);
+				}
+				else if (P2 == 1)
+				{
+					message += "P2 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard2.score);
+				}
+				else if (P2 == 2)
+				{
+					message += "P2 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard2.score);
+				}
+				else if (P2 == 3)
+				{
+					message += "P2 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard2.score);
+				}
+				else if (P2 == 4)
+				{
+					message += "P2 Win!!! Score: " + to_string(b->getComponent<DoubleGameBoardComponent>().gameboard2.score);
+				}
+			}
+		}
+		SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+
+		SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, message.c_str(), {255, 223, 0});
+		SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+		SDL_Rect textrec1;
+		textrec1.x = 640 - textsurface1->clip_rect.w / 2;
+		textrec1.y = 360 - textsurface1->clip_rect.h / 2;
+		textrec1.h = textsurface1->clip_rect.h;
+		textrec1.w = textsurface1->clip_rect.w;
+		SDL_FreeSurface(textsurface1);
+		SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+		SDL_DestroyTexture(texttexture1);
+		TTF_CloseFont(font1);
+
+		TTF_Font *font2 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 120);
+		TTF_SetFontStyle(font2, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+		SDL_Surface *textsurface2 = TTF_RenderText_Solid(font2, "Congratulations!!!", {255, 223, 0});
+		SDL_Texture *texttexture2 = SDL_CreateTextureFromSurface(Game::renderer, textsurface2);
+		SDL_Rect textrec2;
+		textrec2.x = 640 - textsurface2->clip_rect.w / 2;
+		textrec2.y = 55;
+		textrec2.h = textsurface2->clip_rect.h;
+		textrec2.w = textsurface2->clip_rect.w;
+		SDL_FreeSurface(textsurface2);
+		SDL_RenderCopy(Game::renderer, texttexture2, NULL, &textrec2);
+		SDL_DestroyTexture(texttexture2);
+		TTF_CloseFont(font2);
+
+		SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+
 		SDL_RenderPresent(Game::renderer);
 		SDL_RenderClear(Game::renderer);
-		isRunning = false;
+		SDL_Delay(5000);
+		// isRunning = false;
 	}
 	manager.refresh();
 	for (auto &b : backs)
@@ -243,6 +323,119 @@ void Game::render()
 			// {
 			// 	b->getComponent<ButtomComponent>().draw();
 			// }
+			SDL_SetRenderDrawColor(Game::renderer, 255, 223, 0, 255);
+			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_NONE);
+			for (int i = -4; i <= 3; ++i)
+			{
+				//1
+				SDL_RenderDrawLine(Game::renderer, 440 + i, 35 + i, 570 + i, 35 + i);
+				SDL_RenderDrawLine(Game::renderer, 440 + i, 235 + i, 570 + i, 235 + i);
+				SDL_RenderDrawLine(Game::renderer, 440 + i, 35 + i, 440 + i, 235 + i);
+				SDL_RenderDrawLine(Game::renderer, 570 + i, 35 + i, 570 + i, 235 + i);
+				//2
+				SDL_RenderDrawLine(Game::renderer, 710 + i, 35 + i, 840 + i, 35 + i);
+				SDL_RenderDrawLine(Game::renderer, 710 + i, 235 + i, 840 + i, 235 + i);
+				SDL_RenderDrawLine(Game::renderer, 710 + i, 35 + i, 710 + i, 235 + i);
+				SDL_RenderDrawLine(Game::renderer, 840 + i, 35 + i, 840 + i, 235 + i);
+			}
+
+			static int picturenum = 0;
+			SDL_Surface *character1;
+			SDL_Surface *character2;
+			string path[5];
+			if (picturenum < 10)
+			{
+				path[0] = "./img/Kiana/000" + to_string(picturenum) + ".bmp";
+			}
+			else if (picturenum < 100)
+			{
+				path[0] = "./img/Kiana/00" + to_string(picturenum) + ".bmp";
+			}
+			else
+			{
+				path[0] = "./img/Kiana/0" + to_string(picturenum) + ".bmp";
+			}
+			if (picturenum < 10)
+			{
+				path[1] = "./img/Rita/000" + to_string(picturenum) + ".bmp";
+			}
+			else if (picturenum < 100)
+			{
+				path[1] = "./img/Rita/00" + to_string(picturenum) + ".bmp";
+			}
+			else
+			{
+				path[1] = "./img/Rita/0" + to_string(picturenum) + ".bmp";
+			}
+			if (picturenum < 10)
+			{
+				path[2] = "./img/Fuhua/000" + to_string(picturenum) + ".bmp";
+			}
+			else if (picturenum < 100)
+			{
+				path[2] = "./img/Fuhua/00" + to_string(picturenum) + ".bmp";
+			}
+			else
+			{
+				path[2] = "./img/Fuhua/0" + to_string(picturenum) + ".bmp";
+			}
+			if (picturenum < 10)
+			{
+				path[3] = "./img/Mei/000" + to_string(picturenum) + ".bmp";
+			}
+			else if (picturenum < 100)
+			{
+				path[3] = "./img/Mei/00" + to_string(picturenum) + ".bmp";
+			}
+			else
+			{
+				path[3] = "./img/Mei/0" + to_string(picturenum) + ".bmp";
+			}
+			if (picturenum < 10)
+			{
+				path[4] = "./img/Terisa/000" + to_string(picturenum) + ".bmp";
+			}
+			else if (picturenum < 100)
+			{
+				path[4] = "./img/Terisa/00" + to_string(picturenum) + ".bmp";
+			}
+			else
+			{
+				path[4] = "./img/Terisa/0" + to_string(picturenum) + ".bmp";
+			}
+			character1 = SDL_LoadBMP(path[P1].c_str());
+			character2 = SDL_LoadBMP(path[P2].c_str());
+			picturenum++;
+			if (picturenum > 326)
+				picturenum = 1;
+			SDL_Texture *character1t = SDL_CreateTextureFromSurface(Game::renderer, character1);
+			SDL_Texture *character2t = SDL_CreateTextureFromSurface(Game::renderer, character2);
+			SDL_FreeSurface(character1);
+			SDL_FreeSurface(character2);
+			SDL_Rect r1;
+			r1.x = 440;
+			r1.y = 35;
+			r1.h = 200;
+			r1.w = 130;
+			SDL_Rect r2;
+			r2.x = 710;
+			r2.y = 35;
+			r2.h = 200;
+			r2.w = 130;
+			SDL_Rect rr1;
+			rr1.x = 260;
+			rr1.y = 80;
+			rr1.h = 300;
+			rr1.w = 200;
+			SDL_Rect rr2;
+			rr2.x = 260;
+			rr2.y = 80;
+			rr2.h = 300;
+			rr2.w = 200;
+			SDL_RenderCopy(Game::renderer, character1t, &rr1, &r1);
+			SDL_RenderCopy(Game::renderer, character2t, &rr2, &r2);
+			SDL_DestroyTexture(character1t);
+			SDL_DestroyTexture(character2t);
 		}
 		else if (playerNumber == 1)
 		{
@@ -286,103 +479,170 @@ void Game::render()
 		}
 	}
 
-	static int picturenum = 0;
-	SDL_Surface *character1;
-	SDL_Surface *character2;
-	string path[5];
-	if (picturenum < 10)
+	if (playerNumber == 2)
 	{
-		path[0] = "./img/Kiana/000" + to_string(picturenum) + ".bmp";
+		if (P1 == 0)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Kiana", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 425;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P1 == 1)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Rita", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 425;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P1 == 2)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Fuhua", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 425;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P1 == 3)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Mei", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 425;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P1 == 1)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Terisa", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 425;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+
+		if (P2 == 0)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Kiana", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 1280 - 425 - textsurface1->clip_rect.w;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P2 == 1)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Rita", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 1280 - 425 - textsurface1->clip_rect.w;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P2 == 2)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Fuhua", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 1280 - 425 - textsurface1->clip_rect.w;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P2 == 3)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Mei", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 1280 - 425 - textsurface1->clip_rect.w;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
+		else if (P2 == 1)
+		{
+			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "Terisa", {255, 223, 0});
+			SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+			SDL_Rect textrec1;
+			textrec1.x = 1280 - 425 - textsurface1->clip_rect.w;
+			textrec1.y = 285;
+			textrec1.h = textsurface1->clip_rect.h;
+			textrec1.w = textsurface1->clip_rect.w;
+			SDL_FreeSurface(textsurface1);
+			SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+			SDL_DestroyTexture(texttexture1);
+			TTF_CloseFont(font1);
+		}
 	}
-	else if (picturenum < 100)
-	{
-		path[0] = "./img/Kiana/00" + to_string(picturenum) + ".bmp";
-	}
-	else
-	{
-		path[0] = "./img/Kiana/0" + to_string(picturenum) + ".bmp";
-	}
-	if (picturenum < 10)
-	{
-		path[1] = "./img/Rita/000" + to_string(picturenum) + ".bmp";
-	}
-	else if (picturenum < 100)
-	{
-		path[1] = "./img/Rita/00" + to_string(picturenum) + ".bmp";
-	}
-	else
-	{
-		path[1] = "./img/Rita/0" + to_string(picturenum) + ".bmp";
-	}
-	if (picturenum < 10)
-	{
-		path[2] = "./img/Fuhua/000" + to_string(picturenum) + ".bmp";
-	}
-	else if (picturenum < 100)
-	{
-		path[2] = "./img/Fuhua/00" + to_string(picturenum) + ".bmp";
-	}
-	else
-	{
-		path[2] = "./img/Fuhua/0" + to_string(picturenum) + ".bmp";
-	}
-	if (picturenum < 10)
-	{
-		path[3] = "./img/Mei/000" + to_string(picturenum) + ".bmp";
-	}
-	else if (picturenum < 100)
-	{
-		path[3] = "./img/Mei/00" + to_string(picturenum) + ".bmp";
-	}
-	else
-	{
-		path[3] = "./img/Mei/0" + to_string(picturenum) + ".bmp";
-	}
-	if (picturenum < 10)
-	{
-		path[4] = "./img/Terisa/000" + to_string(picturenum) + ".bmp";
-	}
-	else if (picturenum < 100)
-	{
-		path[4] = "./img/Terisa/00" + to_string(picturenum) + ".bmp";
-	}
-	else
-	{
-		path[4] = "./img/Terisa/0" + to_string(picturenum) + ".bmp";
-	}
-	character1 = SDL_LoadBMP(path[P1].c_str());
-	character2 = SDL_LoadBMP(path[P2].c_str());
-	picturenum++;
-	if (picturenum > 326)
-		picturenum = 1;
-	SDL_Texture *character1t = SDL_CreateTextureFromSurface(Game::renderer, character1);
-	SDL_Texture *character2t = SDL_CreateTextureFromSurface(Game::renderer, character2);
-	SDL_FreeSurface(character1);
-	SDL_FreeSurface(character2);
-	SDL_Rect r1;
-	r1.x = 440;
-	r1.y = 35;
-	r1.h = 200;
-	r1.w = 130;
-	SDL_Rect r2;
-	r2.x = 710;
-	r2.y = 35;
-	r2.h = 200;
-	r2.w = 130;
-	SDL_Rect rr1;
-	rr1.x = 260;
-	rr1.y = 80;
-	rr1.h = 300;
-	rr1.w = 200;
-	SDL_Rect rr2;
-	rr2.x = 260;
-	rr2.y = 80;
-	rr2.h = 300;
-	rr2.w = 200;
-	SDL_RenderCopy(Game::renderer, character1t, &rr1, &r1);
-	SDL_RenderCopy(Game::renderer, character2t, &rr2, &r2);
-	SDL_DestroyTexture(character1t);
-	SDL_DestroyTexture(character2t);
 
 	SDL_RenderPresent(Game::renderer);
 	SDL_RenderClear(Game::renderer);
