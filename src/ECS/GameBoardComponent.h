@@ -33,6 +33,7 @@ private:
 public:
 	//    unit UnitArray[13][6];
 	GameBoard gameboard;
+	void showScore();
 
 	void ReSetZeroUnit(int &xpos, int &ypos);				// set default unit
 	void ReSetAllArrayZero(int gameBoardx, int gameBoardy); // reset gameboard

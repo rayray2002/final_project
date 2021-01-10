@@ -23,6 +23,7 @@ class Game
 private:
     SDL_Window *window;
     bool stop = false;
+    bool stop1 = false;
     int P1;
     int P2;
 

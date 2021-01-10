@@ -57,7 +57,6 @@ public:
                 Game::event.motion.y > HEIGHT - 220 && Game::event.motion.y < HEIGHT - 20)
             {
                 OK = !OK;
-                cout << "OK" << endl;
             }
         }
         if (1)

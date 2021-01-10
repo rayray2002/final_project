@@ -114,10 +114,15 @@ void Game::handleEveants()
 
 void Game::update()
 {
-	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 1000 ||
-		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 1000)
+	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 15000 ||
+		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 15000)
 	{
 		stop = true;
+	}
+
+	if (gameboard1.getComponent<GameBoardComponent>().gameboard.score > 5000)
+	{
+		stop1 = true;
 	}
 
 	if (stop)
@@ -212,8 +217,57 @@ void Game::update()
 		SDL_RenderPresent(Game::renderer);
 		SDL_RenderClear(Game::renderer);
 		SDL_Delay(5000);
-		// isRunning = false;
+		isRunning = false;
 	}
+
+	if (stop1)
+	{
+		SDL_RenderClear(Game::renderer);
+		TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 100);
+		TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+		string message;
+		for (auto &b : gameboards)
+		{
+			message += "Score: " + to_string(b->getComponent<GameBoardComponent>().gameboard.score);
+		}
+		SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+
+		SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, message.c_str(), {255, 223, 0});
+		SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+		SDL_Rect textrec1;
+		textrec1.x = 640 - textsurface1->clip_rect.w / 2;
+		textrec1.y = 360 - textsurface1->clip_rect.h / 2;
+		textrec1.h = textsurface1->clip_rect.h;
+		textrec1.w = textsurface1->clip_rect.w;
+		SDL_FreeSurface(textsurface1);
+		SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+		SDL_DestroyTexture(texttexture1);
+		TTF_CloseFont(font1);
+
+		TTF_Font *font2 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 120);
+		TTF_SetFontStyle(font2, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+		SDL_Surface *textsurface2 = TTF_RenderText_Solid(font2, "Congratulations!!!", {255, 223, 0});
+		SDL_Texture *texttexture2 = SDL_CreateTextureFromSurface(Game::renderer, textsurface2);
+		SDL_Rect textrec2;
+		textrec2.x = 640 - textsurface2->clip_rect.w / 2;
+		textrec2.y = 55;
+		textrec2.h = textsurface2->clip_rect.h;
+		textrec2.w = textsurface2->clip_rect.w;
+		SDL_FreeSurface(textsurface2);
+		SDL_RenderCopy(Game::renderer, texttexture2, NULL, &textrec2);
+		SDL_DestroyTexture(texttexture2);
+		TTF_CloseFont(font2);
+
+		SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, 255);
+
+		SDL_RenderPresent(Game::renderer);
+		SDL_RenderClear(Game::renderer);
+		SDL_Delay(5000);
+		isRunning = false;
+	}
+
 	manager.refresh();
 	for (auto &b : backs)
 	{
@@ -233,11 +287,6 @@ void Game::update()
 			for (auto &b : gameboards)
 			{
 				b->getComponent<GameBoardComponent>().update();
-			}
-
-			for (auto &b : buttoms)
-			{
-				b->getComponent<ButtomComponent>().update();
 			}
 		}
 	}
@@ -286,7 +335,6 @@ void Game::render()
 				SDL_RenderDrawLine(Game::renderer, 1180 + i, 35 + i, 1180 + i, 685 + i);
 				SDL_RenderDrawLine(Game::renderer, 880 + i, 35 + i, 880 + i, 685 + i);
 			}
-
 			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
 			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC);
 			SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, "score:", {255, 223, 0});
@@ -437,7 +485,7 @@ void Game::render()
 			SDL_DestroyTexture(character1t);
 			SDL_DestroyTexture(character2t);
 		}
-		else if (playerNumber == 1)
+		if (playerNumber == 1)
 		{
 			SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 64);
 			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_BLEND);
@@ -626,7 +674,7 @@ void Game::render()
 			SDL_DestroyTexture(texttexture1);
 			TTF_CloseFont(font1);
 		}
-		else if (P2 == 1)
+		else if (P2 == 4)
 		{
 			TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
 			TTF_SetFontStyle(font1, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);

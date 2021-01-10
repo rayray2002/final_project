@@ -11,7 +11,7 @@ void GameBoardComponent::init()
 void GameBoardComponent::update()
 {
 	static int n = 0;
-	if (n == 6)
+	if (n == 3)
 	{
 		UpdateBoardMovingState();
 		Move();
@@ -23,7 +23,7 @@ void GameBoardComponent::update()
 
 	if (!AnyThingMoving())
 	{
-		cout << gameboard << endl;
+		// cout << gameboard << endl;
 		if (!gameboard.falling)
 		{
 			chaining();
@@ -94,6 +94,7 @@ void GameBoardComponent::draw()
 										 gameboard.UnitArray[i][j].destR);
 			}
 		}
+	showScore();
 }
 
 unit *GameBoardComponent::getDataByMapPosition(int ypos, int xpos)
@@ -322,7 +323,7 @@ void GameBoardComponent::SpaceAction()
 	UpdateMovingPairLastestVersion();
 	int p1yd;
 	int p2yd;
-	if (MovingPairState == RIGHT_AND_LEFT)
+	if (MovingPairState == RIGHT_AND_LEFT || MovingPairState == SEPERATED)
 		for (int i = 0; i < 13; i++)
 			for (int j = 0; j < 6; j++)
 			{
@@ -333,6 +334,17 @@ void GameBoardComponent::SpaceAction()
 					gameboard.UnitArray[i][j].color == Empty)
 					p2yd = gameboard.UnitArray[i][j].mapPosition.y;
 			}
+	else if (MovingPairState == UP_AND_DOWN)
+	{
+		for (int i = 0; i < 13; i++)
+			for (int j = 0; j < 6; j++)
+			{
+				if (gameboard.UnitArray[i][j].mapPosition.x == MovingPair[1].mapPosition.x &&
+					gameboard.UnitArray[i][j].color == Empty)
+					p2yd = gameboard.UnitArray[i][j].mapPosition.y;
+				p1yd = p2yd - 1;
+			}
+	}
 	SwapTwoUnit(MovingPair[0], gameboard.UnitArray[p1yd][(int)MovingPair[0].mapPosition.x]);
 	SwapTwoUnit(MovingPair[1], gameboard.UnitArray[p2yd][(int)MovingPair[1].mapPosition.x]);
 }
@@ -394,4 +406,21 @@ bool GameBoardComponent::PairAdjacent()
 		return true;
 	else
 		return false;
+}
+
+void GameBoardComponent::showScore()
+{
+	TTF_Font *font1 = TTF_OpenFont("./fonts/GenJyuuGothic-Medium.ttf", 40);
+	TTF_SetFontStyle(font1, TTF_STYLE_ITALIC);
+	SDL_Surface *textsurface1 = TTF_RenderText_Solid(font1, to_string(gameboard.score).c_str(), {255, 223, 0});
+	SDL_Texture *texttexture1 = SDL_CreateTextureFromSurface(Game::renderer, textsurface1);
+	SDL_Rect textrec1;
+	textrec1.x = 100;
+	textrec1.y = 335 + 50;
+	textrec1.h = textsurface1->clip_rect.h;
+	textrec1.w = textsurface1->clip_rect.w;
+	SDL_FreeSurface(textsurface1);
+	SDL_RenderCopy(Game::renderer, texttexture1, NULL, &textrec1);
+	SDL_DestroyTexture(texttexture1);
+	TTF_CloseFont(font1);
 }

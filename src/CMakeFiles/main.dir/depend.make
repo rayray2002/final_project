@@ -48,7 +48,6 @@ CMakeFiles/main.dir/ECS/GameBoardComponent.cpp.o: /usr/local/include/SDL2/SDL_tt
 
 CMakeFiles/main.dir/ECS/MenuComponent.cpp.o: ECS/MenuComponent.cpp
 CMakeFiles/main.dir/ECS/MenuComponent.cpp.o: ECS/MenuComponent.h
-CMakeFiles/main.dir/ECS/MenuComponent.cpp.o: /usr/local/include/SDL2/SDL_ttf.h
 
 CMakeFiles/main.dir/Game.cpp.o: ECS/BackGroundComponent.h
 CMakeFiles/main.dir/Game.cpp.o: ECS/ButtomComponent.h

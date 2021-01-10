@@ -8,6 +8,7 @@ public:
     ~Menu();
     void reset();
     void startmenu(SDL_Renderer *);
+    int pausemenu(SDL_Renderer *);
     int GetMode();
     int GetP1();
     int GetP2();

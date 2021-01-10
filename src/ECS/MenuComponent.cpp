@@ -1,15 +1,9 @@
 
-//#define _MENUCOMPONENT_H
-//#include "test_initial_SDL.h"
 #include <SDL2/SDL.h>
 #include "MenuComponent.h"
-
-//#include "Components.h"
-//#include "../Game.h"
 #include <string>
-//#include <sstream>
-//#include <map>
-#include <SDL_ttf.h>
+#include <iostream>
+#include <SDL2/SDL_ttf.h>
 #define WIDTH 1280
 #define HEIGHT 720
 
@@ -60,12 +54,13 @@ void Menu::startvideo(SDL_Renderer *renderer)
                 }
             }
         }
+
         path = "./img/cytus/" + to_string(startnum) + ".bmp";
 
         start = SDL_LoadBMP(path.c_str());
         startnum++;
-        if (startnum == 118)
-            startnum = 268;
+        if (startnum == 119)
+            startnum = 279;
         if (startnum == 419)
             stop = true;
         SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, start);
@@ -74,10 +69,10 @@ void Menu::startvideo(SDL_Renderer *renderer)
         SDL_RenderPresent(renderer);
         if (startnum <= 22)
         {
-            SDL_Delay(35);
+            SDL_Delay(30);
         }
         else
-            SDL_Delay(35);
+            SDL_Delay(30);
         SDL_FreeSurface(start);
     }
 }
@@ -125,33 +120,38 @@ int Menu::GetP2()
 
 int Menu::firstmenu(SDL_Renderer *renderer)
 {
-    //SDL_Surface *screen = SDL_GetWindowSurface(window);
     SDL_Surface *img;
 
-    //Uint32 time;
     int x = 0, y = 0;
-    const int num = 2;
+    const int num = 3;
 
-    bool selected[num] = {0, 0};
+    bool selected[num] = {0, 0, 0};
     SDL_Color color[2] = {{255, 223, 0}, {0, 255, 235}};
     SDL_Surface *menus[num];
-    TTF_Font *font;
+    TTF_Font *font, *smallfont;
     font = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 100);
+    smallfont = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 80);
     TTF_SetFontStyle(font, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
     const char text1[] = "Single Player";
     const char text2[] = "Double Player";
+    const char text3[] = "Character Introdution";
     menus[0] = TTF_RenderText_Solid(font, text1, color[0]);
     menus[1] = TTF_RenderText_Solid(font, text2, color[0]);
+    menus[2] = TTF_RenderText_Solid(smallfont, text3, color[0]);
 
     SDL_Rect pos[num];
     pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
-    pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
+    pos[0].y = HEIGHT / 4 - menus[0]->clip_rect.h / 2;
     pos[0].w = menus[0]->clip_rect.w;
     pos[0].h = menus[0]->clip_rect.h;
     pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;
-    pos[1].y = HEIGHT / 2 + menus[1]->clip_rect.h;
-    pos[1].w = menus[0]->clip_rect.w;
-    pos[1].h = menus[0]->clip_rect.h;
+    pos[1].y = HEIGHT * 2 / 4 - menus[1]->clip_rect.h / 2;
+    pos[1].w = menus[1]->clip_rect.w;
+    pos[1].h = menus[1]->clip_rect.h;
+    pos[2].x = WIDTH / 2 - menus[2]->clip_rect.w / 2;
+    pos[2].y = HEIGHT * 3 / 4 - menus[2]->clip_rect.h / 2;
+    pos[2].w = menus[2]->clip_rect.w;
+    pos[2].h = menus[2]->clip_rect.h;
 
     SDL_Rect bgpos;
     bgpos.x = 0;
@@ -161,16 +161,14 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
     int z = 0;
     //initail renderer
-    //SDL_SetRenderDrawColor(renderer,255,255,255,255);
-
-    //SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
-    // SDL_SetColorKey(screen, SDL_TRUE, SDL_MapRGB(screen->format, 0, 0, 0));
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
     SDL_Event event;
     while (1)
     {
-        string path = "./img/background/" + to_string(z) + ".bmp";
+        string path;
+        path = "./img/background/" + to_string(z) + ".bmp";
+
         img = SDL_LoadBMP(path.c_str());
 
         SDL_RenderClear(renderer);
@@ -179,9 +177,11 @@ int Menu::firstmenu(SDL_Renderer *renderer)
         SDL_Texture *bgtexture = SDL_CreateTextureFromSurface(renderer, img);
         SDL_RenderCopy(renderer, bgtexture, NULL, &bgpos);
         SDL_DestroyTexture(bgtexture);
+
         z++;
         if (z > 3600)
-            z = 0;
+            z = 1;
+
         while (SDL_PollEvent(&event))
         {
             switch (event.type)
@@ -210,6 +210,11 @@ int Menu::firstmenu(SDL_Renderer *renderer)
                                 SDL_FreeSurface(menus[1]);
                                 menus[i] = TTF_RenderText_Solid(font, text2, color[1]);
                             }
+                            else if (i == 2)
+                            {
+                                SDL_FreeSurface(menus[2]);
+                                menus[i] = TTF_RenderText_Solid(font, text3, color[1]);
+                            }
                         }
                     }
                     else
@@ -226,6 +231,11 @@ int Menu::firstmenu(SDL_Renderer *renderer)
                             {
                                 SDL_FreeSurface(menus[1]);
                                 menus[i] = TTF_RenderText_Solid(font, text2, color[0]);
+                            }
+                            else if (i == 2)
+                            {
+                                SDL_FreeSurface(menus[2]);
+                                menus[i] = TTF_RenderText_Solid(font, text3, color[0]);
                             }
                         }
                     }
@@ -260,18 +270,21 @@ int Menu::firstmenu(SDL_Renderer *renderer)
 
         SDL_RenderPresent(renderer);
 
-        SDL_Delay(17);
+        SDL_Delay(22);
         SDL_FreeSurface(img);
     }
 }
 
 int Menu::charactermenu(SDL_Renderer *renderer)
 {
+    //SDL_Surface *screen = SDL_GetWindowSurface(window);
+    //SDL_SetColorKey(screen, SDL_FALSE, SDL_MapRGB(screen->format, 0X00, 0X00, 0X00));
     Uint32 time;
     int picturenum = 0, bgnum = 0;
     int x = 0, y = 0;
     const int num = 5;
 
+    bool selectingcharacter = 1;
     bool selected[num] = {0, 0, 0, 0, 0};
     SDL_Color color[2] = {{255, 223, 0}, {0, 255, 235}};
     SDL_Surface *menus[num];
@@ -361,6 +374,7 @@ int Menu::charactermenu(SDL_Renderer *renderer)
     SDL_Rect P1pos, P2pos;
     P1pos.y = 150;
     P2pos.y = 150;
+    //start.y = 150;
 
     //character picture
     int charactersize = 200;
@@ -548,20 +562,20 @@ int Menu::charactermenu(SDL_Renderer *renderer)
                     }
                     if (x >= startpos.x && x <= startpos.x + startpos.w && y >= startpos.y && y <= startpos.y + startpos.h && P1 != -1 && P2 != -1)
                     {
-
-                        return 100;
+                        selectingcharacter = false;
                     }
                 }
-
                 break;
             }
         }
         SDL_Surface *bgimg;
-        string bgpath = "./img/video/" + to_string(bgnum) + ".bmp";
+        string bgpath;
+        bgpath = "./img/video/" + to_string(bgnum) + ".bmp";
+
         bgimg = SDL_LoadBMP(bgpath.c_str());
         bgnum++;
         if (bgnum > 501)
-            bgnum = 0;
+            bgnum = 1;
 
         SDL_Surface *character[num];
         string path[num];
@@ -630,6 +644,8 @@ int Menu::charactermenu(SDL_Renderer *renderer)
         {
             character[i] = SDL_LoadBMP(path[i].c_str());
         }
+        // character[3] = SDL_LoadBMP("./img/miku.bmp");
+        // character[4] = SDL_LoadBMP("./img/miku.bmp");
 
         picturenum++;
         if (picturenum > 326)
@@ -703,6 +719,10 @@ int Menu::charactermenu(SDL_Renderer *renderer)
             SDL_RenderCopy(renderer, P2texture, NULL, &P2pos);
             SDL_DestroyTexture(P2texture);
         }
+
+        //		for(int i=0;i<num;i++){
+        //			SDL_BlitSurface(character[i],NULL,screen,&characterpos[i]);
+        //		}
         SDL_Texture *menutexture[5];
         for (int i = 0; i < num; i++)
         {
@@ -724,6 +744,9 @@ int Menu::charactermenu(SDL_Renderer *renderer)
 
             SDL_RenderFillRect(renderer, &columnpos[i]);
         }
+        // SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, screen);
+        // SDL_RenderCopy(renderer, texture, NULL, NULL);
+        // SDL_DestroyTexture(texture);
 
         SDL_Texture *charactertexture[num];
         for (int i = 0; i < num; i++)
@@ -733,11 +756,169 @@ int Menu::charactermenu(SDL_Renderer *renderer)
             SDL_DestroyTexture(charactertexture[i]);
         }
         SDL_RenderPresent(renderer);
+
+        //SDL_UpdateWindowSurface(window);
+
+        // make more smooth
+        // if (1000 / 30 > (SDL_GetTicks() - time))
+        // {
+        // 	SDL_Delay(1000 / 30 - (SDL_GetTicks() - time));
+        // }
+
         SDL_Delay(20);
+
         SDL_FreeSurface(bgimg);
         for (int i = 0; i < num; i++)
         {
             SDL_FreeSurface(character[i]);
         }
+        if (!selectingcharacter)
+            break;
+    }
+
+    bgnum = 220;
+    //opendoor video
+    while (bgnum < 373)
+    {
+        SDL_Surface *bgimg;
+        string bgpath;
+        if (bgnum < 10)
+        {
+            bgpath = "./img/opendoor/000" + to_string(bgnum) + ".bmp";
+        }
+        else if (bgnum < 100)
+        {
+            bgpath = "./img/opendoor/00" + to_string(bgnum) + ".bmp";
+        }
+        else
+        {
+            bgpath = "./img/opendoor/0" + to_string(bgnum) + ".bmp";
+        }
+        bgimg = SDL_LoadBMP(bgpath.c_str());
+        ++bgnum;
+
+        SDL_Texture *bgtexture = SDL_CreateTextureFromSurface(renderer, bgimg);
+        SDL_RenderCopy(renderer, bgtexture, NULL, NULL);
+        SDL_DestroyTexture(bgtexture);
+
+        SDL_RenderPresent(renderer);
+        SDL_Delay(20);
+
+        SDL_FreeSurface(bgimg);
+    }
+}
+
+int Menu::pausemenu(SDL_Renderer *renderer)
+{
+    int x = 0, y = 0;
+    const int num = 2;
+
+    bool selected[num] = {0, 0};
+    SDL_Color color[2] = {{255, 223, 0}, {0, 255, 235}};
+    SDL_Surface *menus[num];
+    TTF_Font *font;
+    font = TTF_OpenFont("fonts/GenJyuuGothic-Regular.ttf", 75);
+    TTF_SetFontStyle(font, TTF_STYLE_ITALIC | TTF_STYLE_BOLD);
+    const char text1[] = "continue";
+    const char text2[] = "exit";
+    menus[0] = TTF_RenderText_Solid(font, text1, color[0]);
+    menus[1] = TTF_RenderText_Solid(font, text2, color[0]);
+
+    SDL_Rect pos[num];
+    pos[0].x = WIDTH / 2 - menus[0]->clip_rect.w / 2;
+    pos[0].y = HEIGHT / 2 - menus[0]->clip_rect.h;
+    pos[0].w = menus[0]->clip_rect.w;
+    pos[0].h = menus[0]->clip_rect.h;
+    pos[1].x = WIDTH / 2 - menus[1]->clip_rect.w / 2;
+    pos[1].y = HEIGHT / 2 + menus[1]->clip_rect.h - 30;
+    pos[1].w = menus[1]->clip_rect.w;
+    pos[1].h = menus[1]->clip_rect.h;
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+
+    SDL_Event event;
+    while (1)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            switch (event.type)
+            {
+            case SDL_QUIT:
+                for (int i = 0; i < num; i++)
+                    SDL_FreeSurface(menus[i]);
+                return -100;
+            case SDL_MOUSEMOTION:
+                x = event.motion.x;
+                y = event.motion.y;
+                for (int i = 0; i < num; i++)
+                {
+                    if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
+                    {
+                        if (!selected[i])
+                        {
+                            selected[i] = true;
+                            if (i == 0)
+                            {
+                                SDL_FreeSurface(menus[0]);
+                                menus[i] = TTF_RenderText_Solid(font, text1, color[1]);
+                            }
+                            else if (i == 1)
+                            {
+                                SDL_FreeSurface(menus[1]);
+                                menus[i] = TTF_RenderText_Solid(font, text2, color[1]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (selected[i])
+                        {
+                            selected[i] = false;
+                            if (i == 0)
+                            {
+                                SDL_FreeSurface(menus[0]);
+                                menus[i] = TTF_RenderText_Solid(font, text1, color[0]);
+                            }
+                            else if (i == 1)
+                            {
+                                SDL_FreeSurface(menus[1]);
+                                menus[i] = TTF_RenderText_Solid(font, text2, color[0]);
+                            }
+                        }
+                    }
+                }
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                x = event.button.x;
+                y = event.button.y;
+                if (event.button.button == SDL_BUTTON_LEFT)
+                {
+                    for (int i = 0; i < num; i++)
+                    {
+                        if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
+                        {
+                            for (int j = 0; j < num; j++)
+                            {
+                                SDL_FreeSurface(menus[j]);
+                            }
+                            return i;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        for (int i = 0; i < num; i++)
+        {
+            SDL_Texture *menutexture[num];
+            menutexture[i] = SDL_CreateTextureFromSurface(renderer, menus[i]);
+            SDL_RenderCopy(renderer, menutexture[i], NULL, &pos[i]);
+        }
+
+        SDL_RenderPresent(renderer);
+
+        SDL_Delay(20);
     }
 }
