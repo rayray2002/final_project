@@ -33,6 +33,6 @@ public:
 
     friend ostream &operator<<(ostream &stream, const Vector2D &vec);
 
-    bool &operator==(const Vector2D &vec);
+    bool &operator!=(const Vector2D &vec) const;
 };
 #endif

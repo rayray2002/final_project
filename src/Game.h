@@ -1,10 +1,10 @@
 #ifndef _Game_H
 #define _Game_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-#include <SDL_ttf.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
@@ -12,7 +12,7 @@
 #include <vector>
 #include "GameBoard.h"
 #include "Vector2D.h"
-#include "./ECS/MenuComponent.h"
+#include "./ECS/Menu.h"
 
 #define WIDTH 1280
 #define HEIGHT 720

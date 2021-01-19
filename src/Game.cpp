@@ -17,6 +17,7 @@ auto &buttom2(manager.addEntity());
 auto &buttom3(manager.addEntity());
 auto &buttom4(manager.addEntity());
 auto &buttom5(manager.addEntity());
+auto &buttom6(manager.addEntity());
 
 auto &gameboard1(manager.addEntity());
 auto &gameboard2(manager.addEntity());
@@ -78,6 +79,8 @@ void Game::init(const char *title, int xMenuPos, int yMenuPos, int width, int he
 	buttom5.addComponent<ButtomComponent>(590, 75, 100, 100, "./img/vs.bmp");
 	buttom5.addGroup(groupButtoms);
 
+	buttom6.addComponent<ButtomComponent>(buttom5.getComponent<ButtomComponent>());
+
 	back.addComponent<BackGroundComponent>();
 	back.addGroup(groupBackGrounds);
 
@@ -114,6 +117,11 @@ void Game::handleEveants()
 
 void Game::update()
 {
+	if (playerNumber == 2)
+	{
+		gameboard2.getComponent<DoubleGameBoardComponent>().ch1 = P1 + 1;
+		gameboard2.getComponent<DoubleGameBoardComponent>().ch2 = P2 + 1;
+	}
 	if (gameboard2.getComponent<DoubleGameBoardComponent>().gameboard1.score > 15000 ||
 		gameboard2.getComponent<DoubleGameBoardComponent>().gameboard2.score > 15000)
 	{
@@ -367,10 +375,10 @@ void Game::render()
 				b->getComponent<DoubleGameBoardComponent>().draw();
 			}
 
-			// for (auto &b : buttoms)
-			// {
-			// 	b->getComponent<ButtomComponent>().draw();
-			// }
+			for (auto &b : buttoms)
+			{
+				b->getComponent<ButtomComponent>().draw();
+			}
 			SDL_SetRenderDrawColor(Game::renderer, 255, 223, 0, 255);
 			SDL_SetRenderDrawBlendMode(Game::renderer, SDL_BLENDMODE_NONE);
 			for (int i = -4; i <= 3; ++i)

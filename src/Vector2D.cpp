@@ -106,3 +106,12 @@ Vector2D &Vector2D::Zero()
     return *this;
 }
 
+bool &Vector2D::operator!=(const Vector2D &vec) const
+{
+    bool OK = true;
+    if (this->x != vec.x || this->y != vec.y)
+    {
+        OK = false;
+    }
+    return OK;
+}
